@@ -9,7 +9,7 @@ if(!function_exists('page_title'))
     function page_title($page)
     {
         $base_name = config('app.name');
-        return $page === '' ? $base_name : __($page) . ' - ' .  $base_name;
+        return $page == '' ? $base_name : $page . ' - ' .  $base_name;
     }
 }
 

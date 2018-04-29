@@ -48,6 +48,19 @@ if(!function_exists('js_admin_asset'))
     }
 }
 
+if(!function_exists('img_asset'))
+{
+    /**
+     * @param $img_file
+     * @param $extension
+     * @return string
+     */
+    function img_asset($img_file, $extension = 'png')
+    {
+        return asset('img/' . $img_file . '.' . $extension);
+    }
+}
+
 if(!function_exists('favicon_img_asset'))
 {
     /**
