@@ -11,8 +11,6 @@
 |
 */
 
-//Route::get('/home', 'FakeController@index')->name('home');
-
 //--Home routes...
 Route::get('/terms', 'HomeController@terms');
 Route::get('/policy', 'HomeController@policy');
