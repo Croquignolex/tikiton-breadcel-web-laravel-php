@@ -14,6 +14,17 @@ return [
     */
 
     'home' => 'Home',
+
+
+
+
+
+
+
+
+
+
+
     'download' => 'Download',
     'features' => 'Features',
     'contact' => 'Contact',
