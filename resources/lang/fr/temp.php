@@ -13,7 +13,6 @@ return [
     |
     */
 
-    'home' => 'Accueil',
     'download' => 'Téléchargement',
     'features' => 'Fonctionnalités',
     'contact' => 'Contact',

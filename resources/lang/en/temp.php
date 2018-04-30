@@ -13,21 +13,8 @@ return [
     |
     */
 
-    'home' => 'Home',
-
-
-
-
-
-
-
-
-
-
-
     'download' => 'Download',
     'features' => 'Features',
-    'contact' => 'Contact',
     'landing_msg' => 'Enjoy an easy way to manage your wallet for free',
     'get_started' => 'Get started',
     'get_your_mobil_app' => 'Your wallet always near you',

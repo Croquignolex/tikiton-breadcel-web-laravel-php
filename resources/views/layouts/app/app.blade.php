@@ -5,6 +5,7 @@
 @endsection
 
 @section('body')
+    @include('partials.app.header')
     @yield('home.body')
     @include('partials.app.footer')
 @endsection

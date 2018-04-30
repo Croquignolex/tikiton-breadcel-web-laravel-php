@@ -22,6 +22,18 @@ if(!function_exists('locale_route'))
     }
 }
 
+if(!function_exists('font'))
+{
+    /**
+     * @param $name
+     * @return string
+     */
+    function font($name)
+    {
+        return 'fa fa-' . $name;
+    }
+}
+
 if(!function_exists('flash_message'))
 {
     /**
@@ -61,21 +73,6 @@ if(!function_exists('text_format'))
     }
 }
 
-if(!function_exists('colors'))
-{
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    function colors()
-    {
-        return collect([
-            'secondary', 'dark', 'info',
-            'primary', 'theme', 'warning',
-            'success', 'danger'
-        ]);
-    }
-}
-
 if(!function_exists('get_index_in_collection'))
 {
     /**
@@ -94,26 +91,6 @@ if(!function_exists('get_index_in_collection'))
         }
 
         return $i;
-    }
-}
-
-if(!function_exists('icons'))
-{
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    function icons()
-    {
-        return collect([
-            'user', 'ambulance', 'at', 'beer', 'bed', 'users', 'film',
-            'birthday-cake', 'book', 'building', 'bus', 'taxi',
-            'shopping-cart', 'credit-card', 'child', 'dollar-sign',
-            'futbol', 'gem', 'gift', 'glass-martini', 'handshake',
-            'heart', 'history', 'home', 'laptop', 'lemon', 'mobile',
-            'money-bill-alt', 'paw', 'plane', 'shower', 'signal', 'smile',
-            'star', 'tasks', 'thumbtack', 'tint', 'trash-alt', 'umbrella',
-            'university', 'utensils', 'venus-mars', 'wrench', 'wifi', 'question', 'users'
-        ]);
     }
 }
 

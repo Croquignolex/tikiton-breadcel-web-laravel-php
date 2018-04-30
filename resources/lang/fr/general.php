@@ -4,6 +4,31 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Pages Language Lines
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'home' => 'Accueil',
+    'about' => 'A propos',
+    'contact' => 'Contact',
+    'cart' => 'Pagnier',
+    'search' => 'Rechercher',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Authentication Language Lines
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'login' => 'Connexion',
+    'register' => 'Inscription',
+
+    /*
+    |--------------------------------------------------------------------------
     | Footer Language Lines
     |--------------------------------------------------------------------------
     |
@@ -13,9 +38,22 @@ return [
     'right' => 'Tous les droits réservés',
     'terms_of_uses' => 'Conditions d\'utilisation',
     'privacy_policy' => 'Politique de confidentialité',
-    'about' => 'A propos',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Common Language Lines
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
 
+    'or' => 'ou',
+    'welcome_to_you' => 'Bienvenue a vous',
+    'my_cart' => 'Mon pagnier',
+    'article' => 'article',
+    'articles' => 'articles',
+    'total_price' => 'Prix total',
+    'check_out' => 'Commander',
 
     /*'sign_in' => 'Connexion',
     'sign_out' => 'Deconnexion',

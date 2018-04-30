@@ -11,15 +11,18 @@
 |
 */
 
-//--Home routes...
-Route::get('/terms', 'HomeController@terms');
-Route::get('/policy', 'HomeController@policy');
-Route::get('/about', 'HomeController@about');
-//--Localized home routes...
-Route::get('/{language?}', 'HomeController@index')->name('home.index');
-Route::get('/{language}/terms', 'HomeController@terms')->name('home.terms');
-Route::get('/{language}/policy', 'HomeController@policy')->name('home.policy');
-Route::get('/{language}/about', 'HomeController@about')->name('home.about');
+Route::group(['namespace' => 'App'], function() {
+    //--Client routes...
+    Route::get('/cart', 'CartController@index');
+    Route::get('/checkout', 'CheckoutController@index');
+    Route::post('/search', 'SearchController');
+
+    //--Localized client routes...
+    Route::get('/{language?}', 'HomeController')->name('home');
+    Route::get('/{language}/cart', 'CartController@index')->name('cart');
+    Route::get('/{language}/checkout', 'CheckoutController@index')->name('checkout');
+    Route::post('/{language}/search', 'SearchController')->name('search');
+});
 
 //--Auth routes...
 Auth::routes();
