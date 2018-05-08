@@ -15,6 +15,13 @@ return [
     'contact' => 'Contact',
     'cart' => 'Pagnier',
     'search' => 'Rechercher',
+    'about_us' => 'A propos de nous',
+    'our_products' => 'Nos produits',
+    'products' => 'Produits',
+    'our_services' => 'Nos services',
+    'services' => 'Services',
+    'contact_us' => 'Nous contacter',
+    'blog' => 'Blog',
 
     /*
     |--------------------------------------------------------------------------

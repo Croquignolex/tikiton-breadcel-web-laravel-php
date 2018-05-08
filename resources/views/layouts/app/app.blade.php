@@ -5,8 +5,11 @@
 @endsection
 
 @section('body')
+    @include('partials.app.header-top')
     @include('partials.app.header')
+    @include('partials.app.menu')
     @yield('home.body')
+    @include('partials.app.footer-top')
     @include('partials.app.footer')
 @endsection
 
@@ -33,7 +36,7 @@
     <script src="{{ js_asset('jquery.appear') }}" type="text/javascript"></script>
     <script src="{{ js_asset('jquery.meanmenu.min') }}" type="text/javascript"></script>
     <script src="{{ js_asset('jquery.nivo.slider.pack') }}" type="text/javascript"></script>
-    <script src="{{ js_asset('jquery.scrollup.min.') }}" type="text/javascript"></script>
+    <script src="{{ js_asset('jquery.scrollup.min') }}" type="text/javascript"></script>
     <script src="{{ js_asset('jquery.simpleLens.min') }}" type="text/javascript"></script>
     <script src="{{ js_asset('jquery-price-slider') }}" type="text/javascript"></script>
     <script src="{{ js_asset('wow.min') }}" type="text/javascript"></script>

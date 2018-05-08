@@ -404,6 +404,14 @@ img {
   right: 0;
 }
 /*----- 3.4 Main Menu -----*/
+.main-menu > nav > ul > li > ul > li > .active,
+.main-menu > nav > ul > li > .active
+{ color: #da7612; }
+
+.mobile-menu > div > nav > ul > li > ul  > li > .active,
+.mobile-menu > div > nav > ul > li > .active
+{ background-color: #da7612; }
+
 .menu-area {
   background:#ebebeb;
 }
@@ -622,7 +630,7 @@ img {
   margin-bottom: 15px;
 }
 .mean-container .mean-bar, .mean-container .mean-nav, .mean-container .mean-nav ul li a.mean-expand:hover {
-  background: #da7612 none repeat scroll 0 0;
+  background: #3e3f3f none repeat scroll 0 0;
 }
 /*----- 3.5 Slider Area -----*/
 .slider-wrap {

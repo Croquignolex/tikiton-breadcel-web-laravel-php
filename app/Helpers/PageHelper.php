@@ -35,99 +35,125 @@ if(!function_exists('active_page'))
     }
 }
 
-if(!function_exists('dashboard_pages'))
+if(!function_exists('home_pages'))
 {
     /**
      * @return \Illuminate\Support\Collection
      */
-    function dashboard_pages()
+    function home_pages()
     {
-        return collect(['dashboard']);
+        return collect(['home']);
     }
 }
 
-if(!function_exists('transactions_pages'))
+if(!function_exists('about_pages'))
 {
     /**
      * @return \Illuminate\Support\Collection
      */
-    function transactions_pages()
+    function about_pages()
+    {
+        return collect(['about']);
+    }
+}
+
+if(!function_exists('contact_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function contact_pages()
+    {
+        return collect(['contact']);
+    }
+}
+
+if(!function_exists('blog_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function blog_pages()
+    {
+        return collect(['blog.index']);
+    }
+}
+
+if(!function_exists('product1_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function product1_pages()
     {
         return collect([
-            'transactions.index', 'transactions.create',
-            'transactions.edit'
+            'products.index'
         ]);
     }
 }
 
-if(!function_exists('accounts_pages'))
+if(!function_exists('product2_pages'))
 {
     /**
      * @return \Illuminate\Support\Collection
      */
-    function accounts_pages()
+    function product2_pages()
     {
         return collect([
-            'accounts.index', 'accounts.create',
-            'accounts.edit'
+            'products.index'
         ]);
     }
 }
 
-if(!function_exists('groups_pages'))
+if(!function_exists('service1_pages'))
 {
     /**
      * @return \Illuminate\Support\Collection
      */
-    function groups_pages()
+    function service1_pages()
     {
         return collect([
-            'groups.index', 'groups.create', 'groups.edit',
-            'groups.categories.index', 'groups.categories.create',
-            'groups.categories.edit'
+            'services.index'
         ]);
     }
 }
 
-if(!function_exists('profile_pages'))
+if(!function_exists('service2_pages'))
 {
     /**
      * @return \Illuminate\Support\Collection
      */
-    function profile_pages()
+    function service2_pages()
     {
         return collect([
-            'profile.edit', 'profile.edit.email',
-            'profile.edit.password'
+            'services.index'
         ]);
     }
 }
 
-if(!function_exists('currencies_pages'))
+if(!function_exists('services_pages'))
 {
     /**
      * @return \Illuminate\Support\Collection
      */
-    function currencies_pages()
+    function services_pages()
     {
-        return collect([
-            'currencies.index', 'currencies.create',
-            'currencies.edit'
-        ]);
+        return (new \Illuminate\Support\Collection())
+            ->merge(service1_pages())
+            ->merge(service2_pages());
     }
 }
 
-if(!function_exists('configurations_pages'))
+if(!function_exists('products_pages'))
 {
     /**
      * @return \Illuminate\Support\Collection
      */
-    function configurations_pages()
+    function products_pages()
     {
 
         return (new \Illuminate\Support\Collection())
-            ->merge(groups_pages())
-            ->merge(profile_pages())
-            ->merge(currencies_pages());
+            ->merge(product1_pages())
+            ->merge(product2_pages());
     }
 }

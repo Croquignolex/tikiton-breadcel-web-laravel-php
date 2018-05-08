@@ -10,7 +10,6 @@ return [
     |
     */
 
-    'right' => 'All rights reseved.',
     'languages' => 'Language(s)',
     'en' => 'English',
     'fr' => 'French',
