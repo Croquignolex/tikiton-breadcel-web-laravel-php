@@ -9,8 +9,13 @@ return [
     |
     */
     'name' => env('COMPANY_NAME', 'Laravel'),
-    'phone' => env('COMPANY_PHONE', '0000'),
-    'email' => env('COMPANY_EMAIL', 'hello@example.com'),
+    'slogan' => env('COMPANY_SLOGAN', 'Laravel'),
+    'phone_1' => env('COMPANY_PHONE_1', '0000'),
+    'phone_2' => env('COMPANY_PHONE_2', '0000'),
+    'address_1' => env('COMPANY_ADDRESS_1', 'Address'),
+    'address_2' => env('COMPANY_ADDRESS_2', 'Address'),
+    'email_1' => env('COMPANY_EMAIL_1', 'hello@example.com'),
+    'email_2' => env('COMPANY_EMAIL_2', 'hello@example.com'),
     'web_site' => env('COMPANY_WEB_SITE', 'http://laravel.com'),
 
     /*

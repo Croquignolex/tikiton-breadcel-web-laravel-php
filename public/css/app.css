@@ -1513,8 +1513,8 @@ img {
   padding: 0;
   text-decoration: none;
 }
-.payment ul li a img {
-  width: 50px;
+.payment ul li a:hover {
+  color: #da7612;
 }
 /*----------------------
 	4. Home page 3

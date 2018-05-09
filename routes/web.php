@@ -13,6 +13,8 @@
 
 Route::group(['namespace' => 'App'], function() {
     //--Client routes...
+    Route::get('/terms', 'TermController');
+    Route::get('/policy', 'PolicyController');
     Route::get('/about', 'AboutController');
     Route::get('/contact', 'ContactController');
     Route::get('/blog', 'BlogController@index');
@@ -25,6 +27,8 @@ Route::group(['namespace' => 'App'], function() {
 
     //--Localized client routes...
     Route::get('/{language?}', 'HomeController')->name('home');
+    Route::get('/{language?}/terms', 'TermController')->name('terms');
+    Route::get('/{language?}/policy', 'PolicyController')->name('policy');
     Route::get('/{language?}/about', 'AboutController')->name('about');
     Route::get('/{language?}/contact', 'ContactController')->name('contact');
     Route::get('/{language?}/blog', 'BlogController@index')->name('blog.index');

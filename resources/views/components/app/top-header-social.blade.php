@@ -1,3 +1,3 @@
-<a href="{{ config('company.' . $slot) }}">
+<a href="{{ $slot }}">
     <i class="{{ font($icon) }}"></i>
 </a>

@@ -21,7 +21,7 @@
                 <div class="logo text-center">
                     <a href="{{ locale_route('home') }}">
                         <img src="{{ img_asset('logo') }}" alt="..." />
-                        <h4>Cel & Cel Bread'Cel</h4>
+                        <h4>{{ config('company.slogan') }}</h4>
                     </a>
                 </div>
             </div>

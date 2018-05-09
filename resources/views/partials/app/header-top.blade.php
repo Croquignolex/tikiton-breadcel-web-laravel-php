@@ -6,11 +6,11 @@
                 <div class="info">
                     @component('components.app.top-header-info',
                         ['class' => 'phn-num', 'icon' => 'phone' ])
-                        phone
+                        {{ config('company.phone_1') }}
                     @endcomponent
                     @component('components.app.top-header-info',
                         ['class' => 'mail-id', 'icon' => 'envelope-o' ])
-                        email
+                        {{ config('company.email_1') }}
                     @endcomponent
                 </div>
             </div>
@@ -18,23 +18,23 @@
                 <div class="socials text-center">
                     @component('components.app.top-header-social',
                         ['icon' => 'facebook' ])
-                        facebook
+                        {{ config('company.facebook') }}
                     @endcomponent
                     @component('components.app.top-header-social',
-                    ['icon' => 'twitter' ])
-                        twitter
+                        ['icon' => 'twitter' ])
+                        {{ config('company.twitter') }}
                     @endcomponent
                     @component('components.app.top-header-social',
-                    ['icon' => 'linkedin' ])
-                        linked_in
+                        ['icon' => 'linkedin' ])
+                        {{ config('company.linked_in') }}
                     @endcomponent
                     @component('components.app.top-header-social',
-                    ['icon' => 'google-plus' ])
-                        google_plus
+                        ['icon' => 'google-plus' ])
+                        {{ config('company.google_plus') }}
                     @endcomponent
                     @component('components.app.top-header-social',
-                    ['icon' => 'youtube-play' ])
-                        youtube
+                        ['icon' => 'youtube-play' ])
+                        {{ config('company.youtube') }}
                     @endcomponent
                 </div>
             </div>
