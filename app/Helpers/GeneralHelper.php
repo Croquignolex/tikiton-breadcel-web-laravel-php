@@ -34,6 +34,42 @@ if(!function_exists('font'))
     }
 }
 
+if(!function_exists('banner_animation'))
+{
+    /**
+     * @return string
+     * @internal param $name
+     */
+    function banner_animation($slider, $text)
+    {
+        $animations= [
+            ['bounceInDown', 'flipInY', 'bounceInUp'],
+            ['bounceInUp', 'lightSpeedIn', 'bounceInDown'],
+            ['rollIn', 'bounceIn', 'bounceIn']
+        ];
+
+        return $animations[$slider][$text];
+    }
+}
+
+if(!function_exists('banner_message'))
+{
+    /**
+     * @return string
+     * @internal param $name
+     */
+    function banner_message($slider, $text)
+    {
+        $animations= [
+            ['banner_msg_1_top', 'banner_msg_1_bottom'],
+            ['banner_msg_2_top', 'banner_msg_2_bottom'],
+            ['banner_msg_3_top', 'banner_msg_3_bottom']
+        ];
+
+        return trans('general.' . $animations[$slider][$text]);
+    }
+}
+
 if(!function_exists('flash_message'))
 {
     /**

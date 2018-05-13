@@ -36,6 +36,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Banner Language Lines
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'banner_msg_1_top' => 'Exclusive',
+    'banner_msg_2_top' => 'Delicious',
+    'banner_msg_3_top' => 'Awesome',
+    'banner_msg_1_bottom' => 'Express yourself',
+    'banner_msg_2_bottom' => 'Take pleasure',
+    'banner_msg_3_bottom' => 'Fully nice',
+
+    /*
+    |--------------------------------------------------------------------------
     | Common Language Lines
     |--------------------------------------------------------------------------
     |
@@ -55,6 +70,7 @@ return [
     'cash_on_delivery_msg' => 'Your confidence is necessary',
     'always_on_time' => 'Always on time',
     'always_on_time_msg' => 'Never late for your needs',
+    'order' => 'Order',
 
     /*
     |--------------------------------------------------------------------------

@@ -15,6 +15,7 @@
 
 @push('style.plugin')
     <link rel="stylesheet" href="{{ css_asset('owl.carousel.min') }}" type="text/css">
+    <link rel="stylesheet" href="{{ css_asset('animate') }}" type="text/css">
     <link rel="stylesheet" href="{{ css_asset('jquery.simpleLens') }}" type="text/css">
     <link rel="stylesheet" href="{{ css_asset('jquery-price-slider') }}" type="text/css">
     <link rel="stylesheet" href="{{ css_asset('meanmenu.min') }}" type="text/css">

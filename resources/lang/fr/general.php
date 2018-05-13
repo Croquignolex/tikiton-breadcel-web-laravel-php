@@ -36,6 +36,36 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Banner Language Lines
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'banner_msg_1_top' => 'Expressif',
+    'banner_msg_2_top' => 'Délicieux',
+    'banner_msg_3_top' => 'Extra',
+    'banner_msg_1_bottom' => 'Exprimez vous',
+    'banner_msg_2_bottom' => 'Faites vous plaisir',
+    'banner_msg_3_bottom' => 'Totalement bon',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Banner Language Lines
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'banner_msg_1_top' => '',
+    'banner_msg_2_top' => '',
+    'banner_msg_3_top' => '',
+    'banner_msg_1_bottom' => '',
+    'banner_msg_2_bottom' => '',
+    'banner_msg_3_bottom' => '',
+
+    /*
+    |--------------------------------------------------------------------------
     | Common Language Lines
     |--------------------------------------------------------------------------
     |
@@ -55,6 +85,7 @@ return [
     'cash_on_delivery_msg' => 'Votre confiance est necessaire',
     'always_on_time' => 'Toujours à l\'heure',
     'always_on_time_msg' => 'Jamais en retard pour vos besoins',
+    'order' => 'Commander',
 
     /*
     |--------------------------------------------------------------------------
