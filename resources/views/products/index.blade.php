@@ -1,4 +1,4 @@
-@extends('layouts.app.app')
+@extends('layouts.app')
 
 @section('home.title', page_title(trans('general.products')))
 

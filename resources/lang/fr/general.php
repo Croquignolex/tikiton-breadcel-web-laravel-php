@@ -51,21 +51,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Banner Language Lines
-    |--------------------------------------------------------------------------
-    |
-    |
-    */
-
-    'banner_msg_1_top' => '',
-    'banner_msg_2_top' => '',
-    'banner_msg_3_top' => '',
-    'banner_msg_1_bottom' => '',
-    'banner_msg_2_bottom' => '',
-    'banner_msg_3_bottom' => '',
-
-    /*
-    |--------------------------------------------------------------------------
     | Common Language Lines
     |--------------------------------------------------------------------------
     |
@@ -86,6 +71,7 @@ return [
     'always_on_time' => 'Toujours à l\'heure',
     'always_on_time_msg' => 'Jamais en retard pour vos besoins',
     'order' => 'Commander',
+    'featured_products' => 'Produits en vedette',
 
     /*
     |--------------------------------------------------------------------------

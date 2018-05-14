@@ -70,6 +70,23 @@ if(!function_exists('banner_message'))
     }
 }
 
+if(!function_exists('money_currency'))
+{
+    /**
+     * @param $amount
+     * @param string $symbol
+     * @return string
+     * @internal param $name
+     */
+    function money_currency($amount, $symbol = 'CA')
+    {
+        if(Illuminate\Support\Facades\App::getLocale() === 'fr')
+            return $amount . $symbol;
+        else if (Illuminate\Support\Facades\App::getLocale() === 'en')
+            return $symbol . $amount;
+    }
+}
+
 if(!function_exists('flash_message'))
 {
     /**

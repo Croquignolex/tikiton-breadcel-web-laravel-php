@@ -18,8 +18,8 @@ Route::group(['namespace' => 'App'], function() {
     Route::get('/about', 'AboutController');
     Route::get('/contact', 'ContactController');
     Route::get('/blog', 'BlogController@index');
-    Route::get('/products', 'ProductController@index');
     Route::get('/services', 'ServiceController@index');
+    Route::resource('/products', 'ProductController');
 
     Route::get('/cart', 'CartController@index');
     Route::get('/checkout', 'CheckoutController@index');
@@ -32,8 +32,8 @@ Route::group(['namespace' => 'App'], function() {
     Route::get('/{language?}/about', 'AboutController')->name('about');
     Route::get('/{language?}/contact', 'ContactController')->name('contact');
     Route::get('/{language?}/blog', 'BlogController@index')->name('blog.index');
-    Route::get('/{language?}/products', 'ProductController@index')->name('products.index');
     Route::get('/{language?}/services', 'ServiceController@index')->name('services.index');
+    Route::resource('{language?}/products', 'ProductController');
 
     Route::get('/{language}/cart', 'CartController@index')->name('cart');
     Route::get('/{language}/checkout', 'CheckoutController@index')->name('checkout');

@@ -30,4 +30,27 @@
         @endfor
     </div>
     <!--End home slider-->
+    <!--Start Featured Product Area-->
+    <div class="featured-product section fix">
+        <div class="container">
+            <div class="row">
+                <div class="section-title">
+                    <h2>@lang('general.featured_products')</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="col-sm-12">
+                    <!-- Featured slider Area Start -->
+                    <div class="feature-pro-slider owl-carousel">
+                        @foreach($featured_products as $product)
+                            @component('components.app.product-card',
+                                ['product' => $product])
+                            @endcomponent
+                        @endforeach
+                    </div>
+                    <!-- Featured slider Area End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Featured Product Area--> 
 @endsection

@@ -71,6 +71,7 @@ return [
     'always_on_time' => 'Always on time',
     'always_on_time_msg' => 'Never late for your needs',
     'order' => 'Order',
+    'featured_products' => 'Featured products',
 
     /*
     |--------------------------------------------------------------------------

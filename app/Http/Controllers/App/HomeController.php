@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -11,6 +12,10 @@ class HomeController extends Controller
      */
     public function __invoke()
     {
-        return view('home.index');
+        $featured_products = Product::where('ranking', 10)
+            ->orWhere('is_featured', true)
+            ->get();
+
+        return view('home.index', compact('featured_products'));
     }
 }
