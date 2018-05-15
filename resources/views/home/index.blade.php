@@ -7,7 +7,7 @@
     <div class="slider-wrap home-1-slider">
         <div id="mainSlider" class="nivoSlider slider-image">
             @for($i = 1; $i <= 3; $i++)
-                <img src="{{ img_asset('banners/banner' . $i , 'jpg') }}" alt="main slider" title="#slide{{ $i }}"/>
+                <img src="{{ banner_img_asset('banner' . $i) }}" alt="main slider" title="#slide{{ $i }}"/>
             @endfor
         </div>
         @for($i = 1; $i <= 3; $i++)
@@ -22,7 +22,7 @@
                             <h2>{{ banner_message($i - 1, 1) }}</h2>
                         </div>
                         <div class="cap-readmore wow {{ banner_animation($i - 1, 2) }}" data-wow-duration="1.5s" data-wow-delay="0s">
-                            <a href="#">@lang('general.order')</a>
+                            <a href="{{ locale_route('products.index') }}">@lang('general.order')</a>
                         </div>
                     </div>
                 </div>
@@ -52,5 +52,243 @@
             </div>
         </div>
     </div>
-    <!--End Featured Product Area--> 
+    <!--End Featured Product Area-->
+    <!--Start Product Offer Area-->
+    <div class="banner-area fix">
+        <div class="col-sm-6 sin-banner">
+            <a href="{{ locale_route('products.index') }}">
+                <img src="{{ banner_img_asset('offer_top1') }}" alt="..." />
+                <div class="wrap">
+                    <h2>@lang('home.offer_top1_title')</h2>
+                    <p>@lang('home.offer_top1_description')</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-4 sin-banner">
+            <a href="{{ locale_route('products.index') }}">
+                <img src="{{ banner_img_asset('offer_top2') }}" alt="..." />
+                <div class="wrap">
+                    <h2>@lang('home.offer_top2_title')</h2>
+                    <p>@lang('home.offer_top2_description')</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-2 hidden-xs sin-banner text-1">
+            <img src="{{ banner_img_asset('banner_bg') }}" alt="..." />
+            <div class="banner-text">
+                <a href="{{ locale_route('products.index') }}">@lang('general.order')</a>
+            </div>
+        </div>
+        <div class="col-sm-2 hidden-xs sin-banner clear text-2">
+            <img src="{{ banner_img_asset('banner_bg') }}" alt="..." />
+            <div class="banner-text">
+                <a href="{{ locale_route('products.index') }}">@lang('general.order')</a>
+            </div>
+        </div>
+        <div class="col-sm-6 sin-banner">
+            <a href="{{ locale_route('products.index') }}">
+                <img src="{{ banner_img_asset('offer_bottom1') }}" alt="..." />
+                <div class="wrap">
+                    <h2>@lang('home.offer_bottom1_title')</h2>
+                    <p>@lang('home.offer_bottom1_description')</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-4 sin-banner">
+            <a href="{{ locale_route('products.index') }}">
+                <img src="{{ banner_img_asset('offer_bottom2') }}" alt="..." />
+                <div class="wrap">
+                    <h2>@lang('home.offer_bottom2_title')</h2>
+                    <p>@lang('home.offer_bottom2_description')</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!--End Product Offer Area-->
+    <!--Start Product Area-->
+    <div class="tab-product-area section fix">
+        <div class="container">
+            <div class="row">
+                <!-- Nav tabs -->
+                <ul class="tabs-list" role="tablist">
+                    <li class="active"><a href="#new" data-toggle="tab">@lang('general.new')</a></li>
+                    <li><a href="#feature" data-toggle="tab">@lang('general.featured')</a></li>
+                    <li><a href="#b-sales" data-toggle="tab">@lang('general.best_sellers')</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="new">
+                        <div class="tab-pro-slider new-product owl-carousel">
+                            @for($i = 0; $i < $new_products->count(); $i += 2)
+                                <div class="single-product-item fix">
+                                    @component('components.app.product-card',
+                                        ['product' => $new_products[$i]])
+                                    @endcomponent
+                                    @if($i + 1 < $new_products->count())
+                                        @component('components.app.product-card',
+                                            ['product' => $new_products[$i + 1]])
+                                        @endcomponent
+                                    @endif
+                                </div>
+                            @endfor
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="feature">
+                        <div class="tab-pro-slider feature-product owl-carousel">
+                            @for($i = 0; $i < $featured_products->count(); $i += 2)
+                                <div class="single-product-item fix">
+                                    @component('components.app.product-card',
+                                        ['product' => $featured_products[$i]])
+                                    @endcomponent
+                                    @if($i + 1 < $featured_products->count())
+                                        @component('components.app.product-card',
+                                            ['product' => $featured_products[$i + 1]])
+                                        @endcomponent
+                                    @endif
+                                </div>
+                            @endfor
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="b-sales">
+                        <div class="tab-pro-slider best-product owl-carousel">
+                            @for($i = 0; $i < $most_sold_products->count(); $i += 2)
+                                <div class="single-product-item fix">
+                                    @component('components.app.product-card',
+                                        ['product' => $most_sold_products[$i]])
+                                    @endcomponent
+                                    @if($i + 1 < $most_sold_products->count())
+                                        @component('components.app.product-card',
+                                            ['product' => $most_sold_products[$i + 1]])
+                                        @endcomponent
+                                    @endif
+                                </div>
+                            @endfor
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Product Area-->
+    <!--Start Magic Area-->
+    <div class="magic-area fix">
+        <div class="col-sm-12 col-md-6 image">
+            <a href="#"><img src="img/magic.jpg" alt="magic" /></a>
+        </div>
+        <div class="col-sm-12 col-md-6 content">
+            <h2>Use Jewelry’s magic</h2>
+            <h3>buy fine jewelry</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor</p>
+            <a href="#">Shop Now</a>
+        </div>
+    </div>
+    <!--End Magic Area-->
+    <!--Start Fun Factor Area-->
+    <div class="funfact section fix">
+        <div class="container">
+            <div class="row">
+                <div class="section-title">
+                    <h2>Fun Factor</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    <div class="fun-factor">
+                        <div class="fun-factor-in">
+                            <i class="fa fa-user"></i>
+                            <div class="fun-factor-out"></div>
+                        </div>
+                        <p class="timer" data-from="0" data-to="11250"></p>
+                        <h4>Happy Customers</h4>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    <div class="fun-factor">
+                        <div class="fun-factor-in">
+                            <i class="fa fa-database"></i>
+                            <div class="fun-factor-out"></div>
+                        </div>
+                        <p class="timer" data-from="0" data-to="7500"></p>
+                        <h4>Items</h4>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    <div class="fun-factor">
+                        <div class="fun-factor-in">
+                            <i class="fa fa-eye"></i>
+                            <div class="fun-factor-out"></div>
+                        </div>
+                        <p class="timer" data-from="0" data-to="2050"></p>
+                        <h4>Views</h4>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    <div class="fun-factor">
+                        <div class="fun-factor-in">
+                            <i class="fa fa-money"></i>
+                            <div class="fun-factor-out"></div>
+                        </div>
+                        <p class="timer" data-from="0" data-to="1550"></p>
+                        <h4>Sales</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Start Fun Factor Area-->
+    <!--Start Testimonial Area-->
+    <div class="testimonial-area fix">
+        <div class="overlay section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-offset-0 col-sm-12 col-md-offset-2 col-md-8">
+                        <div class="testimonial-slider  owl-carousel">
+                            <div class="testimonial-item">
+                                <div class="image fix">
+                                    <img src="img/testimonial/testimonial.jpg" alt="" />
+                                </div>
+                                <div class="content fix">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adiising elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+                                    <h3>Zasika Williams</h3>
+                                </div>
+                            </div>
+                            <div class="testimonial-item">
+                                <div class="image fix">
+                                    <img src="img/testimonial/testimonial.jpg" alt="" />
+                                </div>
+                                <div class="content fix">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adiising elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+                                    <h3>Zasika Williams</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Testimonial Area-->
+    <!--Start Brand Area-->
+    <div class="brand-area section fix">
+        <div class="container">
+            <div class="row">
+                <div class="section-title">
+                    <h2>Our Brands</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="brand-slider owl-carousel">
+                    <div class="brand-item"><img src="img/brand/brand-1.png" alt="" /></div>
+                    <div class="brand-item"><img src="img/brand/brand-2.png" alt="" /></div>
+                    <div class="brand-item"><img src="img/brand/brand-3.png" alt="" /></div>
+                    <div class="brand-item"><img src="img/brand/brand-4.png" alt="" /></div>
+                    <div class="brand-item"><img src="img/brand/brand-5.png" alt="" /></div>
+                    <div class="brand-item"><img src="img/brand/brand-1.png" alt="" /></div>
+                    <div class="brand-item"><img src="img/brand/brand-2.png" alt="" /></div>
+                    <div class="brand-item"><img src="img/brand/brand-3.png" alt="" /></div>
+                    <div class="brand-item"><img src="img/brand/brand-4.png" alt="" /></div>
+                    <div class="brand-item"><img src="img/brand/brand-5.png" alt="" /></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Brand Area-->
 @endsection

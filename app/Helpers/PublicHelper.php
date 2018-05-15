@@ -61,6 +61,33 @@ if(!function_exists('img_asset'))
     }
 }
 
+if(!function_exists('banner_img_asset'))
+{
+    /**
+     * @param $banner
+     * @param string $extension
+     * @return string
+     */
+    function banner_img_asset($banner, $extension = 'jpg')
+    {
+        return asset('img/banners/' . $banner . '.' . $extension);
+    }
+}
+
+if(!function_exists('product_img_asset'))
+{
+    /**
+     * @param $product
+     * @param string $extension
+     * @return string
+     * @internal param $banner
+     */
+    function product_img_asset($product, $extension = 'jpg')
+    {
+        return asset('img/products/' . $product . '.' . $extension);
+    }
+}
+
 if(!function_exists('favicon_img_asset'))
 {
     /**

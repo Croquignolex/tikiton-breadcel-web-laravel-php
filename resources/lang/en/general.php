@@ -58,6 +58,8 @@ return [
     */
 
     'or' => 'or',
+    'hot' => 'Hot',
+    'pastry' => 'Pastry',
     'welcome_to_you' => 'Welcome to you',
     'my_cart' => 'My cart',
     'article' => 'article',
@@ -72,6 +74,9 @@ return [
     'always_on_time_msg' => 'Never late for your needs',
     'order' => 'Order',
     'featured_products' => 'Featured products',
+    'featured' => 'Featured',
+    'new' => 'New',
+    'best_sellers' => 'Best sellers',
 
     /*
     |--------------------------------------------------------------------------

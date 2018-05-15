@@ -793,7 +793,7 @@ img {
   height: auto;
   left: 0;
   position: absolute;
-  top: 50%;
+  top: 67%;
   transform: translateY(-50%);
   width: 40px;
   z-index: 99;
@@ -971,7 +971,7 @@ img {
   color: #e09e24;
   display: inline-block;
   font-weight: 600;
-  margin-top: 20px;
+  margin-top: 90%;
   padding: 10px 20px;
   text-transform: uppercase;
 }
@@ -1650,11 +1650,15 @@ img {
 .hot-pro, .new-pro {
   display: inline-block;
   position: absolute;
-  right: 10px;
   top: 0;
   z-index: 9999;
 }
-.hot-pro img, .new-pro img{}
+.hot-pro {
+    right: 10px;
+}
+.new-pro {
+    left: 10px;
+}
 .pagination {
   border-radius: 0;
   clear: both;

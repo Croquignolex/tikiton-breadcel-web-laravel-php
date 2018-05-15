@@ -58,6 +58,8 @@ return [
     */
 
     'or' => 'ou',
+    'hot' => 'Patisserie',
+    'pastry' => 'Chaude',
     'welcome_to_you' => 'Bienvenue a vous',
     'my_cart' => 'Mon pagnier',
     'article' => 'article',
@@ -72,6 +74,9 @@ return [
     'always_on_time_msg' => 'Jamais en retard pour vos besoins',
     'order' => 'Commander',
     'featured_products' => 'Produits en vedette',
+    'featured' => 'En vedette',
+    'new' => 'Nouveau',
+    'best_sellers' => 'Meilleur vente',
 
     /*
     |--------------------------------------------------------------------------

@@ -25,9 +25,14 @@ class ProductsTableSeeder extends Seeder
             'en_featured_description' => null,
             'price' => 30,
             'discount' => 0,
-            'ranking' => 10,
+            'ranking' => 9,
             'is_featured' => false,
+            'is_new' => true,
+            'is_most_sold' => false,
+            'stock' => 10,
             'category_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('products')->insert([
@@ -43,9 +48,14 @@ class ProductsTableSeeder extends Seeder
             'en_featured_description' => null,
             'price' => 10,
             'discount' => 30,
-            'ranking' => 10,
+            'ranking' => 8,
             'is_featured' => false,
+            'is_new' => true,
+            'is_most_sold' => false,
+            'stock' => 10,
             'category_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('products')->insert([
@@ -62,8 +72,13 @@ class ProductsTableSeeder extends Seeder
             'price' => 20,
             'discount' => 0,
             'ranking' => 6,
-            'is_featured' => true,
+            'is_featured' => false,
+            'is_new' => true,
+            'is_most_sold' => false,
+            'stock' => 10,
             'category_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('products')->insert([
@@ -79,9 +94,14 @@ class ProductsTableSeeder extends Seeder
             'en_featured_description' => null,
             'price' => 35,
             'discount' => 10,
-            'ranking' => 10,
+            'ranking' => 7,
             'is_featured' => false,
+            'is_new' => true,
+            'is_most_sold' => true,
+            'stock' => 10,
             'category_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('products')->insert([
@@ -97,9 +117,14 @@ class ProductsTableSeeder extends Seeder
             'en_featured_description' => null,
             'price' => 25,
             'discount' => 0,
-            'ranking' => 10,
+            'ranking' => 6,
             'is_featured' => false,
+            'is_new' => true,
+            'is_most_sold' => true,
+            'stock' => 10,
             'category_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('products')->insert([
@@ -117,8 +142,242 @@ class ProductsTableSeeder extends Seeder
             'discount' => 0,
             'ranking' => 5,
             'is_featured' => true,
+            'is_new' => false,
+            'is_most_sold' => true,
+            'stock' => 10,
             'category_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
+        DB::table('products')->insert([
+            'slug' => 'rounds',
+            'image' => 'product_7',
+            'fr_name' => 'Ronds',
+            'en_name' => 'Rounds',
+            'fr_featured_title' => null,
+            'en_featured_title' => null,
+            'fr_description' => 'Ronds aux dattes, raisin et graines de pavot',
+            'en_description' => 'Round at dates, grapes and poppy seeds',
+            'fr_featured_description' => null,
+            'en_featured_description' => null,
+            'price' => 2,
+            'discount' => 0,
+            'ranking' => 8,
+            'is_featured' => true,
+            'is_new' => false,
+            'is_most_sold' => true,
+            'stock' => 10,
+            'category_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('products')->insert([
+            'slug' => 'cake',
+            'image' => 'product_8',
+            'fr_name' => 'Cateaux',
+            'en_name' => 'Cake',
+            'fr_featured_title' => null,
+            'en_featured_title' => null,
+            'fr_description' => 'Gateaux aux dattes, raisin et graines de lin',
+            'en_description' => 'Cake at dates, grapes and lin seeds',
+            'fr_featured_description' => null,
+            'en_featured_description' => null,
+            'price' => 2.5,
+            'discount' => 0,
+            'ranking' => 8,
+            'is_featured' => false,
+            'is_new' => false,
+            'is_most_sold' => true,
+            'stock' => 10,
+            'category_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('products')->insert([
+            'slug' => 'lin_donut',
+            'image' => 'product_9',
+            'fr_name' => 'Beignet au lin',
+            'en_name' => 'Lin donut',
+            'fr_featured_title' => null,
+            'en_featured_title' => null,
+            'fr_description' => 'Beignet aux graines de lin',
+            'en_description' => 'Donut at lin seeds',
+            'fr_featured_description' => null,
+            'en_featured_description' => null,
+            'price' => 3.5,
+            'discount' => 0,
+            'ranking' => 7,
+            'is_featured' => false,
+            'is_new' => false,
+            'is_most_sold' => true,
+            'stock' => 10,
+            'category_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('products')->insert([
+            'slug' => 'chocolate_donut',
+            'image' => 'product_10',
+            'fr_name' => 'Beignet au chocolat',
+            'en_name' => 'Chocolate donut',
+            'fr_featured_title' => null,
+            'en_featured_title' => null,
+            'fr_description' => 'Beignet aux pépites de chocolat',
+            'en_description' => 'Donut with chocolate seeds',
+            'fr_featured_description' => null,
+            'en_featured_description' => null,
+            'price' => 4.5,
+            'discount' => 0,
+            'ranking' => 9,
+            'is_featured' => true,
+            'is_new' => false,
+            'is_most_sold' => true,
+            'stock' => 10,
+            'category_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('products')->insert([
+            'slug' => 'plain_donut',
+            'image' => 'product_11',
+            'fr_name' => 'Beignet nature',
+            'en_name' => 'Plain donut',
+            'fr_featured_title' => null,
+            'en_featured_title' => null,
+            'fr_description' => 'Beignet nature avec juste du sucre',
+            'en_description' => 'Plain donut with only sugar',
+            'fr_featured_description' => null,
+            'en_featured_description' => null,
+            'price' => 3,
+            'discount' => 0,
+            'ranking' => 9,
+            'is_featured' => true,
+            'is_new' => false,
+            'is_most_sold' => true,
+            'stock' => 10,
+            'category_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('products')->insert([
+            'slug' => 'chocolate_cake',
+            'image' => 'product_12',
+            'fr_name' => 'Gâteaux au chocolat',
+            'en_name' => 'Chocolate cake',
+            'fr_featured_title' => null,
+            'en_featured_title' => null,
+            'fr_description' => 'Gâteaux au chocolat',
+            'en_description' => 'Cake with chocolate',
+            'fr_featured_description' => null,
+            'en_featured_description' => null,
+            'price' => 2,
+            'discount' => 0,
+            'ranking' => 9,
+            'is_featured' => true,
+            'is_new' => true,
+            'is_most_sold' => false,
+            'stock' => 10,
+            'category_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('products')->insert([
+            'slug' => 'chocolate_bread',
+            'image' => 'product_13',
+            'fr_name' => 'Pain au chocolat',
+            'en_name' => 'Chocolate bread',
+            'fr_featured_title' => null,
+            'en_featured_title' => null,
+            'fr_description' => 'Pain au chocolat',
+            'en_description' => 'Bread with chocolate',
+            'fr_featured_description' => null,
+            'en_featured_description' => null,
+            'price' => 2.5,
+            'discount' => 0,
+            'ranking' => 9,
+            'is_featured' => true,
+            'is_new' => false,
+            'is_most_sold' => true,
+            'stock' => 10,
+            'category_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('products')->insert([
+            'slug' => 'sweet_donut',
+            'image' => 'product_14',
+            'fr_name' => 'Beignet sucré',
+            'en_name' => 'Sweet donut',
+            'fr_featured_title' => null,
+            'en_featured_title' => null,
+            'fr_description' => 'Beignet avec le sucre',
+            'en_description' => 'Donut with sugar',
+            'fr_featured_description' => null,
+            'en_featured_description' => null,
+            'price' => 3,
+            'discount' => 0,
+            'ranking' => 7,
+            'is_featured' => true,
+            'is_new' => true,
+            'is_most_sold' => true,
+            'stock' => 10,
+            'category_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('products')->insert([
+            'slug' => 'sweet_chocolate_donut',
+            'image' => 'product_15',
+            'fr_name' => 'Beignet sucré au chocolat',
+            'en_name' => 'Sweet chocolate donut',
+            'fr_featured_title' => null,
+            'en_featured_title' => null,
+            'fr_description' => 'Beignet avec le sucre et le chocolat',
+            'en_description' => 'Donut with sugar and chocolate',
+            'fr_featured_description' => null,
+            'en_featured_description' => null,
+            'price' => 5.5,
+            'discount' => 0,
+            'ranking' => 8,
+            'is_featured' => true,
+            'is_new' => true,
+            'is_most_sold' => true,
+            'stock' => 10,
+            'category_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('products')->insert([
+            'slug' => 'plain_bread',
+            'image' => 'product_16',
+            'fr_name' => 'Pain simple',
+            'en_name' => 'Plain bread',
+            'fr_featured_title' => null,
+            'en_featured_title' => null,
+            'fr_description' => 'Pain simple au lait',
+            'en_description' => 'Plain bread with milk',
+            'fr_featured_description' => null,
+            'en_featured_description' => null,
+            'price' => 4,
+            'discount' => 0,
+            'ranking' => 9,
+            'is_featured' => true,
+            'is_new' => true,
+            'is_most_sold' => true,
+            'stock' => 10,
+            'category_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
     }
 }

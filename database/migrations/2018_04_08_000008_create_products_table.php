@@ -29,6 +29,9 @@ class CreateProductsTable extends Migration
             $table->smallInteger('discount')->default(0);
             $table->tinyInteger('ranking')->default(0);
             $table->boolean('is_featured')->default(false);
+            $table->boolean('is_new')->default(false);
+            $table->boolean('is_most_sold')->default(false);
+            $table->integer('stock');
             $table->integer('category_id')->unsigned();
             $table->timestamps();
 

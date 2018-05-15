@@ -23,7 +23,7 @@ class Product extends Model
         'image', 'fr_name', 'en_name', 'fr_featured_title', 'en_featured_title',
         'fr_description', 'en_description', 'fr_featured_description',
         'en_featured_description', 'price', 'discount', 'ranking',
-        'is_featured'
+        'is_featured', 'is_new', 'is_most_sold', 'stock'
     ];
 
     /**
@@ -40,7 +40,7 @@ class Product extends Model
      */
     public function getImagePathAttribute()
     {
-        return 'products/' . $this->image;
+        return product_img_asset($this->image);
     }
 
     /**

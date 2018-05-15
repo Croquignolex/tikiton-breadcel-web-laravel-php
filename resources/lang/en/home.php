@@ -13,5 +13,12 @@ return [
     |
     */
 
-
+    'offer_top1_title' => 'Extraordinary croissants',
+    'offer_top1_description' => 'There are very cute and nice',
+    'offer_top2_title' => 'Awesome breads',
+    'offer_top2_description' => 'This is a different way to eat',
+    'offer_bottom1_title' => 'Nice Bread\'sel',
+    'offer_bottom1_description' => 'All our passion in only one pastry',
+    'offer_bottom2_title' => 'Delicious',
+    'offer_bottom2_description' => 'You have to taste it to understand',
 ];

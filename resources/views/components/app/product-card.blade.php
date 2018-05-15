@@ -1,10 +1,17 @@
+@inject('productService', 'App\Services\ProductService')
 <!-- Single Product Start -->
 <div class="product-item fix">
     <div class="product-img-hover">
         <!-- Product image -->
         <a href="{{ locale_route('products.show', [$product]) }}" class="pro-image fix">
-            <img src="{{ img_asset($product->image_path, 'jpg') }}" alt="featured" />
+            <img src="{{ $product->image_path }}" alt="..." />
         </a>
+        @if($productService->isNew($product))
+            <div class="new-pro"><img src="{{ product_img_asset('new', 'png') }}" alt="..." /></div>
+        @endif
+        @if($productService->isFeatured($product))
+            <div class="hot-pro"><img src="{{ product_img_asset('hot', 'png') }}" alt="..." /></div>
+        @endif
         <!-- Product action Btn -->
         <div class="product-action-btn">
             <a class="quick-view" href="#"><i class="{{ font('search') }}"></i></a>
