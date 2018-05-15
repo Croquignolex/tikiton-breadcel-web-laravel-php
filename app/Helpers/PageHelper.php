@@ -79,58 +79,6 @@ if(!function_exists('blog_pages'))
     }
 }
 
-if(!function_exists('product1_pages'))
-{
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    function product1_pages()
-    {
-        return collect([
-            'products.index'
-        ]);
-    }
-}
-
-if(!function_exists('product2_pages'))
-{
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    function product2_pages()
-    {
-        return collect([
-            'products.index'
-        ]);
-    }
-}
-
-if(!function_exists('service1_pages'))
-{
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    function service1_pages()
-    {
-        return collect([
-            'services.index'
-        ]);
-    }
-}
-
-if(!function_exists('service2_pages'))
-{
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    function service2_pages()
-    {
-        return collect([
-            'services.index'
-        ]);
-    }
-}
-
 if(!function_exists('services_pages'))
 {
     /**
@@ -138,9 +86,7 @@ if(!function_exists('services_pages'))
      */
     function services_pages()
     {
-        return (new \Illuminate\Support\Collection())
-            ->merge(service1_pages())
-            ->merge(service2_pages());
+        return collect(['services.index']);
     }
 }
 
@@ -152,8 +98,6 @@ if(!function_exists('products_pages'))
     function products_pages()
     {
 
-        return (new \Illuminate\Support\Collection())
-            ->merge(product1_pages())
-            ->merge(product2_pages());
+        return collect(['products.index']);
     }
 }

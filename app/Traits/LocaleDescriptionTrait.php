@@ -16,6 +16,6 @@ trait LocaleDescriptionTrait
         if(App::getLocale() === 'fr') $name = $this->fr_description;
         else if (App::getLocale() === 'en') $name = $this->en_description;
 
-        return title_case($name);
+        return ucfirst($name);
     }
 }

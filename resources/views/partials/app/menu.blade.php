@@ -20,19 +20,11 @@
                                 <a href="{{ locale_route('products.index') }}" class="{{ active_page(products_pages()) }}">
                                     @lang('general.our_products')
                                 </a>
-                                <ul class="sub-menu">
-                                    <li><a href="{{ locale_route('products.index') }}" class="{{ active_page(product2_pages()) }}">@lang('general.our_products') 1</a></li>
-                                    <li><a href="{{ locale_route('products.index') }}" class="{{ active_page(product1_pages()) }}">@lang('general.our_products') 2</a></li>
-                                </ul>
                             </li>
                             <li>
                                 <a href="{{ locale_route('services.index') }}" class="{{ active_page(services_pages()) }}">
                                     @lang('general.our_services')
                                 </a>
-                                <ul class="sub-menu">
-                                    <li><a href="{{ locale_route('services.index') }}" class="{{ active_page(service1_pages()) }}">@lang('general.our_services') 1</a></li>
-                                    <li><a href="{{ locale_route('services.index') }}" class="{{ active_page(service2_pages()) }}">@lang('general.our_services') 2</a></li>
-                                </ul>
                             </li>
                             <li>
                                 <a href="{{ locale_route('blog.index') }}" class="{{ active_page(blog_pages()) }}">
@@ -64,19 +56,11 @@
                                 <a href="{{ locale_route('products.index') }}" class="{{ active_page(products_pages()) }}">
                                     @lang('general.our_products')
                                 </a>
-                                <ul>
-                                    <li><a href="{{ locale_route('products.index') }}" class="{{ active_page(product2_pages()) }}">@lang('general.our_products') 1</a></li>
-                                    <li><a href="{{ locale_route('products.index') }}" class="{{ active_page(product1_pages()) }}">@lang('general.our_products') 2</a></li>
-                                </ul>
                             </li>
                             <li>
                                 <a href="{{ locale_route('services.index') }}" class="{{ active_page(services_pages()) }}">
                                     @lang('general.our_services')
                                 </a>
-                                <ul>
-                                    <li><a href="{{ locale_route('services.index') }}" class="{{ active_page(service2_pages()) }}">@lang('general.our_services') 1</a></li>
-                                    <li><a href="{{ locale_route('services.index') }}" class="{{ active_page(service1_pages()) }}">@lang('general.our_services') 2</a></li>
-                                </ul>
                             </li>
                             <li>
                                 <a href="{{ locale_route('blog.index') }}" class="{{ active_page(blog_pages()) }}">

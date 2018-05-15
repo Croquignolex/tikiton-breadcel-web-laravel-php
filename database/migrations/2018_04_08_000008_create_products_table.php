@@ -19,12 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('image', 255);
             $table->string('fr_name', 255);
             $table->string('en_name', 255);
-            $table->string('fr_featured_title', 255)->nullable();
-            $table->string('en_featured_title', 255)->nullable();
             $table->text('fr_description');
             $table->text('en_description');
-            $table->text('fr_featured_description')->nullable();
-            $table->text('en_featured_description')->nullable();
             $table->double('price');
             $table->smallInteger('discount')->default(0);
             $table->tinyInteger('ranking')->default(0);

@@ -173,13 +173,13 @@
     <!--Start Magic Area-->
     <div class="magic-area fix">
         <div class="col-sm-12 col-md-6 image">
-            <a href="#"><img src="img/magic.jpg" alt="magic" /></a>
+            <a href="{{ locale_route('products.index') }}"><img src="{{ banner_img_asset('magic') }}" alt="..." height="348"/></a>
         </div>
         <div class="col-sm-12 col-md-6 content">
-            <h2>Use Jewelry’s magic</h2>
-            <h3>buy fine jewelry</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor</p>
-            <a href="#">Shop Now</a>
+            <h2>@lang('home.magic_top_title')</h2>
+            <h3>@lang('home.magic_title')</h3>
+            <p>@lang('home.magic_description').</p>
+            <a href="{{ locale_route('products.index') }}">@lang('general.order')</a>
         </div>
     </div>
     <!--End Magic Area-->

@@ -21,4 +21,7 @@ return [
     'offer_bottom1_description' => 'All our passion in only one pastry',
     'offer_bottom2_title' => 'Delicious',
     'offer_bottom2_description' => 'You have to taste it to understand',
+    'magic_top_title' => 'All is in passion',
+    'magic_title' => 'For more perfection',
+    'magic_description' => 'For the best for you, we express the best of us, the best of our passion',
 ];
