@@ -7,7 +7,7 @@ trait NameTrait
     /**
      * @return mixed
      */
-    public function getNameAttribute()
+    public function getFormatNameAttribute()
     {
         return ucfirst($this->name);
     }

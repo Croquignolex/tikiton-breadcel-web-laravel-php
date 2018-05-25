@@ -9,7 +9,7 @@ trait LocaleNameTrait
     /**
      * @return mixed
      */
-    public function getNameAttribute()
+    public function getFormatNameAttribute()
     {
         $name = '';
 

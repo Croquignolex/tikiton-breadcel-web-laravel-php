@@ -80,11 +80,23 @@ if(!function_exists('product_img_asset'))
      * @param $product
      * @param string $extension
      * @return string
-     * @internal param $banner
      */
     function product_img_asset($product, $extension = 'jpg')
     {
         return asset('img/products/' . $product . '.' . $extension);
+    }
+}
+
+if(!function_exists('testimonial_img_asset'))
+{
+    /**
+     * @param $testimonials
+     * @param string $extension
+     * @return string
+     */
+    function testimonial_img_asset($testimonials, $extension = 'jpg')
+    {
+        return asset('img/testimonials/' . $testimonials . '.' . $extension);
     }
 }
 

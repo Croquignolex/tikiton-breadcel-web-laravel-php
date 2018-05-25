@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Testimonial;
 
 class HomeController extends Controller
 {
@@ -17,26 +18,25 @@ class HomeController extends Controller
         $new_products = Product::where('created_at', '>=', now()->addDay(-7))
             ->orWhere('is_new', true)
             ->get();
-
         $featured_products = Product::where('ranking', 10)
             ->orWhere('is_featured', true)
             ->get();
-
         $most_sold_products = Product::where('is_most_sold', true)
             ->get();
+        $testimonials = Testimonial::all();
 
-        $customers = Customer::all()->count();
-        $products = Product::all()->count();
-        $orders = Order::all()->count();
-        $sales = Order::where('status', Order::SOLD)->count();
+        $customers_nbr = Customer::all()->count();
+        $products_nbr = Product::all()->count();
+        $orders_nbr = Order::all()->count();
+        $sales_nbr = Order::where('status', Order::SOLD)->count();
 
         return view
         (
             'home.index',
             compact(
-                'featured_products', 'customers',
-                'new_products', 'most_sold_products', 'products',
-                'orders', 'sales'
+                'featured_products', 'customers_nbr',
+                'new_products', 'most_sold_products', 'products_nbr',
+                'orders_nbr', 'sales_nbr', 'testimonials'
             )
         );
     }

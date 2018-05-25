@@ -23,7 +23,7 @@
         <!-- Product Name -->
         <div class="pro-name">
             <a href="{{ locale_route('products.show', [$product]) }}">
-                {{ $product->name }}
+                {{ $product->format_name }}
             </a>
         </div>
         <!-- Product Ratting -->

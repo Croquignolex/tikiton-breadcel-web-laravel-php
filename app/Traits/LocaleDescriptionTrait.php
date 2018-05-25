@@ -9,7 +9,7 @@ trait LocaleDescriptionTrait
     /**
      * @return mixed
      */
-    public function getDescriptionAttribute()
+    public function getFormatDescriptionAttribute()
     {
         $name = '';
 

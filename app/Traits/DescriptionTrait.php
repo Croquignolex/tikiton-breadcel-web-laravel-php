@@ -7,7 +7,7 @@ trait DescriptionTrait
     /**
      * @return mixed
      */
-    public function getDescriptionAttribute()
+    public function getFormatDescriptionAttribute()
     {
         return ucfirst($this->description);
     }

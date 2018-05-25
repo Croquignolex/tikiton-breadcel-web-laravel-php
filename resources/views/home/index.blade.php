@@ -42,8 +42,9 @@
                     <!-- Featured slider Area Start -->
                     <div class="feature-pro-slider owl-carousel">
                         @foreach($featured_products as $product)
-                            @component('components.app.product-card',
-                                ['product' => $product])
+                            @component('components.app.product-card', [
+                                'product' => $product
+                                ])
                             @endcomponent
                         @endforeach
                     </div>
@@ -173,7 +174,7 @@
     <!--Start Magic Area-->
     <div class="magic-area fix">
         <div class="col-sm-12 col-md-6 image">
-            <a href="{{ locale_route('products.index') }}"><img src="{{ banner_img_asset('magic') }}" alt="..." height="348"/></a>
+            <a href="{{ locale_route('products.index') }}"><img src="{{ banner_img_asset('magic') }}" alt="..." class="img-responsive"/></a>
         </div>
         <div class="col-sm-12 col-md-6 content">
             <h2>@lang('home.magic_top_title')</h2>
@@ -191,42 +192,30 @@
                     <h2>@lang('general.our_statistics')</h2>
                     <div class="underline"></div>
                 </div>
-                <div class="col-xs-6 col-sm-3">
-                    <div class="fun-factor">
-                        <div class="fun-factor-in">
-                            <i class="{{ font('users') }}"></i>
-                        </div>
-                        <p class="timer" data-from="0" data-to="{{ $customers }}"></p>
-                        <h4>@lang('general.customers')</h4>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-3">
-                    <div class="fun-factor">
-                        <div class="fun-factor-in">
-                            <i class="{{ font('database') }}"></i>
-                        </div>
-                        <p class="timer" data-from="0" data-to="{{ $products }}"></p>
-                        <h4>@lang('general.items')</h4>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-3">
-                    <div class="fun-factor">
-                        <div class="fun-factor-in">
-                            <i class="{{ font('file-text-o') }}"></i>
-                        </div>
-                        <p class="timer" data-from="0" data-to="{{ $orders }}"></p>
-                        <h4>@lang('general.orders')</h4>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-3">
-                    <div class="fun-factor">
-                        <div class="fun-factor-in">
-                            <i class="{{ font('calendar-check-o') }}"></i>
-                        </div>
-                        <p class="timer" data-from="0" data-to="{{ $sales }}"></p>
-                        <h4>@lang('general.sold_items')</h4>
-                    </div>
-                </div>
+                @component('components.app.fun-factor-item', [
+                    'font' => 'users',
+                    'value' => $customers_nbr,
+                    'dictionary_name' => 'customers',
+                    ])
+                @endcomponent
+                @component('components.app.fun-factor-item', [
+                    'font' => 'database',
+                    'value' => $products_nbr,
+                    'dictionary_name' => 'items',
+                    ])
+                @endcomponent
+                @component('components.app.fun-factor-item', [
+                    'font' => 'file-text-o',
+                    'value' => $orders_nbr,
+                    'dictionary_name' => 'orders',
+                    ])
+                @endcomponent
+                @component('components.app.fun-factor-item', [
+                    'font' => 'calendar-check-o',
+                    'value' => $sales_nbr,
+                    'dictionary_name' => 'sold_items',
+                    ])
+                @endcomponent
             </div>
         </div>
     </div>
@@ -238,24 +227,17 @@
                 <div class="row">
                     <div class="col-sm-offset-0 col-sm-12 col-md-offset-2 col-md-8">
                         <div class="testimonial-slider  owl-carousel">
-                            <div class="testimonial-item">
-                                <div class="image fix">
-                                    <img src="img/testimonial/testimonial.jpg" alt="" />
+                            @foreach($testimonials as $testimonial)
+                                <div class="testimonial-item">
+                                    <div class="image fix">
+                                        <img src="{{ $testimonial->image_path }}" alt="" class="img-responsive" />
+                                    </div>
+                                    <div class="content fix">
+                                        <h4 class="text-justify">{{ $testimonial->format_description }}</h4>
+                                        <h3 class="text-right">{{ $testimonial->format_name }}</h3>
+                                    </div>
                                 </div>
-                                <div class="content fix">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adiising elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
-                                    <h3>Zasika Williams</h3>
-                                </div>
-                            </div>
-                            <div class="testimonial-item">
-                                <div class="image fix">
-                                    <img src="img/testimonial/testimonial.jpg" alt="" />
-                                </div>
-                                <div class="content fix">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adiising elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
-                                    <h3>Zasika Williams</h3>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -263,28 +245,4 @@
         </div>
     </div>
     <!--End Testimonial Area-->
-    <!--Start Brand Area-->
-    <div class="brand-area section fix">
-        <div class="container">
-            <div class="row">
-                <div class="section-title">
-                    <h2>Our Brands</h2>
-                    <div class="underline"></div>
-                </div>
-                <div class="brand-slider owl-carousel">
-                    <div class="brand-item"><img src="img/brand/brand-1.png" alt="" /></div>
-                    <div class="brand-item"><img src="img/brand/brand-2.png" alt="" /></div>
-                    <div class="brand-item"><img src="img/brand/brand-3.png" alt="" /></div>
-                    <div class="brand-item"><img src="img/brand/brand-4.png" alt="" /></div>
-                    <div class="brand-item"><img src="img/brand/brand-5.png" alt="" /></div>
-                    <div class="brand-item"><img src="img/brand/brand-1.png" alt="" /></div>
-                    <div class="brand-item"><img src="img/brand/brand-2.png" alt="" /></div>
-                    <div class="brand-item"><img src="img/brand/brand-3.png" alt="" /></div>
-                    <div class="brand-item"><img src="img/brand/brand-4.png" alt="" /></div>
-                    <div class="brand-item"><img src="img/brand/brand-5.png" alt="" /></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--End Brand Area-->
 @endsection
