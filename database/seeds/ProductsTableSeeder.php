@@ -309,7 +309,6 @@ class ProductsTableSeeder extends Seeder
             'ranking' => 9,
             'is_new' => true,
             'is_most_sold' => true,
-            'is_most_featured' => true,
             'stock' => 10,
             'category_id' => 1,
             'created_at' => now(),

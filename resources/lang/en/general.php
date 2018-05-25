@@ -73,10 +73,15 @@ return [
     'always_on_time' => 'Always on time',
     'always_on_time_msg' => 'Never late for your needs',
     'order' => 'Order',
+    'orders' => 'Orders',
     'featured_products' => 'Featured products',
     'featured' => 'Featured',
     'new' => 'New',
     'best_sellers' => 'Best sellers',
+    'our_statistics' => 'Our statistics',
+    'customers' => 'Customers',
+    'items' => 'Items',
+    'sold_items' => 'Sold items',
 
     /*
     |--------------------------------------------------------------------------

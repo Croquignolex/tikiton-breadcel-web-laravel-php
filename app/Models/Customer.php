@@ -7,7 +7,7 @@ use App\Traits\NameTrait;
 use App\Traits\SlugRouteTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Customer extends Authenticatable
 {
     use SlugRouteTrait, NameTrait, DescriptionTrait;
 
@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'login', 'password', 'image'
+        'name', 'email', 'password', 'image'
     ];
 
     /**
@@ -34,12 +34,12 @@ class User extends Authenticatable
      */
     protected static function boot()
     {
-        static::creating(function ($user) {
-            $user->slug = str_slug($user->login);
+        static::creating(function ($customer) {
+            $customer->slug = str_slug($customer->email);
         });
 
-        static::updating(function ($user) {
-            $user->slug = str_slug($user->login);
+        static::updating(function ($customer) {
+            $customer->slug = str_slug($customer->email);
         });
     }
 }

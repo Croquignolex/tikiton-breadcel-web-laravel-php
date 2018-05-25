@@ -188,47 +188,43 @@
         <div class="container">
             <div class="row">
                 <div class="section-title">
-                    <h2>Fun Factor</h2>
+                    <h2>@lang('general.our_statistics')</h2>
                     <div class="underline"></div>
                 </div>
                 <div class="col-xs-6 col-sm-3">
                     <div class="fun-factor">
                         <div class="fun-factor-in">
-                            <i class="fa fa-user"></i>
-                            <div class="fun-factor-out"></div>
+                            <i class="{{ font('users') }}"></i>
                         </div>
-                        <p class="timer" data-from="0" data-to="11250"></p>
-                        <h4>Happy Customers</h4>
+                        <p class="timer" data-from="0" data-to="{{ $customers }}"></p>
+                        <h4>@lang('general.customers')</h4>
                     </div>
                 </div>
                 <div class="col-xs-6 col-sm-3">
                     <div class="fun-factor">
                         <div class="fun-factor-in">
-                            <i class="fa fa-database"></i>
-                            <div class="fun-factor-out"></div>
+                            <i class="{{ font('database') }}"></i>
                         </div>
-                        <p class="timer" data-from="0" data-to="7500"></p>
-                        <h4>Items</h4>
+                        <p class="timer" data-from="0" data-to="{{ $products }}"></p>
+                        <h4>@lang('general.items')</h4>
                     </div>
                 </div>
                 <div class="col-xs-6 col-sm-3">
                     <div class="fun-factor">
                         <div class="fun-factor-in">
-                            <i class="fa fa-eye"></i>
-                            <div class="fun-factor-out"></div>
+                            <i class="{{ font('file-text-o') }}"></i>
                         </div>
-                        <p class="timer" data-from="0" data-to="2050"></p>
-                        <h4>Views</h4>
+                        <p class="timer" data-from="0" data-to="{{ $orders }}"></p>
+                        <h4>@lang('general.orders')</h4>
                     </div>
                 </div>
                 <div class="col-xs-6 col-sm-3">
                     <div class="fun-factor">
                         <div class="fun-factor-in">
-                            <i class="fa fa-money"></i>
-                            <div class="fun-factor-out"></div>
+                            <i class="{{ font('calendar-check-o') }}"></i>
                         </div>
-                        <p class="timer" data-from="0" data-to="1550"></p>
-                        <h4>Sales</h4>
+                        <p class="timer" data-from="0" data-to="{{ $sales }}"></p>
+                        <h4>@lang('general.sold_items')</h4>
                     </div>
                 </div>
             </div>

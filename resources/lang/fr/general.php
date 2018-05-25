@@ -73,10 +73,15 @@ return [
     'always_on_time' => 'Toujours à l\'heure',
     'always_on_time_msg' => 'Jamais en retard pour vos besoins',
     'order' => 'Commander',
+    'orders' => 'Commandes',
     'featured_products' => 'Produits en vedette',
     'featured' => 'En vedette',
     'new' => 'Nouveau',
     'best_sellers' => 'Meilleur vente',
+    'our_statistics' => 'Nos statistiques',
+    'customers' => 'Clients',
+    'items' => 'Articles',
+    'sold_items' => 'Articles vendus',
 
     /*
     |--------------------------------------------------------------------------

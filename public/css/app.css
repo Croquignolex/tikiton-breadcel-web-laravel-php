@@ -1216,35 +1216,20 @@ img {
 /*----- 3.11 Fun factor Area -----*/
 .funfact {
   padding-top: 0;
+  margin-top: 100px;
 }
 .fun-factor {
   text-align: center;
 }
 .fun-factor-in {
-  background: #da7612 none repeat scroll 0 0;
-  border-radius: 10px;
   height: 60px;
-  margin: 20px auto 40px;
+  margin: 10px auto 20px;
   padding: 10px;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
   width: 60px;
 }
 .fun-factor-in i {
-  color: #fff;
-  font-size: 40px;
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-.fun-factor-out {
-  border: 1px solid #da7612;
-  border-radius: 10px;
-  height: 70px;
-  -webkit-transform: rotate(90deg);
-  transform: rotate(90deg);
-  width: 70px;
-  margin-top: -55px;
-  margin-left: -15px;
+  color: #da7612;
+  font-size: 50px;
 }
 .fun-factor .timer {
   font-size: 20px;

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
+use App\Models\Order;
 use App\Models\Product;
 
 class HomeController extends Controller
@@ -23,12 +25,18 @@ class HomeController extends Controller
         $most_sold_products = Product::where('is_most_sold', true)
             ->get();
 
+        $customers = Customer::all()->count();
+        $products = Product::all()->count();
+        $orders = Order::all()->count();
+        $sales = Order::where('status', Order::SOLD)->count();
+
         return view
         (
             'home.index',
             compact(
-                'featured_products',
-                'new_products', 'most_sold_products'
+                'featured_products', 'customers',
+                'new_products', 'most_sold_products', 'products',
+                'orders', 'sales'
             )
         );
     }
