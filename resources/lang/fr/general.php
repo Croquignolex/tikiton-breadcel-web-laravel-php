@@ -58,9 +58,12 @@ return [
     */
 
     'or' => 'ou',
+    'why' => 'Pourquoi',
+    'choose_us' => 'nous choisir',
     'hot' => 'Patisserie',
     'pastry' => 'Chaude',
     'welcome_to_you' => 'Bienvenue a vous',
+    'welcome_on' => 'Bienvenue sur',
     'my_cart' => 'Mon pagnier',
     'article' => 'article',
     'articles' => 'articles',
@@ -211,6 +214,22 @@ return [
         d\'assumer la défense et le contrôle exclusif de toute question qui fait l\'objet d\'une indemnisation 
         en vertu du présent article. Dans ce cas, vous acceptez de coopérer avec toute demande raisonnable 
         aider la défense de :app de ces matières',
+
+    /*
+    |--------------------------------------------------------------------------
+    | About Language Lines
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'about_manager_1' => '<< De voir que, naturellement, les gens démarrent des choses
+        et des nouveaux projets, c\'est encourageant. Ca permet de voir que le territoire
+        se développe et qu\'on peut être un peu plus attractif. >> Catherine Drolet',
+
+    'about_manager_2' => '<< Je crois que dans la vie, on si on vit de sa passion,  c\'est très bien
+        C\'est beau de faire ce qu\'on aime et c\'est encore mieux de vivre de ce qu\'on aime. >>
+         Célestin Wokgoue'
 
     /*'sign_in' => 'Connexion',
     'sign_out' => 'Deconnexion',

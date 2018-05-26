@@ -111,7 +111,7 @@ img {
 .owl-nav .owl-next{}
 #scrollUp {
   background: #da7612 none repeat scroll 0 0;
-  border: 3px solid #fff;
+  border: 2px solid #fff;
   bottom: 65px;
   color: #fff;
   font-size: 18px;
@@ -121,7 +121,12 @@ img {
   text-align: center;
   width: 50px;
 }
-#scrollUp i{}
+#scrollUp:hover
+{
+  background: #fff none repeat scroll 0 0;
+  border: 2px solid #da7612;
+  color: #da7612;
+}
 /*-----------------------------------
 	2. Home page 1, Home Page 2
 -------------------------------------*/
@@ -786,7 +791,10 @@ img {
 .product-item:hover .pro-image::before {
   opacity: .6;
 }
-.pro-image img {}
+.pro-image img
+{
+  border: 2px solid #da7612;
+}
 .product-action-btn {
   height: auto;
   left: 0;
@@ -1919,6 +1927,7 @@ img {
 }
 .about-img img {
   max-width: 100%;
+  border: 3px solid #da7612;
 }
 .designer {
   text-align:center;

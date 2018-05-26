@@ -58,9 +58,12 @@ return [
     */
 
     'or' => 'or',
+    'why' => 'Why',
+    'choose_us' => 'choose us',
     'hot' => 'Hot',
     'pastry' => 'Pastry',
     'welcome_to_you' => 'Welcome to you',
+    'welcome_on' => 'Welcome on',
     'my_cart' => 'My cart',
     'article' => 'article',
     'articles' => 'articles',
@@ -197,6 +200,22 @@ return [
         suit, or proceeding. :app reserves the right to assume the exclusive defense and control of 
         any matter which are subject to indemnification under this section. In such case, you agree to 
         cooperate with any reasonable requests assisting :app defense of such matter',
+
+    /*
+    |--------------------------------------------------------------------------
+    | About Language Lines
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'about_manager_1' => '<< De voir que, naturellement, les gens démarrent des choses
+        et des nouveaux projets, c\'est encourageant. Ca permet de voir que le territoire
+        se développe et qu\'on peut être un peu plus attractif. >> Catherine Drolet',
+
+    'about_manager_2' => '<< Je crois que dans la vie, on si on vit de sa passion,  c\'est très bien
+        C\'est beau de faire ce qu\'on aime et c\'est encore mieux de vivre de ce qu\'on aime. >>
+         Célestin Wokgoue'
 
     /*
     'sign_out' => 'Logout',
