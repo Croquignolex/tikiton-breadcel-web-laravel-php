@@ -1544,7 +1544,7 @@ img {
 	5. Shop Page
 -------------------*/
 .page-title {
-  background: rgba(0, 0, 0, 0) url("img/title-bg.jpg") no-repeat scroll center center / cover ;
+  background: rgba(0, 0, 0, 0) url(../img/banners/overlay_bg.jpg) no-repeat scroll center center / cover ;
   text-align: center;
 }
 .page-title h2 {
@@ -1601,7 +1601,7 @@ img {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: #fff url("img/bottom-arrow.png") no-repeat scroll 90% center;
+  background: #fff url(../img/bottom_arrow.png) no-repeat scroll 90% center;
   border: 1px solid #d7d7d7;
   color: #515151;
   font-size: 16px;
@@ -2740,7 +2740,7 @@ h4.heading {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: #fff url("img/bottom-arrow.png") no-repeat scroll 90% center;
+  background: #fff url(../img/bottom_arrow.png) no-repeat scroll 90% center;
   border: 0px;
   min-width: 40px;
 }
