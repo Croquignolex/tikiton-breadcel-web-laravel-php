@@ -30,6 +30,7 @@
 @endpush
 
 @push('script.plugin')
+    <script src="{{ js_asset('vue.min') }}" type="text/javascript"></script>
     <script src="{{ js_asset('owl.carousel.min') }}" type="text/javascript"></script>
     <script src="{{ js_asset('jquery.countTo') }}" type="text/javascript"></script>
     <script src="{{ js_asset('jquery.mixitup.min') }}" type="text/javascript"></script>
@@ -47,5 +48,7 @@
 @endpush
 
 @push('script.page')
+    <!-- Page scripts -->
     <script src="{{ js_asset('app') }}" type="text/javascript"></script>
+    @stack('app.script.page')
 @endpush

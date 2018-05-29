@@ -64,7 +64,7 @@ if(!function_exists('contact_pages'))
      */
     function contact_pages()
     {
-        return collect(['contact']);
+        return collect(['contact.index']);
     }
 }
 

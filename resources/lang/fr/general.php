@@ -85,6 +85,13 @@ return [
     'customers' => 'Clients',
     'items' => 'Articles',
     'sold_items' => 'Articles vendus',
+    'leave_message' => 'Laisser un méssage',
+    'name' => 'Nom',
+    'phone' => 'Téléphone',
+    'email' => 'Email',
+    'subject' => 'Sujet',
+    'message' => 'Méssage',
+    'send' => 'Envoyé',
 
     /*
     |--------------------------------------------------------------------------

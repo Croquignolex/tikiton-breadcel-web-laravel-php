@@ -16,9 +16,9 @@ Route::group(['namespace' => 'App'], function() {
     Route::get('/terms', 'TermController');
     Route::get('/policy', 'PolicyController');
     Route::get('/about', 'AboutController');
-    Route::get('/contact', 'ContactController');
     Route::get('/blog', 'BlogController@index');
     Route::get('/services', 'ServiceController@index');
+    Route::resource('/contact', 'ContactController', ['only' => ['index', 'store']]);
     Route::resource('/products', 'ProductController');
 
     Route::get('/cart', 'CartController@index');
@@ -30,10 +30,10 @@ Route::group(['namespace' => 'App'], function() {
     Route::get('/{language?}/terms', 'TermController')->name('terms');
     Route::get('/{language?}/policy', 'PolicyController')->name('policy');
     Route::get('/{language?}/about', 'AboutController')->name('about');
-    Route::get('/{language?}/contact', 'ContactController')->name('contact');
     Route::get('/{language?}/blog', 'BlogController@index')->name('blog.index');
     Route::get('/{language?}/services', 'ServiceController@index')->name('services.index');
-    Route::resource('{language?}/products', 'ProductController');
+    Route::resource('/{language?}/contact', 'ContactController', ['only' => ['index', 'store']]);
+    Route::resource('/{language?}/products', 'ProductController');
 
     Route::get('/{language}/cart', 'CartController@index')->name('cart');
     Route::get('/{language}/checkout', 'CheckoutController@index')->name('checkout');

@@ -14,3 +14,7 @@
     <!--End Title-->
     @yield('app.home.body')
 @endsection
+
+@push('app.script.page')
+    @stack('overlay.app.script.page')
+@endpush

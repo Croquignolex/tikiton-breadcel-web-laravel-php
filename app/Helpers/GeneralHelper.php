@@ -37,6 +37,8 @@ if(!function_exists('font'))
 if(!function_exists('banner_animation'))
 {
     /**
+     * @param $slider
+     * @param $text
      * @return string
      * @internal param $name
      */
@@ -98,7 +100,7 @@ if(!function_exists('flash_message'))
      * @param string $exit
      * @param int $delay
      */
-    function flash_message($title, $message, $type = 'info', $icon = 'fa fa-check', $enter = 'lightSpeedIn', $exit = 'lightSpeedOut',  $delay = 5000)
+    function flash_message($title, $message, $icon = 'fa fa-check', $type = 'success', $enter = 'lightSpeedIn', $exit = 'lightSpeedOut', $delay = 5000)
     {
         session()->flash('notification.icon', $icon);
         session()->flash('notification.type', $type);

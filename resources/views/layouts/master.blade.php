@@ -17,8 +17,9 @@
         <link rel="stylesheet" href="{{ css_asset('font-awesome.min') }}" type="text/css">
         <!-- Plugin CSS -->
         @stack('style.plugin')
-        <!-- Custom styles for this page -->
+        <!-- Global styles -->
         <link rel="stylesheet" href="{{ css_asset('master') }}" type="text/css">
+        <!-- Custom styles for this page -->
         @stack('style.page')
         
         <!-- Favicons -->
@@ -26,7 +27,7 @@
         <link rel="icon" href="{{ favicon_img_asset('favicon-16x16') }}" sizes="16x16" type="image/png">
     </head>
 
-    <body id="page-top">
+    <body>
         <div id="loader"></div>
         @yield('body')
         <!-- Bootstrap core JavaScript -->
@@ -34,7 +35,9 @@
         <script src="{{ js_asset('bootstrap.min') }}" type="text/javascript"></script>
         <!-- Plugin JavaScript -->
         @stack('script.plugin')
+        <!-- Global scripts -->
+        <script src="{{ js_asset('master') }}" type="text/javascript"></script>
         <!-- Custom scripts for this page -->
         @stack('script.page')
-        <script src="{{ js_asset('master') }}" type="text/javascript"></script>
+    </body>
 </html>

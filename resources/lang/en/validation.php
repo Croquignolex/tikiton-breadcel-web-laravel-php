@@ -13,17 +13,17 @@ return [
     |
     */
 
-    'required'             => 'This field is required.',
-    'string'               => 'This field must be a string.',
-    'email'                => 'This field must be a valid email address.',
-    'unique'               => 'This field must be required.',
-    'confirmed'            => 'This field must be confirmed.',
+    'required'             => 'This field is required',
+    'string'               => 'This field must be a string',
+    'email'                => 'This field must be a valid email address',
+    'unique'               => 'This field must be required',
+    'confirmed'            => 'This field must be confirmed',
     'max'                  => [
-        'numeric' => 'This field may not be greater than :max.',
-        'string'  => 'This field may not be greater than :max characters.'
+        'numeric' => 'This field may not be greater than :max',
+        'string'  => 'This field may not be greater than :max characters'
     ],
     'min'                  => [
-        'numeric' => 'This field must be at least :min.',
-        'string'  => 'This field must be at least :min characters.'
+        'numeric' => 'This field must be at least :min',
+        'string'  => 'This field must be at least :min characters'
     ]
 ];

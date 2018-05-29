@@ -85,6 +85,13 @@ return [
     'customers' => 'Customers',
     'items' => 'Items',
     'sold_items' => 'Sold items',
+    'leave_message' => 'Leave a message',
+    'name' => 'Name',
+    'phone' => 'Telephone',
+    'email' => 'Email',
+    'subject' => 'Subject',
+    'message' => 'Message',
+    'send' => 'Send',
 
     /*
     |--------------------------------------------------------------------------

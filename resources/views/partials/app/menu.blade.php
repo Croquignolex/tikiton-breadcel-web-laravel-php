@@ -32,7 +32,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ locale_route('contact') }}" class="{{ active_page(contact_pages()) }}">
+                                <a href="{{ locale_route('contact.index') }}" class="{{ active_page(contact_pages()) }}">
                                     @lang('general.contact_us')
                                 </a>
                             </li>
@@ -68,7 +68,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ locale_route('contact') }}" class="{{ active_page(contact_pages()) }}">
+                                <a href="{{ locale_route('contact.index') }}" class="{{ active_page(contact_pages()) }}">
                                     @lang('general.contact_us')
                                 </a>
                             </li>
