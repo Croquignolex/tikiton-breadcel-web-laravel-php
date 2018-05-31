@@ -4,37 +4,39 @@
         <div class="row">
             <div class="col-sm-12 col-md-4">
                 <div class="info">
-                    @component('components.app.top-header-info',
-                        ['class' => 'phn-num', 'icon' => 'phone' ])
-                        {{ config('company.phone_1') }}
+                    @component('components.app.top-header-info', [
+                        'class' => 'phn-num', 'icon' => 'phone',
+                        'label' => config('company.phone_1')
+                        ])
                     @endcomponent
-                    @component('components.app.top-header-info',
-                        ['class' => 'mail-id', 'icon' => 'envelope-o' ])
-                        {{ config('company.email_1') }}
+                    @component('components.app.top-header-info', [
+                        'class' => 'mail-id', 'icon' => 'envelope-o',
+                        'label' => config('company.email_1')
+                        ])
                     @endcomponent
                 </div>
             </div>
             <div class="col-sm-12 col-md-4">
                 <div class="socials text-center">
-                    @component('components.app.top-header-social',
-                        ['icon' => 'facebook' ])
-                        {{ config('company.facebook') }}
+                    @component('components.app.top-header-social', [
+                        'icon' => 'facebook', 'link' => config('company.facebook')
+                        ])
                     @endcomponent
-                    @component('components.app.top-header-social',
-                        ['icon' => 'twitter' ])
-                        {{ config('company.twitter') }}
+                    @component('components.app.top-header-social', [
+                        'icon' => 'twitter', 'link' => config('company.twitter')
+                        ])
                     @endcomponent
-                    @component('components.app.top-header-social',
-                        ['icon' => 'linkedin' ])
-                        {{ config('company.linked_in') }}
+                    @component('components.app.top-header-social', [
+                        'icon' => 'linkedin', 'link' => config('company.linked_in')
+                         ])
                     @endcomponent
-                    @component('components.app.top-header-social',
-                        ['icon' => 'google-plus' ])
-                        {{ config('company.google_plus') }}
+                    @component('components.app.top-header-social', [
+                        'icon' => 'google-plus', 'link' => config('company.google_plus')
+                        ])
                     @endcomponent
-                    @component('components.app.top-header-social',
-                        ['icon' => 'youtube-play' ])
-                        {{ config('company.youtube') }}
+                    @component('components.app.top-header-social', [
+                        'icon' => 'youtube-play', 'link' => config('company.youtube')
+                        ])
                     @endcomponent
                 </div>
             </div>

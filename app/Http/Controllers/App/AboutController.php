@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
+use App\Models\Team;
 
 class AboutController extends Controller
 {
@@ -11,6 +12,7 @@ class AboutController extends Controller
      */
     public function __invoke()
     {
-        return view('about.index');
+        $teams = Team::all();
+        return view('about.index', compact('teams'));
     }
 }

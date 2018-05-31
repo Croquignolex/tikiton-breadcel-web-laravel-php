@@ -38,4 +38,48 @@
             </div>
         </div>
     @endcomponent
+    <!--Start Team Area-->
+    <section class="team-area page fix">
+        <div class="container">
+            <div class="row">
+                <div class="section-title text-center">
+                    <h2>@lang('general.our_team')</h2>
+                    <div class="underline"></div>
+                </div>
+                @foreach($teams as $team)
+                    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                        <div class="designer fix">
+                            <div class="designer-img">
+                                <img src="{{ $team->image_path }}" alt="..." />
+                                <div class="designer-text">
+                                    <h2>{{ $team->format_name }}</h2>
+                                    <h3>{{ $team->format_function }}</h3>
+                                    <p>{{ $team->format_description }}</p>
+                                    <div class="designer-socials">
+                                        @component('components.app.top-header-social', [
+                                            'icon' => 'facebook', 'link' => $team->facebook
+                                            ])
+                                        @endcomponent
+                                        @component('components.app.top-header-social', [
+                                           'icon' => 'twitter', 'link' => $team->twitter
+                                           ])
+                                        @endcomponent
+                                        @component('components.app.top-header-social', [
+                                           'icon' => 'linkedin', 'link' => $team->linkedin
+                                           ])
+                                        @endcomponent
+                                        @component('components.app.top-header-social', [
+                                           'icon' => 'google-plus', 'link' => $team->googleplus
+                                           ])
+                                        @endcomponent
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <!--End Team Area-->
 @endsection

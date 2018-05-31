@@ -92,6 +92,7 @@ return [
     'subject' => 'Subject',
     'message' => 'Message',
     'send' => 'Send',
+    'our_team' => 'Our team',
 
     /*
     |--------------------------------------------------------------------------

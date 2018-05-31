@@ -90,15 +90,29 @@ if(!function_exists('product_img_asset'))
 if(!function_exists('testimonial_img_asset'))
 {
     /**
-     * @param $testimonials
+     * @param $testimonial
      * @param string $extension
      * @return string
      */
-    function testimonial_img_asset($testimonials, $extension = 'jpg')
+    function testimonial_img_asset($testimonial, $extension = 'jpg')
     {
-        return asset('img/testimonials/' . $testimonials . '.' . $extension);
+        return asset('img/testimonials/' . $testimonial . '.' . $extension);
     }
 }
+
+if(!function_exists('team_img_asset'))
+{
+    /**
+     * @param $team
+     * @param string $extension
+     * @return string
+     */
+    function team_img_asset($team, $extension = 'jpg')
+    {
+        return asset('img/teams/' . $team . '.' . $extension);
+    }
+}
+
 
 if(!function_exists('favicon_img_asset'))
 {

@@ -1,3 +1,3 @@
-<a href="{{ $slot }}">
+<a href="{{ $link }}">
     <i class="{{ font($icon) }}"></i>
 </a>
