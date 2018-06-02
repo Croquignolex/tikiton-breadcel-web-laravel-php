@@ -1,4 +1,4 @@
-@extends('layouts.app.app')
+@extends('layouts.app')
 
 @section('home.title', page_title(trans('general.home')))
 
@@ -246,3 +246,7 @@
     </div>
     <!--End Testimonial Area-->
 @endsection
+
+@push('app.script.page')
+    @include('partials.popup-alert')
+@endpush

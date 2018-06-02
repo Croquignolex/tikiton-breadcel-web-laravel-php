@@ -33,6 +33,7 @@ return [
 
     'login' => 'Login',
     'register' => 'Register',
+    'pwd_cfm' => 'Confirm password',
 
     /*
     |--------------------------------------------------------------------------
@@ -87,12 +88,14 @@ return [
     'sold_items' => 'Sold items',
     'leave_message' => 'Leave a message',
     'name' => 'Name',
+    'password' => 'Password',
     'phone' => 'Telephone',
     'email' => 'Email',
     'subject' => 'Subject',
     'message' => 'Message',
     'send' => 'Send',
     'our_team' => 'Our team',
+    'database_error' => 'Database server error, try later please',
 
     /*
     |--------------------------------------------------------------------------
@@ -224,26 +227,4 @@ return [
     'about_manager_2' => '<< Je crois que dans la vie, on si on vit de sa passion,  c\'est très bien
         C\'est beau de faire ce qu\'on aime et c\'est encore mieux de vivre de ce qu\'on aime. >>
          Célestin Wokgoue'
-
-    /*
-    'sign_out' => 'Logout',
-    'sign_up' => 'Registration',
-    'reset_pwd' => 'Reset password',
-    'send_reset_link' => 'Send password reset link',
-    'home' => 'Home',
-    'name' => 'Name',
-    'email' => 'E-mail',
-    'pwd' => 'Password',
-    'pwd_cfm' => 'Confirm password',
-    'remember_me' => 'Remember me',
-    'forgotten_pwd' => 'Forgot Your Password',
-    'success'  => 'Success',
-    'error' => 'Error',
-    'hi' => 'Hi',
-    'welcome'  => 'Welcome :name',
-    'dashboard' => 'Dashboard',
-    'confirmed' => 'Confirmation',
-    'bad_link' => 'Bad link or expired',
-    'well_confirmed' => 'You are successfully identified. Login and start your transactions',
-    'well_reset_sent' => 'The reset link has been send to your through e-mail, check your e-mail',*/
 ];

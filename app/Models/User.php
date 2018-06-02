@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'login', 'password', 'image'
+        'name', 'email', 'password'
     ];
 
     /**
@@ -35,11 +35,11 @@ class User extends Authenticatable
     protected static function boot()
     {
         static::creating(function ($user) {
-            $user->slug = str_slug($user->login);
+            $user->slug = str_slug($user->email);
         });
 
         static::updating(function ($user) {
-            $user->slug = str_slug($user->login);
+            $user->slug = str_slug($user->email);
         });
     }
 }

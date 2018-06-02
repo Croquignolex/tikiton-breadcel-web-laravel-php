@@ -1,0 +1,123 @@
+<?php
+
+namespace App\Http\Controllers\App\Auth;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+
+class LoginController extends Controller
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+
+    use AuthenticatesUsers;
+
+    /**
+     * LoginController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * @param LoginRequest $request
+     * @return \Illuminate\Http\Response|void
+     */
+    public function login(LoginRequest $request)
+    {
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+        if ($this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
+        if ($this->attemptLogin($request)) {
+            return $this->sendLoginResponse($request);
+        }
+
+        // If the login attempt was unsuccessful we will increment the number of attempts
+        // to login and redirect the user back to the login form. Of course, when this
+        // user surpasses their maximum number of attempts they will get locked out.
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse();
+    }
+
+    /**
+     * @return string
+     */
+    protected function redirectTo()
+    {
+        return  locale_route('home');
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    protected function credentials(Request $request)
+    {
+        return array_add($request->only($this->username(), 'password'), 'is_confirmed', true);
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    protected function sendFailedLoginResponse()
+    {
+        flash_message(
+            __('auth.error'), __('auth.login_message'),
+            'remove', 'danger', 'bounceIn', 'bounceOut');
+
+        throw ValidationException::withMessages([
+            $this->username() => [trans('auth.failed')],
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param $user
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        flash_message(
+            trans('auth.success'), trans('auth.welcome', ['name' => $user->name]),
+            font('info-circle'), 'info'
+        );
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        flash_message(
+            trans('auth.info'), trans('auth.logout_message'),
+            font('info-circle'), 'info'
+        );
+
+        return redirect($this->redirectTo());
+    }
+}

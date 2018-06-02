@@ -6,12 +6,12 @@
                 <div class="log-link">
                     <p>@lang('general.welcome_to_you')</p>
                     <h5>
-                        <a href="{{ locale_route('login') }}">
-                            <i class="{{ font('lock') }}"></i>
+                        <a href="{{ locale_route('login.show') }}">
+                            <i class="{{ font('unlock') }}"></i>
                             @lang('general.login')</a>
                         @lang('general.or')
-                        <a href="{{ locale_route('register') }}">
-                            <i class="{{ font('users') }}"></i>
+                        <a href="{{ locale_route('register.show') }}">
+                            <i class="{{ font('user-plus') }}"></i>
                             @lang('general.register')
                         </a>
                     </h5>
@@ -27,7 +27,7 @@
             </div>
             <div class="col-sm-4 col-lg-3">
                 <div class="cart-info float-right">
-                    <a href="{{ locale_route('cart') }}">
+                    <a href="{{ locale_route('cart.index') }}">
                         <h5>
                             @lang('general.my_cart')
                             <span>2</span>
@@ -45,7 +45,7 @@
                             </li>
                         </ul>
                         <div class="header-button-price">
-                            <a href="{{ locale_route('checkout') }}">
+                            <a href="{{ locale_route('checkout.index') }}">
                                 <i class="{{ font('shopping-basket') }}"></i>
                                 <span>@lang('general.check_out')</span>
                             </a>

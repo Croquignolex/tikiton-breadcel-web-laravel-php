@@ -2,8 +2,13 @@
 
 namespace App\Http\Requests;
 
-class RegisterRequest extends BaseRequest
+use App\Traits\RequestTrait;
+use Illuminate\Foundation\Http\FormRequest;
+
+class RegisterRequest extends FormRequest
 {
+    use RequestTrait;
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -12,9 +17,9 @@ class RegisterRequest extends BaseRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:2|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|max:255|confirmed'
+            'name' => $this->required_string,
+            'email' => $this->required_string . '|unique:users',
+            'password' => $this->required_string . '|confirmed'
         ];
     }
 

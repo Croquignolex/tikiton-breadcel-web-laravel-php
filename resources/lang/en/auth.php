@@ -10,8 +10,37 @@ return [
     |
     */
 
+    'failed' => 'These credentials do not match our records.',
+    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'registration_message' => 'Your account is created successfully, a confirmation e-mail is sent to you, check it and follow the steps',
     'register' => 'Register',
     'login' => 'Login',
     'user_existed' => 'There is already a user registered with this e-mail address',
-    'password_unconfirmed' => 'Those password those not match'
+    'password_unconfirmed' => 'Those password those not match',
+    'new_account' => 'Create a new account',
+    'enter_credentials' => 'Enter your credentials',
+    'login_message' => 'Incorrect combination of email and password or your account is not yet active',
+    'logout_message' => 'Your are actually logout',
+    'sign_up' => 'Registration',
+    'reset_pwd' => 'Reset password',
+    'send_reset_link' => 'Send password reset link',
+    'home' => 'Home',
+    'name' => 'Name',
+    'email' => 'E-mail',
+    'pwd' => 'Password',
+    'remember_me' => 'Remember me',
+    'forgotten_pwd' => 'Forgot Your Password',
+    'login_sign_upped' => 'I already have an account',
+    'register_sign_upped' => 'I do not have an account',
+    'here' => 'ici',
+    'success'  => 'Success',
+    'info'  => 'Information',
+    'error' => 'Error',
+    'hi' => 'Hi',
+    'welcome'  => 'Welcome :name',
+    'dashboard' => 'Dashboard',
+    'confirmed' => 'Confirmation',
+    'bad_link' => 'Bad link or expired',
+    'well_confirmed' => 'You are successfully identified. Login and start your transactions',
+    'well_reset_sent' => 'The reset link has been send to your through e-mail, check your e-mail'
 ];

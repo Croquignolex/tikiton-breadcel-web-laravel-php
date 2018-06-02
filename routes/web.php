@@ -20,10 +20,12 @@ Route::group(['namespace' => 'App'], function() {
     Route::get('/services', 'ServiceController@index');
     Route::resource('/contact', 'ContactController', ['only' => ['index', 'store']]);
     Route::resource('/products', 'ProductController');
-
-    Route::get('/cart', 'CartController@index');
-    Route::get('/checkout', 'CheckoutController@index');
+    Route::resource('/carts', 'CartController@index', ['only' => ['index']]);
+    Route::resource('/checkout', 'CheckoutController@index', ['only' => ['index']]);
     Route::post('/search', 'SearchController');
+
+    //--Auth routes...
+    Auth::routes();
 
     //--Localized client routes...
     Route::get('/{language?}', 'HomeController')->name('home');
@@ -34,32 +36,28 @@ Route::group(['namespace' => 'App'], function() {
     Route::get('/{language?}/services', 'ServiceController@index')->name('services.index');
     Route::resource('/{language?}/contact', 'ContactController', ['only' => ['index', 'store']]);
     Route::resource('/{language?}/products', 'ProductController');
-
-    Route::get('/{language}/cart', 'CartController@index')->name('cart');
-    Route::get('/{language}/checkout', 'CheckoutController@index')->name('checkout');
+    Route::resource('/{language}/cart', 'CartController@index', ['only' => ['index']]);
+    Route::resource('/{language}/checkout', 'CheckoutController@index', ['only' => ['index']]);
     Route::post('/{language}/search', 'SearchController')->name('search');
-});
 
-//--Auth routes...
-Auth::routes();
+    //--Localized auth routes...
+    Route::group(['namespace' => 'Auth'], function() {
 
-//--Localized auth routes...
-Route::group(['namespace' => 'Auth'], function() {
+        //--Localized login routes...
+        Route::get('/{language}/login', 'LoginController@showLoginForm')->name('login.show');
+        Route::post('/{language}/logout', 'LoginController@logout')->name('login.logout');
+        Route::post('/{language}/login', 'LoginController@login');
 
-    //--Localized login routes...
-    Route::get('/{language}/login', 'LoginController@showLoginForm')->name('login.show');
-    Route::post('/{language}/logout', 'LoginController@logout')->name('login.logout');
-    Route::post('/{language}/login', 'LoginController@login');
+        //--Localized registration routes...
+        Route::get('/{language}/register', 'RegisterController@showRegistrationForm')->name('register.show');
+        Route::post('/{language}/register', 'RegisterController@register');
 
-    //--Localized registration routes...
-    Route::get('/{language}/register', 'RegisterController@showRegistrationForm')->name('register.show');
-    Route::post('/{language}/register', 'RegisterController@register');
-
-    //--Localized password reset routes...
-    Route::get('/{language}/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('forgot.password.show');
-    Route::get('/{language}/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('reset.password.show');
-    Route::post('/{language}/password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('forgot.password.email');
-    Route::post('/{language}/password/reset/{token}', 'ResetPasswordController@reset');
+        //--Localized password reset routes...
+        Route::get('/{language}/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('forgot.password.show');
+        Route::get('/{language}/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('reset.password.show');
+        Route::post('/{language}/password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('forgot.password.email');
+        Route::post('/{language}/password/reset/{token}', 'ResetPasswordController@reset');
+    });
 });
 
 //--App routes...

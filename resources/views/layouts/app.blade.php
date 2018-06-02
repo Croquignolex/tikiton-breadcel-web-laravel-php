@@ -1,16 +1,16 @@
-@extends('layouts.master')
+@extends('master')
 
 @section('title')
     @yield('home.title')
 @endsection
 
 @section('body')
-    @include('partials.app.header-top')
-    @include('partials.app.header')
-    @include('partials.app.menu')
+    @include('partials.header-top')
+    @include('partials.header')
+    @include('partials.menu')
     @yield('home.body')
-    @include('partials.app.footer-top')
-    @include('partials.app.footer')
+    @include('partials.footer-top')
+    @include('partials.footer')
 @endsection
 
 @push('style.plugin')

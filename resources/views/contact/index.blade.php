@@ -1,4 +1,4 @@
-@extends('layouts.app.overlay')
+@extends('layouts.overlay')
 
 @section('app.home.title', page_title(trans('general.contact')))
 @section('overlay', trans('general.contact'))
@@ -66,8 +66,7 @@
                                     @endcomponent
                                 @endcomponent
                                 @component('components.app.submit', [
-                                    'name' => 'send_contact', 'class' => 'submit',
-                                     'value' => trans('general.send')
+                                    'class' => 'submit', 'value' => trans('general.send')
                                     ])
                                 @endcomponent
                             </div>
@@ -108,5 +107,5 @@
 @push('overlay.app.script.page')
     <script src="{{ js_asset('bootstrap-maxlength') }}" type="text/javascript"></script>
     <script src="{{ js_asset('validator') }}" type="text/javascript"></script>
-    @include('partials.app.popup-alert')
+    @include('partials.popup-alert')
 @endpush

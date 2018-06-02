@@ -14,9 +14,22 @@
         @endif
         <!-- Product action Btn -->
         <div class="product-action-btn">
-            <a class="quick-view" href="#"><i class="{{ font('search') }}"></i></a>
-            <a class="favorite" href="#"><i class="{{ font('heart-o') }}"></i></a>
-            <a class="add-cart" href="#"><i class="{{ font('shopping-cart') }}"></i></a>
+
+            @component('components.app.icon-link', [
+                'icon' => 'search', 'link' => '#',
+                'class' => 'quick-view'
+                ])
+            @endcomponent
+            @component('components.app.icon-link', [
+               'icon' => 'heart-o', 'link' => '#',
+               'class' => 'favorite'
+               ])
+            @endcomponent
+            @component('components.app.icon-link', [
+               'icon' => 'shopping-cart', 'link' => '#',
+               'class' => 'add-cart'
+               ])
+            @endcomponent
         </div>
     </div>
     <div class="pro-name-price-ratting">

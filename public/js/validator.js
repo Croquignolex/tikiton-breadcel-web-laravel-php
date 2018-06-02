@@ -62,7 +62,7 @@ function validation(element){
         {
             if(element.name === 'password_confirmation')
             {
-                var password = getElementsByTagName('password')[0];
+                var password = document.getElementById('password');
                 isValid = value === password.value && isMinMaxValidation(element);
             }
             else isValid = isMinMaxValidation(element);

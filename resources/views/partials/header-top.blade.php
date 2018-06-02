@@ -18,23 +18,23 @@
             </div>
             <div class="col-sm-12 col-md-4">
                 <div class="socials text-center">
-                    @component('components.app.top-header-social', [
+                    @component('components.app.icon-link', [
                         'icon' => 'facebook', 'link' => config('company.facebook')
                         ])
                     @endcomponent
-                    @component('components.app.top-header-social', [
+                    @component('components.app.icon-link', [
                         'icon' => 'twitter', 'link' => config('company.twitter')
                         ])
                     @endcomponent
-                    @component('components.app.top-header-social', [
+                    @component('components.app.icon-link', [
                         'icon' => 'linkedin', 'link' => config('company.linked_in')
                          ])
                     @endcomponent
-                    @component('components.app.top-header-social', [
+                    @component('components.app.icon-link', [
                         'icon' => 'google-plus', 'link' => config('company.google_plus')
                         ])
                     @endcomponent
-                    @component('components.app.top-header-social', [
+                    @component('components.app.icon-link', [
                         'icon' => 'youtube-play', 'link' => config('company.youtube')
                         ])
                     @endcomponent
@@ -44,7 +44,7 @@
                 <div id="top-menu" class="float-right">
                     <ul>
                         <!--<li><a href="">My Account</a></li>-->
-                        @include('partials.app.language')
+                        @include('partials.language')
                     </ul>
                 </div>
             </div>

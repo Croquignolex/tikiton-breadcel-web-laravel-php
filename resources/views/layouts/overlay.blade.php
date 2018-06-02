@@ -1,4 +1,4 @@
-@extends('layouts.app.app')
+@extends('layouts.app')
 
 @section('home.title')
     @yield('app.home.title')
@@ -8,7 +8,10 @@
     <!--Start Title-->
     <div class="page-title fix">
         <div class="overlay section">
-            <h2>@yield('overlay')</h2>
+            <h2>
+                <i class="@yield('overlay_font')"></i>
+                @yield('overlay_text')
+            </h2>
         </div>
     </div>
     <!--End Title-->

@@ -1,4 +1,4 @@
-@extends('layouts.app.overlay')
+@extends('layouts.overlay')
 
 @section('app.home.title', page_title(trans('general.privacy_policy')))
 @section('overlay', trans('general.privacy_policy'))

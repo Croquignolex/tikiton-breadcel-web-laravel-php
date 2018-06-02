@@ -3436,3 +3436,7 @@ h4.heading {
 .custom-alert-danger {
     background-color: #da2013;
 }
+.login-page
+{
+    margin-bottom: 50px;
+}
