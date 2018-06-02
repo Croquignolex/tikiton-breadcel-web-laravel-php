@@ -96,6 +96,7 @@ return [
     'send' => 'Send',
     'our_team' => 'Our team',
     'database_error' => 'Database server error, try later please',
+    'admin_thanks' => 'Thanks (:app team)',
 
     /*
     |--------------------------------------------------------------------------

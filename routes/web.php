@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/test', function (){
+    return new \App\Mail\UserRegisterMail(\App\Models\User::find(1));
+});
+
 Route::group(['namespace' => 'App'], function() {
     //--Client routes...
     Route::get('/terms', 'TermController');
@@ -26,6 +30,9 @@ Route::group(['namespace' => 'App'], function() {
 
     //--Auth routes...
     Auth::routes();
+
+    //--Account validation route...
+    Route::get('/account/confirmed/{email}/{token}/', 'Auth\AccountController@confirmed');
 
     //--Localized client routes...
     Route::get('/{language?}', 'HomeController')->name('home');
@@ -52,6 +59,9 @@ Route::group(['namespace' => 'App'], function() {
         Route::get('/{language}/register', 'RegisterController@showRegistrationForm')->name('register.show');
         Route::post('/{language}/register', 'RegisterController@register');
 
+        //--Localized account validation route...
+        Route::get('/{language}/account/confirmed/{email}/{token}/', 'AccountController@confirmed')->name('account.confirmation');
+
         //--Localized password reset routes...
         Route::get('/{language}/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('forgot.password.show');
         Route::get('/{language}/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('reset.password.show');
@@ -59,11 +69,3 @@ Route::group(['namespace' => 'App'], function() {
         Route::post('/{language}/password/reset/{token}', 'ResetPasswordController@reset');
     });
 });
-
-//--App routes...
-/*Route::group(['namespace' => 'App'], function() {
-    //--Account routes...
-    Route::get('/wallet/confirmed/{email}/{token}/', 'WalletController@confirmed');
-    //--Localized wallet routes...
-    Route::get('/{language}/wallet/confirmed/{email}/{token}/', 'WalletController@confirmed')->name('wallet.confirmed');
-});*/

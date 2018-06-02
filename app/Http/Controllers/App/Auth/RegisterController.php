@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\App\Auth;
 
 use App\Http\Requests\RegisterRequest;
+use App\Mail\UserRegisterMail;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Traits\DatabaseErrorMessageTrait;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -41,13 +43,14 @@ class RegisterController extends Controller
     {
         try
         {
-            User::create([
+            $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
 
-            ///Mail::to($user)->send(new RegisterMail($user));
+            Mail::to($user)->send(new UserRegisterMail($user));
+
             flash_message(
                 trans('auth.success'), trans('auth.registration_message'),
                 font('check')

@@ -96,6 +96,7 @@ return [
     'send' => 'Envoyé',
     'our_team' => 'Notre équipe',
     'database_error' => 'Erreur du serveur de base de données, réessayez plus tard s\'il vous plait',
+    'admin_thanks' => 'Merci (Equipe :app)',
 
     /*
     |--------------------------------------------------------------------------

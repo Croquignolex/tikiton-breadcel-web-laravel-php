@@ -10,14 +10,24 @@ trait LocaleDateTrait
     /**
      * @return mixed
      */
-    public function getDateAttribute()
+    public function getCreatedDateAttribute()
+    {
+        $date = new Carbon($this->created_at);
+        return $date->format($this->dateFormat());
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedDateAttribute()
     {
         $date = new Carbon($this->updated_at);
-        $format = '';
+        return $date->format($this->dateFormat());
+    }
 
-        if(App::getLocale() === 'fr') $format = 'd/m/Y';
-        else if (App::getLocale() === 'en') $format = 'm/d/Y';
-
-        return $date->format($format);
+    private function dateFormat()
+    {
+        if(App::getLocale() === 'fr') return 'd/m/Y';
+        else if (App::getLocale() === 'en') return 'm/d/Y';
     }
 }
