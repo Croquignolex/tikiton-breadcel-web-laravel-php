@@ -33,7 +33,7 @@ Route::group(['namespace' => 'App'], function() {
     Auth::routes();
 
     //--Account validation route...
-    Route::get('/account/confirmed/{email}/{token}/', 'Auth\AccountController@confirmed');
+    Route::get('/account/validation/{email}/{token}/', 'Auth\AccountController@validation_unnamed');
 
     //--Localized client routes...
     Route::get('/{language?}', 'HomeController')->name('home');
@@ -61,7 +61,7 @@ Route::group(['namespace' => 'App'], function() {
         Route::post('/{language}/register', 'RegisterController@register');
 
         //--Localized account validation route...
-        Route::get('/{language}/account/confirmed/{email}/{token}/', 'AccountController@confirmed')->name('account.confirmation');
+        Route::get('/{language}/account/validation/{email}/{token}/', 'AccountController@validation')->name('account.validation');
 
         //--Localized password reset routes...
         Route::get('/{language}/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('forgot.password.show');

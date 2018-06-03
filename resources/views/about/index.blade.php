@@ -1,7 +1,8 @@
 @extends('layouts.overlay')
 
 @section('app.home.title', page_title(trans('general.about')))
-@section('overlay', trans('general.about'))
+@section('overlay_text', trans('general.about'))
+@section('overlay_font', font('info-circle'))
 
 @section('app.home.body')
     @component('components.app.about-section')

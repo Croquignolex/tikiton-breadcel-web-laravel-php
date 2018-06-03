@@ -59,24 +59,21 @@ class LoginController extends Controller
     }
 
     /**
-     * @return string
-     */
-    protected function redirectTo()
-    {
-        return  locale_route('home');
-    }
-
-    /**
      * @param Request $request
      * @return array
      */
     protected function credentials(Request $request)
     {
-        return array_add($request->only($this->username(), 'password'), 'is_confirmed', true);
+        $credentials = $request->only($this->username(), 'password');
+        $credentials = array_add($credentials, 'is_confirmed', true);
+        $credentials = array_add($credentials, 'is_super_admin', false);
+        $credentials = array_add($credentials, 'is_admin', false);
+
+        return $credentials;
     }
 
     /**
-     * @throws ValidationException
+     * @throws ValidationExceptiontrue,
      */
     protected function sendFailedLoginResponse()
     {
@@ -119,5 +116,13 @@ class LoginController extends Controller
         );
 
         return redirect($this->redirectTo());
+    }
+
+    /**
+     * @return string
+     */
+    protected function redirectTo()
+    {
+        return  locale_route('home');
     }
 }

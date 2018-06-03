@@ -51,9 +51,8 @@ class User extends Authenticatable
      */
     public function getConfirmationLinkAttribute()
     {
-        return locale_route('account.confirmation', [
-            'email' => $this->email,
-            'token' => $this->token
+        return locale_route('account.validation', [
+            'email' => $this->email, 'token' => $this->token
         ]);
     }
 }

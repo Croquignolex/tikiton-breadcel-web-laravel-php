@@ -20,9 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('email', 255)->unique();
             $table->string('password',255);
             $table->string('image', 255)->nullable();
-            $table->string('token', 255)->nullable();
+            $table->string('token', 255);
             $table->boolean('is_confirmed')->default(false);
             $table->boolean('is_admin')->default(false);
+            $table->boolean('is_super_admin')->default(false);
             $table->timestamps();
         });
     }

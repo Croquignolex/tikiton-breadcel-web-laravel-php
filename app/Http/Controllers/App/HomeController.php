@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
-use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Testimonial;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -25,7 +25,7 @@ class HomeController extends Controller
             ->get();
         $testimonials = Testimonial::all();
 
-        $customers_nbr = Customer::all()->count();
+        $customers_nbr = User::where('is_admin', false)->where('is_super_admin', false)->count();
         $products_nbr = Product::all()->count();
         $orders_nbr = Order::all()->count();
         $sales_nbr = Order::where('status', Order::SOLD)->count();

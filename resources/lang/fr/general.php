@@ -98,6 +98,8 @@ return [
     'database_error' => 'Erreur du serveur de base de données, réessayez plus tard s\'il vous plait',
     'mail_error' => 'Erreur du serveur de mails, réessayez plus tard s\'il vous plait',
     'admin_thanks' => 'Merci (Equipe :app)',
+    'bad_link' => 'Le lien a expiré ou n\'est pas correct',
+    'well_confirmed' => 'Votre compte est validé avec succèss. connectez-vous et commencez vos achat',
 
     /*
     |--------------------------------------------------------------------------
