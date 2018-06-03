@@ -1,7 +1,8 @@
 @extends('layouts.overlay')
 
 @section('app.home.title', page_title(trans('general.contact')))
-@section('overlay', trans('general.contact'))
+@section('overlay_text', trans('general.contact'))
+@section('overlay_font', font('map-marker'))
 
 @section('app.home.body')
     <!--Start Contact Area-->

@@ -13,7 +13,16 @@ trait LocaleDateTrait
     public function getCreatedDateAttribute()
     {
         $date = new Carbon($this->created_at);
-        return $date->format($this->dateFormat());
+        return $date->format($this->dateFormat(App::getLocale()));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFrCreatedDateAttribute()
+    {
+        $date = new Carbon($this->created_at);
+        return $date->format($this->dateFormat('fr'));
     }
 
     /**
@@ -22,12 +31,21 @@ trait LocaleDateTrait
     public function getUpdatedDateAttribute()
     {
         $date = new Carbon($this->updated_at);
-        return $date->format($this->dateFormat());
+        return $date->format($this->dateFormat(App::getLocale()));
     }
 
-    private function dateFormat()
+    /**
+     * @return mixed
+     */
+    public function getFrUpdatedDateAttribute()
     {
-        if(App::getLocale() === 'fr') return 'd/m/Y';
-        else if (App::getLocale() === 'en') return 'm/d/Y';
+        $date = new Carbon($this->updated_at);
+        return $date->format($this->dateFormat('fr'));
+    }
+
+    private function dateFormat($locale)
+    {
+        if($locale === 'fr') return 'd/m/Y';
+        else if ($locale === 'en') return 'm/d/Y';
     }
 }

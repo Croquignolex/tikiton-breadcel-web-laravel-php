@@ -6,7 +6,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Mail\UserRegisterMail;
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use App\Traits\DatabaseErrorMessageTrait;
+use App\Traits\ErrorFlashMessagesTrait;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -25,7 +25,7 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers, DatabaseErrorMessageTrait;
+    use RegistersUsers, ErrorFlashMessagesTrait;
 
     /**
      * RegisterController constructor.
@@ -49,20 +49,26 @@ class RegisterController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
-            Mail::to($user)->send(new UserRegisterMail($user));
+            try
+            {
+                Mail::to($user)->send(new UserRegisterMail($user));
 
-            flash_message(
-                trans('auth.success'), trans('auth.registration_message'),
-                font('check')
-            );
-
-            return redirect(locale_route('register.show'));
+                flash_message(
+                    trans('auth.success'), trans('auth.registration_message'),
+                    font('check')
+                );
+            }
+            catch (Exception $exception)
+            {
+                $user->delete();
+                $this->databaseError();
+            }
         }
         catch (Exception $exception)
         {
             $this->databaseError();
         }
 
-        return back();
+        return redirect(locale_route('register.show'));
     }
 }

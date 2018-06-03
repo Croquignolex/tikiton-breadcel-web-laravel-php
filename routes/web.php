@@ -12,7 +12,8 @@
 */
 
 Route::get('/test', function (){
-    return new \App\Mail\UserRegisterMail(\App\Models\User::find(1));
+    $param = \App\Models\Contact::find(1);
+    return new \App\Mail\ContactFormMail($param);
 });
 
 Route::group(['namespace' => 'App'], function() {

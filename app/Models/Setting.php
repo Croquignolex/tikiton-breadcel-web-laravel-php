@@ -2,21 +2,16 @@
 
 namespace App\Models;
 
-use App\Traits\LocaleDateTrait;
-use App\Traits\NameTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Contact extends Model
+class Setting extends Model
 {
-    use LocaleDateTrait, NameTrait;
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'phone',
-        'subject', 'message'
+
     ];
 }
