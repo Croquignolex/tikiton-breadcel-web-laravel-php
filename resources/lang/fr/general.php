@@ -34,6 +34,9 @@ return [
     'login' => 'Connexion',
     'register' => 'Inscription',
     'pwd_cfm' => 'Confirmer le mot de passe',
+    'pwd_reset' => 'Réinitialisation',
+    'new_password' => 'Nouveau mot de passe',
+    'reset' => 'Réinitialiser',
 
     /*
     |--------------------------------------------------------------------------

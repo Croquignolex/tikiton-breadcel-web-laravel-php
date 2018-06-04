@@ -2,7 +2,7 @@
 
 @section('title', 'contact')
 
-@section('head', strtoupper('Formulaire de contact'))
+@section('head', mb_strtoupper('Formulaire de contact'))
 
 @section('body')
     <tr>

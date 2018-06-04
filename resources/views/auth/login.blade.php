@@ -24,7 +24,7 @@
                                     ])
                                 @component('components.app.input', [
                                     'type' => 'email', 'name' => 'email',
-                                     'value' => old('email')
+                                     'value' => old('email'), 'auto_focus' => 'autofocus'
                                     ])
                                 @endcomponent
                             @endcomponent
@@ -39,7 +39,7 @@
                             @endcomponent
                             <div class="remember">
                                 <a href="{{ locale_route('register.show') }}">@lang('auth.register_sign_upped')</a><br>
-                                <a href="{{ locale_route('register.show') }}">@lang('auth.forgotten_pwd') ?</a>
+                                <a href="{{ locale_route('forgot.password.show') }}">@lang('auth.forgotten_pwd') ?</a>
                             </div>
                             @component('components.app.submit', [
                                'class' => 'submit', 'value' => trans('auth.login')

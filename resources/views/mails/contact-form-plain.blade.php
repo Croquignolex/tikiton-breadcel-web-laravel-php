@@ -1,4 +1,4 @@
-{{ strtoupper('Formulaire de contact') }}<br /><br /><br />
+{{ mb_strtoupper('Formulaire de contact') }}<br /><br /><br />
 Un message vous à été envoyé dépuis le formulaire de
 contact le {{ $contact->fr_created_date }}.
 Voici le contenue:<br /><br />

@@ -34,6 +34,9 @@ return [
     'login' => 'Login',
     'register' => 'Register',
     'pwd_cfm' => 'Confirm password',
+    'pwd_reset' => 'Password reset',
+    'new_password' => 'New password',
+    'reset' => 'Reset',
 
     /*
     |--------------------------------------------------------------------------

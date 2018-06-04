@@ -2,7 +2,7 @@
 
 @section('title', page_title(trans('auth.sign_up')))
 
-@section('head', strtoupper(trans('auth.account_validation')))
+@section('head', mb_strtoupper(trans('auth.account_validation')))
 
 @section('body')
     <tr>
@@ -22,7 +22,6 @@
             </div>
             <p style="text-align: justify;">
                 @lang('mail.bottom_register_msg', [
-                    'url' => $user->confirmation_link,
                     'contact' => config('company.email_1')
                 ]).
             </p>

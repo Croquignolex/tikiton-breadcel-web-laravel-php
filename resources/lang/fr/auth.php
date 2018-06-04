@@ -23,7 +23,7 @@ return [
     'logout_message' => 'Vous êtes actuellement déconnecté',
     'sign_up' => 'Inscription',
     'reset_pwd' => 'Réinitialiser le mot de passe',
-    'send_reset_link' => 'Envoyer le lien de réinitialisation',
+    'send_reset_link' => 'Envoyer le lien',
     'forgotten_pwd' => 'Mot de passe oublié',
     'login_sign_upped' => 'J\'ai déjà un compte',
     'register_sign_upped' => 'J\'ai pas de compte',
@@ -36,4 +36,6 @@ return [
     'well_confirmed' => 'Vous êtes identifié avec succèss. connectez-vous et commencez vos transactions' ,
     'well_reset_sent' => 'Le lien de réinitialisation vous a été envoyé par mail, veillez consulter vos mails',
     'account_validation' => 'Validation du compte',
+    'enter_email' => 'Entrez votre email',
+    'fill_form' => 'Remplissez le formulaire',
 ];

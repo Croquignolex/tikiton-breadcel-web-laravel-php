@@ -19,7 +19,12 @@ return [
         email. If you did make this action, please validate your email by clicking on the
         button bellow',
     'validate_my_account' => 'Validate my account',
+    'reset_my_password' => 'Reset my password',
     'bottom_register_msg' => 'If this button above does not work, try copying and pasting this
-        URL into your browser :url If you continue to have problems, please feel free to contact
+        URL into your browser. If you continue to have problems, please feel free to contact
         us at :contact',
+    'top_password_reset_msg' => 'Hi :name, here are your password reset instructions',
+    'body_password_reset_msg' => 'On :date, you have requested for your password reset, If you 
+        did not make this action, simply ignore this email. If you did make this action, please 
+        reset your password by clicking on the button bellow',
 ];

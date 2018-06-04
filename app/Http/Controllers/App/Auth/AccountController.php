@@ -28,9 +28,7 @@ class AccountController extends Controller
      */
     public function validation_unnamed(Request $request, $email, $token)
     {
-        return redirect(locale_route('account.validation', [
-            'email' => $email, 'token' => $token
-        ]));
+        return redirect(locale_route('account.validation', compact('email', 'token')));
     }
 
     /**

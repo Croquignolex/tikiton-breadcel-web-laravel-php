@@ -11,11 +11,6 @@
 |
 */
 
-Route::get('/test', function (){
-    $param = \App\Models\Contact::find(1);
-    return new \App\Mail\ContactFormMail($param);
-});
-
 Route::group(['namespace' => 'App'], function() {
     //--Client routes...
     Route::get('/terms', 'TermController');
@@ -28,12 +23,6 @@ Route::group(['namespace' => 'App'], function() {
     Route::resource('/carts', 'CartController@index', ['only' => ['index']]);
     Route::resource('/checkout', 'CheckoutController@index', ['only' => ['index']]);
     Route::post('/search', 'SearchController');
-
-    //--Auth routes...
-    Auth::routes();
-
-    //--Account validation route...
-    Route::get('/account/validation/{email}/{token}/', 'Auth\AccountController@validation_unnamed');
 
     //--Localized client routes...
     Route::get('/{language?}', 'HomeController')->name('home');
@@ -50,6 +39,23 @@ Route::group(['namespace' => 'App'], function() {
 
     //--Localized auth routes...
     Route::group(['namespace' => 'Auth'], function() {
+        //--Login routes...
+        Route::get('/login', 'LoginController@showLoginForm');
+        Route::post('/logout', 'LoginController@logout');
+        Route::post('/login', 'LoginController@login');
+
+        //--Registration routes...
+        Route::get('/register', 'RegisterController@showRegistrationForm');
+        Route::post('/register', 'RegisterController@register');
+
+        //--Account validation route...
+        Route::get('/account/validation/{email}/{token}/', 'Auth\AccountController@validation_unnamed');
+
+        //--Password reset routes...
+        Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm');
+        Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm_unnamed');
+        Route::post('/password/email', 'ForgotPasswordController@sendResetLinkEmail');
+        Route::post('/password/reset/{token}', 'ResetPasswordController@reset_unnamed');
 
         //--Localized login routes...
         Route::get('/{language}/login', 'LoginController@showLoginForm')->name('login.show');
@@ -67,6 +73,6 @@ Route::group(['namespace' => 'App'], function() {
         Route::get('/{language}/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('forgot.password.show');
         Route::get('/{language}/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('reset.password.show');
         Route::post('/{language}/password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('forgot.password.email');
-        Route::post('/{language}/password/reset/{token}', 'ResetPasswordController@reset');
+        Route::post('/{language}/password/reset/{token}', 'ResetPasswordController@reset')->name('reset.password');
     });
 });

@@ -23,7 +23,7 @@ return [
     'logout_message' => 'Your are actually logout',
     'sign_up' => 'Registration',
     'reset_pwd' => 'Reset password',
-    'send_reset_link' => 'Send password reset link',
+    'send_reset_link' => 'Send reset link',
     'forgotten_pwd' => 'Forgot Your Password',
     'login_sign_upped' => 'I already have an account',
     'register_sign_upped' => 'I do not have an account',
@@ -36,4 +36,6 @@ return [
     'well_confirmed' => 'You are successfully identified. Login and start your transactions',
     'well_reset_sent' => 'The reset link has been send to your through e-mail, check your e-mail',
     'account_validation' => 'Account validation',
+    'enter_email' => 'Enter your email',
+    'fill_form' => 'Fill the form',
 ];

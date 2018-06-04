@@ -24,7 +24,7 @@
                                     ])
                                 @component('components.app.input', [
                                     'type' => 'text', 'name' => 'name',
-                                     'value' => old('name')
+                                     'value' => old('name'), 'auto_focus' => 'autofocus'
                                     ])
                                 @endcomponent
                             @endcomponent
