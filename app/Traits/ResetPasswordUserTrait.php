@@ -13,7 +13,14 @@ trait ResetPasswordUserTrait
      */
     protected function getUser(array $credentials)
     {
-        try { return User::where('email', $credentials['email'])->first(); }
+        try
+        {
+            return User::where([
+                'email' => $credentials['email'],
+                'is_admin' => false,
+                'is_super_admin' => false
+            ])->first();
+        }
         catch(Exception $exception)
         {
             $this->databaseError();

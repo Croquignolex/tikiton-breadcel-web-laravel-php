@@ -48,8 +48,10 @@ Route::group(['namespace' => 'App'], function() {
         Route::get('/register', 'RegisterController@showRegistrationForm');
         Route::post('/register', 'RegisterController@register');
 
-        //--Account validation route...
-        Route::get('/account/validation/{email}/{token}/', 'Auth\AccountController@validation_unnamed');
+        //--Account routes...
+        Route::get('/account/validation/{email}/{token}/', 'AccountController@validation_unnamed');
+        Route::get('/account', 'AccountController@index');
+        Route::get('/account/wishlist', 'AccountController@wishlist');
 
         //--Password reset routes...
         Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm');
@@ -66,8 +68,10 @@ Route::group(['namespace' => 'App'], function() {
         Route::get('/{language}/register', 'RegisterController@showRegistrationForm')->name('register.show');
         Route::post('/{language}/register', 'RegisterController@register');
 
-        //--Localized account validation route...
+        //--Localized account routes...
         Route::get('/{language}/account/validation/{email}/{token}/', 'AccountController@validation')->name('account.validation');
+        Route::get('/{language}/account', 'AccountController@index')->name('account.index');
+        Route::get('/{language}/account/wishlist', 'AccountController@wishlist')->name('account.wish_list');
 
         //--Localized password reset routes...
         Route::get('/{language}/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('forgot.password.show');

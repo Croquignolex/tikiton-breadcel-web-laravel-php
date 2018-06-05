@@ -17,11 +17,7 @@ class TeamsTableSeeder extends Seeder
             'image' => 'team_1',
             'name' => 'celestin wokgoue',
             'description' => 'General manager description',
-            'function' => 'General manager',
-            'facebook' => '#',
-            'twitter' => '#',
-            'linkedin' => '#',
-            'googleplus' => '#',
+            'function' => 'General manager'
         ]);
 
         DB::table('teams')->insert([
@@ -29,11 +25,7 @@ class TeamsTableSeeder extends Seeder
             'image' => 'team_2',
             'name' => ' Alex Ngombol',
             'description' => 'Software ingenier description',
-            'function' => 'Software ingenier',
-            'facebook' => '#',
-            'twitter' => '#',
-            'linkedin' => '#',
-            'googleplus' => '#',
+            'function' => 'Software ingenier'
         ]);
 
         DB::table('teams')->insert([
@@ -41,11 +33,7 @@ class TeamsTableSeeder extends Seeder
             'image' => 'team_3',
             'name' => 'celine wokgoue',
             'description' => 'Co-manager description',
-            'function' => 'Co-manager',
-            'facebook' => '#',
-            'twitter' => '#',
-            'linkedin' => '#',
-            'googleplus' => '#',
+            'function' => 'Co-manager'
         ]);
 
         DB::table('teams')->insert([
@@ -53,11 +41,7 @@ class TeamsTableSeeder extends Seeder
             'image' => 'team_4',
             'name' => 'trina wokgoue',
             'description' => 'Chief Designer description',
-            'function' => 'Chief Designer',
-            'facebook' => '#',
-            'twitter' => '#',
-            'linkedin' => '#',
-            'googleplus' => '#',
+            'function' => 'Chief Designer'
         ]);
     }
 }

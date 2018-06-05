@@ -22,6 +22,8 @@ return [
     'services' => 'Services',
     'contact_us' => 'Nous contacter',
     'blog' => 'Blog',
+    'account' => 'Compte',
+    'wish_list' => 'Favoris',
 
     /*
     |--------------------------------------------------------------------------
@@ -37,6 +39,9 @@ return [
     'pwd_reset' => 'Réinitialisation',
     'new_password' => 'Nouveau mot de passe',
     'reset' => 'Réinitialiser',
+    'my_account' => 'Mon compte',
+    'my_wish_list' => 'Mes favoris',
+    'log_out' => 'Deconnection',
 
     /*
     |--------------------------------------------------------------------------

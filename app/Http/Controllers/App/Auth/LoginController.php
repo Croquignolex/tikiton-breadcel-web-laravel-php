@@ -93,7 +93,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         flash_message(
-            trans('auth.success'), trans('auth.welcome', ['name' => $user->name]),
+            trans('auth.info'), trans('auth.welcome', ['name' => $user->name]),
             font('info-circle'), 'info'
         );
     }

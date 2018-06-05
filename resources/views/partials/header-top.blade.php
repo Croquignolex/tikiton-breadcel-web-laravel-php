@@ -43,8 +43,10 @@
             <div class="col-sm-12 col-md-4">
                 <div id="top-menu" class="float-right">
                     <ul>
-                        <!--<li><a href="">My Account</a></li>-->
-                        @include('partials.language')
+                        @if(Auth::user())
+                            @include('partials.header-top-user')
+                        @endif
+                        @include('partials.header-top-language')
                     </ul>
                 </div>
             </div>

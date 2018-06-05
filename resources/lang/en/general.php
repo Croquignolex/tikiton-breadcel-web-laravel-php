@@ -22,6 +22,8 @@ return [
     'services' => 'Services',
     'contact_us' => 'Contact us',
     'blog' => 'Blog',
+    'account' => 'Account',
+    'wish_list' => 'Wish list',
 
     /*
     |--------------------------------------------------------------------------
@@ -37,6 +39,9 @@ return [
     'pwd_reset' => 'Password reset',
     'new_password' => 'New password',
     'reset' => 'Reset',
+    'my_account' => 'My account',
+    'my_wish_list' => 'My wish list',
+    'log_out' => 'Logout',
 
     /*
     |--------------------------------------------------------------------------

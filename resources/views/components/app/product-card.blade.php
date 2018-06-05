@@ -14,12 +14,6 @@
         @endif
         <!-- Product action Btn -->
         <div class="product-action-btn">
-
-            @component('components.app.icon-link', [
-                'icon' => 'search', 'link' => '#',
-                'class' => 'quick-view'
-                ])
-            @endcomponent
             @component('components.app.icon-link', [
                'icon' => 'heart-o', 'link' => '#',
                'class' => 'favorite'

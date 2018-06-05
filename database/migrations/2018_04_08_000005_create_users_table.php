@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_confirmed')->default(false);
             $table->boolean('is_admin')->default(false);
             $table->boolean('is_super_admin')->default(false);
+            $table->rememberToken();
             $table->timestamps();
         });
     }
