@@ -2,16 +2,21 @@
 
 namespace App\Models;
 
-use App\Traits\DescriptionTrait;
-use App\Traits\LocaleDateTrait;
 use App\Traits\NameTrait;
 use App\Traits\SlugRouteTrait;
+use App\Traits\DescriptionTrait;
+use App\Traits\LocaleDateTimeTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * @property mixed email
+ * @property mixed token
+ * @property mixed password
+ */
 class User extends Authenticatable
 {
     use SlugRouteTrait, NameTrait,
-        DescriptionTrait, LocaleDateTrait;
+        DescriptionTrait, LocaleDateTimeTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -44,6 +49,14 @@ class User extends Authenticatable
         static::updating(function ($user) {
             $user->slug = str_slug($user->email);
         });
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function product_reviews()
+    {
+        return $this->hasMany('App\Models\ProductReview');
     }
 
     /**

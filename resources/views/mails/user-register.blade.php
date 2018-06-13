@@ -13,7 +13,10 @@
                 </strong>
             </p>
             <p style="text-align: justify;">
-                @lang('mail.body_register_msg' , ['date' => $user->created_date]).
+                @lang('mail.body_register_msg' , ['date' => $user->created_date .
+                    ' ' . trans('general.at') .
+                    ' ' . $user->created_time
+                ]).
             </p>
             <div style="text-align: center;">
                 <a href="{{ $user->confirmation_link }}" style="display: inline-block; padding: 11px 30px; margin: 20px 0px 30px; font-size: 15px; color: #fff; background: #da7612; text-decoration:none;" target="_blank">

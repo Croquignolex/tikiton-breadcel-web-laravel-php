@@ -39,12 +39,12 @@
 .simpleLens-lens-element {
     background-color: #FFFFFF;
     box-shadow: 0 0 2px 2px #8E8E8E;
-    height: 400px;
+    height: 320px;
     left: 105%;
     overflow: hidden;
     position: absolute;
     top: 0;
-    width: 480px;
+    width: 384px;
     z-index: 9999;
     text-align: center;
 }
@@ -56,3 +56,27 @@
     width:auto !important;
     max-width:none !important;
 }
+
+/* md */
+@media (min-width: 992px) and (max-width: 1199px) {}
+
+/* sm */
+@media (min-width: 768px) and (max-width: 991px) {
+    .simpleLens-lens-element {
+        height: 280px;
+        width: 336px;
+    }
+}
+
+/* xs */
+@media (max-width: 767px) {
+    .simpleLens-lens-element {
+        left: 0;
+        position: relative;
+        top: 10px;
+        width: 100%;
+    }
+}
+
+/* XS Portrait */
+@media (max-width: 480px) {}

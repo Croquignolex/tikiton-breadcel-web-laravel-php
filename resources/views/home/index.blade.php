@@ -113,7 +113,6 @@
                 <!-- Nav tabs -->
                 <ul class="tabs-list" role="tablist">
                     <li class="active"><a href="#new" data-toggle="tab">@lang('general.new')</a></li>
-                    <li><a href="#feature" data-toggle="tab">@lang('general.featured')</a></li>
                     <li><a href="#b-sales" data-toggle="tab">@lang('general.best_sellers')</a></li>
                 </ul>
                 <!-- Tab panes -->
@@ -128,22 +127,6 @@
                                     @if($i + 1 < $new_products->count())
                                         @component('components.app.product-card',
                                             ['product' => $new_products[$i + 1]])
-                                        @endcomponent
-                                    @endif
-                                </div>
-                            @endfor
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="feature">
-                        <div class="tab-pro-slider feature-product owl-carousel">
-                            @for($i = 0; $i < $featured_products->count(); $i += 2)
-                                <div class="single-product-item fix">
-                                    @component('components.app.product-card',
-                                        ['product' => $featured_products[$i]])
-                                    @endcomponent
-                                    @if($i + 1 < $featured_products->count())
-                                        @component('components.app.product-card',
-                                            ['product' => $featured_products[$i + 1]])
                                         @endcomponent
                                     @endif
                                 </div>
@@ -246,7 +229,3 @@
     </div>
     <!--End Testimonial Area-->
 @endsection
-
-@push('app.script.page')
-    @include('partials.popup-alert')
-@endpush

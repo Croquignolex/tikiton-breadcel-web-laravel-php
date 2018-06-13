@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\App\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ForgotPasswordRequest;
-use App\Mail\UserPasswordResetMail;
-use App\Models\PasswordReset;
-use App\Models\User;
-use App\Traits\ErrorFlashMessagesTrait;
-use App\Traits\ResetPasswordUserTrait;
 use Exception;
-use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\PasswordReset;
+use App\Mail\UserPasswordResetMail;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use App\Traits\ResetPasswordUserTrait;
+use App\Traits\ErrorFlashMessagesTrait;
 use Illuminate\Support\Facades\Password;
+use App\Http\Requests\ForgotPasswordRequest;
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller
 {
@@ -99,10 +99,20 @@ class ForgotPasswordController extends Controller
                 $password_reset->save();
             }
 
-            try { Mail::to($user)->send(new UserPasswordResetMail($user, $password_reset)); }
-            catch (Exception $exception) { $this->mailError(); }
+            try
+            {
+                Mail::to($user)
+                    ->send(new UserPasswordResetMail($user, $password_reset));
+            }
+            catch (Exception $exception)
+            {
+                $this->mailError($exception);
+            }
         }
-        catch (Exception $exception) { $this->databaseError(); }
+        catch (Exception $exception)
+        {
+            $this->databaseError($exception);
+        }
     }
 
     /**
@@ -114,13 +124,18 @@ class ForgotPasswordController extends Controller
     protected function sendResetLinkResponse($response)
     {
         flash_message(
-            trans('auth.info'), trans($response),
-            font('info-circle'), 'info', 'flipInY', 'flipOutX'
+            trans('auth.info'), trans($response), font('info-circle'),
+            'info', 'flipInY', 'flipOutX'
         );
 
         return back()->with('status', trans($response));
     }
 
+    /**
+     * @param Request $request
+     * @param $response
+     * @return \Illuminate\Http\RedirectResponse
+     */
     protected function sendResetLinkFailedResponse(Request $request, $response)
     {
         flash_message(

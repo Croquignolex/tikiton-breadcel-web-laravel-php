@@ -23,7 +23,6 @@ class CreateProductsTable extends Migration
             $table->text('en_description');
             $table->double('price');
             $table->smallInteger('discount')->default(0);
-            $table->tinyInteger('ranking')->default(0);
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_new')->default(false);
             $table->boolean('is_most_sold')->default(false);

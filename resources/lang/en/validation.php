@@ -18,6 +18,7 @@ return [
     'email'                => 'This field must be a valid email address',
     'unique'               => 'This field must be required',
     'confirmed'            => 'This field must be confirmed',
+    'numeric'              => 'This field must be a number',
     'max'                  => [
         'numeric' => 'This field may not be greater than :max',
         'string'  => 'This field may not be greater than :max characters'
@@ -25,5 +26,10 @@ return [
     'min'                  => [
         'numeric' => 'This field must be at least :min',
         'string'  => 'This field must be at least :min characters'
-    ]
+    ],
+    'between'              => [
+        'numeric' => 'This field must be between :min and :max',
+        'file'    => 'This file size must be between :min and :max kilobytes',
+        'string'  => 'This field must be between :min and :max characters'
+    ],
 ];

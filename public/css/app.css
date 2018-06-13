@@ -1625,10 +1625,6 @@ img {
 .sort-by select option, .show-product select option{
   padding: 2px 5px;
 }
-.pro-Showing {
-  float: right;
-  margin: 7px 0;
-}
 .hot-pro, .new-pro {
   display: inline-block;
   position: absolute;
@@ -1645,9 +1641,9 @@ img {
   border-radius: 0;
   clear: both;
   display: block;
-  margin-bottom: 0;
   text-align: center;
   width: 100%;
+  margin: 20px 0 20px 0;
 }
 .pagination ul {
   display: inline-block;
@@ -3436,7 +3432,26 @@ h4.heading {
 .custom-alert-danger {
     background-color: #da2013;
 }
-.login-page
-{
+.login-page {
     margin-bottom: 50px;
+}
+.user-review {
+  padding: 10px;
+}
+.user-review > ul > li {
+  display: inline-block;
+  margin-right: 10px;
+}
+.user-review > ul > li > i {
+  color: #da7612;
+}
+.multi-line-text {
+  white-space: pre;
+}
+.review-form{
+  margin-bottom: 20px;
+}
+#reviews{
+  max-height: 500px;
+  overflow: auto;
 }

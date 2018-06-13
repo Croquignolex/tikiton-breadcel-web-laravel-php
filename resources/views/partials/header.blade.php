@@ -6,14 +6,22 @@
                 <div class="log-link">
                     <p>@lang('general.welcome_to_you')</p>
                     <h5>
-                        <a href="{{ locale_route('login.show') }}">
-                            <i class="{{ font('unlock') }}"></i>
-                            @lang('general.login')</a>
-                        @lang('general.or')
-                        <a href="{{ locale_route('register.show') }}">
-                            <i class="{{ font('user-plus') }}"></i>
-                            @lang('general.register')
-                        </a>
+                        @guest
+                            <a href="{{ locale_route('login.show') }}">
+                                <i class="{{ font('unlock') }}"></i>
+                                @lang('general.login')
+                            </a>
+                            @lang('general.or')
+                            <a href="{{ locale_route('register.show') }}">
+                                <i class="{{ font('user-plus') }}"></i>
+                                @lang('general.register')
+                            </a>
+                        @endguest
+                        @auth
+                            <a href="{{ locale_route('account.index') }}">
+                                {{ \Illuminate\Support\Facades\Auth::user()->format_name }}
+                            </a>
+                        @endauth
                     </h5>
                 </div>
             </div>

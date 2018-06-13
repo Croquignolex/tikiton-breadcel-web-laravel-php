@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\Traits\LocaleDateTrait;
+use App\Traits\LocaleDateTimeTrait;
 use App\Traits\NameTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
-    use LocaleDateTrait, NameTrait;
+    use LocaleDateTimeTrait, NameTrait;
 
     /**
      * The attributes that are mass assignable.

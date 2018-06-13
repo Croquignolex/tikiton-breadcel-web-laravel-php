@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\App;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ContactRequest;
-use App\Mail\ContactFormMail;
+use Exception;
 use App\Models\Contact;
 use App\Models\Setting;
-use App\Traits\ErrorFlashMessagesTrait;
-use Exception;
+use App\Mail\ContactFormMail;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\ContactRequest;
+use App\Traits\ErrorFlashMessagesTrait;
 
 class ContactController extends Controller
 {
@@ -34,24 +34,26 @@ class ContactController extends Controller
             $contact = Contact::create($request->all());
 
             flash_message(
-                'auth.success', trans('contact.send'),
+                'auth.success', trans('general.contact_send'),
                 font('envelope')
             );
 
-            $setting = Setting::find(1);
-
-            try
+            if(Setting::find(1)->receive_email_from_contact)
             {
-                if($setting->receive_email_from_contact)
+                try
                 {
-                    Mail::to(config('company.email_1'))->send(new ContactFormMail($contact));
+                    Mail::to(config('company.email_1'))
+                        ->send(new ContactFormMail($contact));
+                }
+                catch (Exception $exception)
+                {
+                    $this->mailError($exception);
                 }
             }
-            catch (Exception $exception) {}
         }
         catch (Exception $exception)
         {
-            $this->databaseError();
+            $this->databaseError($exception);
         }
 
         return redirect(locale_route('contact.index'));

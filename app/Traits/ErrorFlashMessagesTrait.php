@@ -2,32 +2,45 @@
 
 namespace App\Traits;
 
+use Exception;
+
 trait ErrorFlashMessagesTrait
 {
     /**
-     *
+     * @param Exception $exception
      */
-    public function databaseError()
+    protected function databaseError(Exception $exception)
     {
-        $this->flashError('database_error');
+        $this->flashError('database_error', $exception);
     }
 
     /**
-     *
+     * @param Exception $exception
      */
-    public function mailError()
+    protected function mailError(Exception $exception)
     {
-        $this->flashError('mail_error');
+        $this->flashError('mail_error', $exception);
     }
 
     /**
-     * @param $message
+     * @param $locale_message
+     * @param Exception $exception
+     * @return \Illuminate\Http\RedirectResponse
      */
-    private function flashError($message)
+    protected function flashError($locale_message, Exception $exception)
     {
+        if(config('app.debug'))
+        {
+            $message = trans('general.' . $locale_message) .
+                '. ' . $exception->getMessage();
+        }
+        else $message = trans('general.' . $locale_message);
+
         flash_message(
-            trans('auth.error'), trans('general.' . $message),
-            font('remove'), 'danger', 'bounceIn', 'bounceOut'
+            trans('auth.error'), $message, font('remove'),
+            'danger', 'bounceIn', 'bounceOut'
         );
+
+        return back();
     }
 }

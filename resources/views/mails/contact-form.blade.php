@@ -10,7 +10,7 @@
             <p style="text-align: justify;">
                 <strong>
                     Un message vous à été envoyé dépuis le formulaire de
-                    contact le {{ $contact->fr_created_date }}.
+                    contact le {{ $contact->fr_created_date }} à {{ $contact->fr_created_time }}.
                     Voici le contenue:
                 </strong>
             </p>

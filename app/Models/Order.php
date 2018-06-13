@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use App\Traits\SlugRouteTrait;
-use App\Traits\LocaleDateTrait;
+use App\Traits\LocaleDateTimeTrait;
 use App\Traits\LocaleAmountTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    use SlugRouteTrait, LocaleAmountTrait, LocaleDateTrait;
+    use SlugRouteTrait, LocaleAmountTrait, LocaleDateTimeTrait;
 
     const ORDERED = 0;
     const CANCELED = 1;

@@ -14,6 +14,26 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
+            'slug' => 'mr_customer_1',
+            'image' => NULL,
+            'name' => 'Mr Customer 1',
+            'email' => 'customer1@breadcel.com',
+            'password' => Hash::make('breadcel'),
+            'token' => str_random(64),
+            'is_confirmed' => true,
+        ]);
+
+        DB::table('users')->insert([
+            'slug' => 'mr_customer_2',
+            'image' => NULL,
+            'name' => 'Mr Customer 2',
+            'email' => 'customer2@breadcel.com',
+            'password' => Hash::make('breadcel'),
+            'token' => str_random(64),
+            'is_confirmed' => true,
+        ]);
+
+        DB::table('users')->insert([
             'slug' => 'alex_ngombol',
             'image' => NULL,
             'name' => 'Alex NGOMBOL',
@@ -33,16 +53,6 @@ class UsersTableSeeder extends Seeder
             'token' => str_random(64),
             'is_confirmed' => true,
             'is_admin' => true,
-        ]);
-
-        DB::table('users')->insert([
-            'slug' => 'mr_customer',
-            'image' => NULL,
-            'name' => 'Mr Customer',
-            'email' => 'customer@breadcel.com',
-            'password' => Hash::make('breadcel'),
-            'token' => str_random(64),
-            'is_confirmed' => true,
         ]);
     }
 }

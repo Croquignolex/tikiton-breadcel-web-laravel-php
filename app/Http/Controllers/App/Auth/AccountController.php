@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\App\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Traits\ErrorFlashMessagesTrait;
 use Exception;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Traits\ErrorFlashMessagesTrait;
 
 class AccountController extends Controller
 {
@@ -84,7 +84,7 @@ class AccountController extends Controller
         }
         catch (Exception $exception)
         {
-            $this->databaseError();
+            $this->databaseError($exception);
         }
 
         return redirect(locale_route('login.show'));

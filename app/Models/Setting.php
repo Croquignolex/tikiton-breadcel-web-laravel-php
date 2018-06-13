@@ -12,6 +12,6 @@ class Setting extends Model
      * @var array
      */
     protected $fillable = [
-
+        'receive_email_from_contact'
     ];
 }

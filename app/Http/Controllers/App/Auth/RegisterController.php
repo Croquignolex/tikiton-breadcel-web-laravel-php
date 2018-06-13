@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\App\Auth;
 
-use App\Http\Requests\RegisterRequest;
-use App\Mail\UserRegisterMail;
-use App\Models\User;
-use App\Http\Controllers\Controller;
-use App\Traits\ErrorFlashMessagesTrait;
 use Exception;
+use App\Models\User;
+use App\Mail\UserRegisterMail;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
+use App\Traits\ErrorFlashMessagesTrait;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -61,12 +61,12 @@ class RegisterController extends Controller
             catch (Exception $exception)
             {
                 $user->delete();
-                $this->databaseError();
+                $this->databaseError($exception);
             }
         }
         catch (Exception $exception)
         {
-            $this->databaseError();
+            $this->databaseError($exception);
         }
 
         return redirect(locale_route('register.show'));

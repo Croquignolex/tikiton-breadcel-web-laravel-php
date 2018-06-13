@@ -162,7 +162,7 @@ $(document).ready(function($){
 	});
 	/*----- Simple Lens -----*/	
 	$('.simpleLens-lens-image').simpleLens({
-		loading_image: 'img/loading.gif'
+		loading_image: '../../img/loader.gif'
 	});
 	
 	/*----- Price Slider -----*/	

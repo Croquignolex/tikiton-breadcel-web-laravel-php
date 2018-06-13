@@ -19,7 +19,8 @@ Route::group(['namespace' => 'App'], function() {
     Route::get('/blog', 'BlogController@index');
     Route::get('/services', 'ServiceController@index');
     Route::resource('/contact', 'ContactController', ['only' => ['index', 'store']]);
-    Route::resource('/products', 'ProductController');
+    Route::post('/products/review/{product}', 'ProductController@review');
+    Route::resource('/products', 'ProductController', ['only' => ['index', 'show']]);
     Route::resource('/carts', 'CartController@index', ['only' => ['index']]);
     Route::resource('/checkout', 'CheckoutController@index', ['only' => ['index']]);
     Route::post('/search', 'SearchController');
@@ -32,7 +33,8 @@ Route::group(['namespace' => 'App'], function() {
     Route::get('/{language?}/blog', 'BlogController@index')->name('blog.index');
     Route::get('/{language?}/services', 'ServiceController@index')->name('services.index');
     Route::resource('/{language?}/contact', 'ContactController', ['only' => ['index', 'store']]);
-    Route::resource('/{language?}/products', 'ProductController');
+    Route::post('/{language?}/products/review/{product}', 'ProductController@review')->name('products.review');
+    Route::resource('/{language?}/products', 'ProductController', ['only' => ['index', 'show']]);
     Route::resource('/{language}/cart', 'CartController@index', ['only' => ['index']]);
     Route::resource('/{language}/checkout', 'CheckoutController@index', ['only' => ['index']]);
     Route::post('/{language}/search', 'SearchController')->name('search');

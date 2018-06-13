@@ -38,5 +38,6 @@
         <script src="{{ js_asset('master') }}" type="text/javascript"></script>
         <!-- Custom scripts for this page -->
         @stack('script.page')
+        @include('partials.popup-alert')
     </body>
 </html>

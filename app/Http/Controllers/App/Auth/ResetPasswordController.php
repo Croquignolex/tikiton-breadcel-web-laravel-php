@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\App\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ResetPasswordRequest;
+use Exception;
+use App\Models\User;
+use Illuminate\Http\Request;
 use App\Models\PasswordReset;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Traits\ErrorFlashMessagesTrait;
 use App\Traits\ResetPasswordUserTrait;
-use Exception;
-use Illuminate\Foundation\Auth\ResetsPasswords;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use App\Http\Requests\ResetPasswordRequest;
+
+use Illuminate\Foundation\Auth\ResetsPasswords;
+
 
 class ResetPasswordController extends Controller
 {
@@ -38,6 +41,8 @@ class ResetPasswordController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @param $token
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function showResetForm_unnamed(Request $request, $token)
@@ -80,6 +85,7 @@ class ResetPasswordController extends Controller
      * Reset the password for the given token.
      *
      * @param  array $credentials
+     * @param $token
      * @return mixed
      */
     protected function resetProcess(array $credentials, $token)
@@ -122,26 +128,26 @@ class ResetPasswordController extends Controller
         }
         catch(Exception $exception)
         {
-            $this->databaseError();
+            $this->databaseError($exception);
             return null;
         }
     }
 
     /**
-     * Reset the given user's password.
-     *
-     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
-     * @param  string  $password
-     * @return void
+     * @param $user
+     * @param $password
      */
-    protected function resetPassword($user, $password)
+    protected function resetPassword(User $user, $password)
     {
         try
         {
             $user->password = Hash::make($password);
             $user->save();
         }
-        catch (Exception $exception) { $this->databaseError(); }
+        catch (Exception $exception)
+        {
+            $this->databaseError($exception);
+        }
     }
 
     /**
@@ -152,11 +158,7 @@ class ResetPasswordController extends Controller
      */
     protected function sendResetResponse($response)
     {
-        flash_message(
-            trans('auth.success'), trans($response),
-            font('check')
-        );
-
+        flash_message(trans('auth.success'), trans($response), font('check'));
         return redirect(locale_route('login.show'))->with('status', trans($response));
     }
 
@@ -170,8 +172,8 @@ class ResetPasswordController extends Controller
     protected function sendResetFailedResponse(Request $request, $response)
     {
         flash_message(
-            trans('auth.error'), trans($response),
-            font('exclamation-triangle'), 'danger', 'bounceIn', 'bounceOut'
+            trans('auth.error'), trans($response), font('exclamation-triangle'),
+            'danger', 'bounceIn', 'bounceOut'
         );
 
         return redirect()->back()

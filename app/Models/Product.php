@@ -3,18 +3,41 @@
 namespace App\Models;
 
 use App\Traits\SlugRouteTrait;
-use App\Traits\LocaleDateTrait;
 use App\Traits\LocaleNameTrait;
 use App\Traits\LocaleAmountTrait;
 use App\Traits\LocaleSlugSaveTrait;
 use Illuminate\Support\Facades\App;
+use App\Traits\LocaleDateTimeTrait;
 use App\Traits\LocaleDescriptionTrait;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed id
+ * @property mixed stock
+ * @property mixed image
+ * @property mixed price
+ * @property int ranking
+ * @property mixed is_new
+ * @property mixed discount
+ * @property mixed created_at
+ * @property mixed product_tags
+ * @property mixed product_reviews
+ * @property mixed fr_featured_title
+ * @property mixed en_featured_title
+ * @property mixed en_featured_description
+ * @property mixed fr_featured_description
+ */
 class Product extends Model
 {
     use SlugRouteTrait, LocaleNameTrait, LocaleDescriptionTrait,
-        LocaleSlugSaveTrait, LocaleAmountTrait, LocaleDateTrait;
+        LocaleSlugSaveTrait, LocaleAmountTrait, LocaleDateTimeTrait;
+
+    const SORT_BY_PRICE_ASC = 0;
+    const SORT_BY_PRICE_DESC = 1;
+    const SORT_BY_RANKING_ASC = 2;
+    const SORT_BY_RANKING_DESC = 3;
+    const SORT_BY_NAME_ASC = 4;
+    const SORT_BY_NAME_DESC = 5;
 
     /**
      * The attributes that are mass assignable.
@@ -35,6 +58,21 @@ class Product extends Model
         return $this->belongsTo('App\Models\ProductCategory');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function product_reviews()
+    {
+        return $this->hasMany('App\Models\ProductReview');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function product_tags()
+    {
+        return $this->hasMany('App\Models\ProductTag');
+    }
 
     /**
      * @return string
@@ -77,5 +115,60 @@ class Product extends Model
         else if (App::getLocale() === 'en') $description = $this->en_featured_description;
 
         return ucfirst($description);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAvailabilityAttribute()
+    {
+        if($this->stock <= 0) return 'out_of_stock';
+        else return 'in_stock';
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsANewAttribute()
+    {
+        return $this->is_new ||
+            ($this->created_at >= now()->addDay(-7)) ? true : false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsADiscountAttribute()
+    {
+        return $this->discount !== 0 ? true : false;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRelatedProductsAttribute()
+    {
+        return Product::where('id', '<>', $this->id)->get()->filter(function ($value){
+            foreach ($value->product_tags as $current_product_tag)
+            {
+                foreach ($this->product_tags as $this_product_tag)
+                {
+                    if($current_product_tag->tag_id === $this_product_tag->tag_id)
+                    {
+                        return $value;
+                    }
+                }
+            }
+            return null;
+        });
+    }
+
+    /**
+     * @return bool
+     */
+    public function getRankingAttribute()
+    {
+        if($this->product_reviews->count() === 0) return 0;
+        else return $this->product_reviews->sum('ranking') / $this->product_reviews->count();
     }
 }

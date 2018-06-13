@@ -98,6 +98,6 @@ if(!function_exists('products_pages'))
     function products_pages()
     {
 
-        return collect(['products.index']);
+        return collect(['products.index', 'products.show']);
     }
 }

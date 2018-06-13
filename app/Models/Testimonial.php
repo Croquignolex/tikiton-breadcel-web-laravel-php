@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\Traits\NameTrait;
+use App\Traits\SlugSaveTrait;
 use App\Traits\SlugRouteTrait;
 use App\Traits\LocaleDescriptionTrait;
-use App\Traits\SlugSaveTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Testimonial extends Model

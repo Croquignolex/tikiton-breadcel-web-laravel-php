@@ -2,8 +2,8 @@
 
 namespace App\Traits;
 
-use App\Models\User;
 use Exception;
+use App\Models\User;
 
 trait ResetPasswordUserTrait
 {
@@ -23,7 +23,7 @@ trait ResetPasswordUserTrait
         }
         catch(Exception $exception)
         {
-            $this->databaseError();
+            $this->databaseError($exception);
             return null;
         }
     }

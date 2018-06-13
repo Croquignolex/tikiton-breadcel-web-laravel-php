@@ -1,7 +1,116 @@
 @extends('layouts.overlay')
 
-@section('home.title', page_title(trans('general.products')))
+@section('app.home.title', page_title(trans('general.our_products')))
+@section('overlay_text', trans('general.products'))
+@section('overlay_font', font('shopping-basket'))
 
-@section('home.body')
-
+@section('app.home.body')
+    <!--Start Shop Area-->
+    <div class="shop-product-area section fix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="shop-sidebar fix">
+                        <!-- single-sidebar start -->
+                        <div class="sin-shop-sidebar shop-category">
+                            <h2>@lang('general.category')</h2>
+                            <ul>
+                                @foreach($categories as $category)
+                                    <li><a href="javascript: void(0);">{{ $category->format_name }}</a></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <!-- single-sidebar end -->
+                        <!-- single-sidebar start -->
+                        <div class="sin-shop-sidebar product-price-range">
+                            <h2>@lang('general.price')</h2>
+                            <div class="slider-range-container">
+                                <div id="slider-range"></div>
+                                <p>
+                                    <input type="text" id="price-amount" readonly>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- single-sidebar end -->
+                        <!-- single-sidebar start -->
+                        <div class="sin-shop-sidebar shop-tags">
+                            <h2>@lang('general.tags')</h2>
+                            <ul>
+                                @foreach($tags as $tag)
+                                    <li><a href="javascript: void(0);">{{ $tag->format_name }}</a></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <!-- single-sidebar end -->
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="shop-tool-bar col-sm-12 fix">
+                            <div class="sort-by">
+                                <span>@lang('general.sort_by')</span>
+                                <select name="sort-by">
+                                    <optgroup label="{{ mb_strtoupper(trans('general.price')) }}">
+                                        <option selected="selected" value="{{ \App\Models\Product::SORT_BY_PRICE_ASC }}">
+                                            @lang('general.ascendant_element', ['element' => trans('general.price')])
+                                        </option>
+                                        <option value="{{ \App\Models\Product::SORT_BY_PRICE_DESC }}">
+                                            @lang('general.descendant_element', ['element' => trans('general.price')])
+                                        </option>
+                                    </optgroup>
+                                    <optgroup label="{{ mb_strtoupper(trans('general.ranking')) }}">
+                                        <option value="{{ \App\Models\Product::SORT_BY_RANKING_ASC }}">
+                                            @lang('general.ascendant_element', ['element' => trans('general.ranking')])
+                                        </option>
+                                        <option value="{{ \App\Models\Product::SORT_BY_RANKING_DESC }}">
+                                            @lang('general.descendant_element', ['element' => trans('general.ranking')])
+                                        </option>
+                                    </optgroup>
+                                    <optgroup label="{{ mb_strtoupper(trans('general.name')) }}">
+                                        <option value="{{ \App\Models\Product::SORT_BY_NAME_ASC }}">
+                                            @lang('general.ascendant_element', ['element' => trans('general.name')])
+                                        </option>
+                                        <option value="{{ \App\Models\Product::SORT_BY_NAME_DESC }}">
+                                            @lang('general.descendant_element', ['element' => trans('general.name')])
+                                        </option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div class="show-product">
+                                <span>@lang('general.display')</span>
+                                <select name="sort-by">
+                                    <option value="3">3</option>
+                                    <option value="9" selected="selected">9</option>
+                                    <option value="15">15</option>
+                                    <option value="21">21</option>
+                                </select>
+                                <span>@lang('general.products_per_page')</span>
+                            </div>
+                        </div>
+                        <div class="shop-products">
+                            @component('components.app.pagination', [
+                               'paginationTools' => $paginationTools,
+                               'url' => locale_route('products.index') . '?page='
+                               ])
+                            @endcomponent
+                            @foreach($paginationTools->displayItems as $product)
+                                <div class="col-sm-4 fix">
+                                    @component('components.app.product-card', [
+                                        'product' => $product
+                                        ])
+                                    @endcomponent
+                                </div>
+                            @endforeach
+                            @component('components.app.pagination', [
+                                'paginationTools' => $paginationTools,
+                                'url' => locale_route('products.index') . '?page='
+                                ])
+                            @endcomponent
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Start Shop Area-->
 @endsection

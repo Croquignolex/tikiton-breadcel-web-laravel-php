@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\App\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginRequest;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
+use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -34,6 +34,7 @@ class LoginController extends Controller
     /**
      * @param LoginRequest $request
      * @return \Illuminate\Http\Response|void
+     * @throws ValidationException
      */
     public function login(LoginRequest $request)
     {
@@ -43,11 +44,11 @@ class LoginController extends Controller
         if ($this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
 
-            return $this->sendLockoutResponse($request);
+            $this->sendLockoutResponse($request);
         }
 
         if ($this->attemptLogin($request)) {
-            return $this->sendLoginResponse($request);
+            $this->sendLoginResponse($request);
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
@@ -55,7 +56,7 @@ class LoginController extends Controller
         // user surpasses their maximum number of attempts they will get locked out.
         $this->incrementLoginAttempts($request);
 
-        return $this->sendFailedLoginResponse();
+        $this->sendFailedLoginResponse();
     }
 
     /**
@@ -73,7 +74,7 @@ class LoginController extends Controller
     }
 
     /**
-     * @throws ValidationExceptiontrue,
+     *
      */
     protected function sendFailedLoginResponse()
     {

@@ -2,6 +2,14 @@ $(window).on('load', function () {
     $("#loader").fadeOut();
 });
 
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+});
+
+$(function () {
+    $('[data-toggle="popover"]').popover()
+});
+
 function notification(notificationTitle, notificationMessage, notificationType, notificationIcon, notificationEnter, notificationExit, notificationDelay){
     $.notify({
         icon: notificationIcon,

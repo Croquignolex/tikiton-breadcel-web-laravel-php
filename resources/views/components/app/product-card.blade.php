@@ -1,4 +1,3 @@
-@inject('productService', 'App\Services\ProductService')
 <!-- Single Product Start -->
 <div class="product-item fix">
     <div class="product-img-hover">
@@ -6,10 +5,10 @@
         <a href="{{ locale_route('products.show', [$product]) }}" class="pro-image fix">
             <img src="{{ $product->image_path }}" alt="..." />
         </a>
-        @if($productService->isNew($product))
+        @if($product->is_a_new)
             <div class="new-pro"><img src="{{ product_img_asset('new', 'png') }}" alt="..." /></div>
         @endif
-        @if($productService->isFeatured($product))
+        @if($product->is_a_discount)
             <div class="hot-pro"><img src="{{ product_img_asset('hot', 'png') }}" alt="..." /></div>
         @endif
         <!-- Product action Btn -->
@@ -33,13 +32,9 @@
                 {{ $product->format_name }}
             </a>
         </div>
-        <!-- Product Ratting -->
-        <div class="pro-ratting">
-            @component('components.app.star-ranking',
-                ['ranking' => $product->ranking])
-            @endcomponent
-        </div>
-        <!-- Product Price -->
+        @component('components.app.star-ranking',
+            ['ranking' => $product->ranking])
+        @endcomponent
         <div class="pro-price fix">
             <p>
                 @if($product->discount === 0)

@@ -1,6 +1,6 @@
 {{ mb_strtoupper('Formulaire de contact') }}<br /><br /><br />
 Un message vous à été envoyé dépuis le formulaire de
-contact le {{ $contact->fr_created_date }}.
+contact le {{ $contact->fr_created_date }} à {{ $contact->fr_created_time }}.
 Voici le contenue:<br /><br />
 Nom: {{ $contact->format_name }}<br />
 Email: {{ $contact->email }}<br />

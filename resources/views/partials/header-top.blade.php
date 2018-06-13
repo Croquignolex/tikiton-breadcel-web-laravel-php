@@ -43,9 +43,9 @@
             <div class="col-sm-12 col-md-4">
                 <div id="top-menu" class="float-right">
                     <ul>
-                        @if(Auth::user())
+                        @auth
                             @include('partials.header-top-user')
-                        @endif
+                        @endauth
                         @include('partials.header-top-language')
                     </ul>
                 </div>

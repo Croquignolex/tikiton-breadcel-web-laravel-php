@@ -17,7 +17,7 @@
                                 {{ session('notification.message') }}
                             </div>
                         @endif
-                        <form id="signup-form" action="" method="POST" class="form-validation" v-on:submit="validateElement">
+                        <form id="signup-form" action="" method="POST" class="form-validation" @submit="validateElement">
                             {{ csrf_field() }}
                             @component('components.app.label-input', [
                                     'name' => 'email', 'label' => 'email',
@@ -62,5 +62,4 @@
 @push('overlay.app.script.page')
     <script src="{{ js_asset('bootstrap-maxlength') }}" type="text/javascript"></script>
     <script src="{{ js_asset('validator') }}" type="text/javascript"></script>
-    @include('partials.popup-alert')
 @endpush

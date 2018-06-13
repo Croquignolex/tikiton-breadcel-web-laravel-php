@@ -16,7 +16,7 @@
                 @endif
                 <div class="contact-form col-sm-12">
                     <h2>@lang('general.leave_message')</h2>
-                    <form action="{{ locale_route('contact.store') }}" method="POST" class="form-validation" v-on:submit="validateElement">
+                    <form action="{{ locale_route('contact.store') }}" method="POST" class="form-validation" @submit="validateElement">
                         {{ csrf_field() }}
                         <div class="row">
                             <div class="col-sm-6">
@@ -108,5 +108,4 @@
 @push('overlay.app.script.page')
     <script src="{{ js_asset('bootstrap-maxlength') }}" type="text/javascript"></script>
     <script src="{{ js_asset('validator') }}" type="text/javascript"></script>
-    @include('partials.popup-alert')
 @endpush
