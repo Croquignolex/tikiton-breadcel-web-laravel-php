@@ -5,11 +5,6 @@ namespace App\Http\Requests;
 use App\Traits\RequestTrait;
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * @property mixed name
- * @property mixed email
- * @property mixed password
- */
 class RegisterRequest extends FormRequest
 {
     use RequestTrait;

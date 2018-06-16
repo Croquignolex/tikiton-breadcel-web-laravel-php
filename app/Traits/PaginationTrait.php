@@ -15,11 +15,12 @@ trait PaginationTrait
      * @param int $itemsPerPage
      * @param int $itemsBeforeAndAfter
      */
-    private function parginate(Request $request, $items, $itemsPerPage = 6, $itemsBeforeAndAfter = 2)
+    private function paginate(Request $request, $items, $itemsPerPage = 6, $itemsBeforeAndAfter = 2)
     {
         $this->paginationTools = new PaginationTools();
         $this->paginationTools->nextPage = 0;
         $this->paginationTools->previousPage = 0;
+        $this->paginationTools->url = $request->fullUrl();
 
         $this->paginationTools->itemsPerPage = $itemsPerPage;
         $this->paginationTools->itemsNumber = $items->count();
@@ -27,8 +28,7 @@ trait PaginationTrait
         $this->paginationTools->pagesNumber = ceil($this->paginationTools->itemsNumber / $this->paginationTools->itemsPerPage);
 
         //--user page
-        if(is_numeric($request->page)) $this->paginationTools->currentPage = $request->page;
-        else $this->paginationTools->currentPage = 1;
+        $this->paginationTools->currentPage = is_numeric($request->query('page')) ? $request->query('page') : 1;
 
         //--check that the page is in the range
         if($this->paginationTools->currentPage < 0) $this->paginationTools->currentPage = 1;

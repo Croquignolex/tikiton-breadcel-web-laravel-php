@@ -33,6 +33,7 @@
         <script src="{{ js_asset('jquery.min') }}" type="text/javascript"></script>
         <script src="{{ js_asset('bootstrap.min') }}" type="text/javascript"></script>
         <!-- Plugin JavaScript -->
+        <script src="{{ js_asset('vue.min') }}" type="text/javascript"></script>
         @stack('script.plugin')
         <!-- Global scripts -->
         <script src="{{ js_asset('master') }}" type="text/javascript"></script>

@@ -5,10 +5,6 @@ namespace App\Http\Requests;
 use App\Traits\RequestTrait;
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * @property mixed review
- * @property mixed ranking
- */
 class ProductReviewRequest extends FormRequest
 {
     use RequestTrait;

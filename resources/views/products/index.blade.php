@@ -76,22 +76,20 @@
                                     </optgroup>
                                 </select>
                             </div>
-                            <div class="show-product">
+                            <div class="show-product products_per_page">
                                 <span>@lang('general.display')</span>
-                                <select name="sort-by">
-                                    <option value="3">3</option>
-                                    <option value="9" selected="selected">9</option>
-                                    <option value="15">15</option>
-                                    <option value="21">21</option>
+                                <select name="sort-by" @change="filter">
+                                    <option value="3" {{ $filter['products_per_page'] === '3' ? 'selected' : '' }}>3</option>
+                                    <option value="9" {{ $filter['products_per_page'] === '9' ? 'selected' : '' }}>9</option>
+                                    <option value="15" {{ $filter['products_per_page'] === '15' ? 'selected' : '' }}>15</option>
+                                    <option value="21" {{ $filter['products_per_page'] === '21' ? 'selected' : '' }}>21</option>
                                 </select>
                                 <span>@lang('general.products_per_page')</span>
                             </div>
                         </div>
                         <div class="shop-products">
-                            @component('components.app.pagination', [
-                               'paginationTools' => $paginationTools,
-                               'url' => locale_route('products.index') . '?page='
-                               ])
+                            @component('components.app.pagination',
+                                ['paginationTools' => $paginationTools])
                             @endcomponent
                             @foreach($paginationTools->displayItems as $product)
                                 <div class="col-sm-4 fix">
@@ -114,3 +112,7 @@
     </div>
     <!--Start Shop Area-->
 @endsection
+
+@push('overlay.app.script.page')
+    <script src="{{ js_asset('product-filter') }}" type="text/javascript"></script>
+@endpush

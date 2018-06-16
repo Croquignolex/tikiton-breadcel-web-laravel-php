@@ -23,10 +23,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = null;
-        $categories = null;
-        $tags = null;
-
+        $products = null; $categories = null; $tags = null;
         try
         {
             $products = Product::all();
@@ -38,11 +35,20 @@ class ProductController extends Controller
             $this->databaseError($exception);
         }
 
-        $this->parginate($request, $products, 9, 3);
+        $filter = [
+            'tag' => null,
+            'category' => null,
+            'min_prise' => null,
+            'max_prise' => null,
+            'products_per_page' => $this->filter_item_per_page($request->query('products_per_page')),
+            'sort_by' => null
+        ];
+
+        $this->paginate($request, $products, $filter['products_per_page'], 3);
         $paginationTools = $this->paginationTools;
 
         return view('products.index', compact(
-            'paginationTools', 'categories', 'tags'
+            'paginationTools', 'categories', 'tags', 'filter'
         ));
     }
 
@@ -69,8 +75,8 @@ class ProductController extends Controller
         {
             Auth::user()->product_reviews()->create([
                 'product_id' => $product->id,
-                'text' => $request->review,
-                'ranking' =>  $request->ranking * 2
+                'text' => $request->input('review'),
+                'ranking' =>  $request->input('ranking') * 2
             ]);
 
             flash_message(
@@ -84,5 +90,26 @@ class ProductController extends Controller
         }
 
         return redirect(locale_route('products.show', [$product]));
+    }
+
+    /**
+     * @param $filter
+     * @return mixed
+     */
+    private function filter_item_per_page($filter)
+    {
+        $product_per_page_range = ['3', '9', '15', '21'];
+
+        if(in_array($filter, $product_per_page_range)) return $filter;
+        return $product_per_page_range[1];
+    }
+
+    private function filter_sort_by()
+    {
+        $sort_by_range = [
+            Product::SORT_BY_PRICE_ASC, Product::SORT_BY_NAME_DESC,
+            Product::SORT_BY_NAME_ASC, Product::SORT_BY_RANKING_DESC,
+            Product::SORT_BY_RANKING_ASC, Product::SORT_BY_PRICE_DESC
+        ];
     }
 }

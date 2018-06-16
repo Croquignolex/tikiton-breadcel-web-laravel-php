@@ -4,6 +4,7 @@ namespace App\Utils;
  
 class PaginationTools
 {
+    public $url;
     public $nextPage;
     public $itemsNumber;
     public $currentPage;
