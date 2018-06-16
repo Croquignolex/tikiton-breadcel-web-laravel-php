@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Traits\ErrorFlashMessagesTrait;
 use App\Http\Requests\ProductReviewRequest;
+use Illuminate\Database\Eloquent\Collection;
 
 class ProductController extends Controller
 {
@@ -36,15 +37,16 @@ class ProductController extends Controller
         }
 
         $filter = [
-            'tag' => null,
-            'category' => null,
-            'min_prise' => null,
-            'max_prise' => null,
-            'products_per_page' => $this->filter_item_per_page($request->query('products_per_page')),
-            'sort_by' => null
+            'tag' => $request->query('tag'),
+            'category' => $request->query('category'),
+            'min_prise' => $request->query('min_prise'),
+            'max_prise' => $request->query('max_prise'),
+            'sort_by' => $this->filter_sort_by($request->query('sort_by')),
+            'products_per_page' => $this->filter_item_per_page($request->query('products_per_page'))
         ];
 
-        $this->paginate($request, $products, $filter['products_per_page'], 3);
+        $this->paginate($request, $this->filter_products($products, $filter),
+            $filter['products_per_page'], 3);
         $paginationTools = $this->paginationTools;
 
         return view('products.index', compact(
@@ -104,12 +106,55 @@ class ProductController extends Controller
         return $product_per_page_range[1];
     }
 
-    private function filter_sort_by()
+    /**
+     * @param $filter
+     * @return mixed
+     */
+    private function filter_sort_by($filter)
     {
         $sort_by_range = [
             Product::SORT_BY_PRICE_ASC, Product::SORT_BY_NAME_DESC,
             Product::SORT_BY_NAME_ASC, Product::SORT_BY_RANKING_DESC,
             Product::SORT_BY_RANKING_ASC, Product::SORT_BY_PRICE_DESC
         ];
+
+        if(in_array($filter, $sort_by_range)) return $filter;
+        return $sort_by_range[0];
     }
+
+    private function filter_products(Collection $products, array $filter)
+    {
+        $filterProducts = $products;
+        //Start sort By filter
+        if($filter['sort_by'] === Product::SORT_BY_PRICE_ASC) $filterProducts = $filterProducts->sortBy('price');
+        elseif($filter['sort_by'] === Product::SORT_BY_RANKING_ASC) $filterProducts = $filterProducts->sortBy('ranking');
+        elseif($filter['sort_by'] === Product::SORT_BY_NAME_ASC)  $filterProducts = $filterProducts->sortBy('format_name');
+        elseif($filter['sort_by'] === Product::SORT_BY_PRICE_DESC) $filterProducts = $filterProducts->sortByDesc('price');
+        elseif($filter['sort_by'] === Product::SORT_BY_RANKING_DESC) $filterProducts = $filterProducts->sortByDesc('ranking');
+        elseif($filter['sort_by'] === Product::SORT_BY_NAME_DESC) $filterProducts = $filterProducts->sortByDesc('format_name');
+        //End sort By filter
+        //Start tag filter
+        $tag = Tag::where('slug', $filter['tag'])->get();
+        if($tag->count() === 1)
+        {
+            $filterProducts = $filterProducts->filter(function ($value) use ($filter, $tag) {
+                foreach ($value->product_tags as $current_product_tag)
+                {
+                    if($current_product_tag->tag_id === $tag[0]->id)
+                    {
+                        return $value;
+                    }
+                }
+                return null;
+            });
+        }
+        //End tag filter
+
+
+
+
+
+        return $filterProducts;
+    }
+
 }

@@ -1,17 +1,23 @@
-//--Elements per pages product filter redirection
 new Vue({
-    el: '.products_per_page',
+    el: '#products_filter',
     data: {},
     methods: {
-        filter: function (event) {
-            let value = event.target.value;
-
-            window.location.href = routeQueryParameterExist('products_per_page') ?
-                updateRouteQueryParameter('products_per_page', value) :
-                addRouteQueryParameter('products_per_page', value);
+        filterByValue: function (queryParameter, event) {
+            manageFilter(queryParameter, event.target.value);
+        },
+        filterByTitle: function (queryParameter, event) {
+            let element = event.target;
+            if(element.className !== 'active_tag')
+                manageFilter(queryParameter, element.title)
         }
-    },
+    }
 });
+
+function manageFilter(parameter, value) {
+    window.location.href = routeQueryParameterExist(parameter) ?
+        updateRouteQueryParameter(parameter, value) :
+        addRouteQueryParameter(parameter, value);
+}
 
 function addRouteQueryParameter(parameter, value) {
     let queryString = getQueryString();

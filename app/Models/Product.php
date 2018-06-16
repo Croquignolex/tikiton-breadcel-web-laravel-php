@@ -32,12 +32,12 @@ class Product extends Model
     use SlugRouteTrait, LocaleNameTrait, LocaleDescriptionTrait,
         LocaleSlugSaveTrait, LocaleAmountTrait, LocaleDateTimeTrait;
 
-    const SORT_BY_PRICE_ASC = 0;
-    const SORT_BY_PRICE_DESC = 1;
-    const SORT_BY_RANKING_ASC = 2;
-    const SORT_BY_RANKING_DESC = 3;
-    const SORT_BY_NAME_ASC = 4;
-    const SORT_BY_NAME_DESC = 5;
+    const SORT_BY_NAME_ASC = 'name_asc';
+    const SORT_BY_NAME_DESC = 'name_desc';
+    const SORT_BY_PRICE_ASC = 'price_asc';
+    const SORT_BY_PRICE_DESC = 'price_desc';
+    const SORT_BY_RANKING_ASC = 'ranking_asc';
+    const SORT_BY_RANKING_DESC = 'ranking_desc';
 
     /**
      * The attributes that are mass assignable.
@@ -148,7 +148,7 @@ class Product extends Model
      */
     public function getRelatedProductsAttribute()
     {
-        return Product::where('id', '<>', $this->id)->get()->filter(function ($value){
+        return Product::where('id', '<>', $this->id)->get()->filter(function ($value) {
             foreach ($value->product_tags as $current_product_tag)
             {
                 foreach ($this->product_tags as $this_product_tag)

@@ -6,7 +6,7 @@
 
 @section('app.home.body')
     <!--Start Shop Area-->
-    <div class="shop-product-area section fix">
+    <div class="shop-product-area section fix" id="products_filter">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
@@ -37,7 +37,12 @@
                             <h2>@lang('general.tags')</h2>
                             <ul>
                                 @foreach($tags as $tag)
-                                    <li><a href="javascript: void(0);">{{ $tag->format_name }}</a></li>
+                                    <li>
+                                        <a href="javascript: void(0);" title="{{ $tag->slug }}" @click="filterByTitle('tag', $event)"
+                                           class="{{ $filter['tag'] === $tag->slug ? 'active_tag' : '' }}">
+                                            {{ $tag->format_name }}
+                                        </a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </div>
@@ -49,36 +54,42 @@
                         <div class="shop-tool-bar col-sm-12 fix">
                             <div class="sort-by">
                                 <span>@lang('general.sort_by')</span>
-                                <select name="sort-by">
+                                <select name="sort-by" @change="filterByValue('sort_by', $event)">
                                     <optgroup label="{{ mb_strtoupper(trans('general.price')) }}">
-                                        <option selected="selected" value="{{ \App\Models\Product::SORT_BY_PRICE_ASC }}">
+                                        <option {{ $filter['sort_by'] === \App\Models\Product::SORT_BY_PRICE_ASC ? 'selected' : '' }}
+                                                value="{{ \App\Models\Product::SORT_BY_PRICE_ASC }}">
                                             @lang('general.ascendant_element', ['element' => trans('general.price')])
                                         </option>
-                                        <option value="{{ \App\Models\Product::SORT_BY_PRICE_DESC }}">
+                                        <option {{ $filter['sort_by'] === \App\Models\Product::SORT_BY_PRICE_DESC ? 'selected' : '' }}
+                                                value="{{ \App\Models\Product::SORT_BY_PRICE_DESC }}">
                                             @lang('general.descendant_element', ['element' => trans('general.price')])
                                         </option>
                                     </optgroup>
                                     <optgroup label="{{ mb_strtoupper(trans('general.ranking')) }}">
-                                        <option value="{{ \App\Models\Product::SORT_BY_RANKING_ASC }}">
+                                        <option {{ $filter['sort_by'] === \App\Models\Product::SORT_BY_RANKING_ASC ? 'selected' : '' }}
+                                                value="{{ \App\Models\Product::SORT_BY_RANKING_ASC }}">
                                             @lang('general.ascendant_element', ['element' => trans('general.ranking')])
                                         </option>
-                                        <option value="{{ \App\Models\Product::SORT_BY_RANKING_DESC }}">
+                                        <option {{ $filter['sort_by'] === \App\Models\Product::SORT_BY_RANKING_DESC ? 'selected' : '' }}
+                                                value="{{ \App\Models\Product::SORT_BY_RANKING_DESC }}">
                                             @lang('general.descendant_element', ['element' => trans('general.ranking')])
                                         </option>
                                     </optgroup>
                                     <optgroup label="{{ mb_strtoupper(trans('general.name')) }}">
-                                        <option value="{{ \App\Models\Product::SORT_BY_NAME_ASC }}">
+                                        <option {{ $filter['sort_by'] === \App\Models\Product::SORT_BY_NAME_ASC ? 'selected' : '' }}
+                                                value="{{ \App\Models\Product::SORT_BY_NAME_ASC }}">
                                             @lang('general.ascendant_element', ['element' => trans('general.name')])
                                         </option>
-                                        <option value="{{ \App\Models\Product::SORT_BY_NAME_DESC }}">
+                                        <option {{ $filter['sort_by'] === \App\Models\Product::SORT_BY_NAME_DESC ? 'selected' : '' }}
+                                                value="{{ \App\Models\Product::SORT_BY_NAME_DESC }}">
                                             @lang('general.descendant_element', ['element' => trans('general.name')])
                                         </option>
                                     </optgroup>
                                 </select>
                             </div>
-                            <div class="show-product products_per_page">
+                            <div class="show-product">
                                 <span>@lang('general.display')</span>
-                                <select name="sort-by" @change="filter">
+                                <select name="sort-by" @change="filterByValue('products_per_page', $event)">
                                     <option value="3" {{ $filter['products_per_page'] === '3' ? 'selected' : '' }}>3</option>
                                     <option value="9" {{ $filter['products_per_page'] === '9' ? 'selected' : '' }}>9</option>
                                     <option value="15" {{ $filter['products_per_page'] === '15' ? 'selected' : '' }}>15</option>
