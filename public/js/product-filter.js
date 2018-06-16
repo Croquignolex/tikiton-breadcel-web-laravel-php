@@ -7,7 +7,7 @@ new Vue({
         },
         filterByTitle: function (queryParameter, event) {
             let element = event.target;
-            if(element.className !== 'active_tag')
+            if(element.className !== 'active_filter')
                 manageFilter(queryParameter, element.title)
         }
     }

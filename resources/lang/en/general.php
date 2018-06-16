@@ -133,6 +133,9 @@ return [
     'descendant_element' => ':element (descendant)',
     'ranking' => 'Ranking',
     'send_your_review' => 'Send your review',
+    'all_tag' => 'All tags',
+    'all_category' => 'All categories',
+    'no_products' => 'No products with this cross research parameters',
 
     /*
     |--------------------------------------------------------------------------

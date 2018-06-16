@@ -134,13 +134,13 @@ class ProductController extends Controller
         elseif($filter['sort_by'] === Product::SORT_BY_NAME_DESC) $filterProducts = $filterProducts->sortByDesc('format_name');
         //End sort By filter
         //Start tag filter
-        $tag = Tag::where('slug', $filter['tag'])->get();
-        if($tag->count() === 1)
+        $tag = Tag::where('slug', $filter['tag'])->first();
+        if(!is_null($tag))
         {
             $filterProducts = $filterProducts->filter(function ($value) use ($filter, $tag) {
                 foreach ($value->product_tags as $current_product_tag)
                 {
-                    if($current_product_tag->tag_id === $tag[0]->id)
+                    if($current_product_tag->tag_id === $tag->id)
                     {
                         return $value;
                     }
@@ -149,11 +149,13 @@ class ProductController extends Controller
             });
         }
         //End tag filter
-
-
-
-
-
+        //Start category filter
+        $product_category = ProductCategory::where('slug', $filter['category'])->first();
+        if(!is_null($product_category))
+            $filterProducts = $filterProducts->where('category_id', $product_category->id);
+        //End category filter
+        //Start price filter
+        //End price filter
         return $filterProducts;
     }
 

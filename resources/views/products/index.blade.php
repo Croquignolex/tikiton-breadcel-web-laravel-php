@@ -16,8 +16,19 @@
                             <h2>@lang('general.category')</h2>
                             <ul>
                                 @foreach($categories as $category)
-                                    <li><a href="javascript: void(0);">{{ $category->format_name }}</a></li>
+                                    <li>
+                                        <a href="javascript: void(0);" title="{{ $category->slug }}" @click="filterByTitle('category', $event)"
+                                           class="{{ $filter['category'] === $category->slug ? 'active_filter' : '' }}">
+                                            {{ $category->format_name }}
+                                        </a>
+                                    </li>
                                 @endforeach
+                                <li>
+                                    <a href="javascript: void(0);" title="no_category" @click="filterByTitle('category', $event)"
+                                       class="{{ $filter['category'] === 'no_category' || $filter['category'] === null ? 'active_filter' : '' }}">
+                                        @lang('general.all_category')
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         <!-- single-sidebar end -->
@@ -39,11 +50,17 @@
                                 @foreach($tags as $tag)
                                     <li>
                                         <a href="javascript: void(0);" title="{{ $tag->slug }}" @click="filterByTitle('tag', $event)"
-                                           class="{{ $filter['tag'] === $tag->slug ? 'active_tag' : '' }}">
+                                           class="{{ $filter['tag'] === $tag->slug ? 'active_filter' : '' }}">
                                             {{ $tag->format_name }}
                                         </a>
                                     </li>
                                 @endforeach
+                                <li>
+                                    <a href="javascript: void(0);" title="no_tag" @click="filterByTitle('tag', $event)"
+                                        class="{{ $filter['tag'] === 'no_tag' || $filter['tag'] === null ? 'active_filter' : '' }}">
+                                        @lang('general.all_tag')
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         <!-- single-sidebar end -->
@@ -102,14 +119,18 @@
                             @component('components.app.pagination',
                                 ['paginationTools' => $paginationTools])
                             @endcomponent
-                            @foreach($paginationTools->displayItems as $product)
+                            @forelse($paginationTools->displayItems as $product)
                                 <div class="col-sm-4 fix">
                                     @component('components.app.product-card', [
                                         'product' => $product
                                         ])
                                     @endcomponent
                                 </div>
-                            @endforeach
+                            @empty
+                                <div class="col-sm-12 fix alert alert-info text-center">
+                                    @lang('general.no_products')
+                                </div>
+                            @endforelse
                             @component('components.app.pagination', [
                                 'paginationTools' => $paginationTools,
                                 'url' => locale_route('products.index') . '?page='

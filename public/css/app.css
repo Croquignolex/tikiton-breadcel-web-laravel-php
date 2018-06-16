@@ -3455,7 +3455,7 @@ h4.heading {
   max-height: 500px;
   overflow: auto;
 }
-.active_tag{
+.active_filter{
   background-color: #da7612;
   color: #FFFFFF !important;
 }

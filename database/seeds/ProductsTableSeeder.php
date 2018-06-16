@@ -41,7 +41,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => true,
             'is_most_sold' => false,
             'stock' => 10,
-            'category_id' => 1,
+            'category_id' => 2,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -92,7 +92,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => true,
             'is_most_sold' => true,
             'stock' => 10,
-            'category_id' => 1,
+            'category_id' => 2,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -126,7 +126,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => false,
             'is_most_sold' => true,
             'stock' => 10,
-            'category_id' => 1,
+            'category_id' => 2,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -143,7 +143,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => false,
             'is_most_sold' => true,
             'stock' => 10,
-            'category_id' => 1,
+            'category_id' => 2,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -194,7 +194,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => false,
             'is_most_sold' => true,
             'stock' => 10,
-            'category_id' => 1,
+            'category_id' => 2,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -245,7 +245,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => true,
             'is_most_sold' => true,
             'stock' => 10,
-            'category_id' => 1,
+            'category_id' => 2,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -279,7 +279,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => true,
             'is_most_sold' => true,
             'stock' => 10,
-            'category_id' => 1,
+            'category_id' => 2,
             'created_at' => now(),
             'updated_at' => now()
         ]);

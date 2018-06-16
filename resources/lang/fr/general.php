@@ -133,6 +133,9 @@ return [
     'descendant_element' => ':element (decroissant)',
     'ranking' => 'Note',
     'send_your_review' => 'Donnez votre avis',
+    'all_tag' => 'Toutes étiquettes',
+    'all_category' => 'Toutes catégories',
+    'no_products' => 'Pas de produits avec ces paramètres de recherche croisés',
 
     /*
     |--------------------------------------------------------------------------
