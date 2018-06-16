@@ -39,11 +39,13 @@ class ProductController extends Controller
         $filter = [
             'tag' => $request->query('tag'),
             'category' => $request->query('category'),
-            'min_prise' => $request->query('min_prise'),
-            'max_prise' => $request->query('max_prise'),
             'sort_by' => $this->filter_sort_by($request->query('sort_by')),
+            'min_price' => $this->filter_min_max_price($request->query('min_max_price')),
+            'max_price' => $this->filter_min_max_price($request->query('min_max_price'), 'max'),
             'products_per_page' => $this->filter_item_per_page($request->query('products_per_page'))
         ];
+
+        if($filter['min_price'] > $filter['max_price']) $filter['max_price'] = 500;
 
         $this->paginate($request, $this->filter_products($products, $filter),
             $filter['products_per_page'], 3);
@@ -122,6 +124,23 @@ class ProductController extends Controller
         return $sort_by_range[0];
     }
 
+    private function filter_min_max_price($filter, $type = 'min')
+    {
+        $min_max_range = ['min' => 0, 'max' => 500];
+        $valueTab = explode('-', $filter);
+
+        if(count($valueTab) >= 2) $value = $type === 'min' ? $valueTab[0] : $valueTab[1];
+        elseif(count($valueTab) === 1) $value = $type === 'min' ? $valueTab[0] : $min_max_range[$type];
+        else $value = $min_max_range[$type];
+
+        $value = intval($value);
+
+        if($filter >= $min_max_range['min'] && $filter <= $min_max_range['max'])
+            return $value;
+
+        return $min_max_range[$type];
+    }
+
     private function filter_products(Collection $products, array $filter)
     {
         $filterProducts = $products;
@@ -155,8 +174,10 @@ class ProductController extends Controller
             $filterProducts = $filterProducts->where('category_id', $product_category->id);
         //End category filter
         //Start price filter
+        $filterProducts = $filterProducts
+            ->where('price', '>=', $filter['min_price'])
+            ->where('price', '<=', $filter['max_price']);
         //End price filter
         return $filterProducts;
     }
-
 }

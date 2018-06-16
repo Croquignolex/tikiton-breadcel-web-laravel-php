@@ -38,7 +38,8 @@
                             <div class="slider-range-container">
                                 <div id="slider-range"></div>
                                 <p>
-                                    <input type="text" id="price-amount" readonly>
+                                    <input type="text" id="price-amount" readonly
+                                           min="{{ $filter['min_price'] }}" max="{{ $filter['max_price'] }}">
                                 </p>
                             </div>
                         </div>
