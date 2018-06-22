@@ -57,7 +57,7 @@ class ProductsTableSeeder extends Seeder
             'discount' => 0,
             'is_new' => true,
             'is_most_sold' => false,
-            'stock' => 10,
+            'stock' => 0,
             'category_id' => 1,
             'created_at' => now(),
             'updated_at' => now()
@@ -176,7 +176,7 @@ class ProductsTableSeeder extends Seeder
             'discount' => 0,
             'is_new' => false,
             'is_most_sold' => true,
-            'stock' => 10,
+            'stock' => 0,
             'category_id' => 1,
             'created_at' => now(),
             'updated_at' => now()
@@ -278,7 +278,7 @@ class ProductsTableSeeder extends Seeder
             'discount' => 0,
             'is_new' => true,
             'is_most_sold' => true,
-            'stock' => 10,
+            'stock' => 0,
             'category_id' => 2,
             'created_at' => now(),
             'updated_at' => now()

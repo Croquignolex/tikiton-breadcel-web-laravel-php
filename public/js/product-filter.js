@@ -1,18 +1,3 @@
-new Vue({
-    el: '#products_filter',
-    data: {},
-    methods: {
-        filterByValue: function (queryParameter, event) {
-            manageFilter(queryParameter, event.target.value);
-        },
-        filterByTitle: function (queryParameter, event) {
-            let element = event.target;
-            if(element.className !== 'active_filter')
-                manageFilter(queryParameter, element.title)
-        }
-    }
-});
-
 function manageFilter(parameter, value) {
     window.location.href = routeQueryParameterExist(parameter) ?
         updateRouteQueryParameter(parameter, value) :
@@ -89,18 +74,18 @@ function routeQueryParameterExist(parameter) {
             max: 500,
             values: [$("#price-amount").attr('min'), $("#price-amount").attr('max')],
             slide: function(event, ui) {
-                $("#price-amount").val("CA" + ui.values[0] + " - CA" + ui.values[1]);
+                $("#price-amount").val("C$" + ui.values[0] + " - C$" + ui.values[1]);
             }
         });
-        $("#price-amount").val("CA" + $("#slider-range").slider("values", 0 ) +
-            " - CA" + $("#slider-range").slider("values", 1));
+        $("#price-amount").val("C$" + $("#slider-range").slider("values", 0 ) +
+            " - C$" + $("#slider-range").slider("values", 1));
 
         $("#slider-range").on('mouseup', function () {
            let minMaxTabWithCurrency = $("#price-amount").val().split(' - ');
            if(minMaxTabWithCurrency.length >= 2)
            {
-               let minTabWithoutCurrency = minMaxTabWithCurrency[0].split('CA');
-               let maxTabWithoutCurrency = minMaxTabWithCurrency[1].split('CA');
+               let minTabWithoutCurrency = minMaxTabWithCurrency[0].split('C$');
+               let maxTabWithoutCurrency = minMaxTabWithCurrency[1].split('C$');
                let min = minTabWithoutCurrency[1];
                let max = maxTabWithoutCurrency[1];
                manageFilter('min_max_price', min + '-' + max);

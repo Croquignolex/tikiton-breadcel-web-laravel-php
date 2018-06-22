@@ -2,7 +2,8 @@
 <div class="product-item fix">
     <div class="product-img-hover">
         <!-- Product image -->
-        <a href="{{ locale_route('products.show', [$product]) }}" class="pro-image fix">
+        <a href="{{ locale_route('products.show', [$product]) }}"
+           class="pro-image fix {{ $product->stock === 0 ? 'out-of-stock' : '' }}">
             <img src="{{ $product->image_path }}" alt="..." />
         </a>
         @if($product->is_a_new)
@@ -13,13 +14,12 @@
         @endif
         <!-- Product action Btn -->
         <div class="product-action-btn">
+            @auth
+                @component('components.app.wish-list-icon-link', compact('product'))
+                @endcomponent
+            @endauth
             @component('components.app.icon-link', [
-               'icon' => 'heart-o', 'link' => '#',
-               'class' => 'favorite'
-               ])
-            @endcomponent
-            @component('components.app.icon-link', [
-               'icon' => 'shopping-cart', 'link' => '#',
+               'icon' => 'cart-plus', 'link' => '#',
                'class' => 'add-cart'
                ])
             @endcomponent

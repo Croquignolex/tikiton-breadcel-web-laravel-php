@@ -5,12 +5,14 @@
 @endsection
 
 @section('body')
-    @include('partials.header-top')
-    @include('partials.header')
-    @include('partials.menu')
-    @yield('home.body')
-    @include('partials.footer-top')
-    @include('partials.footer')
+    <div id="app">
+        @include('partials.header-top')
+        @include('partials.header')
+        @include('partials.menu')
+        @yield('home.body')
+        @include('partials.footer-top')
+        @include('partials.footer')
+    </div>
 @endsection
 
 @push('style.plugin')

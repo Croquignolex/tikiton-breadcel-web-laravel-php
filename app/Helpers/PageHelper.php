@@ -24,7 +24,7 @@ if(!function_exists('active_page'))
     {
         foreach ($routes as $route)
         {
-            if(Route::is($route))
+            if(Illuminate\Support\Facades\Route::is($route))
             {
                 return $type == 'expend'
                     ? 'show' : 'active';
@@ -64,7 +64,7 @@ if(!function_exists('contact_pages'))
      */
     function contact_pages()
     {
-        return collect(['contact.index']);
+        return collect(['contact']);
     }
 }
 
@@ -86,7 +86,7 @@ if(!function_exists('services_pages'))
      */
     function services_pages()
     {
-        return collect(['services.index']);
+        return collect(['services']);
     }
 }
 

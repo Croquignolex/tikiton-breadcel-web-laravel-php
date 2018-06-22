@@ -136,6 +136,18 @@ return [
     'all_tag' => 'Toutes étiquettes',
     'all_category' => 'Toutes catégories',
     'no_products' => 'Pas de produits avec ces paramètres de recherche croisés',
+    'action' => 'Action',
+    'empty_wish_list' => 'Votre liste de favoris est vide',
+    'no' => 'Non',
+    'yes' => 'Oui',
+    'remove_from_wish_list' => 'Rétirer :product de votre list de favoris',
+    'product_removed_wishlist' => 'Le produit à été rétiré avec succèss',
+    'remove_from_cart' => 'Rétirer du panier',
+    'add_to_cart' => 'Ajouter au panier',
+    'remove_from_wishlist' => 'Rétirer des favoris',
+    'added_to_wish_list' => ':product est ajouté(e) à votre liste de favoris',
+    'removed_from_wish_list' => ':product est rétiré(e) de votre liste de favoris',
+    'script_error' => 'Une erreur s\'est produite dans le script',
 
     /*
     |--------------------------------------------------------------------------

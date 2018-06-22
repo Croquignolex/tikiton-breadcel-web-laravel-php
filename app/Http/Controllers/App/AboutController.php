@@ -25,6 +25,6 @@ class AboutController extends Controller
             $this->databaseError($exception);
         }
 
-        return view('about.index', compact('teams'));
+        return view('about', compact('teams'));
     }
 }

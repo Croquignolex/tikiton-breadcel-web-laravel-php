@@ -80,12 +80,13 @@ if(!function_exists('money_currency'))
      * @return string
      * @internal param $name
      */
-    function money_currency($amount, $symbol = 'CA')
+    function money_currency($amount, $symbol = 'C$')
     {
         if(Illuminate\Support\Facades\App::getLocale() === 'fr')
             return $amount . $symbol;
         else if (Illuminate\Support\Facades\App::getLocale() === 'en')
             return $symbol . $amount;
+        else return $amount . $symbol;
     }
 }
 

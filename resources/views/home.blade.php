@@ -31,7 +31,7 @@
     </div>
     <!--End home slider-->
     <!--Start Featured Product Area-->
-    <div class="featured-product section fix">
+    <div class="featured-product section fix wishlist-heart">
         <div class="container">
             <div class="row">
                 <div class="section-title">
@@ -113,40 +113,48 @@
                 <!-- Nav tabs -->
                 <ul class="tabs-list" role="tablist">
                     <li class="active"><a href="#new" data-toggle="tab">@lang('general.new')</a></li>
+                    <li><a href="#featured" data-toggle="tab">@lang('general.featured')</a></li>
                     <li><a href="#b-sales" data-toggle="tab">@lang('general.best_sellers')</a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="new">
                         <div class="tab-pro-slider new-product owl-carousel">
-                            @for($i = 0; $i < $new_products->count(); $i += 2)
+                            @foreach($new_products->chunk(2) as $chunk)
                                 <div class="single-product-item fix">
-                                    @component('components.app.product-card',
-                                        ['product' => $new_products[$i]])
-                                    @endcomponent
-                                    @if($i + 1 < $new_products->count())
+                                    @foreach($chunk as $new_product)
                                         @component('components.app.product-card',
-                                            ['product' => $new_products[$i + 1]])
+                                            ['product' => $new_product])
                                         @endcomponent
-                                    @endif
+                                    @endforeach
                                 </div>
-                            @endfor
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="tab-pane fade in" id="featured">
+                        <div class="tab-pro-slider featured-product owl-carousel">
+                            @foreach($featured_products->chunk(2) as $chunk)
+                                <div class="single-product-item fix">
+                                    @foreach($chunk as $featured_product)
+                                        @component('components.app.product-card',
+                                            ['product' => $featured_product])
+                                        @endcomponent
+                                    @endforeach
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="tab-pane fade" id="b-sales">
                         <div class="tab-pro-slider best-product owl-carousel">
-                            @for($i = 0; $i < $most_sold_products->count(); $i += 2)
+                            @foreach($most_sold_products->chunk(2) as $chunk)
                                 <div class="single-product-item fix">
-                                    @component('components.app.product-card',
-                                        ['product' => $most_sold_products[$i]])
-                                    @endcomponent
-                                    @if($i + 1 < $most_sold_products->count())
+                                    @foreach($chunk as $most_sold_product)
                                         @component('components.app.product-card',
-                                            ['product' => $most_sold_products[$i + 1]])
+                                            ['product' => $most_sold_product])
                                         @endcomponent
-                                    @endif
+                                    @endforeach
                                 </div>
-                            @endfor
+                            @endforeach
                         </div>
                     </div>
                 </div>

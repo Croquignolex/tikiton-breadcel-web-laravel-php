@@ -5,9 +5,9 @@ namespace App\Models;
 use App\Traits\SlugRouteTrait;
 use App\Traits\LocaleNameTrait;
 use App\Traits\LocaleAmountTrait;
-use App\Traits\LocaleSlugSaveTrait;
-use Illuminate\Support\Facades\App;
 use App\Traits\LocaleDateTimeTrait;
+use App\Traits\LocaleSlugSaveTrait;
+use Illuminate\Support\Facades\Auth;
 use App\Traits\LocaleDescriptionTrait;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,6 +20,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed is_new
  * @property mixed discount
  * @property mixed created_at
+ * @property mixed carted_users
+ * @property mixed wished_users
  * @property mixed product_tags
  * @property mixed product_reviews
  * @property mixed fr_featured_title
@@ -59,6 +61,15 @@ class Product extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function reviewed_users()
+    {
+        return $this->belongsToMany('App\Models\User', 'product_reviews')
+            ->withPivot('text', 'ranking')->withTimestamps();
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function product_reviews()
@@ -67,11 +78,54 @@ class Product extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tag', 'product_tags')
+            ->withTimestamps();
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function product_tags()
     {
         return $this->hasMany('App\Models\ProductTag');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function wished_users()
+    {
+        return $this->belongsToMany('App\Models\User', 'user_wish_lists')
+            ->withTimestamps();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function user_wish_lists()
+    {
+        return $this->hasMany('App\Models\UserWishList');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function carted_users()
+    {
+        return $this->belongsToMany('App\Models\User', 'user_carts')
+            ->withPivot('quantity')->withTimestamps();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function user_carts()
+    {
+        return $this->hasMany('App\Models\UserCart');
     }
 
     /**
@@ -89,32 +143,6 @@ class Product extends Model
     {
          $discount = $this->price / $this->discount;
          return round($this->price - $discount, 2);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFeaturedTitleAttribute()
-    {
-        $title = '';
-
-        if(App::getLocale() === 'fr') $title = $this->fr_featured_title;
-        else if (App::getLocale() === 'en') $title = $this->en_featured_title;
-
-        return ucfirst($title);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFeaturedDescriptionAttribute()
-    {
-        $description = '';
-
-        if(App::getLocale() === 'fr') $description = $this->fr_featured_description;
-        else if (App::getLocale() === 'en') $description = $this->en_featured_description;
-
-        return ucfirst($description);
     }
 
     /**
@@ -144,6 +172,33 @@ class Product extends Model
     }
 
     /**
+     * @return bool
+     */
+    public function getRankingAttribute()
+    {
+        if($this->product_reviews->count() === 0) return 0;
+        else return $this->product_reviews->sum('ranking') / $this->product_reviews->count();
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsInCurrentUserCartAttribute()
+    {
+        $users_who_has_this_product_in_their_cart = $this->carted_users;
+        return $users_who_has_this_product_in_their_cart->contains(Auth::user());
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsInCurrentUserWishListAttribute()
+    {
+        $users_who_has_this_product_in_their_wish_list = $this->wished_users;
+        return $users_who_has_this_product_in_their_wish_list->contains(Auth::user());
+    }
+
+    /**
      * @return mixed
      */
     public function getRelatedProductsAttribute()
@@ -155,20 +210,11 @@ class Product extends Model
                 {
                     if($current_product_tag->tag_id === $this_product_tag->tag_id)
                     {
-                        return $value;
+                        return true;
                     }
                 }
             }
-            return null;
+            return false;
         });
-    }
-
-    /**
-     * @return bool
-     */
-    public function getRankingAttribute()
-    {
-        if($this->product_reviews->count() === 0) return 0;
-        else return $this->product_reviews->sum('ranking') / $this->product_reviews->count();
     }
 }

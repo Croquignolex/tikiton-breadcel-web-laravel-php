@@ -791,8 +791,7 @@ img {
 .product-item:hover .pro-image::before {
   opacity: .6;
 }
-.pro-image img
-{
+.pro-image img {
   border: 2px solid #da7612;
 }
 .product-action-btn {
@@ -813,6 +812,7 @@ img {
   text-align: center;
   transform: translateX(-100%);
   width: 40px;
+  color: #da7612;
 }
 .product-action-btn a:last-child {
   margin-bottom: 0;
@@ -836,7 +836,6 @@ img {
   -o-transition: all 0.9s ease 0s;
   transition: all 0.9s ease 0s;
 }
-.product-action-btn a i{}
 .product-item:hover .product-action-btn a {
   transform: translateX(15px);
 }
@@ -868,10 +867,10 @@ img {
   font-weight: 600;
   margin: 0 5px;
 }
-.pro-price p .old {
+.old {
   text-decoration: line-through;
 }
-.pro-price p .new {
+.new {
   position: static;
 }
 /*----- 3.7 Offer Area -----*/
@@ -1566,7 +1565,8 @@ img {
 }
 
 .shop-tool-bar {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 .view-mode, .sort-by, .show-product {
   display: block;
@@ -1734,12 +1734,6 @@ img {
   float: right;
   margin-bottom: 25px;
 }
-.list-pro-price .new{}
-.list-pro-price .old {
-  margin-left: 25px;
-  text-decoration: line-through;
-}
-.list-actions-btn{}
 .list-actions-btn a {
   background: #fff none repeat scroll 0 0;
   color: #3e3f3f;
@@ -3026,9 +3020,6 @@ h4.heading {
 #procedto:hover {
   background:#555555;
 }
-.wishlist-table {
-  margin-bottom: 0;
-}
 /*-----------------------
 	17. Checkout Page
 -------------------------*/
@@ -3372,12 +3363,10 @@ h4.heading {
   color: #da7612;
   padding-left: 10px;
 }
-.form-invalid
-{
+.form-invalid {
   border: 1px solid red !important;
 }
-.form-valid
-{
+.form-valid {
   border: 1px solid #178622 !important;
 }
 [data-notify="progressbar"] {
@@ -3432,7 +3421,7 @@ h4.heading {
 .custom-alert-danger {
     background-color: #da2013;
 }
-.login-page {
+.login-page, .wishlist-page {
     margin-bottom: 50px;
 }
 .user-review {
@@ -3458,4 +3447,16 @@ h4.heading {
 .active_filter{
   background-color: #da7612;
   color: #FFFFFF !important;
+}
+.out-of-stock{
+  opacity: .4;
+}
+.out_of_stock {
+  color: #da2013 !important;
+}
+.in_stock {
+  color: #178622 !important;
+}
+.modal, .btn, .modal-content {
+  border-radius: 0% !important;
 }

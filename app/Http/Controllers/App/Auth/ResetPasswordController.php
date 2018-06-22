@@ -41,31 +41,11 @@ class ResetPasswordController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param $token
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function showResetForm_unnamed(Request $request, $token)
-    {
-        return redirect(locale_route('reset.password.show', compact('token')));
-    }
-
-    /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showResetForm()
     {
         return view('auth.passwords.reset');
-    }
-
-    /**
-     * @param Request $request
-     * @param $token
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function reset_unnamed(Request $request, $token)
-    {
-        return redirect(locale_route('reset.password', compact('token')));
     }
 
     public function reset(ResetPasswordRequest $request, $language, $token)
@@ -129,8 +109,8 @@ class ResetPasswordController extends Controller
         catch(Exception $exception)
         {
             $this->databaseError($exception);
-            return null;
         }
+        return null;
     }
 
     /**

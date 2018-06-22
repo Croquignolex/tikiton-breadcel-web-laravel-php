@@ -6,7 +6,7 @@
 
 @section('app.home.body')
     <!--Start Shop Area-->
-    <div class="shop-product-area section fix" id="products_filter">
+    <div class="shop-product-area section fix">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
@@ -17,14 +17,14 @@
                             <ul>
                                 @foreach($categories as $category)
                                     <li>
-                                        <a href="javascript: void(0);" title="{{ $category->slug }}" @click="filterByTitle('category', $event)"
+                                        <a href="javascript: void(0);" title="{{ $category->slug }}" @click="productFilterByTitle('category', $event)"
                                            class="{{ $filter['category'] === $category->slug ? 'active_filter' : '' }}">
                                             {{ $category->format_name }}
                                         </a>
                                     </li>
                                 @endforeach
                                 <li>
-                                    <a href="javascript: void(0);" title="no_category" @click="filterByTitle('category', $event)"
+                                    <a href="javascript: void(0);" title="no_category" @click="productFilterByTitle('category', $event)"
                                        class="{{ $filter['category'] === 'no_category' || $filter['category'] === null ? 'active_filter' : '' }}">
                                         @lang('general.all_category')
                                     </a>
@@ -50,14 +50,14 @@
                             <ul>
                                 @foreach($tags as $tag)
                                     <li>
-                                        <a href="javascript: void(0);" title="{{ $tag->slug }}" @click="filterByTitle('tag', $event)"
+                                        <a href="javascript: void(0);" title="{{ $tag->slug }}" @click="productFilterByTitle('tag', $event)"
                                            class="{{ $filter['tag'] === $tag->slug ? 'active_filter' : '' }}">
                                             {{ $tag->format_name }}
                                         </a>
                                     </li>
                                 @endforeach
                                 <li>
-                                    <a href="javascript: void(0);" title="no_tag" @click="filterByTitle('tag', $event)"
+                                    <a href="javascript: void(0);" title="no_tag" @click="productFilterByTitle('tag', $event)"
                                         class="{{ $filter['tag'] === 'no_tag' || $filter['tag'] === null ? 'active_filter' : '' }}">
                                         @lang('general.all_tag')
                                     </a>
@@ -72,7 +72,7 @@
                         <div class="shop-tool-bar col-sm-12 fix">
                             <div class="sort-by">
                                 <span>@lang('general.sort_by')</span>
-                                <select name="sort-by" @change="filterByValue('sort_by', $event)">
+                                <select name="sort-by" @change="productFilterByValue('sort_by', $event)">
                                     <optgroup label="{{ mb_strtoupper(trans('general.price')) }}">
                                         <option {{ $filter['sort_by'] === \App\Models\Product::SORT_BY_PRICE_ASC ? 'selected' : '' }}
                                                 value="{{ \App\Models\Product::SORT_BY_PRICE_ASC }}">
@@ -107,7 +107,7 @@
                             </div>
                             <div class="show-product">
                                 <span>@lang('general.display')</span>
-                                <select name="sort-by" @change="filterByValue('products_per_page', $event)">
+                                <select name="sort-by" @change="productFilterByValue('products_per_page', $event)">
                                     <option value="3" {{ $filter['products_per_page'] === '3' ? 'selected' : '' }}>3</option>
                                     <option value="9" {{ $filter['products_per_page'] === '9' ? 'selected' : '' }}>9</option>
                                     <option value="15" {{ $filter['products_per_page'] === '15' ? 'selected' : '' }}>15</option>

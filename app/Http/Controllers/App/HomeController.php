@@ -25,8 +25,8 @@ class HomeController extends Controller
                 ->orWhere('is_new', true)
                 ->get();
 
-            $featured_products = Product::all()->filter(function ($value){
-                return ($value->ranking === 10 || $value->is_featured) ? $value : null;
+            $featured_products = Product::all()->filter(function ($value) {
+                return ($value->ranking === 10) || $value->is_featured;
             });
 
             $most_sold_products = Product::where('is_most_sold', true)->get();
@@ -44,7 +44,7 @@ class HomeController extends Controller
         }
 
 
-        return view('home.index', compact(
+        return view('home', compact(
                 'featured_products', 'customers_nbr',
                 'new_products', 'most_sold_products', 'products_nbr',
                 'orders_nbr', 'sales_nbr', 'testimonials'

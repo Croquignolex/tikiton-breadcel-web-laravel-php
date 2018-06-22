@@ -25,7 +25,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ locale_route('services.index') }}" class="{{ active_page(services_pages()) }}">
+                                <a href="{{ locale_route('services') }}" class="{{ active_page(services_pages()) }}">
                                     <i class="{{ font('handshake-o') }}"></i>
                                     @lang('general.our_services')
                                 </a>
@@ -37,7 +37,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ locale_route('contact.index') }}" class="{{ active_page(contact_pages()) }}">
+                                <a href="{{ locale_route('contact') }}" class="{{ active_page(contact_pages()) }}">
                                     <i class="{{ font('map-marker') }}"></i>
                                     @lang('general.contact_us')
                                 </a>
@@ -64,7 +64,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ locale_route('services.index') }}" class="{{ active_page(services_pages()) }}">
+                                <a href="{{ locale_route('services') }}" class="{{ active_page(services_pages()) }}">
                                     @lang('general.our_services')
                                 </a>
                             </li>
@@ -74,7 +74,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ locale_route('contact.index') }}" class="{{ active_page(contact_pages()) }}">
+                                <a href="{{ locale_route('contact') }}" class="{{ active_page(contact_pages()) }}">
                                     @lang('general.contact_us')
                                 </a>
                             </li>

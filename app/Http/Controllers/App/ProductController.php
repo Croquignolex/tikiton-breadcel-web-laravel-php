@@ -19,6 +19,14 @@ class ProductController extends Controller
     use PaginationTrait, ErrorFlashMessagesTrait;
 
     /**
+     * RegisterController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->only('review');
+    }
+
+    /**
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -77,11 +85,9 @@ class ProductController extends Controller
     {
         try
         {
-            Auth::user()->product_reviews()->create([
-                'product_id' => $product->id,
+            Auth::user()->reviewed_products()->save($product, [
                 'text' => $request->input('review'),
-                'ranking' =>  $request->input('ranking') * 2
-            ]);
+                'ranking' =>  $request->input('ranking') * 2]);
 
             flash_message(
                 trans('auth.success'), trans('general.review_send'),
@@ -145,12 +151,18 @@ class ProductController extends Controller
     {
         $filterProducts = $products;
         //Start sort By filter
-        if($filter['sort_by'] === Product::SORT_BY_PRICE_ASC) $filterProducts = $filterProducts->sortBy('price');
-        elseif($filter['sort_by'] === Product::SORT_BY_RANKING_ASC) $filterProducts = $filterProducts->sortBy('ranking');
-        elseif($filter['sort_by'] === Product::SORT_BY_NAME_ASC)  $filterProducts = $filterProducts->sortBy('format_name');
-        elseif($filter['sort_by'] === Product::SORT_BY_PRICE_DESC) $filterProducts = $filterProducts->sortByDesc('price');
-        elseif($filter['sort_by'] === Product::SORT_BY_RANKING_DESC) $filterProducts = $filterProducts->sortByDesc('ranking');
-        elseif($filter['sort_by'] === Product::SORT_BY_NAME_DESC) $filterProducts = $filterProducts->sortByDesc('format_name');
+        if($filter['sort_by'] === Product::SORT_BY_PRICE_ASC)
+            $filterProducts = $filterProducts->sortBy('price');
+        elseif($filter['sort_by'] === Product::SORT_BY_RANKING_ASC)
+            $filterProducts = $filterProducts->sortBy('ranking');
+        elseif($filter['sort_by'] === Product::SORT_BY_NAME_ASC)
+            $filterProducts = $filterProducts->sortBy('format_name');
+        elseif($filter['sort_by'] === Product::SORT_BY_PRICE_DESC)
+            $filterProducts = $filterProducts->sortByDesc('price');
+        elseif($filter['sort_by'] === Product::SORT_BY_RANKING_DESC)
+            $filterProducts = $filterProducts->sortByDesc('ranking');
+        elseif($filter['sort_by'] === Product::SORT_BY_NAME_DESC)
+            $filterProducts = $filterProducts->sortByDesc('format_name');
         //End sort By filter
         //Start tag filter
         $tag = Tag::where('slug', $filter['tag'])->first();
@@ -161,17 +173,19 @@ class ProductController extends Controller
                 {
                     if($current_product_tag->tag_id === $tag->id)
                     {
-                        return $value;
+                        return true;
                     }
                 }
-                return null;
+                return false;
             });
         }
         //End tag filter
         //Start category filter
         $product_category = ProductCategory::where('slug', $filter['category'])->first();
         if(!is_null($product_category))
+        {
             $filterProducts = $filterProducts->where('category_id', $product_category->id);
+        }
         //End category filter
         //Start price filter
         $filterProducts = $filterProducts

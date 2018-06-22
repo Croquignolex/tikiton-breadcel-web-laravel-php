@@ -69,6 +69,6 @@ class RegisterController extends Controller
             $this->databaseError($exception);
         }
 
-        return redirect(locale_route('register.show'));
+        return redirect(locale_route('register'));
     }
 }

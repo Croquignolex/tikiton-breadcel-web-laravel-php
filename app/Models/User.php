@@ -9,6 +9,7 @@ use App\Traits\LocaleDateTimeTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
+ * @property mixed id
  * @property mixed email
  * @property mixed token
  * @property mixed password
@@ -51,12 +52,52 @@ class User extends Authenticatable
         });
     }
 
+    public function reviewed_products()
+    {
+        return $this->belongsToMany('App\Models\Product', 'product_reviews')
+            ->withPivot('text', 'ranking')->withTimestamps();
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function product_reviews()
     {
         return $this->hasMany('App\Models\ProductReview');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function wished_products()
+    {
+        return $this->belongsToMany('App\Models\Product', 'user_wish_lists')
+            ->withTimestamps();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function user_wish_lists()
+    {
+        return $this->hasMany('App\Models\UserWishList');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function carted_products()
+    {
+        return $this->belongsToMany('App\Models\Product', 'user_carts')
+            ->withPivot('quantity')->withTimestamps();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function user_carts()
+    {
+        return $this->hasMany('App\Models\UserCart');
     }
 
     /**

@@ -30,6 +30,7 @@ class LanguageService
     {
         $fullUrl = url()->full();
 
+
         if(in_array($language, $this->getLanguages()))
         {
             foreach ($this->getLanguages() as $lang)

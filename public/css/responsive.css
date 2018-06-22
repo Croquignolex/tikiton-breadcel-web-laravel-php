@@ -155,7 +155,7 @@
 /* Large Mobile :480px. */
 @media only screen and (max-width: 767px) {
 .container{
-  width: 450px;
+  width: 90%;
 }
 .owl-nav {
   display: none;
@@ -370,7 +370,7 @@
 /* small mobile :320px. */
 @media only screen and (max-width: 479px) {
 .container{
-  width: 300px;
+  width: 90%;
 }
 /* Home 1 */
 .header-button-price .total-price {

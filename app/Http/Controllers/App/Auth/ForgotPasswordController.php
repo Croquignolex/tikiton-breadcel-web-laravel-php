@@ -17,6 +17,8 @@ use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller
 {
+    const RESET_LINK_NOT_SENT = 'error';
+
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller
@@ -78,13 +80,13 @@ class ForgotPasswordController extends Controller
         // user with a link to reset their password. We will then redirect back to
         // the current URI having nothing set in the session to indicate errors.
 
-        $this->SendResetEmail($user);
-
-        return Password::RESET_LINK_SENT;
+        return $this->SendResetEmail($user) ? Password::RESET_LINK_SENT :
+            ForgotPasswordController::RESET_LINK_NOT_SENT;
     }
 
     /**
      * @param User $user
+     * @return bool
      */
     protected function SendResetEmail(User $user)
     {
@@ -101,8 +103,10 @@ class ForgotPasswordController extends Controller
 
             try
             {
+
                 Mail::to($user)
                     ->send(new UserPasswordResetMail($user, $password_reset));
+                return true;
             }
             catch (Exception $exception)
             {
@@ -113,6 +117,7 @@ class ForgotPasswordController extends Controller
         {
             $this->databaseError($exception);
         }
+        return false;
     }
 
     /**
@@ -138,10 +143,14 @@ class ForgotPasswordController extends Controller
      */
     protected function sendResetLinkFailedResponse(Request $request, $response)
     {
-        flash_message(
-            trans('auth.error'), trans($response),
-            font('exclamation-triangle'), 'danger', 'bounceIn', 'bounceOut'
-        );
+        if($response !== ForgotPasswordController::RESET_LINK_NOT_SENT)
+        {
+            flash_message(
+                trans('auth.error'), trans($response),
+                font('exclamation-triangle'), 'danger',
+                'bounceIn', 'bounceOut'
+            );
+        }
 
         return back()
             ->withInput($request->only('email'))

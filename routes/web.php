@@ -13,72 +13,68 @@
 
 Route::group(['namespace' => 'App'], function() {
     //--Client routes...
-    Route::get('/terms', 'TermController');
-    Route::get('/policy', 'PolicyController');
-    Route::get('/about', 'AboutController');
-    Route::get('/blog', 'BlogController@index');
-    Route::get('/services', 'ServiceController@index');
-    Route::resource('/contact', 'ContactController', ['only' => ['index', 'store']]);
-    Route::post('/products/review/{product}', 'ProductController@review');
-    Route::resource('/products', 'ProductController', ['only' => ['index', 'show']]);
-    Route::resource('/carts', 'CartController@index', ['only' => ['index']]);
-    Route::resource('/checkout', 'CheckoutController@index', ['only' => ['index']]);
-    Route::post('/search', 'SearchController');
+    Route::get('/terms', function () { return redirect(locale_route('terms')); });
+    Route::get('/policy', function () { return redirect(locale_route('policy')); });
+    Route::get('/about', function () { return redirect(locale_route('about')); });
+    Route::get('/services', function () { return redirect(locale_route('services')); });
+    Route::get('/blog', function () { return redirect(locale_route('blog.index')); });
+    Route::get('/contact', function () { return redirect(locale_route('contact')); });
+    Route::get('/products', function () { return redirect(locale_route('products.index')); });
+    Route::get('/products/{product}', function ($product) { return redirect(locale_route('products.show', [$product])); });
+    Route::get('/carts', function () { return redirect(locale_route('cart')); });
+    Route::get('/checkout', function () { return redirect(locale_route('checkout')); });
 
     //--Localized client routes...
     Route::get('/{language?}', 'HomeController')->name('home');
-    Route::get('/{language?}/terms', 'TermController')->name('terms');
-    Route::get('/{language?}/policy', 'PolicyController')->name('policy');
-    Route::get('/{language?}/about', 'AboutController')->name('about');
-    Route::get('/{language?}/blog', 'BlogController@index')->name('blog.index');
-    Route::get('/{language?}/services', 'ServiceController@index')->name('services.index');
-    Route::resource('/{language?}/contact', 'ContactController', ['only' => ['index', 'store']]);
-    Route::post('/{language?}/products/review/{product}', 'ProductController@review')->name('products.review');
-    Route::resource('/{language?}/products', 'ProductController', ['only' => ['index', 'show']]);
-    Route::resource('/{language}/cart', 'CartController@index', ['only' => ['index']]);
-    Route::resource('/{language}/checkout', 'CheckoutController@index', ['only' => ['index']]);
+    Route::get('/{language}/terms', 'TermsController')->name('terms');
+    Route::get('/{language}/policy', 'PolicyController')->name('policy');
+    Route::get('/{language}/about', 'AboutController')->name('about');
+    Route::get('/{language}/services', 'ServicesController')->name('services');
+    Route::get('/{language}/blog', 'BlogController@index')->name('blog.index');
+    Route::get('/{language}/contact', 'ContactController@index')->name('contact');
+    Route::post('/{language}/contact', 'ContactController@send');
+    Route::get('/{language}/products', 'ProductController@index')->name('products.index');
+    Route::get('/{language}/products/{product}', 'ProductController@show')->name('products.show');
+    Route::post('/{language}/products/{product}', 'ProductController@review');
+    Route::get('/{language}/cart', 'CartController@index')->name('cart');
+    Route::get('/{language}/checkout', 'CheckoutController@index')->name('checkout');
     Route::post('/{language}/search', 'SearchController')->name('search');
 
     //--Localized auth routes...
     Route::group(['namespace' => 'Auth'], function() {
-        //--Login routes...
-        Route::get('/login', 'LoginController@showLoginForm');
-        Route::post('/logout', 'LoginController@logout');
-        Route::post('/login', 'LoginController@login');
-
-        //--Registration routes...
-        Route::get('/register', 'RegisterController@showRegistrationForm');
-        Route::post('/register', 'RegisterController@register');
+        //--Login nad register routes...
+        Route::get('/login', function () { return redirect(locale_route('login')); });
+        Route::get('/register', function () { return redirect(locale_route('register')); });
 
         //--Account routes...
-        Route::get('/account/validation/{email}/{token}/', 'AccountController@validation_unnamed');
-        Route::get('/account', 'AccountController@index');
-        Route::get('/account/wishlist', 'AccountController@wishlist');
+        Route::get('/account/validation/{email}/{token}', function ($email, $token) { return redirect(locale_route('account.validation', compact('email', 'token'))); });
+        Route::get('/account', function () { return redirect(locale_route('account.index')); });
+        Route::get('/account/wishlist', function () { return redirect(locale_route('account.wishlist')); });
 
         //--Password reset routes...
-        Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm');
-        Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm_unnamed');
-        Route::post('/password/email', 'ForgotPasswordController@sendResetLinkEmail');
-        Route::post('/password/reset/{token}', 'ResetPasswordController@reset_unnamed');
+        Route::get('/password/reset', function () { return redirect(locale_route('password.request')); });
+        Route::get('/password/reset/{token}', function ($token) { return redirect(locale_route('password.reset', [$token])); });
 
         //--Localized login routes...
-        Route::get('/{language}/login', 'LoginController@showLoginForm')->name('login.show');
-        Route::post('/{language}/logout', 'LoginController@logout')->name('login.logout');
+        Route::get('/{language}/login', 'LoginController@showLoginForm')->name('login');
         Route::post('/{language}/login', 'LoginController@login');
+        Route::post('/{language}/logout', 'LoginController@logout')->name('logout');
 
         //--Localized registration routes...
-        Route::get('/{language}/register', 'RegisterController@showRegistrationForm')->name('register.show');
+        Route::get('/{language}/register', 'RegisterController@showRegistrationForm')->name('register');
         Route::post('/{language}/register', 'RegisterController@register');
 
         //--Localized account routes...
-        Route::get('/{language}/account/validation/{email}/{token}/', 'AccountController@validation')->name('account.validation');
+        Route::get('/{language}/account/validation/{email}/{token}', 'AccountController@validation')->name('account.validation');
         Route::get('/{language}/account', 'AccountController@index')->name('account.index');
-        Route::get('/{language}/account/wishlist', 'AccountController@wishlist')->name('account.wish_list');
+        Route::get('/{language}/account/wishlist', 'AccountController@wishlist')->name('account.wishlist');
+        Route::delete('/{language}/account/wishlist/remove/{product}', 'AccountController@remove_product_from_wishlist')->name('account.remove.product.wishlist');
+        Route::post('/{language}/account/wishlist/manage', 'AccountController@ajax_wishlist_manage')->name('account.ajax.wishlist.manage');
 
         //--Localized password reset routes...
-        Route::get('/{language}/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('forgot.password.show');
-        Route::get('/{language}/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('reset.password.show');
-        Route::post('/{language}/password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('forgot.password.email');
-        Route::post('/{language}/password/reset/{token}', 'ResetPasswordController@reset')->name('reset.password');
+        Route::get('/{language}/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
+        Route::post('/{language}/password/reset', 'ForgotPasswordController@sendResetLinkEmail');
+        Route::get('/{language}/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
+        Route::post('/{language}/password/reset/{token}', 'ResetPasswordController@reset');
     });
 });

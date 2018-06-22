@@ -136,6 +136,18 @@ return [
     'all_tag' => 'All tags',
     'all_category' => 'All categories',
     'no_products' => 'No products with this cross research parameters',
+    'action' => 'Action',
+    'empty_wish_list' => 'Your wish list is empty',
+    'no' => 'No',
+    'yes' => 'Yes',
+    'remove_from_wish_list' => 'Remove :product from your wish list',
+    'product_removed_wishlist' => 'Product has been removed successfully removed from your wishlist',
+    'remove_from_cart' => 'Remove from cart',
+    'add_to_cart' => 'Add to cart',
+    'remove_from_wishlist' => 'Remove from wish list',
+    'added_to_wish_list' => ':product is added to your wish list',
+    'removed_from_wish_list' => ':product is removed from your wish list',
+    'script_error' => 'An error occur with the script',
 
     /*
     |--------------------------------------------------------------------------

@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Traits\SlugRouteTrait;
-use App\Traits\LocaleDateTimeTrait;
 use App\Traits\LocaleAmountTrait;
+use App\Traits\LocaleDateTimeTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model

@@ -15,7 +15,8 @@
                         <div class="tab-content details-pro-tab-content">
                             <div class="tab-pane fade in active" id="image">
                                 <div class="simpleLens-big-image-container">
-                                    <a class="simpleLens-lens-image" data-lens-image="{{ $product->image_path }}">
+                                    <a class="simpleLens-lens-image {{ $product->stock === 0 ? 'out-of-stock' : '' }}"
+                                       data-lens-image="{{ $product->image_path }}">
                                         <img src="{{ $product->image_path }}" alt="" class="simpleLens-big-image">
                                     </a>
                                 </div>
@@ -40,7 +41,12 @@
                             @endif
                         </h3>
                         <h4>{{ $product->product_reviews->count() }} @lang('general.reviews')</h4>
-                        <h5>@lang('general.availability') - <span>@lang('general.' . $product->availability)</span></h5>
+                        <h5>
+                            @lang('general.availability') -
+                            <span class="{{ $product->availability }}">
+                                @lang('general.' . $product->availability)
+                            </span>
+                        </h5>
                         <div class="review contact-form">
                             @auth
                                 @if(session()->has('notification.message'))
@@ -48,7 +54,7 @@
                                         {{ session('notification.message') }}
                                     </div>
                                 @endif
-                                <form action="{{ locale_route('products.review', [$product]) }}" method="POST" class="form-validation review-form" @submit="validateElement">
+                                <form action="" method="POST" class="review-form" @submit="validateFormElements">
                                     {{ csrf_field() }}
                                     @component('components.app.textarea', [
                                         'name' => 'review', 'value' => old('review'),
@@ -60,7 +66,7 @@
                                         'title' => trans('general.send_your_review')
                                         ])
                                     @endcomponent
-                                    <div class="text-theme text-left" id="user-rate">
+                                    <div class="text-theme text-left">
                                         <star-ranking></star-ranking>
                                     </div>
                                 </form>
@@ -72,11 +78,10 @@
                             @endguest
                         </div>
                         <div class="action-btn">
-                            @component('components.app.icon-link', [
-                               'icon' => 'heart-o', 'link' => '#',
-                               'class' => 'favorite'
-                               ])
-                            @endcomponent
+                            @auth
+                                @component('components.app.wish-list-icon-link', compact('product'))
+                                @endcomponent
+                            @endauth
                             @component('components.app.icon-link', [
                                'icon' => 'shopping-cart', 'link' => '#',
                                'class' => 'add-cart'
@@ -171,6 +176,5 @@
 
 @push('overlay.app.script.page')
     <script src="{{ js_asset('bootstrap-maxlength') }}" type="text/javascript"></script>
-    <script src="{{ js_asset('validator') }}" type="text/javascript"></script>
-    <script src="{{ js_asset('star-ranking') }}" type="text/javascript"></script>
+    <script src="{{ js_asset('form-validator') }}" type="text/javascript"></script>
 @endpush

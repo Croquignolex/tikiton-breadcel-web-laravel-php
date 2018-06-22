@@ -17,7 +17,7 @@
                                 {{ session('notification.message') }}
                             </div>
                         @endif
-                        <form id="signup-form" action="" method="POST" class="form-validation" @submit="validateElement">
+                        <form id="signup-form" action="" method="POST" @submit="validateFormElements">
                             {{ csrf_field() }}
                             @component('components.app.label-input', [
                                     'name' => 'name', 'label' => 'name'
@@ -56,7 +56,7 @@
                                 @endcomponent
                             @endcomponent
                             <div class="remember">
-                                <a href="{{ locale_route('login.show') }}">@lang('auth.login_sign_upped')</a>
+                                <a href="{{ locale_route('login') }}">@lang('auth.login_sign_upped')</a>
                             </div>
                             @component('components.app.submit', [
                                'class' => 'submit', 'value' => trans('auth.register')
@@ -73,5 +73,5 @@
 
 @push('overlay.app.script.page')
     <script src="{{ js_asset('bootstrap-maxlength') }}" type="text/javascript"></script>
-    <script src="{{ js_asset('validator') }}" type="text/javascript"></script>
+    <script src="{{ js_asset('form-validator') }}" type="text/javascript"></script>
 @endpush

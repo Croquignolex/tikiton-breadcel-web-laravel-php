@@ -20,14 +20,14 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('contact.index');
+        return view('contact');
     }
 
     /**
      * @param ContactRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(ContactRequest $request)
+    public function send(ContactRequest $request)
     {
         try
         {
@@ -56,6 +56,6 @@ class ContactController extends Controller
             $this->databaseError($exception);
         }
 
-        return redirect(locale_route('contact.index'));
+        return redirect(locale_route('contact'));
     }
 }

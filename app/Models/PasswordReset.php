@@ -33,7 +33,7 @@ class PasswordReset extends Model
      */
     public function getResetLinkAttribute()
     {
-        return locale_route('reset.password.show', [
+        return locale_route('password.reset', [
             'token' => $this->token
         ]);
     }

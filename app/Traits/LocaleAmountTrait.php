@@ -26,7 +26,7 @@ trait LocaleAmountTrait
         }
 
         return number_format(
-            $this->price, 0,
+            $this->price, 2,
             $separator->decimals,
             $separator->thousands
         );

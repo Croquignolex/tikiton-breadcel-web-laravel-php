@@ -1,6 +1,5 @@
 @if(session()->has('notification.message'))
-    <script src="{{ js_asset('bootstrap-notify.min') }}" type="text/javascript"></script>
-    <script> 
+    <script>
         notification(
             "{{ session('notification.title') }}", 
             "{{ session('notification.message') }}", 

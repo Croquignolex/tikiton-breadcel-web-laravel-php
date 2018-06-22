@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="bread'cel breadsel">
         <meta name="author" content="Alexy xaxa">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>@yield('title')</title>
 
@@ -34,6 +35,7 @@
         <script src="{{ js_asset('bootstrap.min') }}" type="text/javascript"></script>
         <!-- Plugin JavaScript -->
         <script src="{{ js_asset('vue.min') }}" type="text/javascript"></script>
+        <script src="{{ js_asset('bootstrap-notify.min') }}" type="text/javascript"></script>
         @stack('script.plugin')
         <!-- Global scripts -->
         <script src="{{ js_asset('master') }}" type="text/javascript"></script>

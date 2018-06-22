@@ -14,7 +14,7 @@ class ProductReviewsTableSeeder extends Seeder
     {
         DB::table('product_reviews')->insert([
             'text' => 'review 1',
-            'ranking' => 6,
+            'ranking' => 10,
             'product_id' => 1,
             'user_id' => 1,
             'created_at' => now(),
@@ -22,8 +22,8 @@ class ProductReviewsTableSeeder extends Seeder
 
         DB::table('product_reviews')->insert([
             'text' => 'review 2',
-            'ranking' => 8,
-            'product_id' => 1,
+            'ranking' => 10,
+            'product_id' => 2,
             'user_id' => 2,
             'created_at' => now(),
         ]);

@@ -7,12 +7,12 @@
                     <p>@lang('general.welcome_to_you')</p>
                     <h5>
                         @guest
-                            <a href="{{ locale_route('login.show') }}">
+                            <a href="{{ locale_route('login') }}">
                                 <i class="{{ font('unlock') }}"></i>
                                 @lang('general.login')
                             </a>
                             @lang('general.or')
-                            <a href="{{ locale_route('register.show') }}">
+                            <a href="{{ locale_route('register') }}">
                                 <i class="{{ font('user-plus') }}"></i>
                                 @lang('general.register')
                             </a>
@@ -35,7 +35,7 @@
             </div>
             <div class="col-sm-4 col-lg-3">
                 <div class="cart-info float-right">
-                    <a href="{{ locale_route('cart.index') }}">
+                    <a href="{{ locale_route('cart') }}">
                         <h5>
                             @lang('general.my_cart')
                             <span>2</span>
@@ -53,7 +53,7 @@
                             </li>
                         </ul>
                         <div class="header-button-price">
-                            <a href="{{ locale_route('checkout.index') }}">
+                            <a href="{{ locale_route('checkout') }}">
                                 <i class="{{ font('shopping-basket') }}"></i>
                                 <span>@lang('general.check_out')</span>
                             </a>

@@ -80,7 +80,7 @@ class LoginController extends Controller
     {
         flash_message(
             __('auth.error'), __('auth.login_message'),
-            'remove', 'danger', 'bounceIn', 'bounceOut');
+        'remove', 'danger', 'bounceIn', 'bounceOut');
 
         throw ValidationException::withMessages([
             $this->username() => [trans('auth.failed')],
