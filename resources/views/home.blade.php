@@ -42,7 +42,7 @@
                     <!-- Featured slider Area Start -->
                     <div class="feature-pro-slider owl-carousel">
                         @foreach($featured_products as $product)
-                            @component('components.app.product-card', [
+                            @component('components.product-card', [
                                 'product' => $product
                                 ])
                             @endcomponent
@@ -123,7 +123,7 @@
                             @foreach($new_products->chunk(2) as $chunk)
                                 <div class="single-product-item fix">
                                     @foreach($chunk as $new_product)
-                                        @component('components.app.product-card',
+                                        @component('components.product-card',
                                             ['product' => $new_product])
                                         @endcomponent
                                     @endforeach
@@ -136,7 +136,7 @@
                             @foreach($featured_products->chunk(2) as $chunk)
                                 <div class="single-product-item fix">
                                     @foreach($chunk as $featured_product)
-                                        @component('components.app.product-card',
+                                        @component('components.product-card',
                                             ['product' => $featured_product])
                                         @endcomponent
                                     @endforeach
@@ -149,7 +149,7 @@
                             @foreach($most_sold_products->chunk(2) as $chunk)
                                 <div class="single-product-item fix">
                                     @foreach($chunk as $most_sold_product)
-                                        @component('components.app.product-card',
+                                        @component('components.product-card',
                                             ['product' => $most_sold_product])
                                         @endcomponent
                                     @endforeach
@@ -183,25 +183,25 @@
                     <h2>@lang('general.our_statistics')</h2>
                     <div class="underline"></div>
                 </div>
-                @component('components.app.fun-factor-item', [
+                @component('components.fun-factor-item', [
                     'font' => 'users',
                     'value' => $customers_nbr,
                     'dictionary_name' => 'customers',
                     ])
                 @endcomponent
-                @component('components.app.fun-factor-item', [
+                @component('components.fun-factor-item', [
                     'font' => 'database',
                     'value' => $products_nbr,
                     'dictionary_name' => 'items',
                     ])
                 @endcomponent
-                @component('components.app.fun-factor-item', [
+                @component('components.fun-factor-item', [
                     'font' => 'file-text-o',
                     'value' => $orders_nbr,
                     'dictionary_name' => 'orders',
                     ])
                 @endcomponent
-                @component('components.app.fun-factor-item', [
+                @component('components.fun-factor-item', [
                     'font' => 'calendar-check-o',
                     'value' => $sales_nbr,
                     'dictionary_name' => 'sold_items',

@@ -29,7 +29,7 @@
                         <!-- Product Name -->
                         <h2> {{ $product->format_name }}</h2>
                         <!-- Product Ratting -->
-                        @component('components.app.star-ranking',
+                        @component('components.star-ranking',
                             ['ranking' => $product->ranking])
                         @endcomponent
                         <h3>
@@ -56,12 +56,12 @@
                                 @endif
                                 <form action="" method="POST" class="review-form" @submit="validateFormElements">
                                     {{ csrf_field() }}
-                                    @component('components.app.textarea', [
+                                    @component('components.textarea', [
                                         'name' => 'review', 'value' => old('review'),
                                         'placeholder' => trans('general.review_product')
                                         ])
                                     @endcomponent
-                                    @component('components.app.submit', [
+                                    @component('components.submit', [
                                         'class' => 'submit', 'value' => trans('general.review'),
                                         'title' => trans('general.send_your_review')
                                         ])
@@ -79,13 +79,10 @@
                         </div>
                         <div class="action-btn">
                             @auth
-                                @component('components.app.wish-list-icon-link', compact('product'))
+                                @component('components.wish-list-icon-link', compact('product'))
                                 @endcomponent
                             @endauth
-                            @component('components.app.icon-link', [
-                               'icon' => 'shopping-cart', 'link' => '#',
-                               'class' => 'add-cart'
-                               ])
+                            @component('components.cart-icon-link', compact('product'))
                             @endcomponent
                         </div>
                     </div>
@@ -123,7 +120,7 @@
                                             </ul>
                                             <p class="text-justify multi-line-text">{{ $review->text }}</p>
                                             <p class="text-right">
-                                                @component('components.app.star-ranking', [
+                                                @component('components.star-ranking', [
                                                     'ranking' => $review->ranking,
                                                     'class' => 'text-theme text-right'
                                                     ])
@@ -161,7 +158,7 @@
                     </div>
                     <div class="related-pro-slider owl-carousel">
                         @foreach($product->related_products as $related_product)
-                            @component('components.app.product-card', [
+                            @component('components.product-card', [
                                 'product' => $related_product
                                 ])
                             @endcomponent

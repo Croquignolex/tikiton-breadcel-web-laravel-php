@@ -1,6 +1,6 @@
 @inject('languageService', 'App\Services\LanguageService')
 
-@component('components.app.top-header-drop-down', [
+@component('components.top-header-drop-down', [
     'selected_icon' => flag_img_asset($languageService->getCurrentLanguage()),
     'selected' => trans($languageService->getLanguageFullName($languageService->getCurrentLanguage()))
     ])

@@ -5,7 +5,7 @@
 @section('overlay_font', font('info-circle'))
 
 @section('app.home.body')
-    @component('components.app.about-section')
+    @component('components.about-section')
         <div class="col-sm-12">
             <div class="about-title">
                 <h2>
@@ -16,7 +16,7 @@
             </div>
             <div class="about-text">
                 <p>@lang('about.section_top')</p>
-                @component('components.app.about-row-body',
+                @component('components.about-row-body',
                     ['body' => 'about_manager_1'])
                 @endcomponent
             </div>
@@ -28,7 +28,7 @@
                     <span>@lang('general.choose_us')</span>
                 </h2>
                 <p class="about-margin">@lang('about.section_bottom')</p>
-                @component('components.app.about-row-body',
+                @component('components.about-row-body',
                     ['body' => 'about_manager_2'])
                 @endcomponent
             </div>
@@ -48,20 +48,20 @@
                     <div class="underline"></div>
                 </div>
                 @foreach($teams as $team)
-                    @component('components.app.team-card', ['team' => $team])
-                        @component('components.app.icon-link', [
+                    @component('components.team-card', ['team' => $team])
+                        @component('components.icon-link', [
                            'icon' => 'facebook', 'link' => $team->facebook
                            ])
                         @endcomponent
-                        @component('components.app.icon-link', [
+                        @component('components.icon-link', [
                            'icon' => 'twitter', 'link' => $team->twitter
                            ])
                         @endcomponent
-                        @component('components.app.icon-link', [
+                        @component('components.icon-link', [
                            'icon' => 'linkedin', 'link' => $team->linkedin
                            ])
                         @endcomponent
-                        @component('components.app.icon-link', [
+                        @component('components.icon-link', [
                            'icon' => 'google-plus', 'link' => $team->googleplus
                            ])
                         @endcomponent

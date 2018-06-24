@@ -3431,9 +3431,6 @@ h4.heading {
   display: inline-block;
   margin-right: 10px;
 }
-.user-review > ul > li > i {
-  color: #da7612;
-}
 .multi-line-text {
   white-space: pre;
 }
@@ -3444,19 +3441,30 @@ h4.heading {
   max-height: 500px;
   overflow: auto;
 }
-.active_filter{
-  background-color: #da7612;
-  color: #FFFFFF !important;
-}
 .out-of-stock{
   opacity: .4;
 }
-.out_of_stock {
-  color: #da2013 !important;
+.modal, .btn, .modal-content {
+  border-radius: 0% !important;
 }
 .in_stock {
   color: #178622 !important;
 }
-.modal, .btn, .modal-content {
-  border-radius: 0% !important;
+.out_of_stock, .remove {
+  color: #da2013 !important;
+}
+.remove:hover {
+  background-color: #da2013 !important;
+}
+.remove:hover, .active_filter {
+  color: #FFFFFF !important;
+}
+.active_filter:hover{
+  background-color: #FFFFFF !important;
+}
+.active_filter{
+  background-color: #da7612 !important;
+}
+.user-review > ul > li > i, .active_filter:hover {
+  color: #da7612 !important;
 }

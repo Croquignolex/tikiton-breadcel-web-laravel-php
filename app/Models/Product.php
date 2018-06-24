@@ -7,6 +7,8 @@ use App\Traits\LocaleNameTrait;
 use App\Traits\LocaleAmountTrait;
 use App\Traits\LocaleDateTimeTrait;
 use App\Traits\LocaleSlugSaveTrait;
+use App\Utils\AmountSeparator;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use App\Traits\LocaleDescriptionTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -20,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed is_new
  * @property mixed discount
  * @property mixed created_at
+ * @property mixed format_name
  * @property mixed carted_users
  * @property mixed wished_users
  * @property mixed product_tags
@@ -134,15 +137,6 @@ class Product extends Model
     public function getImagePathAttribute()
     {
         return product_img_asset($this->image);
-    }
-
-    /**
-     * @return string
-     */
-    public function getNewPriceAttribute()
-    {
-         $discount = $this->price / $this->discount;
-         return round($this->price - $discount, 2);
     }
 
     /**

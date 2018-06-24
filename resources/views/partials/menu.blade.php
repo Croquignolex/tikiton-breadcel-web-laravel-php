@@ -31,12 +31,6 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ locale_route('blog.index') }}" class="{{ active_page(blog_pages()) }}">
-                                    <i class="{{ font('book') }}"></i>
-                                    @lang('general.blog')
-                                </a>
-                            </li>
-                            <li>
                                 <a href="{{ locale_route('contact') }}" class="{{ active_page(contact_pages()) }}">
                                     <i class="{{ font('map-marker') }}"></i>
                                     @lang('general.contact_us')
@@ -66,11 +60,6 @@
                             <li>
                                 <a href="{{ locale_route('services') }}" class="{{ active_page(services_pages()) }}">
                                     @lang('general.our_services')
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ locale_route('blog.index') }}" class="{{ active_page(blog_pages()) }}">
-                                    @lang('general.blog')
                                 </a>
                             </li>
                             <li>

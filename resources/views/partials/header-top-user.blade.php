@@ -1,4 +1,4 @@
-@component('components.app.top-header-drop-down', [
+@component('components.top-header-drop-down', [
     'selected' =>  Auth::user()->format_name
     ])
     <li class="text-left">

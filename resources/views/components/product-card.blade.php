@@ -15,13 +15,10 @@
         <!-- Product action Btn -->
         <div class="product-action-btn">
             @auth
-                @component('components.app.wish-list-icon-link', compact('product'))
+                @component('components.wish-list-icon-link', compact('product'))
                 @endcomponent
             @endauth
-            @component('components.app.icon-link', [
-               'icon' => 'cart-plus', 'link' => '#',
-               'class' => 'add-cart'
-               ])
+            @component('components.cart-icon-link', compact('product'))
             @endcomponent
         </div>
     </div>
@@ -32,7 +29,7 @@
                 {{ $product->format_name }}
             </a>
         </div>
-        @component('components.app.star-ranking',
+        @component('components.star-ranking',
             ['ranking' => $product->ranking])
         @endcomponent
         <div class="pro-price fix">

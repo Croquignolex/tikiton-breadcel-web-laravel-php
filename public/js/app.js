@@ -57,53 +57,20 @@ new Vue({
                     setInvalidIndicator(element);
             }
         },
-		addOrRemoveProductFromWishList: function (event) {
-        	let element = event.target;
-
-			$.ajaxSetup({
-				headers: {
-					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-				}
-			});
-			$.ajax({
-				method: 'POST',
-				url: element.dataset.url,
-				data: {
-					'product_id': element.dataset.bind
-				},
-				dataType: "json"
-			})
-			.done(function(response) {
-				let icon;
-				let enter = 'lightSpeedIn';
-				let exit = 'lightSpeedOut';
-				if(response.type === 'success')
-				{
-					icon = 'fa fa-heart';
-                    element.classList.remove('fa-heart-o');
-                    element.classList.add('fa-heart');
-				}
-				else if(response.type === 'info')
-				{
-					icon = 'fa fa-heart-o';
-                    element.classList.remove('fa-heart');
-                    element.classList.add('fa-heart-o');
-				}
-				else if(response.type === 'danger')
-				{
-					icon = 'fa fa-remove';
-                    enter = 'bounceIn';
-                    exit = 'bounceOut';
-				}
-				notification(response.title, response.body, response.type,
-					icon, enter, exit, 5000);
-			})
-			.fail(function(response) {
-                notification(element.dataset.errortitle, element.dataset.errormessage,
-					'danger', 'fa fa-remove', 'bounceIn', 'bounceOut', 5000);
-			});
-
-        }
+        toggleProductFromWishList: function (event) {
+            AjaxCartAndWishListToggle(event, 'fa-heart', 'fa-heart-o', 'favorite');
+        },
+        toggleProductFromCart: function (event) {
+            AjaxCartAndWishListToggle(event, 'fa-cart-arrow-down', 'fa-cart-plus', 'add-cart');
+            let element = event.target;
+            let elementDataSet = element.dataset;
+            let elementParentDataSet = element.parentNode.dataset;
+            refreshProductsCart(elementParentDataSet.locale,
+                elementDataSet.errortitle, elementDataSet.errormessage);
+		},
+        removeProductFromCart: function (event) {
+            removeProductFromCart(event);
+        },
     }
 });
 
@@ -272,3 +239,151 @@ new Vue({
 		});
 	});
 })(jQuery);
+
+function removeProductFromCart(event) {
+    let element = event.target;
+    let elementDataSet = element.dataset;
+
+    let locale = elementDataSet.locale;
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        method: 'POST',
+        url: '/account/cart/remove',
+        data: {
+            'product_id': elementDataSet.bind
+        },
+        dataType: "json"
+    })
+	.done(function(response) {
+		notification(response.title, response.body, response.type,
+			response.icon, response.enter, response.exit, 5000);
+
+		refreshProductsCart(locale, 'error', 'Error script');
+	})
+	.fail(function() {
+		notification('error', 'Error script',
+			'danger', 'fa fa-remove', 'bounceIn', 'bounceOut', 5000);
+	});
+}
+
+function refreshProductsCart(locale, errorTitle, errorMessage) {
+    $.ajax({
+        method: 'GET',
+        url: '/cart/products',
+        dataType: "json"
+    })
+	.done(function(response) {
+		let cart = document.getElementById('cart');
+		let products = response.products;
+		let RefreshedCart = document.createElement('ul');
+        RefreshedCart.setAttribute('class', 'header-cart-pro');
+        RefreshedCart.setAttribute('id', 'cart');
+
+		products.forEach(function (product) {
+			let productName = ''; let price = ''; let discount = '';
+			if(locale === 'fr')
+			{
+				productName = product.fr_name;
+				price = 'Prix : ' + product.price.toFixed(2) + 'C$';
+				discount = (product.price * (1 - (product.discount/100))).toFixed(2)  + 'C$';
+			}
+			else if(locale === 'en')
+			{
+				productName = product.en_name;
+				price = 'Price : C$' + product.price;
+				discount = 'C$' + (product.price * (1 - (product.discount/100)));
+			}
+
+            let domCart = '';
+			let li = document.createElement('li');
+            let deleteFont = document.createElement('i');
+
+            deleteFont.setAttribute('class', 'fa fa-trash delete');
+            deleteFont.setAttribute('data-locale', locale);
+            deleteFont.setAttribute('data-bind', product.id);
+            deleteFont.addEventListener('click', removeProductFromCart);
+
+			domCart +=
+				'<li >' +
+					'<div class="image">' +
+						'<a href="/products/' + product.slug + '">' +
+							'<img alt="..." src="/img/products/' + product.image + '.jpg">' +
+						'</a>' +
+					'</div>' +
+					'<div class="content fix">' +
+						'<a href="/products/' + product.slug + '">' +
+							productName +
+						'</a>';
+
+			if(product.discount === 0) {
+				domCart += '<span class="new">' + price + '</span>';
+			}
+			else{
+				domCart +=
+					'<span class="new">' + discount + '</span>' +
+					'<span class="old">' + price + '</span>';
+			}
+
+			domCart += '</div></li>';
+
+            li.innerHTML = domCart;
+            li.appendChild(deleteFont);
+            RefreshedCart.appendChild(li);
+        });
+		cart.parentNode.replaceChild(RefreshedCart, cart);
+		document.getElementById('products-number').innerText = products.length;
+	})
+	.fail(function() {
+		notification(errorTitle, errorMessage, 'danger',
+			'fa fa-remove', 'bounceIn', 'bounceOut', 5000);
+	});
+}
+
+function AjaxCartAndWishListToggle(event, iconIn, iconOut, className) {
+    let element = event.target;
+    let elementParent = element.parentNode;
+    let elementDataSet = element.dataset;
+    let elementParentDataSet = elementParent.dataset;
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        method: 'POST',
+        url: elementDataSet.url,
+        data: {
+            'product_id': elementDataSet.bind
+        },
+        dataType: "json"
+    })
+        .done(function(response) {
+            if(response.type === 'success')
+            {
+                element.classList.remove(iconOut);
+                element.classList.add(iconIn);
+                elementParent.title = elementParentDataSet.remove;
+                elementParent.classList.remove(className);
+                elementParent.classList.add('remove');
+            }
+            else if(response.type === 'info')
+            {
+                element.classList.remove(iconIn);
+                element.classList.add(iconOut);
+                elementParent.title = elementParentDataSet.add;
+                elementParent.classList.remove('remove');
+                elementParent.classList.add(className);
+            }
+            notification(response.title, response.body, response.type,
+                response.icon, response.enter, response.exit, 5000);
+        })
+        .fail(function() {
+            notification(elementDataSet.errortitle, elementDataSet.errormessage,
+                'danger', 'fa fa-remove', 'bounceIn', 'bounceOut', 5000);
+        });
+}

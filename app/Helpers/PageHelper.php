@@ -68,17 +68,6 @@ if(!function_exists('contact_pages'))
     }
 }
 
-if(!function_exists('blog_pages'))
-{
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    function blog_pages()
-    {
-        return collect(['blog.index']);
-    }
-}
-
 if(!function_exists('services_pages'))
 {
     /**

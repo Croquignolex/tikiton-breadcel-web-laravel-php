@@ -12,6 +12,20 @@ trait LocaleAmountTrait
      */
     public function getAmountAttribute()
     {
+        return $this->formatAmount($this->price);
+    }
+
+    /**
+     * @return string
+     */
+    public function getNewPriceAttribute()
+    {
+        $discount = ($this->price * $this->discount) / 100;
+        return $this->formatAmount($this->price - $discount);
+    }
+
+    private function formatAmount($amount)
+    {
         $separator = new AmountSeparator();
 
         if(App::getLocale() === 'fr')
@@ -26,7 +40,7 @@ trait LocaleAmountTrait
         }
 
         return number_format(
-            $this->price, 2,
+            $amount, 2,
             $separator->decimals,
             $separator->thousands
         );

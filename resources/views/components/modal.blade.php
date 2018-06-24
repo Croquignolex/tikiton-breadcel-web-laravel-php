@@ -27,7 +27,7 @@
     </div>
 </div>
 
-@component('components.app.modal-form-action',
+@component('components.modal-form-action',
     ['id' => 'action-' . $id, 'route' => $action_route])
 @endcomponent
 <!-- End modal -->

@@ -117,12 +117,12 @@
                             </div>
                         </div>
                         <div class="shop-products">
-                            @component('components.app.pagination',
+                            @component('components.pagination',
                                 ['paginationTools' => $paginationTools])
                             @endcomponent
                             @forelse($paginationTools->displayItems as $product)
                                 <div class="col-sm-4 fix">
-                                    @component('components.app.product-card', [
+                                    @component('components.product-card', [
                                         'product' => $product
                                         ])
                                     @endcomponent
@@ -132,7 +132,7 @@
                                     @lang('general.no_products')
                                 </div>
                             @endforelse
-                            @component('components.app.pagination', [
+                            @component('components.pagination', [
                                 'paginationTools' => $paginationTools,
                                 'url' => locale_route('products.index') . '?page='
                                 ])

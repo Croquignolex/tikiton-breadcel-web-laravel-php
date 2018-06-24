@@ -19,10 +19,10 @@
                         @endif
                         <form id="signup-form" action="" method="POST" @submit="validateFormElements">
                             {{ csrf_field() }}
-                            @component('components.app.label-input', [
+                            @component('components.label-input', [
                                     'name' => 'email', 'label' => 'email',
                                     ])
-                                @component('components.app.input', [
+                                @component('components.input', [
                                     'type' => 'email', 'name' => 'email',
                                      'value' => old('email'), 'auto_focus' => 'autofocus'
                                     ])
@@ -32,7 +32,7 @@
                                 <a href="{{ locale_route('register') }}">@lang('auth.register_sign_upped')</a><br>
                                 <a href="{{ locale_route('login') }}">@lang('auth.login_sign_upped')</a>
                             </div>
-                            @component('components.app.submit', [
+                            @component('components.submit', [
                                'class' => 'submit', 'value' => trans('auth.send_reset_link')
                                ])
                             @endcomponent

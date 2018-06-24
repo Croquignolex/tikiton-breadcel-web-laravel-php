@@ -34,38 +34,9 @@
                 </div>
             </div>
             <div class="col-sm-4 col-lg-3">
-                <div class="cart-info float-right">
-                    <a href="{{ locale_route('cart') }}">
-                        <h5>
-                            @lang('general.my_cart')
-                            <span>2</span>
-                            @lang('general.articles') -
-                            <span>$390</span>
-                        </h5>
-                        <i class="{{ font('shopping-cart') }}"></i>
-                    </a>
-                    <div class="cart-hover">
-                        <ul class="header-cart-pro">
-                            <li>
-                                <div class="image"><a href="#"><img alt="cart item" src=""></a></div>
-                                <div class="content fix"><a href="#">Product Name</a><span class="price">Price: $130</span><span class="quantity">Quantity: 1</span></div>
-                                <i class="fa fa-trash delete"></i>
-                            </li>
-                        </ul>
-                        <div class="header-button-price">
-                            <a href="{{ locale_route('checkout') }}">
-                                <i class="{{ font('shopping-basket') }}"></i>
-                                <span>@lang('general.check_out')</span>
-                            </a>
-                            <div class="total-price">
-                                <h3>
-                                    @lang('general.total_price') :
-                                    <span>$390</span>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @auth
+                    @include('partials.user-cart')
+                @endauth
                 <div class="search float-right">
                     <form action="{{ locale_route('search') }}" method="POST">
                         {{ csrf_field() }}

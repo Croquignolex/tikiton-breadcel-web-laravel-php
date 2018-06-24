@@ -4,12 +4,12 @@
         <div class="row">
             <div class="col-sm-12 col-md-4">
                 <div class="info">
-                    @component('components.app.top-header-info', [
+                    @component('components.top-header-info', [
                         'class' => 'phn-num', 'icon' => 'phone',
                         'label' => config('company.phone_1')
                         ])
                     @endcomponent
-                    @component('components.app.top-header-info', [
+                    @component('components.top-header-info', [
                         'class' => 'mail-id', 'icon' => 'envelope-o',
                         'label' => config('company.email_1')
                         ])
@@ -18,23 +18,23 @@
             </div>
             <div class="col-sm-12 col-md-4">
                 <div class="socials text-center">
-                    @component('components.app.icon-link', [
+                    @component('components.icon-link', [
                         'icon' => 'facebook', 'link' => config('company.facebook')
                         ])
                     @endcomponent
-                    @component('components.app.icon-link', [
+                    @component('components.icon-link', [
                         'icon' => 'twitter', 'link' => config('company.twitter')
                         ])
                     @endcomponent
-                    @component('components.app.icon-link', [
+                    @component('components.icon-link', [
                         'icon' => 'linkedin', 'link' => config('company.linked_in')
                          ])
                     @endcomponent
-                    @component('components.app.icon-link', [
+                    @component('components.icon-link', [
                         'icon' => 'google-plus', 'link' => config('company.google_plus')
                         ])
                     @endcomponent
-                    @component('components.app.icon-link', [
+                    @component('components.icon-link', [
                         'icon' => 'youtube-play', 'link' => config('company.youtube')
                         ])
                     @endcomponent

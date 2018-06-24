@@ -19,19 +19,19 @@
                         @endif
                         <form id="signup-form" action="" method="POST" @submit="validateFormElements">
                             {{ csrf_field() }}
-                            @component('components.app.label-input', [
+                            @component('components.label-input', [
                                     'name' => 'email', 'label' => 'email',
                                     ])
-                                @component('components.app.input', [
+                                @component('components.input', [
                                     'type' => 'email', 'name' => 'email',
                                      'value' => old('email'), 'auto_focus' => 'autofocus'
                                     ])
                                 @endcomponent
                             @endcomponent
-                            @component('components.app.label-input', [
+                            @component('components.label-input', [
                                     'name' => 'password', 'label' => 'password'
                                     ])
-                                @component('components.app.input', [
+                                @component('components.input', [
                                     'type' => 'password', 'name' => 'password',
                                      'value' => old('password'), 'minlength' => 6
                                     ])
@@ -41,7 +41,7 @@
                                 <a href="{{ locale_route('register') }}">@lang('auth.register_sign_upped')</a><br>
                                 <a href="{{ locale_route('password.request') }}">@lang('auth.forgotten_pwd') ?</a>
                             </div>
-                            @component('components.app.submit', [
+                            @component('components.submit', [
                                'class' => 'submit', 'value' => trans('auth.login')
                                ])
                             @endcomponent

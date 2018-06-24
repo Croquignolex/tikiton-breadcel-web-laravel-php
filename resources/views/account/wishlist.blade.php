@@ -53,20 +53,37 @@
                                         </td>
                                         <td class="valu">
                                             @if($wished_product->is_in_current_user_cart)
-                                                <button class="btn btn-warning" type="button" title="@lang('general.remove_from_cart')"
-                                                   data-toggle="tooltip" data-placement="bottom">
+                                                <button class="btn btn-danger" title="@lang('general.remove_from_cart')" type="button"
+                                                    onclick="document.getElementById('remove-product-{{ $wished_product->id }}').submit();">
                                                     <i class="{{ font('cart-arrow-down') }}"></i>
+                                                    <small>
+                                                        <i class="{{ font('sort-down') }}"></i>
+                                                    </small>
                                                 </button>
+                                                <form id="remove-product-{{ $wished_product->id }}" method="POST" class="hidden"
+                                                      action="{{ locale_route('account.remove.product.cart', [$wished_product]) }}">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('DELETE') }}
+                                                </form>
                                             @else
-                                                <button class="btn btn-primary" type="button" title="@lang('general.add_to_cart')"
-                                                    data-toggle="tooltip" data-placement="bottom">
+                                                <button class="btn btn-theme" title="@lang('general.add_to_cart')" type="button"
+                                                    onclick="document.getElementById('add-product-{{ $wished_product->id }}').submit();">
                                                     <i class="{{ font('cart-plus') }}"></i>
+                                                    <small>
+                                                        <i class="{{ font('sort-up') }}"></i>
+                                                    </small>
                                                 </button>
+                                                <form id="add-product-{{ $wished_product->id }}" method="POST" class="hidden"
+                                                      action="{{ locale_route('account.add.product.cart', [$wished_product]) }}">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('PUT') }}
+                                                </form>
                                             @endif
                                         </td>
                                         <td class="acti">
                                             <button class="btn btn-danger" type="button" data-toggle="modal"
-                                                data-target="#remove-from-wish-list-{{ $wished_product->id }}">
+                                                data-target="#remove-from-wish-list-{{ $wished_product->id }}"
+                                                title="@lang('general.remove_from_wish_list')">
                                                 <i class="{{ font('trash-o') }}"></i>
                                             </button>
                                         </td>
@@ -90,12 +107,12 @@
     <!--End Wishlist Area-->
 
     @foreach($wished_products as $wished_product)
-        @component('components.app.modal', [
-        'title' => trans('general.remove_from_wishlist'),
+        @component('components.modal', [
+        'title' => trans('general.remove_from_wish_list'),
             'id' => 'remove-from-wish-list-' . $wished_product->id, 'color' => 'danger',
             'action_route' => locale_route('account.remove.product.wishlist', [$wished_product])
             ])
-            @lang('general.remove_from_wish_list', ['product' => $wished_product->format_name]) ?
+            @lang('general.remove_product_from_wish_list', ['product' => $wished_product->format_name]) ?
         @endcomponent
     @endforeach
 @endsection

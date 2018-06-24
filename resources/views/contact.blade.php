@@ -20,37 +20,37 @@
                         {{ csrf_field() }}
                         <div class="row">
                             <div class="col-sm-6">
-                                @component('components.app.label-input', [
+                                @component('components.label-input', [
                                     'name' => 'name', 'label' => 'name'
                                     ])
-                                    @component('components.app.input', [
+                                    @component('components.input', [
                                         'type' => 'text', 'name' => 'name',
                                          'value' => old('name'), 'auto_focus' => 'autofocus'
                                         ])
                                     @endcomponent
                                 @endcomponent
-                                @component('components.app.label-input', [
+                                @component('components.label-input', [
                                     'name' => 'email', 'label' => 'email',
                                     ])
-                                    @component('components.app.input', [
+                                    @component('components.input', [
                                         'type' => 'email', 'name' => 'email',
                                          'value' => old('email')
                                         ])
                                     @endcomponent
                                 @endcomponent
-                                @component('components.app.label-input', [
+                                @component('components.label-input', [
                                     'name' => 'phone', 'label' => 'phone'
                                     ])
-                                    @component('components.app.input', [
+                                    @component('components.input', [
                                         'type' => 'text', 'name' => 'phone',
                                         'value' => old('phone')
                                         ])
                                     @endcomponent
                                 @endcomponent
-                                @component('components.app.label-input', [
+                                @component('components.label-input', [
                                     'name' => 'subject', 'label' => 'subject'
                                     ])
-                                    @component('components.app.input', [
+                                    @component('components.input', [
                                         'type' => 'text','name' => 'subject',
                                         'value' => old('subject')
                                         ])
@@ -58,15 +58,15 @@
                                 @endcomponent
                             </div>
                             <div class="col-sm-6">
-                                @component('components.app.label-input', [
+                                @component('components.label-input', [
                                     'name' => 'message', 'label' => 'message'
                                     ])
-                                    @component('components.app.textarea', [
+                                    @component('components.textarea', [
                                         'name' => 'message', 'value' => old('message')
                                         ])
                                     @endcomponent
                                 @endcomponent
-                                @component('components.app.submit', [
+                                @component('components.submit', [
                                     'class' => 'submit', 'value' => trans('general.send')
                                     ])
                                 @endcomponent
@@ -76,19 +76,19 @@
                 </div>
                 <div class="contact-info col-sm-12">
                     <div class="row">
-                        @component('components.app.contact-info', [
+                        @component('components.contact-info', [
                             'font' => 'map-marker',
                             'info_1' => config('company.address_1'),
                             'info_2' => config('company.address_2')
                             ])
                         @endcomponent
-                        @component('components.app.contact-info', [
+                        @component('components.contact-info', [
                             'font' => 'phone',
                             'info_1' => config('company.phone_1'),
                             'info_2' => config('company.phone_2')
                             ])
                         @endcomponent
-                        @component('components.app.contact-info', [
+                        @component('components.contact-info', [
                             'font' => 'envelope',
                             'info_1' => config('company.email_1'),
                             'info_2' => config('company.email_2')
