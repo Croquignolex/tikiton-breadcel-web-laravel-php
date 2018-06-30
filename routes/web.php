@@ -20,8 +20,9 @@ Route::group(['namespace' => 'App'], function() {
     Route::get('/contact', function () { return redirect(locale_route('contact')); });
     Route::get('/products', function () { return redirect(locale_route('products.index')); });
     Route::get('/products/{product}', function ($product) { return redirect(locale_route('products.show', [$product])); });
-    Route::get('/cart', function () { return redirect(locale_route('cart')); });
+    Route::get('/cart', function () { return redirect(locale_route('cart.index')); });
     Route::get('/checkout', function () { return redirect(locale_route('checkout')); });
+    //--Ajax
     Route::get('/cart/products', 'CartController@ajaxProducts');
 
     //--Localized client routes...
@@ -35,9 +36,11 @@ Route::group(['namespace' => 'App'], function() {
     Route::get('/{language}/products', 'ProductController@index')->name('products.index');
     Route::get('/{language}/products/{product}', 'ProductController@show')->name('products.show');
     Route::post('/{language}/products/{product}', 'ProductController@review');
-    Route::get('/{language}/cart', 'CartController@index')->name('cart');
+    Route::get('/{language}/cart', 'CartController@index')->name('cart.index');
     Route::get('/{language}/checkout', 'CheckoutController@index')->name('checkout');
     Route::post('/{language}/search', 'SearchController')->name('search');
+    Route::post('/{language}/cart/coupon', 'CartController@applyCoupon')->name('coupon');
+    Route::post('/{language}/cart/update/{product}', 'CartController@update')->name('cart.update');
 
     //--Localized auth routes...
     Route::group(['namespace' => 'Auth'], function() {
@@ -68,11 +71,16 @@ Route::group(['namespace' => 'App'], function() {
         Route::get('/{language}/account', 'AccountController@index')->name('account.index');
         Route::get('/{language}/account/wishlist', 'AccountController@wishlist')->name('account.wishlist');
         Route::put('/{language}/account/cart/add/{product}', 'AccountController@addProductToCart')->name('account.add.product.cart');
+        Route::put('/{language}/account/wishlist/add/{product}', 'AccountController@addProductToWishlist')->name('account.add.product.wishlist');
         Route::delete('/{language}/account/cart/remove/{product}', 'AccountController@removeProductFromCart')->name('account.remove.product.cart');
         Route::delete('/{language}/account/wishlist/remove/{product}', 'AccountController@removeProductFromWishlist')->name('account.remove.product.wishlist');
-        Route::post('/{language}/account/wishlist/toggle', 'AccountController@ajaxWishlistToggle')->name('account.ajax.wishlist.toggle');
-        Route::post('/{language}/account/cart/toggle', 'AccountController@ajaxCartToggle')->name('account.ajax.cart.toggle');
-        Route::post('/account/cart/remove', 'AccountController@ajaxCartRemove');
+        Route::delete('/{language}/account/cart/remove', 'AccountController@removeAllProductsFromCart')->name('account.remove.product.cart.all');
+        //--Ajax
+        Route::post('/{language}/account/wishlist/add', 'AccountController@ajaxWishlistAdd')->name('account.ajax.wishlist.add');
+        Route::post('/{language}/account/wishlist/remove', 'AccountController@ajaxWishlistRemove')->name('account.ajax.wishlist.remove');
+        Route::post('/{language}/account/cart/add', 'AccountController@ajaxCartAdd')->name('account.ajax.cart.add');
+        Route::post('/{language}/account/cart/remove', 'AccountController@ajaxCartRemove')->name('account.ajax.cart.remove');
+        Route::post('/{language}/account/cart/remove/all', 'AccountController@ajaxCartRemoveAll')->name('account.ajax.cart.remove.all');
 
         //--Localized password reset routes...
         Route::get('/{language}/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');

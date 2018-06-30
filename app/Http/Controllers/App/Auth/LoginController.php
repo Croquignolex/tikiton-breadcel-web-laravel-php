@@ -79,8 +79,8 @@ class LoginController extends Controller
     protected function sendFailedLoginResponse()
     {
         flash_message(
-            __('auth.error'), __('auth.login_message'),
-        'remove', 'danger', 'bounceIn', 'bounceOut');
+            trans('auth.error'), trans('auth.login_message'),
+        font('remove'), 'danger', 'bounceIn', 'bounceOut');
 
         throw ValidationException::withMessages([
             $this->username() => [trans('auth.failed')],

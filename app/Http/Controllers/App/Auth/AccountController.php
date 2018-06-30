@@ -16,9 +16,11 @@ class AccountController extends Controller
 
     const ADD_PRODUCT_TO_CART = 0;
     const REMOVE_PRODUCT_FROM_CART = 1;
-    const TOGGLE_PRODUCT_FROM_CART = 2;
-    const REMOVE_PRODUCT_FROM_WISH_LIST = 3;
-    const TOGGLE_PRODUCT_FROM_WISH_LIST = 4;
+    const ADD_PRODUCT_TO_WISH_LIST = 3;
+    const REMOVE_PRODUCT_FROM_WISH_LIST = 4;
+
+    const LIGHT_JSON_RESPONSE = 5;
+    const NORMAL_JSON_RESPONSE = 6;
 
     /**
      * AccountController constructor.
@@ -27,8 +29,8 @@ class AccountController extends Controller
     {
         $this->middleware('guest')->only('validation');
         $this->middleware('auth')->except('validation');
-        $this->middleware('ajax')->only('ajaxWishListToggle',
-            'ajaxCartToggle', 'ajaxCartRemove');
+        $this->middleware('ajax')->only('ajaxWishListAdd',
+            'ajaxWishListRemove', 'ajaxCartAdd', 'ajaxCartRemove', 'ajaxCartRemoveAll');
     }
 
     /**
@@ -99,13 +101,20 @@ class AccountController extends Controller
      */
     public function removeProductFromWishlist(Request $request, $language, Product $product)
     {
-        $response = $this->cartAndWishlistManage(
-            $product->id, static::REMOVE_PRODUCT_FROM_WISH_LIST);
+        return $this->flashSessionResponse($this->cartAndWishlistManage(
+            $product->id, static::REMOVE_PRODUCT_FROM_WISH_LIST));
+    }
 
-        flash_message($response['title'], $response['body'], $response['icon'],
-            $response['type'], $response['enter'], $response['exit']);
-
-        return redirect($this->redirectTo());
+    /**
+     * @param Request $request
+     * @param $language
+     * @param Product $product
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function addProductToWishlist(Request $request, $language, Product $product)
+    {
+        return $this->flashSessionResponse($this->cartAndWishlistManage(
+            $product->id, static::ADD_PRODUCT_TO_WISH_LIST));
     }
 
     /**
@@ -116,13 +125,8 @@ class AccountController extends Controller
      */
     public function removeProductFromCart(Request $request, $language, Product $product)
     {
-        $response = $this->cartAndWishlistManage(
-            $product->id, static::REMOVE_PRODUCT_FROM_CART);
-
-        flash_message($response['title'], $response['body'], $response['icon'],
-            $response['type'], $response['enter'], $response['exit']);
-
-        return redirect($this->redirectTo());
+        return $this->flashSessionResponse($this->cartAndWishlistManage(
+            $product->id, static::REMOVE_PRODUCT_FROM_CART));
     }
 
     /**
@@ -133,45 +137,46 @@ class AccountController extends Controller
      */
     public function addProductToCart(Request $request, $language, Product $product)
     {
-        $response = $this->cartAndWishlistManage(
-            $product->id, static::ADD_PRODUCT_TO_CART);
+        return $this->flashSessionResponse($this->cartAndWishlistManage(
+            $product->id, static::ADD_PRODUCT_TO_CART));
+    }
 
-        flash_message($response['title'], $response['body'], $response['icon'],
-            $response['type'], $response['enter'], $response['exit']);
-
-        return redirect($this->redirectTo());
+    /**
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function removeAllProductsFromCart()
+    {
+        return $this->flashSessionResponse($this->cartRemoveAllManage());
     }
 
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function ajaxWishlistToggle(Request $request)
+    public function ajaxWishlistAdd(Request $request)
     {
-        $response = $this->cartAndWishlistManage(
-            $request->input('product_id'), static::TOGGLE_PRODUCT_FROM_WISH_LIST);
-
-        return response()->json([
-            'title' => $response['title'], 'body' => $response['body'],
-            'type' => $response['type'], 'icon' => $response['icon'],
-            'enter' => $response['enter'], 'exit' => $response['exit']
-        ]);
+        return $this->jsonResponse($this->cartAndWishlistManage(
+            $request->input('product_id'), static::ADD_PRODUCT_TO_WISH_LIST));
     }
 
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function ajaxCartToggle(Request $request)
+    public function ajaxWishlistRemove(Request $request)
     {
-        $response = $this->cartAndWishlistManage(
-            $request->input('product_id'), static::TOGGLE_PRODUCT_FROM_CART);
+        return $this->jsonResponse($this->cartAndWishlistManage(
+            $request->input('product_id'), static::REMOVE_PRODUCT_FROM_WISH_LIST));
+    }
 
-        return response()->json([
-            'title' => $response['title'], 'body' => $response['body'],
-            'type' => $response['type'], 'icon' => $response['icon'],
-            'enter' => $response['enter'], 'exit' => $response['exit']
-        ]);
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function ajaxCartAdd(Request $request)
+    {
+        return $this->jsonResponse($this->cartAndWishlistManage(
+            $request->input('product_id'), static::ADD_PRODUCT_TO_CART));
     }
 
     /**
@@ -180,14 +185,17 @@ class AccountController extends Controller
      */
     public function ajaxCartRemove(Request $request)
     {
-        $response = $this->cartAndWishlistManage(
-            $request->input('product_id'), static::REMOVE_PRODUCT_FROM_CART);
+        return $this->jsonResponse($this->cartAndWishlistManage(
+            $request->input('product_id'), static::REMOVE_PRODUCT_FROM_CART));
+    }
 
-        return response()->json([
-            'title' => $response['title'], 'body' => $response['body'],
-            'type' => $response['type'], 'icon' => $response['icon'],
-            'enter' => $response['enter'], 'exit' => $response['exit']
-        ]);
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function ajaxCartRemoveAll()
+    {
+        return $this->jsonResponse($this->cartRemoveAllManage(),
+            static::LIGHT_JSON_RESPONSE);
     }
 
     /**
@@ -197,24 +205,25 @@ class AccountController extends Controller
      */
     private function cartAndWishlistManage($product_id, $request_type)
     {
+        $icon = 'info-circle'; $isIn = true;
+        $locale_body = ''; $locale_popup = '';
+        $response_old_class = ''; $response_link_new_class = '';
+        $response_popup = '';  $response_new_class = ''; $response_link_old_class = '';
+
         try
         {
-            $icon = 'info-circle';
-            $locale_body = ''; $isIn = true;
             $product = Product::find(intval($product_id));
 
             if($request_type === static::ADD_PRODUCT_TO_CART
-                || $request_type === static::REMOVE_PRODUCT_FROM_CART
-                || $request_type === static::TOGGLE_PRODUCT_FROM_CART)
+                || $request_type === static::REMOVE_PRODUCT_FROM_CART)
                 $isIn = Auth::user()->carted_products->contains($product);
             elseif($request_type === static::REMOVE_PRODUCT_FROM_WISH_LIST
-                || $request_type === static::TOGGLE_PRODUCT_FROM_WISH_LIST)
+                || $request_type === static::ADD_PRODUCT_TO_WISH_LIST)
                 $isIn = Auth::user()->wished_products->contains($product);
 
             if($isIn)
             {
-                if($request_type === static::REMOVE_PRODUCT_FROM_CART
-                    || $request_type === static::TOGGLE_PRODUCT_FROM_CART)
+                if($request_type === static::REMOVE_PRODUCT_FROM_CART)
                 {
                     Auth::user()->user_carts()
                         ->where('product_id', $product->id)
@@ -222,8 +231,7 @@ class AccountController extends Controller
                     $locale_body = 'removed_from_cart';
                     $icon = 'cart-arrow-down';
                 }
-                elseif($request_type === static::TOGGLE_PRODUCT_FROM_WISH_LIST
-                    || $request_type === static::REMOVE_PRODUCT_FROM_WISH_LIST)
+                elseif($request_type === static::REMOVE_PRODUCT_FROM_WISH_LIST)
                 {
                     Auth::user()->user_wish_lists()
                         ->where('product_id', $product->id)
@@ -232,18 +240,19 @@ class AccountController extends Controller
                     $icon = 'heart-o';
                 }
                 elseif($request_type === static::ADD_PRODUCT_TO_CART)
-                    $locale_body = 'added_already_from_cart';
+                    $locale_body = 'added_already_to_cart';
+                elseif ($request_type === static::ADD_PRODUCT_TO_WISH_LIST)
+                    $locale_body = 'added_already_to_wish_list';
             }
             else
             {
-                if($request_type === static::ADD_PRODUCT_TO_CART
-                    || $request_type === static::TOGGLE_PRODUCT_FROM_CART)
+                if($request_type === static::ADD_PRODUCT_TO_CART)
                 {
                     Auth::user()->carted_products()->save($product);
                     $locale_body = 'added_to_cart';
                     $icon = 'cart-plus';
                 }
-                elseif($request_type === static::TOGGLE_PRODUCT_FROM_WISH_LIST)
+                elseif($request_type === static::ADD_PRODUCT_TO_WISH_LIST)
                 {
                     Auth::user()->wished_products()->save($product);
                     $locale_body = 'added_to_wish_list';
@@ -255,9 +264,45 @@ class AccountController extends Controller
                     $locale_body = 'removed_already_from_wish_list';
             }
 
+            if(($isIn && ($request_type === static::REMOVE_PRODUCT_FROM_CART))
+                || (!$isIn && ($request_type === static::REMOVE_PRODUCT_FROM_CART)))
+            {
+                $locale_popup = 'add_to_cart';
+                $response_new_class = 'cart-plus';
+                $response_old_class = 'cart-arrow-down';
+                $response_link_new_class = 'add-cart';
+                $response_link_old_class = 'remove';
+            }
+            elseif (($isIn && ($request_type === static::ADD_PRODUCT_TO_CART))
+                || (!$isIn && ($request_type === static::ADD_PRODUCT_TO_CART)))
+            {
+                $locale_popup = 'remove_from_cart';
+                $response_new_class = 'cart-arrow-down';
+                $response_old_class = 'cart-plus';
+                $response_link_new_class = 'remove';
+                $response_link_old_class = 'add-cart';
+            }
+            elseif (($isIn && ($request_type === static::REMOVE_PRODUCT_FROM_WISH_LIST))
+                || (!$isIn && ($request_type === static::REMOVE_PRODUCT_FROM_WISH_LIST)))
+            {
+                $locale_popup = 'add_to_wish_list';
+                $response_new_class = 'heart-o';
+                $response_old_class = 'heart';
+                $response_link_new_class = 'favorite';
+                $response_link_old_class = 'remove';
+            }
+            elseif (($isIn && ($request_type === static::ADD_PRODUCT_TO_WISH_LIST))
+                || (!$isIn && ($request_type === static::ADD_PRODUCT_TO_WISH_LIST)))
+            {
+                $locale_popup = 'remove_from_wish_list';
+                $response_new_class = 'heart';
+                $response_old_class = 'heart-o';
+                $response_link_new_class = 'remove';
+                $response_link_old_class = 'favorite';
+            }
+
             if(!$isIn && ($request_type === static::ADD_PRODUCT_TO_CART
-                || $request_type === static::TOGGLE_PRODUCT_FROM_CART
-                ||$request_type === static::TOGGLE_PRODUCT_FROM_WISH_LIST))
+                || $request_type === static::ADD_PRODUCT_TO_WISH_LIST))
             {
                 $response_type = 'success';
                 $response_enter = 'lightSpeedIn';
@@ -273,6 +318,7 @@ class AccountController extends Controller
             }
 
             $response_icon = font($icon);
+            $response_popup = trans('general.' . $locale_popup);
             $response_body = trans('general.' . $locale_body,
                 ['product' => $product->format_name]);
         }
@@ -293,8 +339,54 @@ class AccountController extends Controller
         }
 
         return [
+            'link_old_class' => $response_link_old_class,
+            'popup' => $response_popup, 'new_class' => 'fa-' . $response_new_class,
             'title' => $response_title, 'body' => $response_body, 'type' => $response_type,
-            'icon' => $response_icon, 'enter' => $response_enter, 'exit' => $response_exit
+            'icon' => $response_icon, 'enter' => $response_enter, 'exit' => $response_exit,
+            'old_class' => 'fa-' . $response_old_class, 'link_new_class' => $response_link_new_class,
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    private function cartRemoveAllManage()
+    {
+        try
+        {
+            if(!Auth::user()->user_carts->isEmpty())
+            {
+                Auth::user()->user_carts()->delete();
+                $locale_body = 'cart_clear';
+            }
+            else $locale_body = 'cart_already_clear';
+
+            $response_type = 'info';
+            $response_enter = 'flipInY';
+            $response_exit = 'flipOutX';
+            $response_title = trans('auth.info');
+            $response_icon = font('info-circle');
+            $response_body = trans('general.' . $locale_body);
+        }
+        catch (Exception $exception)
+        {
+            if(config('app.debug'))
+            {
+                $response_body = trans('general.database_error') .
+                    '. ' . $exception->getMessage();
+            }
+            else $response_body = trans('general.database_error');
+
+            $response_type = 'danger';
+            $response_enter = 'bounceIn';
+            $response_exit = 'bounceOut';
+            $response_title = trans('auth.error');
+            $response_icon = font('exclamation-triangle');
+        }
+
+        return [
+            'title' => $response_title, 'body' => $response_body, 'type' => $response_type,
+            'icon' => $response_icon, 'enter' => $response_enter, 'exit' => $response_exit,
         ];
     }
 
@@ -304,5 +396,40 @@ class AccountController extends Controller
     private function redirectTo()
     {
         return locale_route('account.wishlist');
+    }
+
+    /**
+     * @param array $response
+     * @param int $response_type
+     * @return \Illuminate\Http\JsonResponse
+     */
+    private function jsonResponse(array $response, $response_type = AccountController::NORMAL_JSON_RESPONSE)
+    {
+        return $response_type === static::NORMAL_JSON_RESPONSE
+            ? response()->json([
+                'linkOldClass' => $response['link_old_class'],
+                'type' => $response['type'], 'icon' => $response['icon'],
+                'title' => $response['title'], 'body' => $response['body'],
+                'enter' => $response['enter'], 'exit' => $response['exit'],
+                'oldClass' => $response['old_class'], 'newClass' => $response['new_class'],
+                'linkNewClass' => $response['link_new_class'], 'popup' => $response['popup'],
+            ])
+            : response()->json([
+                'type' => $response['type'], 'icon' => $response['icon'],
+                'title' => $response['title'], 'body' => $response['body'],
+                'enter' => $response['enter'], 'exit' => $response['exit']
+            ]);
+    }
+
+    /**
+     * @param array $response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    private function flashSessionResponse(array $response)
+    {
+        flash_message($response['title'], $response['body'], $response['icon'],
+            $response['type'], $response['enter'], $response['exit']);
+
+        return back();
     }
 }

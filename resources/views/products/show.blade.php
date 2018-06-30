@@ -81,9 +81,25 @@
                             @auth
                                 @component('components.wish-list-icon-link', compact('product'))
                                 @endcomponent
+                                @component('components.cart-icon-link', compact('product'))
+                                @endcomponent
                             @endauth
-                            @component('components.cart-icon-link', compact('product'))
-                            @endcomponent
+                            @guest
+                                @component('components.guest-icon-link', [
+                                    'class' => 'favorite',
+                                    'icon' => 'heart',
+                                    'locale_message' => 'connect_to_wish_list',
+                                    'product_name' => $product->format_name
+                                    ])
+                                @endcomponent
+                                @component('components.guest-icon-link', [
+                                    'class' => 'add-cart',
+                                    'icon' => 'shopping-cart',
+                                    'locale_message' => 'connect_to_cart',
+                                    'product_name' => $product->format_name
+                                    ])
+                                @endcomponent
+                            @endguest
                         </div>
                     </div>
                 </div>

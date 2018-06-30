@@ -34,9 +34,11 @@
                 </div>
             </div>
             <div class="col-sm-4 col-lg-3">
-                @auth
-                    @include('partials.user-cart')
-                @endauth
+                @if(!Illuminate\Support\Facades\Route::is('cart.index'))
+                    @auth
+                        @include('partials.user-cart')
+                    @endauth
+                @endif
                 <div class="search float-right">
                     <form action="{{ locale_route('search') }}" method="POST">
                         {{ csrf_field() }}

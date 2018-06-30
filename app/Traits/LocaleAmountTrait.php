@@ -24,6 +24,10 @@ trait LocaleAmountTrait
         return $this->formatAmount($this->price - $discount);
     }
 
+    /**
+     * @param $amount
+     * @return string
+     */
     private function formatAmount($amount)
     {
         $separator = new AmountSeparator();

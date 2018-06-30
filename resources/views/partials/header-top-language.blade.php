@@ -6,7 +6,8 @@
     ])
     @foreach($languageService->getLanguages() as $language)
         <li>
-            <a href="{{ $languageService->isActiveLanguage($language) ? 'javascript: void(0);' : $languageService->getUrl($language) }}">
+            <a href="{{ $languageService->isActiveLanguage($language) ? 'javascript: void(0);' : $languageService->getUrl($language) }}"
+                title="{{ $languageService->getTitle($language) }}">
                 <img src="{{ flag_img_asset($language) }}" alt="...">
                 @lang($languageService->getLanguageFullName($language))
             </a>

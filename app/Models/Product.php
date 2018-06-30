@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed image
  * @property mixed price
  * @property int ranking
+ * @property mixed pivot
  * @property mixed is_new
  * @property mixed discount
  * @property mixed created_at
@@ -26,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed carted_users
  * @property mixed wished_users
  * @property mixed product_tags
+ * @property mixed is_a_discount
  * @property mixed product_reviews
  * @property mixed fr_featured_title
  * @property mixed en_featured_title
@@ -193,6 +195,22 @@ class Product extends Model
     }
 
     /**
+     * @return string
+     */
+    public function getCartLineValueAttribute()
+    {
+        return $this->formatAmount($this->calculateProductValue());
+    }
+
+    /**
+     * @return string
+     */
+    public function getCartDiscountLineValueAttribute()
+    {
+        return $this->formatAmount($this->calculateProductDiscountValue());
+    }
+
+    /**
      * @return mixed
      */
     public function getRelatedProductsAttribute()
@@ -210,5 +228,22 @@ class Product extends Model
             }
             return false;
         });
+    }
+
+    /**
+     * @return float|int
+     */
+    public function calculateProductValue()
+    {
+        return $this->price * $this->pivot->quantity;
+    }
+
+    /**
+     * @return float|int
+     */
+    public function calculateProductDiscountValue()
+    {
+        $discount = ($this->price * $this->discount) / 100;
+        return ($this->price - $discount) * $this->pivot->quantity;
     }
 }

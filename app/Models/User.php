@@ -13,6 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property mixed email
  * @property mixed token
  * @property mixed password
+ * @property mixed carted_products
  */
 class User extends Authenticatable
 {
@@ -101,6 +102,23 @@ class User extends Authenticatable
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function coupons()
+    {
+        return $this->belongsToMany('App\Models\Coupon', 'user_coupons')
+            ->withTimestamps();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function user_coupons()
+    {
+        return $this->hasMany('App\Models\UserCoupon');
+    }
+
+    /**
      * @return mixed
      */
     public function getConfirmationLinkAttribute()
@@ -108,5 +126,16 @@ class User extends Authenticatable
         return locale_route('account.validation', [
             'email' => $this->email, 'token' => $this->token
         ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function getTotalInCart()
+    {
+        return $this->carted_products->sum(function (Product $product) {
+            if($product->is_a_discount) return $product->calculateProductDiscountValue();
+            else return $product->calculateProductValue();
+        });
     }
 }

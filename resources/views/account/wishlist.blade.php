@@ -40,12 +40,12 @@
                                             <p>{{ $wished_product->format_description }}</p>
                                         </td>
                                         <td class="unit">
-                                            @if($wished_product->discount === 0)
-                                                <h5>{{ money_currency($wished_product->amount) }}</h5>
-                                            @else
+                                            @if($wished_product->is_a_discount)
                                                 <span class="old">{{ money_currency($wished_product->amount) }}</span>
                                                 <br />
                                                 <h5 class="new">{{ money_currency($wished_product->new_price) }}</h5>
+                                            @else
+                                                <h5>{{ money_currency($wished_product->amount) }}</h5>
                                             @endif
                                         </td>
                                         <td class="quantity {{ $wished_product->availability }}">

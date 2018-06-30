@@ -15,7 +15,7 @@ class UserCartsTableSeeder extends Seeder
         DB::table('user_carts')->insert([
             'user_id' => 1,
             'product_id' => 1,
-            'quantity' => 1
+            'quantity' => 7
         ]);
 
         DB::table('user_carts')->insert([

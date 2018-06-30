@@ -67,7 +67,8 @@
                                     @endcomponent
                                 @endcomponent
                                 @component('components.submit', [
-                                    'class' => 'submit', 'value' => trans('general.send')
+                                    'class' => 'submit', 'value' => trans('general.send'),
+                                    'title' => trans('general.send_your_message')
                                     ])
                                 @endcomponent
                             </div>
