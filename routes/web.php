@@ -11,7 +11,26 @@
 |
 */
 
-Route::group(['namespace' => 'App'], function() {
+Route::get('/coming', function () {
+    return view('coming');
+});
+Route::post('/coming', function (\Illuminate\Http\Request $request) {
+    if(config('app.coming') === $request->input('code'))
+    {
+        session(['coming.soon' => 'ok']);
+        return redirect('/');
+    }
+    else
+    {
+        flash_message(
+            'Erreur', 'Le code est incorrect, vous ne pouvez pas avoir un avant goût, veillez nous contacter au ' . config('company.phone_1') . ' pour plus d\'infos.',
+            font('remove'), 'danger', 'bounceIn', 'bounceOut'
+        );
+    }
+    return redirect('/coming');
+});
+
+Route::group(['namespace' => 'App', 'middleware' => 'coming'], function() {
     //--Client routes...
     Route::get('/terms', function () { return redirect(locale_route('terms')); });
     Route::get('/policy', function () { return redirect(locale_route('policy')); });

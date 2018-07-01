@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\App;
 
-class AjaxMiddleware
+class ComingSoonMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,9 +16,12 @@ class AjaxMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($request->ajax())
-            return $next($request);
+        if (session()->has('coming.soon'))
+        {
+            if(session('coming.soon') === 'ok')
+                return $next($request);
+        }
 
-        return abort(404);
+        return redirect('/coming');
     }
 }

@@ -2,6 +2,8 @@
 
 return [
 
+    'coming' => env('COMING_SOON_CODE', 'Laravel'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

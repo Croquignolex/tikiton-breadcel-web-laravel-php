@@ -20,27 +20,27 @@
                 <div class="socials text-center">
                     @component('components.icon-link', [
                         'icon' => 'facebook', 'link' => config('company.facebook'),
-                        'title' => 'goto_facebook'
+                        'title' => trans('general.goto_facebook')
                         ])
                     @endcomponent
                     @component('components.icon-link', [
                         'icon' => 'twitter', 'link' => config('company.twitter'),
-                        'title' => 'goto_twitter'
+                        'title' => trans('general.goto_twitter')
                         ])
                     @endcomponent
                     @component('components.icon-link', [
                         'icon' => 'linkedin', 'link' => config('company.linked_in'),
-                        'title' => 'goto_linked_in'
+                        'title' => trans('general.goto_linked_in')
                          ])
                     @endcomponent
                     @component('components.icon-link', [
                         'icon' => 'google-plus', 'link' => config('company.google_plus'),
-                        'title' => 'goto_google_plus'
+                        'title' =>  trans('general.goto_google_plus')
                         ])
                     @endcomponent
                     @component('components.icon-link', [
                         'icon' => 'youtube-play', 'link' => config('company.youtube'),
-                        'title' => 'goto_youtube'
+                        'title' => trans('general.goto_youtube')
                         ])
                     @endcomponent
                 </div>
