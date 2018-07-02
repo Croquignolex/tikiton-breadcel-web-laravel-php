@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\App\Auth;
 
+use App\Models\Email;
 use Exception;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Setting;
 use Illuminate\Http\Request;
+use App\Mail\UserConfirmMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Traits\ErrorFlashMessagesTrait;
@@ -78,6 +82,26 @@ class AccountController extends Controller
                 $user->is_confirmed = true;
                 $user->token = str_random(64);
                 $user->save();
+
+                $setting = Setting::where('is_activated', true)->first();
+                if($setting !== null)
+                {
+                    if($setting->receive_email_from_register)
+                    {
+                        $to = new Email();
+                        $to->email = config('company.email_2');
+                        $to->name = config('company.name');
+                        try
+                        {
+                            Mail::to($to)
+                                ->send(new UserConfirmMail($user));
+                        }
+                        catch (Exception $exception)
+                        {
+                            $this->mailError($exception);
+                        }
+                    }
+                }
 
                 flash_message(
                     trans('auth.success'),

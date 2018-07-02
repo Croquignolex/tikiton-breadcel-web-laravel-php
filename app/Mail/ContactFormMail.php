@@ -28,7 +28,7 @@ class ContactFormMail extends Mailable
      */
     public function build()
     {
-        return $this->from($this->contact->email)
+        return $this->from($this->contact)
         ->subject($this->contact->subject)
         ->view('mails.contact-form')
         ->text('mails.contact-form-plain');

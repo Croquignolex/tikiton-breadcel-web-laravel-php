@@ -405,6 +405,22 @@ function AjaxCartAndWishListProductManage(event) {
 }
 
 function amountFormat(price, locale = 'fr') {
-    if(locale === 'fr') return price.toFixed(2) + 'C$';
-    else if(locale === 'en') return 'C$' + price.toFixed(2);
+    if(locale === 'fr')
+    {
+        try {
+            return price.toFixed(2) + 'C$';
+        }
+        catch (e) {
+            return price + 'C$';
+        }
+    }
+    else if(locale === 'en')
+    {
+        try {
+            return 'C$' + price.toFixed(2);
+        }
+        catch (e) {
+            return 'C$' + price;
+        }
+    }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Mail;
 
-use App\Models\PasswordReset;
 use App\Models\User;
+use App\Models\PasswordReset;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -31,8 +31,7 @@ class UserPasswordResetMail extends Mailable
      */
     public function build()
     {
-        return $this->from(config('company.no-reply'))
-            ->subject(trans('auth.reset_pwd'))
+        return $this->subject(trans('auth.reset_pwd'))
             ->view('mails.user-password-reset')
             ->text('mails.user-password-reset-plain');
     }

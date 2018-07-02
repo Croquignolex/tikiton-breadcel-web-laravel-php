@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * @property mixed id
+ * @property mixed name
  * @property mixed email
  * @property mixed token
  * @property mixed password

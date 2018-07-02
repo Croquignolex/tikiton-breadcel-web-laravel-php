@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\App;
 
+use App\Models\Email;
+use App\Models\User;
 use Exception;
 use App\Models\Contact;
 use App\Models\Setting;
@@ -34,20 +36,27 @@ class ContactController extends Controller
             $contact = Contact::create($request->all());
 
             flash_message(
-                'auth.success', trans('general.contact_send'),
+                trans('auth.success'), trans('general.contact_send'),
                 font('envelope')
             );
 
-            if(Setting::find(1)->receive_email_from_contact)
+            $setting = Setting::where('is_activated', true)->first();
+            if($setting !== null)
             {
-                try
+                if($setting->receive_email_from_contact)
                 {
-                    Mail::to(config('company.email_1'))
-                        ->send(new ContactFormMail($contact));
-                }
-                catch (Exception $exception)
-                {
-                    $this->mailError($exception);
+                    $to = new Email();
+                    $to->email = config('company.email_2');
+                    $to->name = config('company.name');
+                    try
+                    {
+                        Mail::to($to)
+                            ->send(new ContactFormMail($contact));
+                    }
+                    catch (Exception $exception)
+                    {
+                        $this->mailError($exception);
+                    }
                 }
             }
         }
