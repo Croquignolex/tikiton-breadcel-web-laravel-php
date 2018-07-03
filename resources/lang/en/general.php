@@ -189,6 +189,23 @@ return [
     'tva' => 'VAT',
     'coupon' => 'Coupon',
     'coupon_could_not_be_applied' => 'Your coupon discount must be smaller thant your cart total price',
+    'billing_information' => 'Billing information',
+    'shipping_information' => 'Shipping information',
+    'payment_method' => 'Payment method',
+    'oder_review' => 'Oder review',
+    'first_name' => 'First name',
+    'last_name' => 'Last name',
+    'company' => 'Company',
+    'optional' => 'Optional',
+    'address' => 'Address',
+    'post_code' => 'Post code',
+    'city' => 'City',
+    'country' => 'Country',
+    'payment_method_desc' => 'Cash on delivery, on les time has possible depending from your geographic position',
+    'update_info' => 'Update my information',
+    'reload_overview' => 'Reload order overview',
+    'total' => 'Total',
+    'short_links' => 'Short links',
 
     /*
     |--------------------------------------------------------------------------

@@ -189,6 +189,24 @@ return [
     'tva' => 'TVA',
     'coupon' => 'Coupon',
     'coupon_could_not_be_applied' => 'La reduction de votre coupon doit être inférieure au prix total de votre panier',
+    'billing_information' => 'Informations de facturation',
+    'shipping_information' => 'Informations de livraison',
+    'payment_method' => 'Méthode de paiement',
+    'oder_review' => 'Récapitulatif de la commande',
+    'first_name' => 'Prénom',
+    'last_name' => 'Nom',
+    'company' => 'Compagnie',
+    'optional' => 'Optionnel',
+    'address' => 'Address',
+    'post_code' => 'Code postal',
+    'city' => 'Région',
+    'country' => 'Pays',
+    'payment_method_desc' => 'Paiement à la ivraison, le plus tôt possible dépendament de votre position géographique',
+    'update_info' => 'Mettre à jour mes informations',
+    'reload_overview' => 'Recharger le récapitulatif de la commande',
+    'total' => 'Totale',
+    'short_links' => 'Raccoursits',
+
     /*
     |--------------------------------------------------------------------------
     | Footer Language Lines

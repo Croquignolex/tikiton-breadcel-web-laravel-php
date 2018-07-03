@@ -40,7 +40,7 @@ Route::group(['namespace' => 'App', 'middleware' => 'coming'], function() {
     Route::get('/products', function () { return redirect(locale_route('products.index')); });
     Route::get('/products/{product}', function ($product) { return redirect(locale_route('products.show', [$product])); });
     Route::get('/cart', function () { return redirect(locale_route('cart.index')); });
-    Route::get('/checkout', function () { return redirect(locale_route('checkout')); });
+    Route::get('/checkout', function () { return redirect(locale_route('checkout.index')); });
     //--Ajax
     Route::get('/cart/products', 'CartController@ajaxProducts');
 
@@ -56,7 +56,8 @@ Route::group(['namespace' => 'App', 'middleware' => 'coming'], function() {
     Route::get('/{language}/products/{product}', 'ProductController@show')->name('products.show');
     Route::post('/{language}/products/{product}', 'ProductController@review');
     Route::get('/{language}/cart', 'CartController@index')->name('cart.index');
-    Route::get('/{language}/checkout', 'CheckoutController@index')->name('checkout');
+    Route::get('/{language}/checkout', 'CheckoutController@index')->name('checkout.index');
+    Route::post('/{language}/checkout/order', 'CheckoutController@order')->name('checkout.order');
     Route::post('/{language}/search', 'SearchController')->name('search');
     Route::post('/{language}/cart/coupon', 'CartController@applyCoupon')->name('coupon');
     Route::post('/{language}/cart/update/{product}', 'CartController@update')->name('cart.update');

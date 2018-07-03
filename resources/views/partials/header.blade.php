@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="col-sm-4 col-lg-3">
-                @if(!Illuminate\Support\Facades\Route::is('cart.index'))
+                @if(!Illuminate\Support\Facades\Route::is('cart.index') && !Illuminate\Support\Facades\Route::is('checkout.index'))
                     @auth
                         @include('partials.user-cart')
                     @endauth

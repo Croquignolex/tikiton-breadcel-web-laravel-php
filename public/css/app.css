@@ -2416,7 +2416,7 @@ h4.heading {
   text-transform: uppercase;
   width: auto;
 }
-.login input[type="submit"]:hover {
+.login input[type="submit"]:hover, .shipping:hover {
   background: #555555 none repeat scroll 0 0;
 }
 #facebook{background:#46629E;}
@@ -3237,7 +3237,8 @@ h4.heading {
   background:#555555;
 }
 .place-order {
-  margin-top: 30px;
+  margin-top: 20px;
+  padding: 20px;
 }
 .order-list h2, .order-list h1 {
   float: left;
@@ -3400,7 +3401,7 @@ h4.heading {
 .multi-line-text {
   white-space: pre;
 }
-.review-form, .cart-page {
+.review-form, .cart-page, .checkout-page {
   margin-bottom: 20px;
 }
 #reviews{
@@ -3445,4 +3446,13 @@ h4.heading {
 .cart-oveview-line {
   margin-bottom: 10px;
   border-bottom: 1px solid #ddd;
+}
+.shipping {
+  background: #da7612 none repeat scroll 0 0;
+  border: 0 none;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px 20px;
+  text-transform: uppercase;
 }

@@ -245,9 +245,6 @@ function removeAllProductsFromCart(event) {
     let elementDataSet = element.dataset;
     let elementParent = element.parentNode;
 
-    let text = document.createTextNode(' loading...');
-    elementParent.appendChild(text);
-
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -261,12 +258,10 @@ function removeAllProductsFromCart(event) {
 	.done(function(response) {
 		notification(response.title, response.body, response.type,
 			response.icon, response.enter, response.exit, 5000);
-        elementParent.removeChild(text);
 	})
 	.fail(function() {
 		notification(elementDataSet.errortitle, elementDataSet.errormessage, 'danger', 'fa fa-remove',
-			'bounceIn', 'bounceOut', 5000);
-        elementParent.removeChild(text);
+			'bounceIn', 'bounceOut', 5000); ;
 	});
 }
 
@@ -360,9 +355,6 @@ function AjaxCartAndWishListProductManage(event) {
     let elementDataSet = element.dataset;
     let elementParent = element.parentNode;
 
-    let text = document.createTextNode(' loading...');
-    elementParent.appendChild(text);
-
     if(elementParent.tagName === 'A')
     {
         url = elementParent.classList.contains('remove')
@@ -395,12 +387,10 @@ function AjaxCartAndWishListProductManage(event) {
             elementParent.classList.remove(response.linkOldClass);
             elementParent.classList.add(response.linkNewClass);
 		}
-        elementParent.removeChild(text);
 	})
 	.fail(function() {
 		notification(elementDataSet.errortitle, elementDataSet.errormessage, 'danger', 'fa fa-remove',
 			'bounceIn', 'bounceOut', 5000);
-        elementParent.removeChild(text);
 	});
 }
 

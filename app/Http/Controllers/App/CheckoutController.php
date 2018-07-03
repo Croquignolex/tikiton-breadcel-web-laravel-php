@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
@@ -19,6 +20,7 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        return view('checkout.index');
+        $carted_products = Auth::user()->carted_products;
+        return view('checkout', compact('carted_products'));
     }
 }

@@ -29,7 +29,7 @@ class CartController extends Controller
     public function index()
     {
         $carted_products = Auth::user()->carted_products;
-        return view('cart.index', compact('carted_products'));
+        return view('cart', compact('carted_products'));
     }
 
     /**

@@ -202,7 +202,7 @@
                             </div>
                         </div>
                     </div>
-                    <a id="procedto" href="{{ locale_route('checkout') }}">
+                    <a id="procedto" href="{{ locale_route('checkout.index') }}">
                         @lang('general.proceed_checkout')
                     </a>
                 </div>
