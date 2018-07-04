@@ -15,7 +15,6 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             'slug' => 'mr_customer_1',
-            'image' => NULL,
             'name' => 'Mr Customer 1',
             'email' => 'customer1@breadcel.com',
             'password' => Hash::make('breadcel'),
@@ -25,7 +24,6 @@ class UsersTableSeeder extends Seeder
 
         DB::table('users')->insert([
             'slug' => 'mr_customer_2',
-            'image' => NULL,
             'name' => 'Mr Customer 2',
             'email' => 'customer2@breadcel.com',
             'password' => Hash::make('breadcel'),
@@ -35,7 +33,6 @@ class UsersTableSeeder extends Seeder
 
         DB::table('users')->insert([
             'slug' => 'alex_ngombol',
-            'image' => NULL,
             'name' => 'Alex NGOMBOL',
             'email' => 'alex@breadcel.com',
             'password' => Hash::make('breadcel'),
@@ -46,7 +43,6 @@ class UsersTableSeeder extends Seeder
 
         DB::table('users')->insert([
             'slug' => 'celestin_wokgoue',
-            'image' => NULL,
             'name' => 'Celestin WOKGOUE',
             'email' => 'celestion@breadcel.com',
             'password' => Hash::make('breadcel'),

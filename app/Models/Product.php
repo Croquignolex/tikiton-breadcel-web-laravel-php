@@ -75,11 +75,28 @@ class Product extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function orders()
+    {
+        return $this->belongsToMany('App\Models\Order', 'order_products')
+            ->withPivot('quantity')->withTimestamps();
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function product_reviews()
     {
         return $this->hasMany('App\Models\ProductReview');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function order_products()
+    {
+        return $this->hasMany('App\Models\OrderProduct');
     }
 
     /**

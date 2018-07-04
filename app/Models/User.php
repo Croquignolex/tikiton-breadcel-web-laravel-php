@@ -27,7 +27,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password'
+        'name', 'email', 'password', 'first_name', 'last_name', 'post_code',
+        'city', 'country', 'phone', 'company', 'shipping_address', 'address',
+        'shipping_city', 'shipping_country', 'shipping_post_code'
     ];
 
     /**
@@ -54,6 +56,17 @@ class User extends Authenticatable
         });
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function reviewed_products()
     {
         return $this->belongsToMany('App\Models\Product', 'product_reviews')

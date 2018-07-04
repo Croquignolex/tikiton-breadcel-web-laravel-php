@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\App\Auth;
 
-use App\Models\Email;
 use Exception;
 use App\Models\User;
+use App\Models\Email;
 use App\Models\Product;
 use App\Models\Setting;
 use Illuminate\Http\Request;

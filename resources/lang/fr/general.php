@@ -206,6 +206,7 @@ return [
     'reload_overview' => 'Recharger le récapitulatif de la commande',
     'total' => 'Totale',
     'short_links' => 'Raccoursits',
+    'info_updated' => 'Vos informations ont été mis à jour',
 
     /*
     |--------------------------------------------------------------------------

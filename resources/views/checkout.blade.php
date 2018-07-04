@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                    <form action="" method="POST" @submit="validateFormElements">
+                    <form action="{{ locale_route('checkout.update') }}" method="POST" @submit="validateFormElements">
                         {{ csrf_field() }}
                         <div class="panel-group" id="checkout-progress">
                             <div class="panel panel-default">
@@ -26,31 +26,31 @@
                                             <div class="group">
                                                 @component('components.input', [
                                                     'type' => 'text', 'name' => 'first_name', 'class' => 'half',
-                                                    'value' => old('first_name'), 'auto_focus' => 'autofocus',
+                                                    'value' => $user->first_name ?? old('first_name'), 'auto_focus' => 'autofocus',
                                                     'placeholder' => trans('general.first_name') . '*'
                                                     ])
                                                 @endcomponent
                                                 @component('components.input', [
                                                     'type' => 'text', 'name' => 'last_name',
-                                                    'value' => old('last_name'), 'class' => 'half',
+                                                    'value' => $user->last_name ?? old('last_name'), 'class' => 'half',
                                                     'placeholder' => trans('general.last_name') . '*'
                                                     ])
                                                 @endcomponent
                                             </div>
                                             @component('components.input', [
-                                                'value' => old('company'),
+                                                'value' => $user->company ?? old('company'),
                                                 'type' => 'text', 'name' => 'company',
                                                 'placeholder' => trans('general.company') . '(' . trans('general.optional') . ')'
                                                 ])
                                             @endcomponent
                                             @component('components.input', [
-                                                'value' => old('address'),
+                                                'value' => $user->address ?? old(''),
                                                 'type' => 'text', 'name' => 'address',
                                                 'placeholder' => trans('general.address') . '*'
                                                 ])
                                             @endcomponent
                                             @component('components.input', [
-                                                'value' => old('post_code'),
+                                                'value' => $user->post_code ?? old('post_code'),
                                                 'type' => 'text', 'name' => 'post_code',
                                                 'placeholder' => trans('general.post_code') . '*'
                                                 ])
@@ -58,13 +58,13 @@
                                             <div class="group">
                                                 @component('components.input', [
                                                     'type' => 'text', 'name' => 'city',
-                                                    'value' => old('city'), 'class' => 'half',
+                                                    'value' => $user->city ?? old('city'), 'class' => 'half',
                                                     'placeholder' => trans('general.city') . '*'
                                                     ])
                                                 @endcomponent
                                                 @component('components.input', [
                                                     'type' => 'text', 'name' => 'country',
-                                                    'value' => old('country'), 'class' => 'half',
+                                                    'value' => $user->country ?? old('country'), 'class' => 'half',
                                                     'placeholder' => trans('general.country') . '*'
                                                     ])
                                                 @endcomponent
@@ -72,13 +72,13 @@
                                             <div class="group">
                                                 @component('components.input', [
                                                     'type' => 'email', 'name' => 'email',
-                                                    'value' => old('email'), 'class' => 'half',
+                                                    'value' => $user->email ?? old('email'), 'class' => 'half',
                                                     'placeholder' => trans('general.email') . '*'
                                                     ])
                                                 @endcomponent
                                                 @component('components.input', [
                                                     'type' => 'text', 'name' => 'phone',
-                                                    'value' => old('phone'), 'class' => 'half',
+                                                    'value' => $user->phone ?? old('phone'), 'class' => 'half',
                                                     'placeholder' => trans('general.phone') . '*'
                                                     ])
                                                 @endcomponent
@@ -97,13 +97,13 @@
                                     <div class="panel-body">
                                         <div class="bill-info">
                                             @component('components.input', [
-                                                'value' => old('shipping_address'),
+                                                'value' => $user->shipping_address ?? old('shipping_address'),
                                                 'type' => 'text', 'name' => 'shipping_address',
                                                 'placeholder' => trans('general.address') . '*'
                                                 ])
                                             @endcomponent
                                             @component('components.input', [
-                                                'value' => old('shipping_post_code'),
+                                                'value' => $user->shipping_post_code ?? old('shipping_post_code'),
                                                 'type' => 'text', 'name' => 'shipping_post_code',
                                                 'placeholder' => trans('general.post_code') . '*'
                                                 ])
@@ -111,13 +111,13 @@
                                             <div class="group">
                                                 @component('components.input', [
                                                     'type' => 'text', 'name' => 'shipping_city',
-                                                    'value' => old('shipping_city'), 'class' => 'half',
+                                                    'value' => $user->shipping_city ?? old('shipping_city'), 'class' => 'half',
                                                     'placeholder' => trans('general.city') . '*'
                                                     ])
                                                 @endcomponent
                                                 @component('components.input', [
                                                     'type' => 'text', 'name' => 'shipping_country',
-                                                    'value' => old('shipping_country'), 'class' => 'half',
+                                                    'value' => $user->shipping_country ?? old('shipping_country'), 'class' => 'half',
                                                     'placeholder' => trans('general.country') . '*'
                                                     ])
                                                 @endcomponent
@@ -149,7 +149,16 @@
                                         <div class="col-sm-4">
                                             <div class="information">
                                                 <h3>{{ mb_strtoupper(trans('general.billing_information')) }}</h3>
-                                                <p>Thomas Albert</p>
+                                                <p>
+                                                    {{ $user->first_name }} {{ $user->last_name }} <br />
+                                                    {{ $user->email }} <br />
+                                                    {{ $user->phone }} <br />
+                                                    {{ $user->company }}
+                                                </p>
+                                                <p>
+                                                    {{ $user->address }} <br />
+                                                    {{ $user->post_code }} {{ $user->city }} {{ $user->country }}
+                                                </p>
                                                 @component('components.submit', [
                                                     'class' => 'shipping', 'value' => trans('general.update_info'),
                                                     'title' => trans('general.reload_overview')
@@ -161,7 +170,10 @@
                                         <div class="col-sm-4">
                                             <div class="information">
                                                 <h3>{{ mb_strtoupper(trans('general.shipping_information')) }}</h3>
-                                                <p>Thomas Albert</p>
+                                                <p>
+                                                    {{ $user->shipping_address }} <br />
+                                                    {{ $user->shipping_post_code }} {{ $user->shipping_city }} {{ $user->shipping_country }}
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -173,27 +185,77 @@
                                         <div class="col-sm-12">
                                             <div class="place-order">
                                                 <div class="order-list">
-                                                    <h1>{{ mb_strtoupper(trans('general.products')) }}</h1>
-                                                    <h2>{{ mb_strtoupper(trans('general.total')) }}</h2>
+                                                    <div class="row cart-oveview-line">
+                                                        <div class="col-xs-4">
+                                                            <strong>{{ mb_strtoupper(trans('general.quantity')) }}</strong>
+                                                        </div>
+                                                        <div class="col-xs-4">
+                                                            <strong>{{ mb_strtoupper(trans('general.products')) }}</strong>
+                                                        </div>
+                                                        <div class="col-xs-4 text-right">
+                                                            <strong>{{ mb_strtoupper(trans('general.total')) }}</strong>
+                                                        </div>
+                                                    </div>
                                                     @foreach($carted_products as $carted_product)
-                                                        <h3>
-                                                            {{ $carted_product->pivot->quantity }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $carted_product->format_name }}
-                                                            @if($carted_product->is_a_discount)
-                                                                <span>
+                                                        <div class="row cart-oveview-line">
+                                                            <div class="col-xs-4">
+                                                                {{ $carted_product->pivot->quantity }}
+                                                            </div>
+                                                            <div class="col-xs-4">
+                                                                {{ $carted_product->format_name }}
+                                                            </div>
+                                                            <div class="col-xs-4">
+                                                                @if($carted_product->is_a_discount)
+                                                                    <span>
                                                                     <i class="old">{{ money_currency($carted_product->cart_line_value) }}</i>
-                                                                    {{ money_currency($carted_product->cart_discount_line_value) }}
+                                                                        {{ money_currency($carted_product->cart_discount_line_value) }}
                                                                 </span>
-                                                            @else
-                                                                <span>{{ money_currency($carted_product->cart_line_value) }}</span>
-                                                            @endif
-                                                        </h3>
+                                                                @else
+                                                                    <span>{{ money_currency($carted_product->cart_line_value) }}</span>
+                                                                @endif
+                                                            </div>
+                                                        </div>
                                                     @endforeach
+                                                    <div class="row cart-oveview-line text-uppercase">
+                                                        <div class="col-xs-6">
+                                                            <strong>@lang('general.sub_total')</strong>
+                                                        </div>
+                                                        <div class="col-xs-6 text-right">
+                                                            <strong>
+                                                                {{ money_currency($cartService->getSubTotal()) }}
+                                                            </strong>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row cart-oveview-line text-uppercase">
+                                                        <div class="col-xs-6">
+                                                            <strong>@lang('general.tva') ({{ $cartService->getTVAPercentage() }}%)</strong>
+                                                        </div>
+                                                        <div class="col-xs-6 text-right">
+                                                            <strong>
+                                                                {{ money_currency($cartService->getTVA()) }}
+                                                            </strong>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row cart-oveview-line text-uppercase">
+                                                        <div class="col-xs-6">
+                                                            <strong>@lang('general.coupon') {{ $cartService->getCouponCode() }}</strong>
+                                                        </div>
+                                                        <div class="col-xs-6 text-right">
+                                                            <strong>
+                                                                - {{ money_currency($cartService->getCouponDiscount()) }}
+                                                            </strong>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row text-theme h3 text-uppercase">
+                                                        <div class="col-xs-6">
+                                                            @lang('general.big_total')
+                                                        </div>
+                                                        <div class="col-xs-6 text-right">
+                                                            {{ money_currency($cartService->getBigTotal()) }}
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="final-total">
-                                                    <h4>@lang('general.sub_total') <span>{{ money_currency($cartService->getSubTotal()) }}</span></h4>
-                                                    <h4>@lang('general.tva')({{ $cartService->getTVAPercentage() }}%) <span>{{ money_currency($cartService->getTVA()) }}</span></h4>
-                                                    <h4>@lang('general.coupon'){{ $cartService->getCouponCode() }} <span> - {{ money_currency($cartService->getCouponDiscount()) }}</span></h4>
-                                                    <h5>@lang('general.big_total') <span>{{ money_currency($cartService->getBigTotal()) }}</span></h5>
                                                     <a href="javascript: void(0);"
                                                        onclick="document.getElementById('place-order').submit();">
                                                         @lang('general.order')
@@ -218,8 +280,7 @@
                         </ul>
                     </div>
                 </div>
-                <form id="place-order" method="POST" class="hidden"
-                    action="{{ locale_route('checkout.order') }}">
+                <form id="place-order" method="POST" class="hidden" action="">
                     {{ csrf_field() }}
                 </form>
             </div>

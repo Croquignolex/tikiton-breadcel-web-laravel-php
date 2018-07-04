@@ -206,6 +206,7 @@ return [
     'reload_overview' => 'Reload order overview',
     'total' => 'Total',
     'short_links' => 'Short links',
+    'info_updated' => 'Your information has been updated',
 
     /*
     |--------------------------------------------------------------------------

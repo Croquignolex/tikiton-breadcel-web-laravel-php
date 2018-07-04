@@ -57,10 +57,11 @@ Route::group(['namespace' => 'App', 'middleware' => 'coming'], function() {
     Route::post('/{language}/products/{product}', 'ProductController@review');
     Route::get('/{language}/cart', 'CartController@index')->name('cart.index');
     Route::get('/{language}/checkout', 'CheckoutController@index')->name('checkout.index');
-    Route::post('/{language}/checkout/order', 'CheckoutController@order')->name('checkout.order');
-    Route::post('/{language}/search', 'SearchController')->name('search');
+    Route::post('/{language}/checkout', 'CheckoutController@order');
+    Route::post('/{language}/checkout/update', 'CheckoutController@update')->name('checkout.update');
     Route::post('/{language}/cart/coupon', 'CartController@applyCoupon')->name('coupon');
     Route::post('/{language}/cart/update/{product}', 'CartController@update')->name('cart.update');
+    Route::post('/{language}/search', 'SearchController')->name('search');
 
     //--Localized auth routes...
     Route::group(['namespace' => 'Auth'], function() {

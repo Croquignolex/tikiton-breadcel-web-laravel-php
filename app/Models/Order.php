@@ -25,6 +25,31 @@ class Order extends Model
     ];
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function products()
+    {
+        return $this->belongsToMany('App\Models\Products', 'order_products')
+            ->withPivot('quantity')->withTimestamps();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function order_products()
+    {
+        return $this->hasMany('App\Models\OrderProduct');
+    }
+
+    /**
      * Boot functions
      */
     protected static function boot()
