@@ -168,8 +168,8 @@ class ProductController extends Controller
         $tag = Tag::where('slug', $filter['tag'])->first();
         if(!is_null($tag))
         {
-            $filterProducts = $filterProducts->filter(function ($value) use ($filter, $tag) {
-                foreach ($value->product_tags as $current_product_tag)
+            $filterProducts = $filterProducts->filter(function (Product $product) use ($filter, $tag) {
+                foreach ($product->product_tags as $current_product_tag)
                 {
                     if($current_product_tag->tag_id === $tag->id)
                     {

@@ -21,10 +21,5 @@ class UserCouponsTableSeeder extends Seeder
             'user_id' => 1,
             'coupon_id' => 2
         ]);
-
-        DB::table('user_coupons')->insert([
-            'user_id' => 2,
-            'coupon_id' => 2
-        ]);
     }
 }

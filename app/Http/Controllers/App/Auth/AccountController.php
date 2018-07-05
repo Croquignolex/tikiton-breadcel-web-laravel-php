@@ -102,11 +102,11 @@ class AccountController extends Controller
                         }
                     }
                 }
-
                 flash_message(
                     trans('auth.success'),
                     trans('general.well_confirmed', ['name' => $user->name])
                 );
+
             }
         }
         catch (Exception $exception)

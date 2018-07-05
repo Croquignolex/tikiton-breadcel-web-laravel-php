@@ -71,17 +71,14 @@
                                             </div>
                                             <div class="group">
                                                 @component('components.input', [
-                                                    'type' => 'email', 'name' => 'email',
-                                                    'value' => $user->email ?? old('email'), 'class' => 'half',
-                                                    'placeholder' => trans('general.email') . '*'
-                                                    ])
-                                                @endcomponent
-                                                @component('components.input', [
                                                     'type' => 'text', 'name' => 'phone',
                                                     'value' => $user->phone ?? old('phone'), 'class' => 'half',
                                                     'placeholder' => trans('general.phone') . '*'
                                                     ])
                                                 @endcomponent
+                                                <p class="text-right text-theme">
+                                                    {{ $user->email }}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>

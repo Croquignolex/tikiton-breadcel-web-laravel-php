@@ -202,9 +202,11 @@
                             </div>
                         </div>
                     </div>
-                    <a id="procedto" href="{{ locale_route('checkout.index') }}">
-                        @lang('general.proceed_checkout')
-                    </a>
+                    @if(!$carted_products->isEmpty())
+                        <a id="procedto" href="{{ locale_route('checkout.index') }}">
+                            @lang('general.proceed_checkout')
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

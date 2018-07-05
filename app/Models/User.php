@@ -27,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'first_name', 'last_name', 'post_code',
+        'name', 'password', 'first_name', 'last_name', 'post_code',
         'city', 'country', 'phone', 'company', 'shipping_address', 'address',
         'shipping_city', 'shipping_country', 'shipping_post_code'
     ];
@@ -121,7 +121,7 @@ class User extends Authenticatable
     public function coupons()
     {
         return $this->belongsToMany('App\Models\Coupon', 'user_coupons')
-            ->withTimestamps();
+            ->withPivot('is_activated')->withTimestamps();
     }
 
     /**

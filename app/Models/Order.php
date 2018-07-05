@@ -6,6 +6,7 @@ use App\Traits\SlugRouteTrait;
 use App\Traits\LocaleAmountTrait;
 use App\Traits\LocaleDateTimeTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Order extends Model
 {
@@ -21,8 +22,21 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        'reference', 'status'
+        'reference', 'status', 'discount', 'user_id'
     ];
+
+    /**
+     * @return string
+     */
+    public static function getUniqueOrderReference()
+    {
+        $reference = 'BC' . now()->year . 'N' . random_int(10000000, 99999999);
+
+        if(static::where(['reference' => $reference])->first() !== null)
+            return static::getUniqueOrderReference();
+
+        return $reference;
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -37,7 +51,7 @@ class Order extends Model
      */
     public function products()
     {
-        return $this->belongsToMany('App\Models\Products', 'order_products')
+        return $this->belongsToMany('App\Models\Product', 'order_products')
             ->withPivot('quantity')->withTimestamps();
     }
 

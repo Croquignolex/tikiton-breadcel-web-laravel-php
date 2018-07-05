@@ -16,7 +16,7 @@ class OrdersTableSeeder extends Seeder
             'slug' => 'bc181',
             'reference' => 'BC181',
             'user_id' => 1,
-            'coupon_id' => 1,
+            'discount' => 3,
         ]);
 
         DB::table('orders')->insert([
@@ -24,7 +24,7 @@ class OrdersTableSeeder extends Seeder
             'reference' => 'BC182',
             'user_id' => 1,
             'status' => 1,
-            'coupon_id' => 2,
+            'discount' => 2,
         ]);
 
         DB::table('orders')->insert([
@@ -32,7 +32,7 @@ class OrdersTableSeeder extends Seeder
             'reference' => 'BC183',
             'user_id' => 1,
             'status' => 2,
-            'coupon_id' => 1,
+            'discount' => 1,
         ]);
     }
 }

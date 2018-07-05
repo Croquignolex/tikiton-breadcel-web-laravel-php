@@ -25,8 +25,8 @@ class HomeController extends Controller
                 ->orWhere('is_new', true)
                 ->get();
 
-            $featured_products = Product::all()->filter(function ($value) {
-                return ($value->ranking === 10) || $value->is_featured;
+            $featured_products = Product::all()->filter(function (Product $product) {
+                return ($product->ranking === 10) || $product->is_featured;
             });
 
             $most_sold_products = Product::where('is_most_sold', true)->get();
@@ -35,7 +35,7 @@ class HomeController extends Controller
 
             $customers_nbr = User::where('is_admin', false)->where('is_super_admin', false)->count();
             $products_nbr = Product::all()->count();
-            $orders_nbr = Order::all()->count();
+            $orders_nbr = Order::where('status', Order::ORDERED)->count();
             $sales_nbr = Order::where('status', Order::SOLD)->count();
         }
         catch (Exception $exception)

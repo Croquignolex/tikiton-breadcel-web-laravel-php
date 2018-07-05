@@ -40,9 +40,23 @@ class CartController extends Controller
      */
     public function update(CartUpdateRequest $request, $language, Product $product)
     {
-        Auth::user()
-            ->carted_products()
-            ->updateExistingPivot($product->id, ['quantity' => $request->quantity]);
+        if($product->stock >= $request->quantity)
+        {
+            Auth::user()
+                ->carted_products()
+                ->updateExistingPivot($product->id, ['quantity' => $request->quantity]);
+        }
+        else
+        {
+            Auth::user()
+                ->carted_products()
+                ->updateExistingPivot($product->id, ['quantity' => $product->stock]);
+
+            flash_message(
+                trans('auth.error'),
+                trans('general.max_to_order', ['max' => $product->stock, 'product' => $product->format_name]),
+                font('remove'), 'danger', 'bounceIn', 'bounceOut');
+        }
 
         return $this->redirectTo();
     }
@@ -69,23 +83,29 @@ class CartController extends Controller
             $coupon = $user->coupons->where('code', $coupon_code)->first();
             if($coupon !== null)
             {
-                if($user->getTotalInCart() > $coupon->discount)
+                if($coupon->pivot->is_activated)
                 {
-                    session(['coupon.discount' => $coupon->discount]);
-                    session(['coupon.code' => $coupon_code]);
-                    flash_message(
-                        trans('auth.info'), trans('general.coupon_applied', ['code' => $coupon_code]),
-                        font('info-circle'), 'info'
-                    );
+                    if($user->getTotalInCart() > $coupon->discount)
+                    {
+                        session(['coupon' => $coupon]);
+                        flash_message(
+                            trans('auth.info'), trans('general.coupon_applied', ['code' => $coupon_code]),
+                            font('info-circle'), 'info'
+                        );
+                    }
+                    else
+                    {
+                        session()->forget(['coupon.discount', 'coupon.code']);
+                        flash_message(
+                            trans('auth.info'), trans('general.coupon_could_not_be_applied'),
+                            font('info-circle'), 'info'
+                        );
+                    }
                 }
-                else
-                {
-                    session()->forget(['coupon.discount', 'coupon.code']);
-                    flash_message(
-                        trans('auth.info'), trans('general.coupon_could_not_be_applied'),
-                        font('info-circle'), 'info'
-                    );
-                }
+                else flash_message(
+                    trans('auth.error'), trans('general.coupon_already_used', ['coupon' => $coupon_code]),
+                    font('remove'), 'danger', 'bounceIn', 'bounceOut'
+                );
             }
             else flash_message(
                 trans('auth.error'), trans('general.incorrect_coupon'),

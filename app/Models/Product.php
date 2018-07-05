@@ -23,10 +23,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed is_new
  * @property mixed discount
  * @property mixed created_at
+ * @property mixed is_featured
  * @property mixed format_name
  * @property mixed carted_users
  * @property mixed wished_users
  * @property mixed product_tags
+ * @property mixed availability
  * @property mixed is_a_discount
  * @property mixed product_reviews
  * @property mixed fr_featured_title
@@ -39,6 +41,8 @@ class Product extends Model
     use SlugRouteTrait, LocaleNameTrait, LocaleDescriptionTrait,
         LocaleSlugSaveTrait, LocaleAmountTrait, LocaleDateTimeTrait;
 
+    const IN_STOCk = 'in_stock';
+    const OUT_OF_STOCK = 'out_of_stock';
     const SORT_BY_NAME_ASC = 'name_asc';
     const SORT_BY_NAME_DESC = 'name_desc';
     const SORT_BY_PRICE_ASC = 'price_asc';
@@ -163,8 +167,8 @@ class Product extends Model
      */
     public function getAvailabilityAttribute()
     {
-        if($this->stock <= 0) return 'out_of_stock';
-        else return 'in_stock';
+        if($this->stock <= 0) return static::OUT_OF_STOCK;
+        else return static::IN_STOCk;
     }
 
     /**
@@ -232,8 +236,8 @@ class Product extends Model
      */
     public function getRelatedProductsAttribute()
     {
-        return Product::where('id', '<>', $this->id)->get()->filter(function ($value) {
-            foreach ($value->product_tags as $current_product_tag)
+        return Product::where('id', '<>', $this->id)->get()->filter(function (Product $product) {
+            foreach ($product->product_tags as $current_product_tag)
             {
                 foreach ($this->product_tags as $this_product_tag)
                 {

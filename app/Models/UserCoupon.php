@@ -15,7 +15,7 @@ class UserCoupon extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'product_id'
+        'user_id', 'product_id', 'is_activated'
     ];
 
     /**

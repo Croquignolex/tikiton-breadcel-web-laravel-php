@@ -42,7 +42,7 @@ class CartService
      */
     public function getCouponCode()
     {
-        return $this->hasCoupon() ? '(' . session('coupon.code') . ')' : '';
+        return $this->hasCoupon() ? '(' . session('coupon')->code . ')' : '';
     }
 
     /**
@@ -74,7 +74,7 @@ class CartService
      */
     private function coupon()
     {
-        return $this->hasCoupon() ? session('coupon.discount') : 0;
+        return $this->hasCoupon() ? session('coupon')->discount : 0;
     }
 
     /**
@@ -82,11 +82,11 @@ class CartService
      */
     private function hasCoupon()
     {
-        if(session()->has('coupon.discount'))
+        if(session()->has('coupon'))
         {
-            if(Auth::user()->getTotalInCart() > session('coupon.discount'))
+            if(Auth::user()->getTotalInCart() > session('coupon')->discount)
                 return true;
-            else session()->forget(['coupon.discount', 'coupon.code']);
+            else session()->forget(['coupon']);
         }
 
         return false;

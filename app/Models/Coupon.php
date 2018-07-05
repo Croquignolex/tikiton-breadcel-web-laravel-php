@@ -25,7 +25,7 @@ class Coupon extends Model
     public function users()
     {
         return $this->belongsToMany('App\Models\User', 'user_coupons')
-            ->withTimestamps();
+            ->withPivot('is_activated')->withTimestamps();
     }
 
     /**

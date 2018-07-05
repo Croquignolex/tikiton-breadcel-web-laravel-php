@@ -17,7 +17,7 @@ class CreateCouponsTable extends Migration
             $table->increments('id');
             $table->string('code');
             $table->double('discount');
-            $table->string('description');
+            $table->text('description');
             $table->timestamps();
         });
     }

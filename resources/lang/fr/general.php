@@ -95,6 +95,7 @@ return [
     'customers' => 'Clients',
     'items' => 'Articles',
     'sold_items' => 'Articles vendus',
+    'sold' => 'Ventes',
     'leave_message' => 'Laisser un méssage',
     'name' => 'Nom',
     'password' => 'Mot de passe',
@@ -207,6 +208,11 @@ return [
     'total' => 'Totale',
     'short_links' => 'Raccoursits',
     'info_updated' => 'Vos informations ont été mis à jour',
+    'success_order' => 'Votre commande à été bien envoiyée, vérifier vos mails afin de voir les détails de votre commande',
+    'out_of_stock_products' => 'Votre panier contient des products en rupture de stock, vous ne pouvez pas les commander, enlevez les',
+    'max_to_order' => 'Vous ne pouvez que commender jusqu\'à :max de :product',
+    'fill_information' => 'Completez vos informtions, mettez-les à jour avant de passer votre commande',
+    'coupon_already_used' => 'Vous avez déjà utilisé le code coupon de reduction :coupon',
 
     /*
     |--------------------------------------------------------------------------

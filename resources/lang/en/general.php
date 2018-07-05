@@ -95,6 +95,7 @@ return [
     'customers' => 'Customers',
     'items' => 'Items',
     'sold_items' => 'Sold items',
+    'sold' => 'Sales',
     'leave_message' => 'Leave a message',
     'name' => 'Name',
     'password' => 'Password',
@@ -207,6 +208,11 @@ return [
     'total' => 'Total',
     'short_links' => 'Short links',
     'info_updated' => 'Your information has been updated',
+    'success_order' => 'Your oder has been well sent, check your mail to see your oder details',
+    'out_of_stock_products' => 'Your cart contains out of stock products, you can\'t order them, remove them',
+    'max_to_order' => 'You can order only up to :max of :product',
+    'fill_information' => 'Complete your information, update them before purchase your order',
+    'coupon_already_used' => 'You had already used discount coupon code :coupon',
 
     /*
     |--------------------------------------------------------------------------

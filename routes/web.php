@@ -30,7 +30,7 @@ Route::post('/coming', function (\Illuminate\Http\Request $request) {
     return redirect('/coming');
 });
 
-Route::group(['namespace' => 'App', 'middleware' => 'coming'], function() {
+Route::group(['namespace' => 'App', 'middleware' => 'coming.soon'], function() {
     //--Client routes...
     Route::get('/terms', function () { return redirect(locale_route('terms')); });
     Route::get('/policy', function () { return redirect(locale_route('policy')); });
