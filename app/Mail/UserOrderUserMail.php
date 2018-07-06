@@ -2,17 +2,17 @@
 
 namespace App\Mail;
 
-use App\Models\User;
+use App\Models\Order;
 
-class UserOrderMail extends BaseMail
+class UserOrderUserMail extends BaseOrderMail
 {
     /**
      * UserOrderMail constructor.
-     * @param User $user
+     * @param Order $order
      */
-    public function __construct(User $user)
+    public function __construct(Order $order)
     {
-        parent::__construct($user);
+        parent::__construct($order);
     }
 
     /**

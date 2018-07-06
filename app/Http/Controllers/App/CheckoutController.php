@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\App;
 
-use App\Models\Coupon;
-use App\Models\User;
+use App\Mail\NewOrderMail;
+use App\Models\Email;
 use Exception;
+use App\Models\User;
 use App\Models\Order;
-use App\Mail\UserOrderMail;
+use App\Models\Coupon;
+use App\Mail\UserOrderUserMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -70,8 +72,6 @@ class CheckoutController extends Controller
                     'discount' => session()->has('coupon') ? session('coupon')->discount : 0
                 ]);
 
-                $this->disableCoupon($user);
-
                 foreach ($user->carted_products as $product)
                 {
                     $product_quantity_in_cart = $product->pivot->quantity;
@@ -81,12 +81,26 @@ class CheckoutController extends Controller
                     $product->save();
                 }
 
+                $to = new Email();
+                $to->email = config('company.email_1');
+                $to->name = config('company.name');
+                try
+                {
+                    Mail::to($user)->send(new UserOrderUserMail($order));
+                    Mail::to($to)->send(new NewOrderMail($order));
+                }
+                catch (Exception $exception)
+                {
+                    $this->mailError($exception);
+                }
 
-                Mail::to($user)->send(new UserOrderMail($user));
+
 
                 session()->forget(['coupon']);
                 foreach ($user->user_carts as $user_cart)
                     $user_cart->delete();
+
+                $this->disableCoupon($user);
 
                 flash_message(
                     trans('auth.success'), trans('general.success_order')

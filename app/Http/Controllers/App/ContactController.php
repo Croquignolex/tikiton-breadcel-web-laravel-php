@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\App;
 
-use App\Models\Email;
-use App\Models\User;
 use Exception;
+use App\Models\Email;
 use App\Models\Contact;
 use App\Models\Setting;
 use App\Mail\ContactFormMail;
@@ -46,7 +45,7 @@ class ContactController extends Controller
                 if($setting->receive_email_from_contact)
                 {
                     $to = new Email();
-                    $to->email = config('company.email_2');
+                    $to->email = config('company.email_1');
                     $to->name = config('company.name');
                     try
                     {

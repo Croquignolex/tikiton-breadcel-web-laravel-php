@@ -4,10 +4,10 @@ namespace App\Mail;
 
 use App\Models\User;
 
-class UserConfirmMail extends BaseMail
+class UserRegisterUserMail extends BaseUserMail
 {
     /**
-     * UserConfirmMail constructor.
+     * UserRegisterMail constructor.
      * @param User $user
      */
     public function __construct(User $user)
@@ -22,9 +22,8 @@ class UserConfirmMail extends BaseMail
      */
     public function build()
     {
-        return $this->from($this->user)
-            ->subject('Nouveau client')
-            ->view('mails.user-confirm')
-            ->text('mails.user-confirm-plain');
+        return $this->subject(trans('auth.sign_up'))
+            ->view('mails.user-register')
+            ->text('mails.user-register-plain');
     }
 }

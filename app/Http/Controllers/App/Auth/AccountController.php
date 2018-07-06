@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\App\Auth;
 
+use App\Mail\NewCustomerMail;
 use Exception;
 use App\Models\User;
 use App\Models\Email;
 use App\Models\Product;
 use App\Models\Setting;
 use Illuminate\Http\Request;
-use App\Mail\UserConfirmMail;
+use App\Mail\UserConfirmUserMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -89,12 +90,11 @@ class AccountController extends Controller
                     if($setting->receive_email_from_register)
                     {
                         $to = new Email();
-                        $to->email = config('company.email_2');
+                        $to->email = config('company.email_1');
                         $to->name = config('company.name');
                         try
                         {
-                            Mail::to($to)
-                                ->send(new UserConfirmMail($user));
+                            Mail::to($to)->send(new NewCustomerMail($user));
                         }
                         catch (Exception $exception)
                         {

@@ -1,6 +1,6 @@
 @extends('layouts.mail')
 
-@section('title', 'Client')
+@section('title', 'Nouveau client')
 
 @section('head', mb_strtoupper('Nouveau client'))
 
@@ -11,7 +11,7 @@
                 <strong>
                     Un nouveau client viens de confirmer son compte
                     le {{ $user->fr_updated_date }} à {{ $user->fr_updated_time }}.
-                    Voici ses informations de base:
+                    Voici les informations de base ce client:
                 </strong>
             </p>
             <p style="text-align: justify;">

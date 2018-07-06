@@ -1,6 +1,6 @@
 @extends('layouts.mail')
 
-@section('title', 'contact')
+@section('title', 'Contact')
 
 @section('head', mb_strtoupper('Formulaire de contact'))
 
@@ -9,9 +9,9 @@
         <td>
             <p style="text-align: justify;">
                 <strong>
-                    Un message vous à été envoyé dépuis le formulaire de
+                    Ce méssage vous à été envoyé dépuis le formulaire de
                     contact le {{ $contact->fr_created_date }} à {{ $contact->fr_created_time }}.
-                    Voici le contenue:
+                    Voici les détails de ce méssage:
                 </strong>
             </p>
             <p style="text-align: justify;">

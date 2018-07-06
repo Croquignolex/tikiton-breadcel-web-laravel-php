@@ -27,4 +27,9 @@ return [
     'body_password_reset_msg' => 'Le :date, vous avez démandé à ce que votre mot de passe soit réinitialisé.
         Si vous n\'avez pas éffectués cette action, ignorez simplement cet email. Si vous avez éffectués 
         cette action, s\'il vous plais validez votre email en cliquant sur le bouton ci-dessous',
+    'top_new_order_msg' => 'Salut :name, voici le résumé de votre commande',
+    'body_new_order_msg' => 'Le :date, vous avez soumis une commande.
+        Si vous n\'avez pas éffectués cette action, ignorez simplement cet email. Si vous avez éffectués 
+        cette action, s\'il vous plais vérifiez la progression de votre commande en cliquant sur le bouton ci-dessous',
+    'check_order_progress' => 'Progression de la commande',
 ];

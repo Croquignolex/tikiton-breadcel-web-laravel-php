@@ -1,7 +1,7 @@
 {{ mb_strtoupper('Nouveau client') }}<br /><br /><br />
 Un nouveau client viens de confirmer son compte
 le {{ $user->fr_updated_date }} à {{ $user->fr_updated_time }}.
-Voici ses informations de base:<br /><br />
+Voici les informations de base ce client:<br /><br />
 Nom: {{ $user->format_name }}<br />
 Email: {{ $user->email }}<br /><br />
 <a href="#" target="_blank">Souhaitez lui la bienvenue</a><br /><br />

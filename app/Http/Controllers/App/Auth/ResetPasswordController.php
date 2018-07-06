@@ -139,7 +139,7 @@ class ResetPasswordController extends Controller
     protected function sendResetResponse($response)
     {
         flash_message(trans('auth.success'), trans($response), font('check'));
-        return redirect(locale_route('login.show'))->with('status', trans($response));
+        return redirect(locale_route('login'))->with('status', trans($response));
     }
 
     /**

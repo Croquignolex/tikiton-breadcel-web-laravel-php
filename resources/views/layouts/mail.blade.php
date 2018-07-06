@@ -22,7 +22,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; border-top: 1px solid #DA7612; border-left: 1px solid #DA7612; border-right: 1px solid #DA7612;">
+                <table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
                     <tbody>
                     <tr>
                         <td style="background:#DA7612; padding:20px; color:#fff; text-align:center;">
@@ -33,7 +33,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <div style="padding: 40px; background: #fff; border-left: 1px solid #DA7612; border-right: 1px solid #DA7612; border-bottom: 1px solid #DA7612;">
+                <div style="padding: 40px; background: #fff;">
                     <table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
                         <tbody>
                             @yield('body')

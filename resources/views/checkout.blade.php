@@ -184,24 +184,37 @@
                                                 <div class="order-list">
                                                     <div class="row cart-oveview-line">
                                                         <div class="col-xs-4">
+                                                            <strong>{{ mb_strtoupper(trans('general.name')) }}</strong>
+                                                        </div>
+                                                        <div class="col-xs-3 text-right">
+                                                            <strong>{{ mb_strtoupper(trans('general.price')) }}</strong>
+                                                        </div>
+                                                        <div class="col-xs-2 text-right">
                                                             <strong>{{ mb_strtoupper(trans('general.quantity')) }}</strong>
                                                         </div>
-                                                        <div class="col-xs-4">
-                                                            <strong>{{ mb_strtoupper(trans('general.products')) }}</strong>
-                                                        </div>
-                                                        <div class="col-xs-4 text-right">
+                                                        <div class="col-xs-3 text-right">
                                                             <strong>{{ mb_strtoupper(trans('general.total')) }}</strong>
                                                         </div>
                                                     </div>
                                                     @foreach($carted_products as $carted_product)
                                                         <div class="row cart-oveview-line">
                                                             <div class="col-xs-4">
-                                                                {{ $carted_product->pivot->quantity }}
-                                                            </div>
-                                                            <div class="col-xs-4">
                                                                 {{ $carted_product->format_name }}
                                                             </div>
-                                                            <div class="col-xs-4">
+                                                            <div class="col-xs-3 text-right">
+                                                                @if($carted_product->is_a_discount)
+                                                                    <span>
+                                                                    <i class="old">{{ money_currency($carted_product->amount) }}</i>
+                                                                        {{ money_currency($carted_product->new_price) }}
+                                                                </span>
+                                                                @else
+                                                                    <span>{{ money_currency($carted_product->amount) }}</span>
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-xs-2 text-right">
+                                                                {{ $carted_product->pivot->quantity }}
+                                                            </div>
+                                                            <div class="col-xs-3 text-right">
                                                                 @if($carted_product->is_a_discount)
                                                                     <span>
                                                                     <i class="old">{{ money_currency($carted_product->cart_line_value) }}</i>

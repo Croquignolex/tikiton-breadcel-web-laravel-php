@@ -226,9 +226,41 @@ class Product extends Model
     /**
      * @return string
      */
+    public function getFrCartLineValueAttribute()
+    {
+        return $this->frFormatAmount($this->calculateProductValue());
+    }
+
+    /**
+     * @return string
+     */
+    public function getEnCartLineValueAttribute()
+    {
+        return $this->enFormatAmount($this->calculateProductValue());
+    }
+
+    /**
+     * @return string
+     */
     public function getCartDiscountLineValueAttribute()
     {
         return $this->formatAmount($this->calculateProductDiscountValue());
+    }
+
+    /**
+     * @return string
+     */
+    public function getFrCartDiscountLineValueAttribute()
+    {
+        return $this->frFormatAmount($this->calculateProductDiscountValue());
+    }
+
+    /**
+     * @return string
+     */
+    public function getEnCartDiscountLineValueAttribute()
+    {
+        return $this->enFormatAmount($this->calculateProductDiscountValue());
     }
 
     /**

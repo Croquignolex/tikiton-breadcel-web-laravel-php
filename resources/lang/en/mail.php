@@ -27,4 +27,9 @@ return [
     'body_password_reset_msg' => 'On :date, you have requested for your password reset, If you 
         did not make this action, simply ignore this email. If you did make this action, please 
         reset your password by clicking on the button bellow',
+    'top_new_order_msg' => 'Hi :name, here is your order overview',
+    'body_new_order_msg' => 'On :date, you have purchased an order, If you 
+        did not make this action, simply ignore this email. If you did make this action, please 
+        check your order progress by clicking on the button bellow',
+    'check_order_progress' => 'Check order progress',
 ];

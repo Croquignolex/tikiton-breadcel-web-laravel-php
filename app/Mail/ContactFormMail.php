@@ -6,8 +6,9 @@ use App\Models\Contact;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ContactFormMail extends Mailable
+class ContactFormMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
     public $contact;
@@ -29,8 +30,8 @@ class ContactFormMail extends Mailable
     public function build()
     {
         return $this->from($this->contact)
-        ->subject($this->contact->subject)
-        ->view('mails.contact-form')
-        ->text('mails.contact-form-plain');
+            ->subject($this->contact->subject)
+            ->view('mails.contact-form')
+            ->text('mails.contact-form-plain');
     }
 }

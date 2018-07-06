@@ -18,10 +18,72 @@ trait LocaleAmountTrait
     /**
      * @return string
      */
+    public function getFrAmountAttribute()
+    {
+        return $this->frFormatAmount($this->price);
+    }
+
+    /**
+     * @return string
+     */
+    public function getEnAmountAttribute()
+    {
+        return $this->enFormatAmount($this->price);
+    }
+
+    /**
+     * @return string
+     */
     public function getNewPriceAttribute()
     {
         $discount = ($this->price * $this->discount) / 100;
         return $this->formatAmount($this->price - $discount);
+    }
+
+    /**
+     * @return string
+     */
+    public function getFrNewPriceAttribute()
+    {
+        $discount = ($this->price * $this->discount) / 100;
+        return $this->frFormatAmount($this->price - $discount);
+    }
+
+    /**
+     * @return string
+     */
+    public function getEnNewPriceAttribute()
+    {
+        $discount = ($this->price * $this->discount) / 100;
+        return $this->enFormatAmount($this->price - $discount);
+    }
+
+    /**
+     * @param $amount
+     * @return string
+     */
+    public function frFormatAmount($amount)
+    {
+        $separator = $this->separator('fr');
+        return number_format(
+            $amount, 2,
+            $separator->decimals,
+            $separator->thousands
+        );
+    }
+
+    /**
+     * @param $amount
+     * @return string
+     */
+    public function enFormatAmount($amount)
+    {
+        $separator = $this->separator('en');
+        return number_format(
+            $amount, 2,
+            $separator->decimals,
+            $separator->thousands
+        );
     }
 
     /**
@@ -30,23 +92,33 @@ trait LocaleAmountTrait
      */
     private function formatAmount($amount)
     {
-        $separator = new AmountSeparator();
-
-        if(App::getLocale() === 'fr')
-        {
-            $separator->decimals = ',';
-            $separator->thousands = '.';
-        }
-        else if (App::getLocale() === 'en')
-        {
-            $separator->decimals = '.';
-            $separator->thousands = ',';
-        }
-
+        $separator = $this->separator(App::getLocale());
         return number_format(
             $amount, 2,
             $separator->decimals,
             $separator->thousands
         );
+    }
+
+    /**
+     * @param $locale
+     * @return AmountSeparator
+     */
+    private function separator($locale)
+    {
+        $separator = new AmountSeparator();
+
+        if($locale === 'fr')
+        {
+            $separator->decimals = ',';
+            $separator->thousands = '.';
+        }
+        else if ($locale === 'en')
+        {
+            $separator->decimals = '.';
+            $separator->thousands = ',';
+        }
+
+        return $separator;
     }
 }

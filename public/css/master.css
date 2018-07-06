@@ -23,4 +23,5 @@
 .border-radius-theme { border-radius: 1px !important; }
 .border-theme { border: 1px solid #da7612 !important; }
 .border-bottom-theme { border-bottom: 1px solid #da7612 !important; }
+.border-top-theme { border-top: 1px solid #da7612 !important; }
 .btn-theme:hover { background-color: #c2680e !important; }

@@ -8,6 +8,11 @@ use App\Traits\LocaleDateTimeTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
+/**
+ * @property mixed user
+ * @property mixed products
+ * @property mixed discount
+ */
 class Order extends Model
 {
     use SlugRouteTrait, LocaleAmountTrait, LocaleDateTimeTrait;

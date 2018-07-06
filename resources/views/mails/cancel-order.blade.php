@@ -1,23 +1,25 @@
 @inject('orderService', 'App\Services\OrderService')
 @extends('layouts.mail')
 
-@section('title', page_title(trans('general.order')))
+@section('title', 'Commande annulé')
 
-@section('head', mb_strtoupper(trans('general.your_order')))
+@section('head', mb_strtoupper('Commande annulé'))
 
 @section('body')
     <tr>
         <td>
             <p style="text-align: justify;">
                 <strong>
-                    @lang('mail.top_new_order_msg', ['name' => $order->user->format_name]).
+                    Un client viens d'annuler une commande
+                    le {{ $order->fr_updated_date }} à {{ $order->fr_updated_time }}.
+                    Voici les détails de cette commande:
                 </strong>
             </p>
             <p style="text-align: justify;">
-                @lang('mail.body_new_order_msg' , ['date' => $order->user->created_date .
-                    ' ' . trans('general.at') .
-                    ' ' . $order->user->created_time
-                ]).
+                <strong>Nom & Prénom:</strong> {{ $order->user->first_name }} {{ $order->user->last_name }}<br />
+                <strong>Email:</strong> {{ $order->user->email }}<br />
+                <strong>Tel:</strong> {{ $order->user->phone }}<br />
+                <strong>Commande N°:</strong> {{ $order->reference }}
             </p>
             <table width="100%" cellpadding="0" cellspacing="0">
                 <tbody>
@@ -67,15 +69,11 @@
                 </tr>
                 </tbody>
             </table>
-            <div style="text-align: center;">
-                <a href="{{ locale_route('account.index') }}" style="display: inline-block; padding: 11px 30px; margin: 20px 0px 30px; font-size: 15px; color: #fff; background: #da7612; text-decoration:none;" target="_blank">
-                    @lang('mail.check_order_progress')
-                </a>
-            </div>
             <p style="text-align: justify;">
-                @lang('mail.bottom_register_msg', [
-                    'contact' => config('company.email_1')
-                ]).
+                Si ce bouton ne fonctionne pas, essayez de copier et coller
+                cet URL dans votre navigateur web # Si le problème perssiste,
+                s'il vous plais sentez vous libre de contacter l'équipe
+                de developpement.
             </p>
         </td>
     </tr>

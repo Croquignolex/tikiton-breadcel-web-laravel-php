@@ -67,6 +67,7 @@ return [
     |
     */
 
+    'at' => 'at',
     'or' => 'or',
     'why' => 'Why',
     'choose_us' => 'choose us',
@@ -87,6 +88,7 @@ return [
     'always_on_time_msg' => 'Never late for your needs',
     'order' => 'Order',
     'orders' => 'Orders',
+    'your_order' => 'Your order',
     'featured_products' => 'Featured products',
     'featured' => 'Featured',
     'new' => 'New',

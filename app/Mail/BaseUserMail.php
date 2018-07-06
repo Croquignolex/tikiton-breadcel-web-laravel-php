@@ -6,11 +6,12 @@ use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class BaseMail extends Mailable
+class BaseUserMail extends Mailable implements ShouldQueue
 {
-    use Queueable, SerializesModels;
     public $user;
+    use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
