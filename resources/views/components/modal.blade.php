@@ -10,7 +10,7 @@
                     <strong>{{ $title }}</strong>
                 </h4>
             </div>
-            <div class="modal-body bg-{{ $color }} text-white">
+            <div class="modal-body bg-{{ $color }} {{ $color === 'theme' ? 'text-white' : '' }}">
                 {{ $slot }}
             </div>
             <div class="modal-footer">
@@ -28,6 +28,6 @@
 </div>
 
 @component('components.modal-form-action',
-    ['id' => 'action-' . $id, 'route' => $action_route])
+    ['id' => 'action-' . $id, 'route' => $action_route, 'method' => $method ?? 'DELETE'])
 @endcomponent
 <!-- End modal -->

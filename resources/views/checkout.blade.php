@@ -268,6 +268,7 @@
                                                 <div class="final-total">
                                                     <a href="javascript: void(0);"
                                                        onclick="document.getElementById('place-order').submit();">
+                                                        <i class="{{ font('check') }}"></i>
                                                         @lang('general.order')
                                                     </a>
                                                 </div>
@@ -285,8 +286,9 @@
                         <ul>
                             <li><a href="{{ locale_route('products.index') }}">@lang('general.products')</a></li>
                             <li><a href="{{ locale_route('cart.index') }}">@lang('general.my_cart')</a></li>
-                            <li><a href="{{ locale_route('account.wishlist') }}">@lang('general.my_wish_list')</a></li>
+                            <li><a href="{{ locale_route('wishlist.index') }}">@lang('general.my_wish_list')</a></li>
                             <li><a href="{{ locale_route('account.index') }}">@lang('general.my_account')</a></li>
+                            <li><a href="{{ locale_route('orders.index') }}">@lang('general.my_orders')</a></li>
                         </ul>
                     </div>
                 </div>

@@ -48,10 +48,10 @@
                                                 <h5>{{ money_currency($wished_product->amount) }}</h5>
                                             @endif
                                         </td>
-                                        <td class="quantity {{ $wished_product->availability }}">
+                                        <td class="valu {{ $wished_product->availability }}">
                                             @lang('general.' . $wished_product->availability)
                                         </td>
-                                        <td class="valu">
+                                        <td class="quantity">
                                             @if($wished_product->is_in_current_user_cart)
                                                 <button class="btn btn-danger" title="@lang('general.remove_from_cart')" type="button"
                                                     onclick="document.getElementById('remove-product-{{ $wished_product->id }}').submit();">
@@ -61,7 +61,7 @@
                                                     </small>
                                                 </button>
                                                 <form id="remove-product-{{ $wished_product->id }}" method="POST" class="hidden"
-                                                      action="{{ locale_route('account.remove.product.cart', [$wished_product]) }}">
+                                                      action="{{ locale_route('cart.remove.product', [$wished_product]) }}">
                                                     {{ csrf_field() }}
                                                     {{ method_field('DELETE') }}
                                                 </form>
@@ -74,7 +74,7 @@
                                                     </small>
                                                 </button>
                                                 <form id="add-product-{{ $wished_product->id }}" method="POST" class="hidden"
-                                                      action="{{ locale_route('account.add.product.cart', [$wished_product]) }}">
+                                                      action="{{ locale_route('cart.add.product', [$wished_product]) }}">
                                                     {{ csrf_field() }}
                                                     {{ method_field('PUT') }}
                                                 </form>
@@ -110,7 +110,7 @@
         @component('components.modal', [
         'title' => trans('general.remove_from_wish_list'),
             'id' => 'remove-from-wish-list-' . $wished_product->id, 'color' => 'danger',
-            'action_route' => locale_route('account.remove.product.wishlist', [$wished_product])
+            'action_route' => locale_route('wishlist.remove.product', [$wished_product])
             ])
             @lang('general.remove_product_from_wish_list', ['product' => $wished_product->format_name]) ?
         @endcomponent

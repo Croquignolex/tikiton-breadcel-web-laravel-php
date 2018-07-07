@@ -213,7 +213,7 @@ img {
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
-  width: 120%;
+  width: 140%;
   z-index: -99;
 }
 #top-menu > ul > li > ul > li {
@@ -3421,7 +3421,7 @@ h4.heading {
 .remove:hover {
   background-color: #da2013 !important;
 }
-.remove:hover, .active_filter {
+.remove:hover, .active_filter, .text-white {
   color: #FFFFFF !important;
 }
 .active_filter:hover {
@@ -3453,4 +3453,8 @@ h4.heading {
   font-weight: 700;
   padding: 10px 20px;
   text-transform: uppercase;
+}
+.status-progress {
+  height: 10px;
+  border-radius: 0;
 }

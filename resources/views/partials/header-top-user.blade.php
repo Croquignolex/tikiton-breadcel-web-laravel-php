@@ -8,7 +8,13 @@
         </a>
     </li>
     <li class="text-left">
-        <a href="{{ locale_route('account.wishlist') }}">
+        <a href="{{ locale_route('orders.index') }}">
+            <i class="{{ font('copy') }}"></i>
+            @lang('general.my_orders')
+        </a>
+    </li>
+    <li class="text-left">
+        <a href="{{ locale_route('wishlist.index') }}">
             <i class="{{ font('star') }}"></i>
             @lang('general.my_wish_list')
         </a>

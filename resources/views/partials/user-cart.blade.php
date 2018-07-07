@@ -32,7 +32,7 @@
                        data-bind="{{ $product->id }}"
                        data-errortitle="{{ trans('auth.error') }}"
                        data-errormessage="{{ trans('general.script_error') }}"
-                       data-url="{{ locale_route('account.ajax.cart.remove') }}"
+                       data-url="{{ locale_route('cart.ajax.remove.product') }}"
                        data-locale="{{ Illuminate\Support\Facades\App::getLocale() }}"
                        @click="removeProductFromCart"></i>
                 </li>
@@ -49,7 +49,7 @@
                     <span @click="removeAllProductsFromCart"
                           data-errortitle="{{ trans('auth.error') }}"
                           data-errormessage="{{ trans('general.script_error') }}"
-                          data-url="{{ locale_route('account.ajax.cart.remove.all') }}">
+                          data-url="{{ locale_route('cart.ajax.remove.products') }}">
                         @lang('general.empty')</span>
                 </button>
             </div>

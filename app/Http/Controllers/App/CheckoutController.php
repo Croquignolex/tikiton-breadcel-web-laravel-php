@@ -76,7 +76,7 @@ class CheckoutController extends Controller
                 {
                     $product_quantity_in_cart = $product->pivot->quantity;
                     $order->products()->save($product, ['quantity' => $product_quantity_in_cart]);
-                    //remove oder products number in stock
+
                     $product->stock = $product->stock - $product_quantity_in_cart;
                     $product->save();
                 }
@@ -94,8 +94,6 @@ class CheckoutController extends Controller
                     $this->mailError($exception);
                 }
 
-
-
                 session()->forget(['coupon']);
                 foreach ($user->user_carts as $user_cart)
                     $user_cart->delete();
@@ -106,7 +104,7 @@ class CheckoutController extends Controller
                     trans('auth.success'), trans('general.success_order')
                 );
 
-                return redirect(locale_route('account.index'));
+                return redirect(locale_route('orders.index'));
             }
             else
             {
@@ -173,5 +171,4 @@ class CheckoutController extends Controller
             session()->forget(['coupon']);
         }
     }
-
 }

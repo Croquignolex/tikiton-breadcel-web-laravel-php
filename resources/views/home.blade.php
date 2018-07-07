@@ -204,7 +204,7 @@
                 @component('components.fun-factor-item', [
                     'font' => 'calendar-check-o',
                     'value' => $sales_nbr,
-                    'dictionary_name' => 'sold',
+                    'dictionary_name' => 'sales',
                     ])
                 @endcomponent
             </div>

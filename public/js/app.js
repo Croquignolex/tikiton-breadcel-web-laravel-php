@@ -243,7 +243,6 @@ function removeProductFromCartListener(event) {
 function removeAllProductsFromCart(event) {
     let element = event.target;
     let elementDataSet = element.dataset;
-    let elementParent = element.parentNode;
 
     $.ajaxSetup({
         headers: {

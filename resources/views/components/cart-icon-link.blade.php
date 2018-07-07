@@ -6,8 +6,8 @@
        data-addlabel="@lang('general.add_to_cart')"
        data-removelabel="@lang('general.remove_from_cart')"
        data-errormessage="{{ trans('general.script_error') }}"
-       data-addurl="{{ locale_route('account.ajax.cart.add') }}"
-       data-removeurl="{{ locale_route('account.ajax.cart.remove') }}"
+       data-addurl="{{ locale_route('cart.ajax.add.product') }}"
+       data-removeurl="{{ locale_route('cart.ajax.remove.product') }}"
        data-locale="{{ Illuminate\Support\Facades\App::getLocale() }}"
        @click="toggleProductInCart"></i>
 </a>

@@ -10,7 +10,8 @@ return [
     |
     */
 
-    'failed' => 'Paramèttres de connexion incorrect.',
+    'not_auth' => 'Vous n\'êtes pas autorisés à éffectuer cette action',
+    'failed' => 'Paramèttres de connexion incorrect',
     'throttle' => 'Trop de tentative de connexion, Réesayez dans :seconds seconds s\'il vous plait.',
     'registration_message' => 'Votre compte est créer avec succès, un mail de confimation vous est envoyé, veillez le consulter et suivre les indications. (N\'oubliez pas de vérifier vos spam si necessaire)',
     'register' => 'Inscription',

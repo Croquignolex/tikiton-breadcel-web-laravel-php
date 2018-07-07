@@ -106,19 +106,9 @@ trait LocaleAmountTrait
      */
     private function separator($locale)
     {
-        $separator = new AmountSeparator();
+        if($locale === 'fr') return new AmountSeparator(',', '.');
+        else if ($locale === 'en') return new AmountSeparator('.', ',');
 
-        if($locale === 'fr')
-        {
-            $separator->decimals = ',';
-            $separator->thousands = '.';
-        }
-        else if ($locale === 'en')
-        {
-            $separator->decimals = '.';
-            $separator->thousands = ',';
-        }
-
-        return $separator;
+        return new AmountSeparator(',', '.');
     }
 }

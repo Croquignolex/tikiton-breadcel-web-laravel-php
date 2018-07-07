@@ -7,8 +7,8 @@
        data-addlabel="@lang('general.add_to_wish_list')"
        data-removelabel="@lang('general.remove_from_wish_list')"
        data-errormessage="{{ trans('general.script_error') }}"
-       data-addurl="{{ locale_route('account.ajax.wishlist.add') }}"
-       data-removeurl="{{ locale_route('account.ajax.wishlist.remove') }}"
+       data-addurl="{{ locale_route('wishlist.ajax.add.product') }}"
+       data-removeurl="{{ locale_route('wishlist.ajax.remove.product') }}"
        data-locale="{{ Illuminate\Support\Facades\App::getLocale() }}"
        @click="toggleProductInWishList"></i>
 </a>

@@ -2,7 +2,7 @@
 @extends('layouts.overlay')
 
 @section('app.home.title', page_title(trans('general.my_cart')))
-@section('overlay_text', trans('general.cart'))
+@section('overlay_text', trans('general.my_cart'))
 @section('overlay_font', font('shopping-cart'))
 
 @section('app.home.body')
@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="table-responsive">
-                        <table class="table cart-table">
+                        <table class="table cart-table table-hover">
                             <thead class="table-title">
                                 <tr>
                                     <th class="produ">@lang('general.product')</th>
@@ -22,7 +22,7 @@
                                     <th class="valu">@lang('general.value')</th>
                                     <th class="valu">@lang('general.availability')</th>
                                     <th class="valu">@lang('general.wish_list')</th>
-                                    <th class="acti">@lang('general.action')</th>
+                                    <th class="valu">@lang('general.action')</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -85,7 +85,7 @@
                                                     </small>
                                                 </button>
                                                 <form id="remove-product-{{ $carted_product->id }}" method="POST" class="hidden"
-                                                      action="{{ locale_route('account.remove.product.wishlist', [$carted_product]) }}">
+                                                      action="{{ locale_route('wishlist.remove.product', [$carted_product]) }}">
                                                     {{ csrf_field() }}
                                                     {{ method_field('DELETE') }}
                                                 </form>
@@ -98,13 +98,13 @@
                                                     </small>
                                                 </button>
                                                 <form id="add-product-{{ $carted_product->id }}" method="POST" class="hidden"
-                                                      action="{{ locale_route('account.add.product.wishlist', [$carted_product]) }}">
+                                                      action="{{ locale_route('wishlist.add.product', [$carted_product]) }}">
                                                     {{ csrf_field() }}
                                                     {{ method_field('PUT') }}
                                                 </form>
                                             @endif
                                         </td>
-                                        <td class="acti">
+                                        <td class="valu">
                                             <button class="btn btn-danger" type="button" data-toggle="modal"
                                                     data-target="#remove-from-cart-{{ $carted_product->id }}"
                                                     title="@lang('general.remove_from_cart')">
@@ -149,15 +149,17 @@
                 <div class="col-xs-12 col-sm-6 col-md-5">
                     <div class="proceed fix">
                         <a href="{{ locale_route('products.index') }}">
+                            <i class="{{ font('shopping-basket') }}"></i>
                             @lang('general.continue_shopping')
                         </a>
                         <a href="javascript: void(0);"
                            onclick="document.getElementById('remove-all-products').submit();"
                             class="delete-btn">
+                            <i class="{{ font('trash-o') }}"></i>
                             @lang('general.empty_your_cart')
                         </a>
                         <form id="remove-all-products" method="POST" class="hidden"
-                              action="{{ locale_route('account.remove.product.cart.all') }}">
+                              action="{{ locale_route('cart.remove.products') }}">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                         </form>
@@ -204,6 +206,7 @@
                     </div>
                     @if(!$carted_products->isEmpty())
                         <a id="procedto" href="{{ locale_route('checkout.index') }}">
+                            <i class="{{ font('file-text') }}"></i>
                             @lang('general.proceed_checkout')
                         </a>
                     @endif
@@ -217,14 +220,9 @@
         @component('components.modal', [
         'title' => trans('general.remove_from_cart'),
             'id' => 'remove-from-cart-' . $carted_product->id, 'color' => 'danger',
-            'action_route' => locale_route('account.remove.product.cart', [$carted_product])
+            'action_route' => locale_route('cart.remove.product', [$carted_product])
             ])
             @lang('general.remove_product_from_cart', ['product' => $carted_product->format_name]) ?
         @endcomponent
     @endforeach
 @endsection
-
-@push('overlay.app.script.page')
-    <script src="{{ js_asset('bootstrap-maxlength') }}" type="text/javascript"></script>
-    <script src="{{ js_asset('form-validator') }}" type="text/javascript"></script>
-@endpush

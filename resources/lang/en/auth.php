@@ -10,8 +10,9 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'not_auth' => 'You are not authorize to do this action',
+    'failed' => 'These credentials do not match our records',
+    'throttle' => 'Too many login attempts. Please try again in :seconds seconds',
     'registration_message' => 'Your account is created successfully, a confirmation e-mail is sent to you, check it and follow the steps. (Don\'t forget to check your spam if necessary)',
     'register' => 'Register',
     'login' => 'Login',

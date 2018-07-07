@@ -6,11 +6,21 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\Setting;
 use App\Traits\LocaleAmountTrait;
-use Illuminate\Support\Facades\Auth;
 
 class OrderService
 {
     use LocaleAmountTrait;
+
+    /**
+     * @param Order $order
+     * @return mixed
+     */
+    public function getProductsNumber(Order $order)
+    {
+        return $order->products->sum(function (Product $product) {
+            return $product->pivot->quantity;
+        });
+    }
 
     /**
      * @param Order $order

@@ -4,15 +4,18 @@ namespace App\Http\Controllers\App;
 
 use Exception;
 use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CouponRequest;
 use App\Traits\ErrorFlashMessagesTrait;
 use App\Http\Requests\CartUpdateRequest;
+use App\Traits\CartAndWishlistToggleTrait;
+use App\Http\Controllers\App\Auth\AccountController;
 
 class CartController extends Controller
 {
-    use ErrorFlashMessagesTrait;
+    use ErrorFlashMessagesTrait, CartAndWishlistToggleTrait;
 
     /**
      * AccountController constructor.
@@ -20,7 +23,8 @@ class CartController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('ajax')->only('ajaxProducts');
+        $this->middleware('ajax')->only('ajaxProducts', 'ajaxCartAdd',
+            'ajaxCartRemove', 'ajaxCartRemoveAll');
     }
 
     /**
@@ -118,6 +122,110 @@ class CartController extends Controller
         }
 
         return $this->redirectTo();
+    }
+
+    /**
+     * @param Request $request
+     * @param $language
+     * @param Product $product
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function removeProduct(Request $request, $language, Product $product)
+    {
+        return $this->flashSessionResponse($this->cartAndWishlistManage(
+            $product->id, AccountController::REMOVE_PRODUCT_FROM_CART));
+    }
+
+    /**
+     * @param Request $request
+     * @param $language
+     * @param Product $product
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function addProduct(Request $request, $language, Product $product)
+    {
+        return $this->flashSessionResponse($this->cartAndWishlistManage(
+            $product->id, AccountController::ADD_PRODUCT_TO_CART));
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function removeProducts()
+    {
+        return $this->flashSessionResponse($this->removeProductsManager());
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function ajaxAddProduct(Request $request)
+    {
+        return $this->jsonResponse($this->cartAndWishlistManage(
+            $request->input('product_id'), AccountController::ADD_PRODUCT_TO_CART));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function ajaxRemoveProduct(Request $request)
+    {
+        return $this->jsonResponse($this->cartAndWishlistManage(
+            $request->input('product_id'), AccountController::REMOVE_PRODUCT_FROM_CART));
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function ajaxRemoveProducts()
+    {
+        return $this->jsonResponse($this->removeProductsManager(),
+            AccountController::LIGHT_JSON_RESPONSE);
+    }
+
+    /**
+     * @return array
+     */
+    private function removeProductsManager()
+    {
+        try
+        {
+            if(!Auth::user()->user_carts->isEmpty())
+            {
+                Auth::user()->user_carts()->delete();
+                $locale_body = 'cart_clear';
+            }
+            else $locale_body = 'cart_already_clear';
+
+            $response_type = 'info';
+            $response_enter = 'flipInY';
+            $response_exit = 'flipOutX';
+            $response_title = trans('auth.info');
+            $response_icon = font('info-circle');
+            $response_body = trans('general.' . $locale_body);
+        }
+        catch (Exception $exception)
+        {
+            if(config('app.debug'))
+            {
+                $response_body = trans('general.database_error') .
+                    '. ' . $exception->getMessage();
+            }
+            else $response_body = trans('general.database_error');
+
+            $response_type = 'danger';
+            $response_enter = 'bounceIn';
+            $response_exit = 'bounceOut';
+            $response_title = trans('auth.error');
+            $response_icon = font('exclamation-triangle');
+        }
+
+        return [
+            'title' => $response_title, 'body' => $response_body, 'type' => $response_type,
+            'icon' => $response_icon, 'enter' => $response_enter, 'exit' => $response_exit,
+        ];
     }
 
     /**

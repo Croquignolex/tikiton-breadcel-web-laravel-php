@@ -5,13 +5,16 @@ namespace App\Models;
 use App\Traits\SlugRouteTrait;
 use App\Traits\LocaleAmountTrait;
 use App\Traits\LocaleDateTimeTrait;
+use App\Utils\OrderStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 /**
  * @property mixed user
+ * @property mixed status
  * @property mixed products
  * @property mixed discount
+ * @property mixed reference
  */
 class Order extends Model
 {
@@ -19,7 +22,8 @@ class Order extends Model
 
     const ORDERED = 0;
     const CANCELED = 1;
-    const SOLD = 2;
+    const PROGRESS = 2;
+    const SOLD = 3;
 
     /**
      * The attributes that are mass assignable.
@@ -29,6 +33,20 @@ class Order extends Model
     protected $fillable = [
         'reference', 'status', 'discount', 'user_id'
     ];
+
+    /**
+     * Boot functions
+     */
+    protected static function boot()
+    {
+        static::creating(function ($order) {
+            $order->slug = str_slug($order->reference);
+        });
+
+        static::updating(function ($order) {
+            $order->slug = str_slug($order->reference);
+        });
+    }
 
     /**
      * @return string
@@ -69,16 +87,19 @@ class Order extends Model
     }
 
     /**
-     * Boot functions
+     * @return mixed
      */
-    protected static function boot()
+    public function getFormatStatusAttribute()
     {
-        static::creating(function ($order) {
-            $order->slug = str_slug($order->reference);
-        });
+        if($this->status === static::ORDERED)
+            return new OrderStatus('ordered', 30, 'text-theme', 'bg-theme');
+        else if($this->status === static::PROGRESS)
+            return new OrderStatus('in_progress', 60, 'text-success', 'progress-bar-success');
+        else if($this->status === static::CANCELED)
+            return new OrderStatus('canceled', 100, 'text-danger', 'progress-bar-danger');
+        else if($this->status === static::SOLD)
+        return new OrderStatus('sold', 100, 'text-info', 'progress-bar-info');
 
-        static::updating(function ($order) {
-            $order->slug = str_slug($order->reference);
-        });
+        return new OrderStatus('ordered', 30, 'text-theme', 'bg-theme');
     }
 }
