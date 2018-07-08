@@ -26,9 +26,54 @@ class OrderService
      * @param Order $order
      * @return string
      */
+    public function getDiscount(Order $order)
+    {
+        return $this->formatAmount($order->discount);
+    }
+
+    /**
+     * @param Order $order
+     * @return string
+     */
+    public function getFrDiscount(Order $order)
+    {
+        return $this->frFormatAmount($order->discount);
+    }
+
+    /**
+     * @param Order $order
+     * @return string
+     */
+    public function getEnDiscount(Order $order)
+    {
+        return $this->enFormatAmount($order->discount);
+    }
+
+    /**
+     * @param Order $order
+     * @return string
+     */
     public function getSubTotal(Order $order)
     {
+        return $this->formatAmount($this->getTotalInOrder($order) - $this->tva($order));
+    }
+
+    /**
+     * @param Order $order
+     * @return string
+     */
+    public function getFrSubTotal(Order $order)
+    {
         return $this->frFormatAmount($this->getTotalInOrder($order) - $this->tva($order));
+    }
+
+    /**
+     * @param Order $order
+     * @return string
+     */
+    public function getEnSubTotal(Order $order)
+    {
+        return $this->enFormatAmount($this->getTotalInOrder($order) - $this->tva($order));
     }
 
     /**
@@ -60,7 +105,25 @@ class OrderService
      */
     public function getTVA(Order $order)
     {
+        return $this->formatAmount($this->tva($order));
+    }
+
+    /**
+     * @param Order $order
+     * @return string
+     */
+    public function getFrTVA(Order $order)
+    {
         return $this->frFormatAmount($this->tva($order));
+    }
+
+    /**
+     * @param Order $order
+     * @return string
+     */
+    public function getEnTVA(Order $order)
+    {
+        return $this->enFormatAmount($this->tva($order));
     }
 
     /**
@@ -69,7 +132,25 @@ class OrderService
      */
     public function getBigTotal(Order $order)
     {
+        return $this->formatAmount($this->getTotalInOrder($order) - $order->discount);
+    }
+
+    /**
+     * @param Order $order
+     * @return string
+     */
+    public function getFrBigTotal(Order $order)
+    {
         return $this->frFormatAmount($this->getTotalInOrder($order) - $order->discount);
+    }
+
+    /**
+     * @param Order $order
+     * @return string
+     */
+    public function getEnBigTotal(Order $order)
+    {
+        return $this->enFormatAmount($this->getTotalInOrder($order) - $order->discount);
     }
 
     /**

@@ -41,10 +41,10 @@
                         <td style="border-top: 1px solid #bfbfbf; margin: 0; padding: 8px 0;" align="right">{{ $product->pivot->quantity }}</td>
                         <td style="border-top: 1px solid #bfbfbf; margin: 0; padding: 8px 0;" align="right">
                             @if($product->is_a_discount)
-                                <i style="text-decoration: line-through;">{{ money_currency($product->fr_cart_line_value) }}</i>
-                                {{ money_currency($product->fr_cart_discount_line_value) }}
+                                <i style="text-decoration: line-through;">{{ money_currency($product->cart_line_value) }}</i>
+                                {{ money_currency($product->cart_discount_line_value) }}
                             @else
-                                {{ money_currency($product->fr_cart_line_value) }}
+                                {{ money_currency($product->cart_line_value) }}
                             @endif
                         </td>
                     </tr>
@@ -59,7 +59,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" style="border-top: 1px solid #bfbfbf; margin: 0; padding: 8px 0;"><strong>Coupon</strong></td>
-                    <td colspan="2" style="border-top: 1px solid #bfbfbf; margin: 0; padding: 8px 0;" align="right"><strong>- {{ money_currency($order->discount) }}</strong></td>
+                    <td colspan="2" style="border-top: 1px solid #bfbfbf; margin: 0; padding: 8px 0;" align="right"><strong>- {{ money_currency($orderService->getDiscount($order)) }}</strong></td>
                 </tr>
                 <tr style="color: #DA7612; font-size: 18px;">
                     <td colspan="2" style="border-top: 1px solid #bfbfbf; margin: 0; padding: 10px 0;"><strong>Grand total</strong></td>

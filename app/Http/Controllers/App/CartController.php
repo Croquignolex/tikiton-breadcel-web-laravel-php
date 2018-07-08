@@ -57,9 +57,10 @@ class CartController extends Controller
                 ->updateExistingPivot($product->id, ['quantity' => $product->stock]);
 
             flash_message(
-                trans('auth.error'),
+                trans('auth.info'),
                 trans('general.max_to_order', ['max' => $product->stock, 'product' => $product->format_name]),
-                font('remove'), 'danger', 'bounceIn', 'bounceOut');
+                font('info-circle'), 'info'
+            );
         }
 
         return $this->redirectTo();

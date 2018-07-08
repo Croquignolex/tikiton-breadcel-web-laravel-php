@@ -14,6 +14,7 @@ return [
     'failed' => 'Paramèttres de connexion incorrect',
     'throttle' => 'Trop de tentative de connexion, Réesayez dans :seconds seconds s\'il vous plait.',
     'registration_message' => 'Votre compte est créer avec succès, un mail de confimation vous est envoyé, veillez le consulter et suivre les indications. (N\'oubliez pas de vérifier vos spam si necessaire)',
+    'email_sent' => 'Nous avons besoin de confirmer votre nouvel addresse email, un mail de confimation vous est envoyé, veillez le consulter et suivre les indications. (N\'oubliez pas de vérifier vos spam si necessaire)',
     'register' => 'Inscription',
     'login' => 'Connexion',
     'user_existed' => 'There is already a user registered with this e-mail address',
@@ -39,4 +40,6 @@ return [
     'account_validation' => 'Validation du compte',
     'enter_email' => 'Entrez votre email',
     'fill_form' => 'Remplissez le formulaire',
+    'change_email' => 'Changer votre email',
+    'change_pwd' => 'Changer votre mot de passe',
 ];

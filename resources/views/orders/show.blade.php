@@ -102,7 +102,7 @@
                             </div>
                             <div class="col-xs-6 text-right">
                                 <strong>
-                                    - {{ money_currency($order->discount) }}
+                                    - {{ money_currency($orderService->getDiscount($order)) }}
                                 </strong>
                             </div>
                         </div>

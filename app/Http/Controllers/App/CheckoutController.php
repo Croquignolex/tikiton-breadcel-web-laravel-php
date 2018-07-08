@@ -58,6 +58,9 @@ class CheckoutController extends Controller
         return $this->redirectTo();
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function order()
     {
         try
@@ -77,8 +80,11 @@ class CheckoutController extends Controller
                     $product_quantity_in_cart = $product->pivot->quantity;
                     $order->products()->save($product, ['quantity' => $product_quantity_in_cart]);
 
-                    $product->stock = $product->stock - $product_quantity_in_cart;
-                    $product->save();
+                    /*
+                     * TODO: Add this action to admin when validate the order
+                     */
+                    //$product->stock = $product->stock - $product_quantity_in_cart;
+                    //$product->save();
                 }
 
                 $to = new Email();
@@ -94,7 +100,6 @@ class CheckoutController extends Controller
                     $this->mailError($exception);
                 }
 
-                session()->forget(['coupon']);
                 foreach ($user->user_carts as $user_cart)
                     $user_cart->delete();
 

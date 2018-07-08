@@ -92,6 +92,7 @@ Route::group(['namespace' => 'App', 'middleware' => 'coming.soon'], function() {
         //--Account routes...
         Route::get('/account/validation/{email}/{token}', function ($email, $token) { return redirect(locale_route('account.validation', compact('email', 'token'))); });
         Route::get('/account', function () { return redirect(locale_route('account.index')); });
+        Route::get('/account/email', function () { return redirect(locale_route('account.email')); });
 
         //--Password reset routes...
         Route::get('/password/reset', function () { return redirect(locale_route('password.request')); });
@@ -109,6 +110,10 @@ Route::group(['namespace' => 'App', 'middleware' => 'coming.soon'], function() {
         //--Localized account routes...
         Route::get('/{language}/account/validation/{email}/{token}', 'AccountController@validation')->name('account.validation');
         Route::get('/{language}/account', 'AccountController@index')->name('account.index');
+        Route::get('/{language}/account/email', 'AccountController@email')->name('account.email');
+        Route::post('/{language}/account/password', 'AccountController@password')->name('account.password');
+        Route::post('/{language}/account', 'AccountController@update');
+        Route::post('/{language}/account/email', 'AccountController@sendLink');
 
         //--Localized password reset routes...
         Route::get('/{language}/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');

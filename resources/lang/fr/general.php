@@ -236,6 +236,7 @@ return [
     'cancel_your_order' => 'Annuler votre commande :order',
     'order_your_back' => 'Passer à nouveau la commande :order',
     'back_to_orders' => 'Retour sur mes commandes',
+    'update' => 'Modifer',
 
     /*
     |--------------------------------------------------------------------------
