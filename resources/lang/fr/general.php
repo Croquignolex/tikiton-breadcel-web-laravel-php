@@ -38,6 +38,7 @@ return [
     'register' => 'Inscription',
     'pwd_cfm' => 'Confirmer le mot de passe',
     'pwd_reset' => 'Réinitialisation',
+    'old_password' => 'Ancien mot de passe',
     'new_password' => 'Nouveau mot de passe',
     'reset' => 'Réinitialiser',
     'my_account' => 'Mon compte',
@@ -237,6 +238,7 @@ return [
     'order_your_back' => 'Passer à nouveau la commande :order',
     'back_to_orders' => 'Retour sur mes commandes',
     'update' => 'Modifer',
+    'new_email' => 'Nouvel email',
 
     /*
     |--------------------------------------------------------------------------

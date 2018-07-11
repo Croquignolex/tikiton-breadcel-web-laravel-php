@@ -8,6 +8,9 @@ use App\Traits\SlugRouteTrait;
 use App\Traits\LocaleDescriptionTrait;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed image
+ */
 class Testimonial extends Model
 {
     use SlugRouteTrait, NameTrait,

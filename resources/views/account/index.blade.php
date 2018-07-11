@@ -19,15 +19,14 @@
                         {{ csrf_field() }}
                         <div class="row">
                             <div class="col-sm-12 text-center email_pwd_btn">
-                                <a href="{{ locale_route('account.email') }}" class="btn btn-lg btn-theme">
+                                <a href="{{ locale_route('account.email') }}" class="btn btn-lg btn-danger">
                                     <i class="{{ font('at') }}"></i>
                                     @lang('auth.change_email')
                                 </a>
-                                <button type="button" class="btn btn-lg btn-danger"
-                                    onclick="document.getElementById('password-btn').submit();">
+                                <a href="{{ locale_route('account.password') }}" class="btn btn-lg btn-theme">
                                     <i class="{{ font('lock') }}"></i>
                                     @lang('auth.change_pwd')
-                                </button>
+                                </a>
                             </div>
                             <div class="col-sm-6">
                                 @component('components.label-input', [
@@ -63,8 +62,9 @@
                                     'no_star' => ''
                                     ])
                                     @component('components.input', [
-                                        'type' => 'text','name' => 'company',
-                                        'value' => old('company') ?? $user->company
+                                        'value' => old('company') ?? $user->company,
+                                        'placeholder' => '(' . trans('general.optional') . ')',
+                                        'type' => 'text','name' => 'company', 'validate' => 'false'
                                         ])
                                     @endcomponent
                                 @endcomponent
@@ -118,11 +118,6 @@
         </div>
     </div>
     <!--End User Area-->
-
-    <form id="password-btn" method="POST" class="hidden"
-          action="{{ locale_route('account.password') }}">
-        {{ csrf_field() }}
-    </form>
 @endsection
 
 @push('overlay.app.script.page')

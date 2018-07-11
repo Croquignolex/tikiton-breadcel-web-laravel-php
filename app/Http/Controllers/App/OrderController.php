@@ -4,7 +4,7 @@ namespace App\Http\Controllers\App;
 
 use App\Mail\CancelOrderMail;
 use App\Mail\NewOrderMail;
-use App\Mail\UserOrderUserMail;
+use App\Mail\UserOrderMail;
 use App\Models\Email;
 use App\Models\Order;
 use Exception;
@@ -53,16 +53,23 @@ class OrderController extends Controller
     {
         if($this->authorization($order, Order::CANCELED))
         {
-            $to = new Email();
-            $to->email = config('company.email_1');
-            $to->name = config('company.name');
-            try
+            $setting = Setting::where('is_activated', true)->first();
+            if ($setting !== null)
             {
-                Mail::to($order->user)->send(new CancelOrderMail($order));
-            }
-            catch (Exception $exception)
-            {
-                $this->mailError($exception);
+                if ($setting->receive_email_from_canceled_order)
+                {
+                    $to = new Email();
+                    $to->email = config('company.email_1');
+                    $to->name = config('company.name');
+                    try
+                    {
+                        Mail::to($to)->send(new CancelOrderMail($order));
+                    }
+                    catch (Exception $exception)
+                    {
+                        $this->mailError($exception);
+                    }
+                }
             }
 
             flash_message(

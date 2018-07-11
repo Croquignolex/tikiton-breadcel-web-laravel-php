@@ -111,7 +111,8 @@ Route::group(['namespace' => 'App', 'middleware' => 'coming.soon'], function() {
         Route::get('/{language}/account/validation/{email}/{token}', 'AccountController@validation')->name('account.validation');
         Route::get('/{language}/account', 'AccountController@index')->name('account.index');
         Route::get('/{language}/account/email', 'AccountController@email')->name('account.email');
-        Route::post('/{language}/account/password', 'AccountController@password')->name('account.password');
+        Route::get('/{language}/account/password', 'AccountController@password')->name('account.password');
+        Route::post('/{language}/account/password', 'AccountController@changePassword');
         Route::post('/{language}/account', 'AccountController@update');
         Route::post('/{language}/account/email', 'AccountController@sendLink');
 

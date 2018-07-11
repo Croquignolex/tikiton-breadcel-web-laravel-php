@@ -1,8 +1,8 @@
 @extends('layouts.overlay')
 
-@section('app.home.title', page_title(trans('auth.change_email')))
-@section('overlay_text', trans('auth.change_email'))
-@section('overlay_font', font('at'))
+@section('app.home.title', page_title(trans('auth.change_pwd')))
+@section('overlay_text', trans('auth.change_pwd'))
+@section('overlay_font', font('lock'))
 
 @section('app.home.body')
     <!--start login Area-->
@@ -19,11 +19,29 @@
                         <form id="signup-form" action="" method="POST" @submit="validateFormElements">
                             {{ csrf_field() }}
                             @component('components.label-input', [
-                                    'name' => 'email', 'label' => 'new_email',
+                                   'name' => 'old_password', 'label' => 'old_password'
+                                   ])
+                                @component('components.input', [
+                                    'type' => 'password', 'name' => 'old_password',
+                                     'value' => old('old_password'), 'minlength' => 6
+                                    ])
+                                @endcomponent
+                            @endcomponent
+                            @component('components.label-input', [
+                                    'name' => 'password', 'label' => 'new_password'
                                     ])
                                 @component('components.input', [
-                                    'type' => 'email', 'name' => 'email',
-                                     'value' => old('email'), 'auto_focus' => 'autofocus'
+                                    'type' => 'password', 'name' => 'password',
+                                     'value' => old('password'), 'minlength' => 6
+                                    ])
+                                @endcomponent
+                            @endcomponent
+                            @component('components.label-input', [
+                                    'name' => 'password_confirmation', 'label' => 'pwd_cfm'
+                                    ])
+                                @component('components.input', [
+                                    'type' => 'password', 'name' => 'password_confirmation',
+                                     'value' => old('password_confirmation'), 'minlength' => 6
                                     ])
                                 @endcomponent
                             @endcomponent

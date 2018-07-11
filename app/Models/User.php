@@ -10,15 +10,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * @property mixed id
- * @property mixed name
  * @property mixed email
  * @property mixed token
  * @property mixed password
+ * @property mixed last_name
+ * @property mixed first_name
  * @property mixed carted_products
  */
 class User extends Authenticatable
 {
-    use SlugRouteTrait, NameTrait,
+    use SlugRouteTrait,
         DescriptionTrait, LocaleDateTimeTrait;
 
     /**
@@ -27,7 +28,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'password', 'first_name', 'last_name', 'post_code',
+        'password', 'first_name', 'last_name', 'post_code',
         'city', 'country', 'phone', 'company', 'shipping_address', 'address',
         'shipping_city', 'shipping_country', 'shipping_post_code'
     ];
@@ -38,7 +39,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password'
+        'password', 'is_confirmed', 'is_admin', 'is_super_admin'
     ];
 
     /**
@@ -151,5 +152,21 @@ class User extends Authenticatable
             if($product->is_a_discount) return $product->calculateProductDiscountValue();
             else return $product->calculateProductValue();
         });
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFormatFirstNameAttribute()
+    {
+        return ucfirst($this->first_name);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFormatLastNameAttribute()
+    {
+        return mb_strtoupper($this->last_name);
     }
 }

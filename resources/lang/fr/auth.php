@@ -25,6 +25,8 @@ return [
     'logout_message' => 'Vous êtes actuellement déconnecté',
     'sign_up' => 'Inscription',
     'reset_pwd' => 'Réinitialiser le mot de passe',
+    'change_pwd' => 'Changer le mot de passe',
+    'change_email' => 'Changer l\'email',
     'send_reset_link' => 'Envoyer le lien',
     'forgotten_pwd' => 'Mot de passe oublié',
     'login_sign_upped' => 'J\'ai déjà un compte',

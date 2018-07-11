@@ -4,11 +4,12 @@ namespace App\Http\Controllers\App;
 
 use App\Mail\NewOrderMail;
 use App\Models\Email;
+use App\Models\Setting;
 use Exception;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Coupon;
-use App\Mail\UserOrderUserMail;
+use App\Mail\UserOrderMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -65,8 +66,7 @@ class CheckoutController extends Controller
     {
         try
         {
-            if($this->userHasAllInformation())
-            {
+            if($this->userHasAllInformation()) {
                 $user = Auth::user();
                 $this->couponSession($user);
 
@@ -75,8 +75,7 @@ class CheckoutController extends Controller
                     'discount' => session()->has('coupon') ? session('coupon')->discount : 0
                 ]);
 
-                foreach ($user->carted_products as $product)
-                {
+                foreach ($user->carted_products as $product) {
                     $product_quantity_in_cart = $product->pivot->quantity;
                     $order->products()->save($product, ['quantity' => $product_quantity_in_cart]);
 
@@ -87,13 +86,28 @@ class CheckoutController extends Controller
                     //$product->save();
                 }
 
-                $to = new Email();
-                $to->email = config('company.email_1');
-                $to->name = config('company.name');
+                $setting = Setting::where('is_activated', true)->first();
+                if ($setting !== null)
+                {
+                    if ($setting->receive_email_from_new_order)
+                    {
+                        $to = new Email();
+                        $to->email = config('company.email_1');
+                        $to->name = config('company.name');
+                        try
+                        {
+                            Mail::to($to)->send(new NewOrderMail($order));
+                        }
+                        catch (Exception $exception)
+                        {
+                            $this->mailError($exception);
+                        }
+                    }
+                }
+
                 try
                 {
-                    Mail::to($user)->send(new UserOrderUserMail($order));
-                    Mail::to($to)->send(new NewOrderMail($order));
+                    Mail::to($user)->send(new UserOrderMail($order));
                 }
                 catch (Exception $exception)
                 {

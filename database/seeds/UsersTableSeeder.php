@@ -14,8 +14,9 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'slug' => 'mr_customer_1',
-            'name' => 'Mr Customer 1',
+            'slug' => 'customer1_at_breadcel_com',
+            'first_name' => 'Mr',
+            'last_name' => 'Customer 1',
             'email' => 'customer1@breadcel.com',
             'password' => Hash::make('breadcel'),
             'token' => str_random(64),
@@ -23,8 +24,9 @@ class UsersTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'slug' => 'mr_customer_2',
-            'name' => 'Mr Customer 2',
+            'slug' => 'customer2_at_breadcel_com',
+            'first_name' => 'Mr',
+            'last_name' => 'Customer 2',
             'email' => 'customer2@breadcel.com',
             'password' => Hash::make('breadcel'),
             'token' => str_random(64),
@@ -32,8 +34,9 @@ class UsersTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'slug' => 'alex_ngombol',
-            'name' => 'Alex NGOMBOL',
+            'slug' => 'alex_at_breadcel_com',
+            'first_name' => 'Alex',
+            'last_name' => 'NGOMBOL',
             'email' => 'alex@breadcel.com',
             'password' => Hash::make('breadcel'),
             'token' => str_random(64),
@@ -42,9 +45,10 @@ class UsersTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'slug' => 'celestin_wokgoue',
-            'name' => 'Celestin WOKGOUE',
-            'email' => 'celestion@breadcel.com',
+            'slug' => 'celestin_at_breadcel_com',
+            'first_name' => 'Celestin',
+            'last_name' => 'WOKGOUE',
+            'email' => 'celestin@breadcel.com',
             'password' => Hash::make('breadcel'),
             'token' => str_random(64),
             'is_confirmed' => true,

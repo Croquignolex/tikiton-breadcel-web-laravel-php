@@ -4,7 +4,7 @@ namespace App\Http\Controllers\App\Auth;
 
 use Exception;
 use App\Models\User;
-use App\Mail\UserRegisterUserMail;
+use App\Mail\UserRegisterMail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
@@ -44,14 +44,15 @@ class RegisterController extends Controller
         try
         {
             $user = User::create([
-                'name' => $request->input('name'),
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('password')),
             ]);
 
             try
             {
-                Mail::to($user)->send(new UserRegisterUserMail($user));
+                Mail::to($user)->send(new UserRegisterMail($user));
 
                 flash_message(
                     trans('auth.success'), trans('auth.registration_message'),

@@ -16,7 +16,7 @@ return [
     'top_register_msg' => 'Bienvenue :name, voici les instructions pour validation de votre compte',
     'body_register_msg' => 'Le :date, vous avez créé un compte et le système voudrais valider votre
         addresse email. Si vous n\'avez pas éffectués cette action, ignorez simplement cet email. Si
-        vous avez éffectués cette action, s\'il vous plais validez votre email en cliquant sur le 
+        vous avez éffectués cette action, s\'il vous plais validez votre adresse email en cliquant sur le 
         bouton ci-dessous',
     'validate_my_account' => 'Valider mon compte',
     'reset_my_password' => 'Réinitialiser mon mot de passe',
@@ -32,4 +32,8 @@ return [
         Si vous n\'avez pas éffectués cette action, ignorez simplement cet email. Si vous avez éffectués 
         cette action, s\'il vous plais vérifiez la progression de votre commande en cliquant sur le bouton ci-dessous',
     'check_order_progress' => 'Progression de la commande',
+    'body_change_email_msg' => 'Le :date, vous avez démandé à avoir une nouvelle addresse email et le système voudrais valider votre
+        nouvelle addresse email. Si vous n\'avez pas éffectués cette action, ignorez simplement cet email. Si
+        vous avez éffectués cette action, s\'il vous plais validez votre nouvelle adresse email en cliquant sur le 
+        bouton ci-dessous',
 ];

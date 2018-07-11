@@ -39,7 +39,7 @@
                                             </div>
                                             @component('components.input', [
                                                 'value' => $user->company ?? old('company'),
-                                                'type' => 'text', 'name' => 'company',
+                                                'type' => 'text', 'name' => 'company', 'validate' => 'false',
                                                 'placeholder' => trans('general.company') . '(' . trans('general.optional') . ')'
                                                 ])
                                             @endcomponent

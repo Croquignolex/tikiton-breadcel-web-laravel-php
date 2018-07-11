@@ -2,10 +2,10 @@
 
 namespace App\Mail;
 
-use App\Models\PasswordReset;
 use App\Models\User;
+use App\Models\PasswordReset;
 
-class UserPasswordResetUserMail extends BaseUserMail
+class UserPasswordResetMail extends BaseUserMail
 {
     public $reset_link;
 

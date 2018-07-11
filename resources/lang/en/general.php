@@ -38,6 +38,7 @@ return [
     'register' => 'Register',
     'pwd_cfm' => 'Confirm password',
     'pwd_reset' => 'Password reset',
+    'old_password' => 'Old password',
     'new_password' => 'New password',
     'reset' => 'Reset',
     'my_account' => 'My account',
@@ -237,7 +238,7 @@ return [
     'order_your_back' => 'Purchase back your order :order',
     'back_to_orders' => 'Back to my orders',
     'update' => 'Update',
-
+    'new_email' => 'New email',
 
     /*
     |--------------------------------------------------------------------------

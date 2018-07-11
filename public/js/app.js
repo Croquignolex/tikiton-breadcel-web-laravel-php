@@ -51,7 +51,8 @@ new Vue({
         },
         validateFormElement: function (event) {
             let element = event.target;
-            if(element.tagName !== 'FORM')
+            let elementDataSet = element.dataset;
+            if(element.tagName !== 'FORM' && elementDataSet.validate === 'true')
             {
                 validation(element) ?
                     setValidIndicator(element) :

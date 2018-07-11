@@ -20,11 +20,20 @@
                         <form id="signup-form" action="" method="POST" @submit="validateFormElements">
                             {{ csrf_field() }}
                             @component('components.label-input', [
-                                    'name' => 'name', 'label' => 'name'
+                                    'name' => 'first_name', 'label' => 'first_name'
                                     ])
                                 @component('components.input', [
-                                    'type' => 'text', 'name' => 'name',
-                                     'value' => old('name'), 'auto_focus' => 'autofocus'
+                                    'type' => 'text', 'name' => 'first_name',
+                                     'value' => old('first_name'), 'auto_focus' => 'autofocus'
+                                    ])
+                                @endcomponent
+                            @endcomponent
+                            @component('components.label-input', [
+                                    'name' => 'last_name', 'label' => 'last_name'
+                                    ])
+                                @component('components.input', [
+                                    'type' => 'text', 'name' => 'last_name',
+                                     'value' => old('last_name'), 'auto_focus' => 'autofocus'
                                     ])
                                 @endcomponent
                             @endcomponent

@@ -19,7 +19,8 @@
                         @endguest
                         @auth
                             <a href="{{ locale_route('account.index') }}">
-                                {{ \Illuminate\Support\Facades\Auth::user()->format_name }}
+                                {{ \Illuminate\Support\Facades\Auth::user()->format_first_name }}
+                                {{ \Illuminate\Support\Facades\Auth::user()->format_last_name }}
                             </a>
                         @endauth
                     </h5>

@@ -6,7 +6,7 @@ use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\PasswordReset;
-use App\Mail\UserPasswordResetUserMail;
+use App\Mail\UserPasswordResetMail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Traits\ResetPasswordUserTrait;
@@ -103,7 +103,7 @@ class ForgotPasswordController extends Controller
 
             try
             {
-                Mail::to($user)->send(new UserPasswordResetUserMail($user));
+                Mail::to($user)->send(new UserPasswordResetMail($user));
                 return true;
             }
             catch (Exception $exception)

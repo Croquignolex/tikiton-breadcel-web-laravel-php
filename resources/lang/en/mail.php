@@ -32,4 +32,8 @@ return [
         did not make this action, simply ignore this email. If you did make this action, please 
         check your order progress by clicking on the button bellow',
     'check_order_progress' => 'Check order progress',
+    'body_change_email_msg' => 'On :date, you have requested for a new email address and the system wish to
+        validate your new email address. If you did not make this action, simply ignore this
+        email. If you did make this action, please validate your new email by clicking on the
+        button bellow',
 ];

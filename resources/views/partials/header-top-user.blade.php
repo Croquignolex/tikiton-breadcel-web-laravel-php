@@ -1,5 +1,5 @@
 @component('components.top-header-drop-down', [
-    'selected' =>  Auth::user()->format_name
+    'selected' =>  Auth::user()->format_first_name . ' ' . Auth::user()->format_last_name
     ])
     <li class="text-left">
         <a href="{{ locale_route('account.index') }}">

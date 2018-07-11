@@ -25,6 +25,8 @@ return [
     'logout_message' => 'Your are actually logout',
     'sign_up' => 'Registration',
     'reset_pwd' => 'Reset password',
+    'change_pwd' => 'Change password',
+    'change_email' => 'Change email',
     'send_reset_link' => 'Send reset link',
     'forgotten_pwd' => 'Forgot Your Password',
     'login_sign_upped' => 'I already have an account',
@@ -39,7 +41,5 @@ return [
     'well_reset_sent' => 'The reset link has been send to your through e-mail, check your e-mail',
     'account_validation' => 'Account validation',
     'enter_email' => 'Enter your email',
-    'fill_form' => 'Fill the form',
-    'change_email' => 'Change your email',
-    'change_pwd' => 'Change your password',
+    'fill_form' => 'Fill the form'
 ];

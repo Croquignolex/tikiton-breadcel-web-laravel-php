@@ -4,7 +4,7 @@ namespace App\Mail;
 
 use App\Models\Order;
 
-class UserOrderUserMail extends BaseOrderMail
+class UserOrderMail extends BaseOrderMail
 {
     /**
      * UserOrderMail constructor.

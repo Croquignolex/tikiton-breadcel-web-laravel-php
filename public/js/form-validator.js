@@ -65,7 +65,7 @@ function isFormValidation(element){
 
     for(let i = 0; i < element.length; i++)
     {
-        if(!(element[i].type === 'hidden') && !(element[i].type === 'submit'))
+        if(!(element[i].type === 'hidden') && !(element[i].type === 'submit') && (element[i].dataset.validate === 'true'))
         {
             if(validation(element[i])) setValidIndicator(element[i]);
             else

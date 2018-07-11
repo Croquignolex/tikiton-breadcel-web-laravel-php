@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Traits\RequestTrait;
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterRequest extends FormRequest
+class PasswordRequest extends FormRequest
 {
     use RequestTrait;
 
@@ -17,9 +17,7 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => $this->required_string,
-            'last_name' => $this->required_string,
-            'email' => $this->required_string . '|unique:users',
+            'old_password' => $this->required_string,
             'password' => $this->required_string . '|confirmed'
         ];
     }
@@ -30,7 +28,6 @@ class RegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.unique' => trans('auth.user_existed'),
             'password.confirmed' => trans('password_unconfirmed')
         ];
     }

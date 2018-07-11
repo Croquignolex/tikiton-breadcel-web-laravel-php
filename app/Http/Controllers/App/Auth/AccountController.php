@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\App\Auth;
 
 use App\Http\Requests\EmailRequest;
+use App\Http\Requests\PasswordRequest;
 use App\Http\Requests\UserInfoUpdateRequest;
-use App\Mail\UserPasswordResetUserMail;
-use App\Mail\UserRegisterUserMail;
+use App\Mail\UserEmailChangeMail;
+use App\Mail\UserPasswordResetMail;
+use App\Mail\UserRegisterMail;
 use App\Models\PasswordReset;
 use Exception;
 use App\Models\User;
@@ -14,6 +16,7 @@ use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Mail\NewCustomerMail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use App\Traits\ErrorFlashMessagesTrait;
@@ -72,33 +75,37 @@ class AccountController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function password()
+    {
+        return view('account.password');
+    }
+
+    /**
+     * @param PasswordRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function changePassword(PasswordRequest $request)
     {
         try
         {
             $user = Auth::user();
-            $password_reset = PasswordReset::where(['email' => $user->email])->first();
-
-            if(is_null($password_reset)) PasswordReset::create(['email' => $user->email]);
-            else
+            if(Hash::check($request->input('old_password'), $user->password))
             {
-                $password_reset->token = str_random(64);
-                $password_reset->save();
-            }
-
-            try
-            {
-                Mail::to($user)->send(new UserPasswordResetUserMail($user));
+                $user->password = Hash::make($request->input('password'));
+                $user->save();
                 flash_message(
-                    trans('auth.info'), trans('passwords.sent'), font('info-circle'),
-                    'info', 'flipInY', 'flipOutX'
+                    trans('auth.success'), trans('passwords.changed')
                 );
             }
-            catch (Exception $exception)
+            else
             {
-                $this->mailError($exception);
+                flash_message(
+                    trans('auth.error'), trans('passwords.password_not_match'),
+                    font('remove'), 'danger', 'bounceIn', 'bounceOut');
+
+                return redirect(locale_route('account.password'));
             }
         }
         catch (Exception $exception)
@@ -132,7 +139,7 @@ class AccountController extends Controller
 
             try
             {
-                Mail::to($user)->send(new UserRegisterUserMail($user));
+                Mail::to($user)->send(new UserEmailChangeMail($user));
 
                 flash_message(
                     trans('auth.info'), trans('auth.email_sent'), font('info-circle'),
