@@ -11,6 +11,7 @@ class ServicesController extends Controller
      */
     public function __invoke()
     {
-        return view('services');
+        return redirect(locale_route('home'));
+        //return view('services');
     }
 }

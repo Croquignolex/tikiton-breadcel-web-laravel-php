@@ -3458,3 +3458,6 @@ h4.heading {
   height: 10px;
   border-radius: 0;
 }
+.error-code {
+  font-size: 100px !important;
+}

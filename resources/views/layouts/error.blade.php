@@ -1,25 +1,28 @@
 @extends('master')
 
-@section('title', 'coming soon')
+@section('title')
+    @yield('home.title')
+@endsection
 
 @section('body')
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 col-md-7">
+            <div class="col-sm-12">
                 <div class="come-logo">
-                    <img src="{{ img_asset('logo') }}" alt="..." />
+                    <a href="{{ locale_route('home') }}" title="@lang('general.home')">
+                        <img src="{{ img_asset('logo') }}" alt="..." />
+                    </a>
                 </div>
                 <div class="comming-soon-text text-center">
-                    <h2>BIENVENUE SUR BREAD'CEL</h2>
-                    <h2>DE CEL & CEL</h2>
+                    <h2 class="error-code">@yield('error.code')</h2>
                     <div class="come-soon">
-                        <h4>WE ARE COMMING</h4>
+                        <h4 class="text-uppercase">@yield('error.title')</h4>
                         <div class="come-border">
                             <div class="come-bottom float-left"></div>
-                            <i class="{{ font('heart') }} float-left"></i>
+                            <i class="{{ font('times') }} float-left"></i>
                             <div class="come-bottom float-left"></div>
                         </div>
-                        <h4>REALLY SOON</h4>
+                        <h4>@yield('error.body')</h4>
                     </div>
                     <div class="come-socials">
                         @component('components.icon-link', [
@@ -48,31 +51,14 @@
                             ])
                         @endcomponent
                     </div>
-                    @if(session()->has('notification.message'))
-                        <div class="text-center col-sm-10 custom-alert-{{ session('notification.type') }} col-sm-offset-1">
-                            {{ session('notification.message') }}
-                        </div>
-                    @endif
                     <div class="login">
-                        <form action="" method="POST">
-                            {{ csrf_field() }}
-                            @component('components.input', [
-                               'type' => 'password', 'name' => 'code',
-                               'value' => old('code')
-                            ])
-                            @endcomponent
-                            @component('components.submit', [
-                                'class' => 'submit', 'value' => 'Avoir un avant goût',
-                                'title' => 'Voir l\'évolution de la platforme'
-                                ])
-                            @endcomponent
-                        </form>
+                        <a href="{{ locale_route('home') }}"
+                           class="btn btn-lg btn-theme"
+                           title="@lang('general.home')">
+                            <i class="{{ font('home') }}"></i>
+                            @lang('error.return')
+                        </a>
                     </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-5">
-                <div class="come-soon-img">
-                    <img src="{{ img_asset('coming', 'jpg') }}" alt="" />
                 </div>
             </div>
         </div>
