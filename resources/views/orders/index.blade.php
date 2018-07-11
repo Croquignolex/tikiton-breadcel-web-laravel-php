@@ -16,10 +16,11 @@
                             <thead class="table-title">
                                 <tr>
                                     <th class="produ text-uppercase">@lang('general.reference')</th>
-                                    <th class="valu text-uppercase">@lang('general.products')</th>
-                                    <th class="valu text-uppercase">@lang('general.amount')</th>
+                                    <th class="unit text-uppercase">@lang('general.products')</th>
+                                    <th class="unit text-uppercase">@lang('general.amount')</th>
                                     <th class="unit text-uppercase">@lang('general.status')</th>
-                                    <th class="namedes text-uppercase text-center">@lang('general.actions')</th>
+                                    <th class="unit">@lang('general.address')</th>
+                                    <th class="namedes text-center">@lang('general.actions')</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -28,10 +29,10 @@
                                         <td class="produ {{ $order->format_status->label_color }}">
                                             {{ $order->reference }}
                                         </td>
-                                        <td class="unit text-right">
+                                        <td class="quantity text-right">
                                             {{ $orderService->getProductsNumber($order) }}
                                         </td>
-                                        <td class="unit">
+                                        <td class="quantity">
                                             <strong>
                                                 {{ money_currency($orderService->getBigTotal($order)) }}
                                             </strong>
@@ -41,6 +42,12 @@
                                             <div class="progress status-progress">
                                                 <div class="progress-bar progress-bar-striped active {{ $order->format_status->progress_bg_color }}" role="progressbar" style="width: {{ $order->format_status->percentage }}%;" aria-valuenow="{{ $order->format_status->percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
+                                        </td>
+                                        <td class="quantity">
+                                            <p>
+                                                {{ $order->shipping_address }} <br />
+                                                {{ $order->shipping_post_code }} {{ $order->shipping_city }} {{ $order->shipping_country }}
+                                            </p>
                                         </td>
                                         <td class="namedes text-center">
                                             @if($order->status === \App\Models\Order::ORDERED)

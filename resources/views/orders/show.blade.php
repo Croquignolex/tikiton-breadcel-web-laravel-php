@@ -114,6 +114,12 @@
                                 {{ money_currency($orderService->getBigTotal($order)) }}
                             </div>
                         </div>
+                        <div class="row">
+                            <p>
+                                {{ $order->shipping_address }} <br />
+                                {{ $order->shipping_post_code }} {{ $order->shipping_city }} {{ $order->shipping_country }}
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-7 contact-form">

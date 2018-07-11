@@ -72,7 +72,11 @@ class CheckoutController extends Controller
 
                 $order = $user->orders()->create([
                     'reference' => Order::getUniqueOrderReference(),
-                    'discount' => session()->has('coupon') ? session('coupon')->discount : 0
+                    'discount' => session()->has('coupon') ? session('coupon')->discount : 0,
+                    'shipping_address' => $user->shipping_address,
+                    'shipping_city' => $user->shipping_city,
+                    'shipping_country' => $user->shipping_country,
+                    'shipping_post_code' => $user->shipping_post_code,
                 ]);
 
                 foreach ($user->carted_products as $product) {

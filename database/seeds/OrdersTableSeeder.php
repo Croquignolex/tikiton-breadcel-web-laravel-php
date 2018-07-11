@@ -17,7 +17,11 @@ class OrdersTableSeeder extends Seeder
             'slug' => 'bc2018n57893762',
             'reference' => 'BC2018N57893762',
             'user_id' => 1,
-            'discount' => 3
+            'discount' => 3,
+            'shipping_address' => 'Ville Marie',
+            'shipping_post_code' => '200',
+            'shipping_city' => 'Quebec',
+            'shipping_country' => 'Canada'
         ]);
 
         DB::table('orders')->insert([
@@ -25,7 +29,11 @@ class OrdersTableSeeder extends Seeder
             'reference' => 'BC2018N54553762',
             'user_id' => 1,
             'discount' => 2,
-            'status' => Order::PROGRESS
+            'status' => Order::PROGRESS,
+            'shipping_address' => 'Ville Marie',
+            'shipping_post_code' => '400',
+            'shipping_city' => 'Toronto',
+            'shipping_country' => 'Canada'
         ]);
 
         DB::table('orders')->insert([
@@ -33,7 +41,11 @@ class OrdersTableSeeder extends Seeder
             'reference' => 'BC2018N54553736',
             'user_id' => 1,
             'discount' => 1,
-            'status' => Order::SOLD
+            'status' => Order::SOLD,
+            'shipping_address' => 'Ville Marie',
+            'shipping_post_code' => '600',
+            'shipping_city' => 'New Bork',
+            'shipping_country' => 'Canada'
         ]);
 
         DB::table('orders')->insert([
@@ -41,7 +53,11 @@ class OrdersTableSeeder extends Seeder
             'reference' => 'BC2012N54553762',
             'user_id' => 1,
             'discount' => 2,
-            'status' => Order::CANCELED
+            'status' => Order::CANCELED,
+            'shipping_address' => 'Cite cicam',
+            'shipping_post_code' => '300',
+            'shipping_city' => 'Douala',
+            'shipping_country' => 'Cameroun'
         ]);
     }
 }
