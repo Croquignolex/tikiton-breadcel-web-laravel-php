@@ -40,12 +40,23 @@
                         @include('partials.user-cart')
                     @endauth
                 @endif
-                <div class="search float-right">
-                    <form action="{{ locale_route('search') }}" method="POST">
-                        {{ csrf_field() }}
-                        <input type="text" value="" placeholder="@lang('general.search')...." />
-                    </form>
-                </div>
+                @guest
+                    <div class="cart-info float-right">
+                        <a href="javascript: void(0)" title="@lang('general.manage_cart')">
+                            <h5>
+                                @lang('general.my_cart')
+                                <span class="text-theme" id="products-number">0</span>
+                                @lang('general.products')
+                            </h5>
+                            <i class="{{ font('shopping-cart') }}"></i>
+                        </a>
+                        <div class="cart-hover">
+                            <div class="alert alert-danger">
+                                @lang('general.connect_to_see_cart')
+                            </div>
+                        </div>
+                    </div>
+                @endguest
             </div>
         </div>
     </div>

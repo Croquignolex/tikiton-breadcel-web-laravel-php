@@ -239,6 +239,7 @@ return [
     'back_to_orders' => 'Back to my orders',
     'update' => 'Update',
     'new_email' => 'New email',
+    'connect_to_see_cart' => 'Connect to see products in your cart',
 
     /*
     |--------------------------------------------------------------------------

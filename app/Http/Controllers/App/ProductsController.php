@@ -14,7 +14,7 @@ use App\Traits\ErrorFlashMessagesTrait;
 use App\Http\Requests\ProductReviewRequest;
 use Illuminate\Database\Eloquent\Collection;
 
-class ProductController extends Controller
+class ProductsController extends Controller
 {
     use PaginationTrait, ErrorFlashMessagesTrait;
 

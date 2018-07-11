@@ -239,6 +239,7 @@ return [
     'back_to_orders' => 'Retour sur mes commandes',
     'update' => 'Modifer',
     'new_email' => 'Nouvel email',
+    'connect_to_see_cart' => 'Connectez-vous afin de voir les produits dans votre panier',
 
     /*
     |--------------------------------------------------------------------------

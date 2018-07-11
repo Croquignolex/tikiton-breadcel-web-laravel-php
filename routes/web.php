@@ -53,20 +53,19 @@ Route::group(['namespace' => 'App', 'middleware' => 'coming.soon'], function() {
     Route::get('/{language}/about', 'AboutController')->name('about');
     Route::get('/{language}/services', 'ServicesController')->name('services');
     Route::get('/{language}/contact', 'ContactController@index')->name('contact');
-    Route::get('/{language}/products', 'ProductController@index')->name('products.index');
-    Route::get('/{language}/products/show/{product}', 'ProductController@show')->name('products.show');
+    Route::get('/{language}/products', 'ProductsController@index')->name('products.index');
+    Route::get('/{language}/products/show/{product}', 'ProductsController@show')->name('products.show');
     Route::get('/{language}/cart', 'CartController@index')->name('cart.index');
     Route::get('/{language}/checkout', 'CheckoutController@index')->name('checkout.index');
     Route::get('/{language}/wishlist', 'WishListController@index')->name('wishlist.index');
-    Route::get('/{language}/orders', 'OrderController@index')->name('orders.index');
-    Route::get('/{language}/orders/show/{order}', 'OrderController@show')->name('orders.show');
+    Route::get('/{language}/orders', 'OrdersController@index')->name('orders.index');
+    Route::get('/{language}/orders/show/{order}', 'OrdersController@show')->name('orders.show');
 
     Route::post('/{language}/checkout', 'CheckoutController@order');
     Route::post('/{language}/checkout/update', 'CheckoutController@update')->name('checkout.update');
     Route::post('/{language}/cart/coupon', 'CartController@applyCoupon')->name('coupon');
     Route::post('/{language}/cart/update/{product}', 'CartController@update')->name('cart.update');
-    Route::post('/{language}/search', 'SearchController')->name('search');
-    Route::post('/{language}/products/{product}', 'ProductController@review');
+    Route::post('/{language}/products/{product}', 'ProductsController@review');
     Route::post('/{language}/contact', 'ContactController@send');
     Route::post('/{language}/wishlist/product/add', 'WishListController@ajaxAddProduct')->name('wishlist.ajax.add.product');
     Route::post('/{language}/wishlist/product/remove', 'WishListController@ajaxRemoveProduct')->name('wishlist.ajax.remove.product');
@@ -76,12 +75,12 @@ Route::group(['namespace' => 'App', 'middleware' => 'coming.soon'], function() {
 
     Route::put('/{language}/wishlist/product/add/{product}', 'WishListController@addProduct')->name('wishlist.add.product');
     Route::put('/{language}/cart/product/add/{product}', 'CartController@addProduct')->name('cart.add.product');
-    Route::put('/{language}/order/order/{order}', 'OrderController@order')->name('order.order');
+    Route::put('/{language}/order/order/{order}', 'OrdersController@order')->name('order.order');
 
     Route::delete('/{language}/wishlist/product/remove/{product}', 'WishListController@removeProduct')->name('wishlist.remove.product');
     Route::delete('/{language}/cart/product/remove/{product}', 'CartController@removeProduct')->name('cart.remove.product');
     Route::delete('/{language}/cart/products/remove', 'CartController@removeProducts')->name('cart.remove.products');
-    Route::delete('/{language}/order/cancel/{order}', 'OrderController@cancel')->name('order.cancel');
+    Route::delete('/{language}/order/cancel/{order}', 'OrdersController@cancel')->name('order.cancel');
 
     //--Localized auth routes...
     Route::group(['namespace' => 'Auth'], function() {

@@ -3409,8 +3409,8 @@ h4.heading {
 .out-of-stock{
   opacity: .4;
 }
-.modal, .btn, .modal-content {
-  border-radius: 0% !important;
+.modal, .btn, .modal-content, .alert {
+  border-radius: 0 !important;
 }
 .in_stock {
   color: #178622 !important;
