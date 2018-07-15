@@ -123,7 +123,8 @@
                                             <ul>
                                                 <li>
                                                     <i class="{{ font('user') }}"></i>
-                                                    {{ $review->user->format_name }}
+                                                    {{ $review->user->format_first_name }}
+                                                    {{ $review->user->format_last_name }}
                                                 </li>
                                                 <li>
                                                     <i class="{{ font('clock-o') }}"></i>

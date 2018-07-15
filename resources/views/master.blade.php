@@ -11,12 +11,11 @@
 
         <title>@yield('title')</title>
 
-        <!-- Bootstrap core CSS -->
-        <link rel="stylesheet" href="{{ css_asset('bootstrap.min') }}" type="text/css">
-        <!-- Custom fonts for this template -->
-        <link rel="stylesheet" href="{{ css_asset('font-awesome.min') }}" type="text/css">
         <!-- Plugin CSS -->
         @stack('style.plugin')
+        <link rel="stylesheet" href="{{ css_asset('animate') }}" type="text/css">
+        <!-- Custom fonts for this template -->
+        <link rel="stylesheet" href="{{ css_asset('font-awesome.min') }}" type="text/css">
         <!-- Global styles -->
         <link rel="stylesheet" href="{{ css_asset('master') }}" type="text/css">
         <!-- Custom styles for this page -->
@@ -29,14 +28,13 @@
 
     <body>
         <div id="loader"></div>
-        @yield('body')
-        <!-- Bootstrap core JavaScript -->
-        <script src="{{ js_asset('jquery.min') }}" type="text/javascript"></script>
-        <script src="{{ js_asset('bootstrap.min') }}" type="text/javascript"></script>
+        <div id="app">
+            @yield('body')
+        </div>
+        @stack('script.plugin')
         <!-- Plugin JavaScript -->
         <script src="{{ js_asset('vue.min') }}" type="text/javascript"></script>
         <script src="{{ js_asset('bootstrap-notify.min') }}" type="text/javascript"></script>
-        @stack('script.plugin')
         <!-- Global scripts -->
         <script src="{{ js_asset('master') }}" type="text/javascript"></script>
         <!-- Custom scripts for this page -->

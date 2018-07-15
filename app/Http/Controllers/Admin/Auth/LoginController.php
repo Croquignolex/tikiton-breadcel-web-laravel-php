@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -21,19 +24,115 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * LoginController constructor.
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('admin.guest')->except('logout');
+    }
+
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        return view('admin.auth.login');
+    }
+
+    /**
+     * @param LoginRequest $request
+     * @return \Illuminate\Http\Response|void
+     * @throws ValidationException
+     */
+    public function login(LoginRequest $request)
+    {
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+        if ($this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            $this->sendLockoutResponse($request);
+        }
+
+        if ($this->attemptLogin($request)) {
+            $this->sendLoginResponse($request);
+        }
+
+        // If the login attempt was unsuccessful we will increment the number of attempts
+        // to login and redirect the user back to the login form. Of course, when this
+        // user surpasses their maximum number of attempts they will get locked out.
+        $this->incrementLoginAttempts($request);
+
+        $this->sendFailedLoginResponse();
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    protected function credentials(Request $request)
+    {
+        $credentials = $request->only($this->username(), 'password');
+        $credentials = array_add($credentials, 'is_confirmed', true);
+        $credentials = array_add($credentials, 'is_admin', true);
+
+        return $credentials;
+    }
+
+    /**
+     *
+     */
+    protected function sendFailedLoginResponse()
+    {
+        flash_message(
+            trans('auth.error'), 'Combinaison email et mot de passe incorrect ou votre à été bloqué',
+            font('remove'), 'danger', 'bounceIn', 'bounceOut');
+
+        throw ValidationException::withMessages([
+            $this->username() => [trans('auth.failed')],
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param $user
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        flash_message(
+            trans('auth.info'), trans('auth.welcome', ['name' => $user->name]),
+            font('info-circle'), 'info'
+        );
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        flash_message(
+            trans('auth.info'), trans('auth.logout_message'),
+            font('info-circle'), 'info'
+        );
+
+        return redirect(route('admin.login'));
+    }
+
+    /**
+     * @return string
+     */
+    protected function redirectTo()
+    {
+        return  route('admin.dashboard');
     }
 }

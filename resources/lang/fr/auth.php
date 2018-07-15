@@ -42,6 +42,4 @@ return [
     'account_validation' => 'Validation du compte',
     'enter_email' => 'Entrez votre email',
     'fill_form' => 'Remplissez le formulaire',
-    'change_email' => 'Changer votre email',
-    'change_pwd' => 'Changer votre mot de passe',
 ];

@@ -2210,10 +2210,6 @@ h4.heading {
 .contact_area {
   padding: 40px 0 70px;
 }
-#googleMap {
-  height: 350px;
-  width: 100%;
-}
 .contact-info {
   margin-bottom: 70px;
 }
@@ -3328,64 +3324,6 @@ h4.heading {
   color: #da7612;
   padding-left: 10px;
 }
-.form-invalid {
-  border: 1px solid red !important;
-}
-.form-valid {
-  border: 1px solid #178622 !important;
-}
-[data-notify="progressbar"] {
-    margin-bottom: 0px;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
-    height: 5px;
-}
-[data-notify="container"].alert-success {
-    color: #da7612;
-    background-color: rgba(235, 235, 235, 0.9);
-    border: 2px solid #da7612;
-}
-[data-notify="container"].alert-info {
-    color: #4990da;
-    background-color: rgba(235, 235, 235, 0.9);
-    border: 2px solid #4990da;
-}
-[data-notify="container"].alert-danger {
-    color: #da2013;
-    background-color: rgba(235, 235, 235, 0.9);
-    border: 2px solid #da2013;
-}
-[data-notify="progressbar"] > .progress-bar-success {
-    background-color: #da7612;
-}
-[data-notify="progressbar"] > .progress-bar-info {
-    background-color: #4990da;
-}
-[data-notify="progressbar"] > .progress-bar-danger {
-    background-color: #da2013;
-}
-[data-notify="container"] {
-    border-bottom: none !important;
-    border-radius: 0px !important;
-}
-.custom-alert-success,
-.custom-alert-info,
-.custom-alert-danger {
-    color: #ffffff;
-    border: 2px solid #ffffff;
-    padding: 15px;
-}
-.custom-alert-success {
-    background-color: #da7612;
-}
-.custom-alert-info {
-    background-color: #4990da;
-}
-.custom-alert-danger {
-    background-color: #da2013;
-}
 .login-page, .wishlist-page {
     margin-bottom: 50px;
 }
@@ -3399,8 +3337,11 @@ h4.heading {
 .multi-line-text {
   white-space: pre;
 }
-.review-form, .cart-page, .checkout-page, .contact-page, .email_pwd_btn {
+.review-form, .cart-page, .checkout-page, .contact-page, .email_pwd_btn, .map {
   margin-bottom: 20px;
+}
+.map {
+    margin-top: 20px;
 }
 #reviews{
   max-height: 500px;
@@ -3408,9 +3349,6 @@ h4.heading {
 }
 .out-of-stock{
   opacity: .4;
-}
-.modal, .btn, .modal-content, .alert {
-  border-radius: 0 !important;
 }
 .in_stock {
   color: #178622 !important;

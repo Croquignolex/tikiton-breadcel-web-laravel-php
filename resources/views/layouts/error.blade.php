@@ -66,6 +66,7 @@
 @endsection
 
 @push('style.plugin')
+    <link rel="stylesheet" href="{{ css_asset('bootstrap.min') }}" type="text/css">
     <link rel="stylesheet" href="{{ css_asset('owl.carousel.min') }}" type="text/css">
     <link rel="stylesheet" href="{{ css_asset('animate') }}" type="text/css">
     <link rel="stylesheet" href="{{ css_asset('jquery.simpleLens') }}" type="text/css">
@@ -79,4 +80,10 @@
 @push('style.page')
     <link rel="stylesheet" href="{{ css_asset('app') }}" type="text/css">
     <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+@endpush
+
+@push('script.plugin')
+    <!-- Bootstrap core JavaScript -->
+    <<script src="{{ js_asset('jquery.min') }}" type="text/javascript"></script>
+    <script src="{{ js_asset('bootstrap.min') }}" type="text/javascript"></script>
 @endpush

@@ -130,6 +130,11 @@ class ProductsController extends Controller
         return $sort_by_range[0];
     }
 
+    /**
+     * @param $filter
+     * @param string $type
+     * @return int|mixed
+     */
     private function filter_min_max_price($filter, $type = 'min')
     {
         $min_max_range = ['min' => 0, 'max' => 500];
@@ -147,6 +152,11 @@ class ProductsController extends Controller
         return $min_max_range[$type];
     }
 
+    /**
+     * @param Collection $products
+     * @param array $filter
+     * @return Collection
+     */
     private function filter_products(Collection $products, array $filter)
     {
         $filterProducts = $products;

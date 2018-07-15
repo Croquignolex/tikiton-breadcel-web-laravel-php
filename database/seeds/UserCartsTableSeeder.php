@@ -25,14 +25,14 @@ class UserCartsTableSeeder extends Seeder
         ]);
 
         DB::table('user_carts')->insert([
-            'user_id' => 2,
-            'product_id' => 1,
+            'user_id' => 1,
+            'product_id' => 11,
             'quantity' => 3
         ]);
 
         DB::table('user_carts')->insert([
-            'user_id' => 2,
-            'product_id' => 2,
+            'user_id' => 1,
+            'product_id' => 12,
             'quantity' => 2
         ]);
     }

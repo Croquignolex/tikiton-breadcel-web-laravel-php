@@ -1,5 +1,5 @@
 <input placeholder="{{ $placeholder ?? '' }}" data-validate="{{ $validate ?? 'true' }}"
-       maxlength="{{ $maxlength ?? 255 }}" minlength="{{ $minlength ?? 2 }}"
-       type="{{ $type }}" id="{{ $name  }}" name="{{ $name }}" value="{{ $value }}"
-       class="{{ $class ?? '' }} min_max {{ $errors->has($name) ? 'form-invalid' : '' }}"
-       {{ $auto_focus ?? ''}} {{ $readonly ?? '' }} @input="validateFormElement" />
+   maxlength="{{ $maxlength ?? 255 }}" minlength="{{ $minlength ?? 2 }}"
+   type="{{ $type }}" id="{{ $name  }}" name="{{ $name }}" value="{{ $value }}"
+   class="{{ $class ?? '' }} min_max {{ $errors->has($name) ? 'form-invalid' : '' }}"
+   {{ $auto_focus ?? ''}} {{ $readonly ?? '' }} @input="validateFormElement" />

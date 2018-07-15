@@ -65,7 +65,7 @@ Route::group(['namespace' => 'App', 'middleware' => 'coming.soon'], function() {
     Route::post('/{language}/checkout/update', 'CheckoutController@update')->name('checkout.update');
     Route::post('/{language}/cart/coupon', 'CartController@applyCoupon')->name('coupon');
     Route::post('/{language}/cart/update/{product}', 'CartController@update')->name('cart.update');
-    Route::post('/{language}/products/{product}', 'ProductsController@review');
+    Route::post('/{language}/products/show/{product}', 'ProductsController@review');
     Route::post('/{language}/contact', 'ContactController@send');
     Route::post('/{language}/wishlist/product/add', 'WishListController@ajaxAddProduct')->name('wishlist.ajax.add.product');
     Route::post('/{language}/wishlist/product/remove', 'WishListController@ajaxRemoveProduct')->name('wishlist.ajax.remove.product');
@@ -120,5 +120,32 @@ Route::group(['namespace' => 'App', 'middleware' => 'coming.soon'], function() {
         Route::post('/{language}/password/reset', 'ForgotPasswordController@sendResetLinkEmail');
         Route::get('/{language}/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
         Route::post('/{language}/password/reset/{token}', 'ResetPasswordController@reset');
+    });
+});
+
+
+Route::prefix('admin')->group(function() {
+    Route::group(['namespace' => 'Admin', 'middleware' => 'coming.soon'], function() {
+        //--Admin routes...
+        Route::get('/', function () { return redirect(route('admin.dashboard')); });
+        Route::get('/dashboard', 'DashboardController')->name('admin.dashboard');
+
+        //--Auth routes...
+        Route::group(['namespace' => 'Auth'], function() {
+            //--Admin login routes...
+            Route::get('/login', 'LoginController@showLoginForm')->name('admin.login');
+            Route::post('/login', 'LoginController@login');
+            Route::post('/logout', 'LoginController@logout')->name('admin.logout');
+
+            //--Admin registration routes...
+            Route::get('/register', 'RegisterController@showRegistrationForm')->name('admin.register');
+            Route::post('/register', 'RegisterController@register');
+
+            //--Admin password reset routes...
+            Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+            Route::post('/password/reset', 'ForgotPasswordController@sendResetLinkEmail');
+            Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('admin.password.reset');
+            Route::post('/password/reset/{token}', 'ResetPasswordController@reset');
+        });
     });
 });

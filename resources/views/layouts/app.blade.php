@@ -5,19 +5,18 @@
 @endsection
 
 @section('body')
-    <div id="app">
-        @include('partials.header-top')
-        @include('partials.header')
-        @include('partials.menu')
-        @yield('home.body')
-        @include('partials.footer-top')
-        @include('partials.footer')
-    </div>
+    @include('partials.header-top')
+    @include('partials.header')
+    @include('partials.menu')
+    @yield('home.body')
+    @include('partials.footer-top')
+    @include('partials.footer')
 @endsection
 
 @push('style.plugin')
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ css_asset('bootstrap.min') }}" type="text/css">
     <link rel="stylesheet" href="{{ css_asset('owl.carousel.min') }}" type="text/css">
-    <link rel="stylesheet" href="{{ css_asset('animate') }}" type="text/css">
     <link rel="stylesheet" href="{{ css_asset('jquery.simpleLens') }}" type="text/css">
     <link rel="stylesheet" href="{{ css_asset('jquery-price-slider') }}" type="text/css">
     <link rel="stylesheet" href="{{ css_asset('meanmenu.min') }}" type="text/css">
@@ -32,6 +31,9 @@
 @endpush
 
 @push('script.plugin')
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ js_asset('jquery.min') }}" type="text/javascript"></script>
+    <script src="{{ js_asset('bootstrap.min') }}" type="text/javascript"></script>
     <script src="{{ js_asset('owl.carousel.min') }}" type="text/javascript"></script>
     <script src="{{ js_asset('jquery.countTo') }}" type="text/javascript"></script>
     <script src="{{ js_asset('jquery.mixitup.min') }}" type="text/javascript"></script>

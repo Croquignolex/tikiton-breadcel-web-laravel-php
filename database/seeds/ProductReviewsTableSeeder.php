@@ -24,7 +24,7 @@ class ProductReviewsTableSeeder extends Seeder
             'text' => 'review 2',
             'ranking' => 10,
             'product_id' => 2,
-            'user_id' => 2,
+            'user_id' => 1,
             'created_at' => now(),
         ]);
     }

@@ -2,7 +2,6 @@
 
 namespace App\Http;
 
-
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustProxies;
 use App\Http\Middleware\EncryptCookies;
@@ -14,6 +13,8 @@ use App\Http\Middleware\OutOfStockMiddleware;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\RedirectIfNotAuthenticated;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use App\Http\Middleware\RedirectIfAdminAuthenticated;
+use App\Http\Middleware\RedirectIfNotAdminAuthenticated;
 
 class Kernel extends HttpKernel
 {
@@ -64,11 +65,13 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => RedirectIfNotAuthenticated::class,
+        'admin.auth' => RedirectIfNotAdminAuthenticated::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => RedirectIfAuthenticated::class,
+        'admin.guest' => RedirectIfAdminAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'ajax' => AjaxMiddleware::class,
