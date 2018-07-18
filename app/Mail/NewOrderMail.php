@@ -23,8 +23,7 @@ class NewOrderMail extends BaseOrderMail
      */
     public function build()
     {
-        return $this->from($this->order->user)
-            ->subject('Nouvelle commande')
+        return $this->subject('Nouvelle commande')
             ->view('mails.new-order')
             ->text('mails.new-order-plain');
     }

@@ -35,7 +35,7 @@ class HomeController extends Controller
 
             $customers_nbr = User::where('is_admin', false)->where('is_super_admin', false)->count();
             $products_nbr = Product::all()->count();
-            $orders_nbr = Order::where('status', Order::ORDERED)->count();
+            $orders_nbr = Order::where('status', '<>', Order::CANCELED)->count();
             $sales_nbr = Order::where('status', Order::SOLD)->count();
         }
         catch (Exception $exception)

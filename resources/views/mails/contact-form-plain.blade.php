@@ -9,7 +9,7 @@ Sujet: {{ $contact->subject }}<br /><br />
 {{ $contact->message }}<br /><br />
 <a href="#" target="_blank">Répondre au méssage</a><br /><br />
 Si ce bouton ne fonctionne pas, essayez de copier et coller
-cet URL dans votre navigateur web # Si le problème perssiste,
+cet URL dans votre navigateur web. Si le problème perssiste,
 s'il vous plais sentez vous libre de contacter l'équipe
 de developpement.<br /><br />
 @lang('general.admin_thanks', ['app' => config('app.name')])<br /><br /><br />

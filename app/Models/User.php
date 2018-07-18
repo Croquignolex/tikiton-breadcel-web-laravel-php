@@ -12,10 +12,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property mixed id
  * @property mixed email
  * @property mixed token
+ * @property mixed is_admin
  * @property mixed password
  * @property mixed last_name
  * @property mixed first_name
+ * @property mixed is_super_admin
  * @property mixed carted_products
+ * @property mixed format_last_name
+ * @property mixed format_first_name
  */
 class User extends Authenticatable
 {
@@ -39,7 +43,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'is_confirmed', 'is_admin', 'is_super_admin'
+        'password', 'is_confirmed', 'is_admin', 'is_super_admin', 'email'
     ];
 
     /**
@@ -168,5 +172,24 @@ class User extends Authenticatable
     public function getFormatLastNameAttribute()
     {
         return mb_strtoupper($this->last_name);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFormatFullNameAttribute()
+    {
+        return $this->format_first_name . ' ' . $this->format_last_name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFunctionAttribute()
+    {
+        if($this->is_super_admin) return 'Super administrateur';
+        elseif($this->is_admin) return 'Administrateur';
+
+        return 'Client';
     }
 }

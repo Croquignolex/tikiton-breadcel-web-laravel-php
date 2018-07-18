@@ -129,6 +129,11 @@ Route::prefix('admin')->group(function() {
         //--Admin routes...
         Route::get('/', function () { return redirect(route('admin.dashboard')); });
         Route::get('/dashboard', 'DashboardController')->name('admin.dashboard');
+        Route::get('/orders', 'OrdersController@index')->name('admin.orders.index');
+        Route::get('/orders/show/{order}', 'OrdersController@show')->name('admin.orders.show');
+        Route::post('/orders/progress/{order}', 'OrdersController@progress')->name('admin.orders.progress');
+        Route::post('/orders/sold/{order}', 'OrdersController@sold')->name('admin.orders.sold');
+        //Route::get('/products', 'ProductsController')->name('admin.products');
 
         //--Auth routes...
         Route::group(['namespace' => 'Auth'], function() {
@@ -137,15 +142,9 @@ Route::prefix('admin')->group(function() {
             Route::post('/login', 'LoginController@login');
             Route::post('/logout', 'LoginController@logout')->name('admin.logout');
 
-            //--Admin registration routes...
-            Route::get('/register', 'RegisterController@showRegistrationForm')->name('admin.register');
-            Route::post('/register', 'RegisterController@register');
-
             //--Admin password reset routes...
             Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
             Route::post('/password/reset', 'ForgotPasswordController@sendResetLinkEmail');
-            Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('admin.password.reset');
-            Route::post('/password/reset/{token}', 'ResetPasswordController@reset');
         });
     });
 });

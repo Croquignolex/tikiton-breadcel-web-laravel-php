@@ -44,13 +44,9 @@ class ContactController extends Controller
             {
                 if($setting->receive_email_from_contact)
                 {
-                    $to = new Email();
-                    $to->email = config('company.email_1');
-                    $to->name = config('company.name');
                     try
                     {
-                        Mail::to($to)
-                            ->send(new ContactFormMail($contact));
+                        Mail::to(config('company.email_1'))->send(new ContactFormMail($contact));
                     }
                     catch (Exception $exception)
                     {

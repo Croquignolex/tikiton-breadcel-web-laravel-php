@@ -20,10 +20,11 @@ class Order extends Model
 {
     use SlugRouteTrait, LocaleAmountTrait, LocaleDateTimeTrait;
 
-    const ORDERED = 0;
-    const CANCELED = 1;
-    const PROGRESS = 2;
-    const SOLD = 3;
+    const ALL = 0;
+    const ORDERED = 1;
+    const CANCELED = 2;
+    const PROGRESS = 3;
+    const SOLD = 4;
 
     /**
      * The attributes that are mass assignable.
@@ -93,14 +94,19 @@ class Order extends Model
     public function getFormatStatusAttribute()
     {
         if($this->status === static::ORDERED)
-            return new OrderStatus('ordered', 30, 'text-theme', 'bg-theme');
+            return new OrderStatus('ordered', 30, 'text-theme',
+                'bg-theme', 'bg-theme', 'badge-theme');
         else if($this->status === static::PROGRESS)
-            return new OrderStatus('in_progress', 60, 'text-success', 'progress-bar-success');
+            return new OrderStatus('in_progress', 60, 'text-success',
+                'progress-bar-success', 'bg-success', 'badge-success');
         else if($this->status === static::CANCELED)
-            return new OrderStatus('canceled', 100, 'text-danger', 'progress-bar-danger');
+            return new OrderStatus('canceled', 100, 'text-danger',
+                'progress-bar-danger', 'bg-danger', 'badge-danger');
         else if($this->status === static::SOLD)
-        return new OrderStatus('sold', 100, 'text-info', 'progress-bar-info');
+        return new OrderStatus('sold', 100, 'text-info',
+            'progress-bar-info', 'bg-info', 'badge-info');
 
-        return new OrderStatus('ordered', 30, 'text-theme', 'bg-theme');
+        return new OrderStatus('ordered', 30, 'text-theme',
+            'bg-theme', 'bg-theme', 'badge-theme');
     }
 }

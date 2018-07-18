@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\App;
 
-use App\Mail\CancelOrderMail;
-use App\Mail\NewOrderMail;
-use App\Mail\UserOrderMail;
+use Exception;
 use App\Models\Email;
 use App\Models\Order;
-use Exception;
-use App\Http\Controllers\Controller;
-use App\Traits\ErrorFlashMessagesTrait;
+use App\Models\Setting;
 use Illuminate\Http\Request;
+use App\Mail\CancelOrderMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\Controller;
+use App\Traits\ErrorFlashMessagesTrait;
 
 class OrdersController extends Controller
 {
@@ -58,12 +57,9 @@ class OrdersController extends Controller
             {
                 if ($setting->receive_email_from_canceled_order)
                 {
-                    $to = new Email();
-                    $to->email = config('company.email_1');
-                    $to->name = config('company.name');
                     try
                     {
-                        Mail::to($to)->send(new CancelOrderMail($order));
+                        Mail::to(config('company.email_1'))->send(new CancelOrderMail($order));
                     }
                     catch (Exception $exception)
                     {

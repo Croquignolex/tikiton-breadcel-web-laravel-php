@@ -29,8 +29,7 @@ class ContactFormMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->from($this->contact)
-            ->subject($this->contact->subject)
+        return $this->subject('Formulaire de contact')
             ->view('mails.contact-form')
             ->text('mails.contact-form-plain');
     }

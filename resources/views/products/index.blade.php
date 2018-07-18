@@ -132,10 +132,8 @@
                                     @lang('general.no_products')
                                 </div>
                             @endforelse
-                            @component('components.pagination', [
-                                'paginationTools' => $paginationTools,
-                                'url' => locale_route('products.index') . '?page='
-                                ])
+                            @component('components.pagination',
+                                ['paginationTools' => $paginationTools])
                             @endcomponent
                         </div>
                     </div>

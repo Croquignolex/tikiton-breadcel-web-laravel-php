@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\App;
 
-use App\Mail\NewOrderMail;
-use App\Models\Email;
-use App\Models\Setting;
 use Exception;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Coupon;
+use App\Models\Setting;
+use App\Mail\NewOrderMail;
 use App\Mail\UserOrderMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
@@ -82,12 +81,6 @@ class CheckoutController extends Controller
                 foreach ($user->carted_products as $product) {
                     $product_quantity_in_cart = $product->pivot->quantity;
                     $order->products()->save($product, ['quantity' => $product_quantity_in_cart]);
-
-                    /*
-                     * TODO: Add this action to admin when validate the order
-                     */
-                    //$product->stock = $product->stock - $product_quantity_in_cart;
-                    //$product->save();
                 }
 
                 $setting = Setting::where('is_activated', true)->first();
@@ -95,12 +88,9 @@ class CheckoutController extends Controller
                 {
                     if ($setting->receive_email_from_new_order)
                     {
-                        $to = new Email();
-                        $to->email = config('company.email_1');
-                        $to->name = config('company.name');
                         try
                         {
-                            Mail::to($to)->send(new NewOrderMail($order));
+                            Mail::to(config('company.email_1'))->send(new NewOrderMail($order));
                         }
                         catch (Exception $exception)
                         {
@@ -111,7 +101,7 @@ class CheckoutController extends Controller
 
                 try
                 {
-                    Mail::to($user)->send(new UserOrderMail($order));
+                    Mail::to($user->email)->send(new UserOrderMail($order));
                 }
                 catch (Exception $exception)
                 {

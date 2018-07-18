@@ -139,7 +139,7 @@ class AccountController extends Controller
 
             try
             {
-                Mail::to($user)->send(new UserEmailChangeMail($user));
+                Mail::to($user->email)->send(new UserEmailChangeMail($user));
 
                 flash_message(
                     trans('auth.info'), trans('auth.email_sent'), font('info-circle'),
@@ -193,12 +193,9 @@ class AccountController extends Controller
                 {
                     if($setting->receive_email_from_register)
                     {
-                        $to = new Email();
-                        $to->email = config('company.email_1');
-                        $to->name = config('company.name');
                         try
                         {
-                            Mail::to($to)->send(new NewCustomerMail($user));
+                            Mail::to(config('company.email_1'))->send(new NewCustomerMail($user));
                         }
                         catch (Exception $exception)
                         {

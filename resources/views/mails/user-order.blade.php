@@ -10,7 +10,7 @@
         <td>
             <p style="text-align: justify;">
                 <strong>
-                    @lang('mail.top_new_order_msg', ['name' => $order->user->format_name]).
+                    @lang('mail.top_new_order_msg', ['name' => $order->user->format_first_name]).
                 </strong>
             </p>
             <p style="text-align: justify;">

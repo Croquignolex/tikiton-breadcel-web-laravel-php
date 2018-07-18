@@ -17,13 +17,14 @@
 }
 
 #loader { background-color: #ffffff !important; }
-.btn-theme { color : #ffffff !important; }
+.btn-theme, .badge-theme { color : #ffffff !important; }
 .text-theme { color: #da7612 !important; }
-.bg-theme, .btn-theme { background-color: #da7612 !important; }
+.bg-theme, .btn-theme, .badge-theme { background-color: #da7612 !important; }
 .border-radius-theme { border-radius: 1px !important; }
-.border-theme { border: 1px solid #da7612 !important; }
+.border-theme, .badge-theme, .btn-theme { border: 1px solid #da7612 !important; }
 .border-bottom-theme { border-bottom: 1px solid #da7612 !important; }
 .border-top-theme { border-top: 1px solid #da7612 !important; }
+.btn-theme:hover { background-color: #c2680e !important; }
 .btn-theme:hover { background-color: #c2680e !important; }
 
 .form-invalid { border: 1px solid red !important; }

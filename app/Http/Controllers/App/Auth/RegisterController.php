@@ -43,16 +43,16 @@ class RegisterController extends Controller
     {
         try
         {
-            $user = User::create([
-                'first_name' => $request->input('first_name'),
-                'last_name' => $request->input('last_name'),
-                'email' => $request->input('email'),
-                'password' => Hash::make($request->input('password')),
-            ]);
+            $user = new User();
+            $user->first_name = $request->input('first_name');
+            $user->last_name = $request->input('last_name');
+            $user->email = $request->input('email');
+            $user->password = $request->input('password');
+            $user->save();
 
             try
             {
-                Mail::to($user)->send(new UserRegisterMail($user));
+                Mail::to($user->email)->send(new UserRegisterMail($user));
 
                 flash_message(
                     trans('auth.success'), trans('auth.registration_message'),

@@ -1,5 +1,5 @@
 <p style="text-align: justify;">
-    <strong>Nom & Prénom:</strong> {{ $order->user->first_name }} {{ $order->user->last_name }}<br />
+    <strong>Nom & Prénom:</strong> {{ $order->user->format_full_name }}<br />
     <strong>Email:</strong> {{ $order->user->email }}<br />
     <strong>Tel:</strong> {{ $order->user->phone }}<br />
     <strong>Commande N°:</strong> {{ $order->reference }}

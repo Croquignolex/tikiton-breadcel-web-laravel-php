@@ -9,7 +9,7 @@
         <td>
             <p style="text-align: justify;">
                 <strong>
-                    @lang('mail.top_password_reset_msg', ['name' => $user->format_name]).
+                    @lang('mail.top_password_reset_msg', ['name' => $user->format_first_name]).
                 </strong>
             </p>
             <p style="text-align: justify;">

@@ -15,7 +15,8 @@
                 </strong>
             </p>
             <p style="text-align: justify;">
-                <strong>Nom:</strong> {{ $user->format_name }}<br />
+                <strong>Prénom:</strong> {{ $user->format_first_name }}<br />
+                <strong>Nom:</strong> {{ $user->format_last_name }}<br />
                 <strong>Email:</strong> {{ $user->email }}
             </p>
             <div style="text-align: center;">
@@ -25,7 +26,7 @@
             </div>
             <p style="text-align: justify;">
                 Si ce bouton ne fonctionne pas, essayez de copier et coller
-                cet URL dans votre navigateur web # Si le problème perssiste,
+                cet URL dans votre navigateur web. Si le problème perssiste,
                 s'il vous plais sentez vous libre de contacter l'équipe
                 de developpement.
             </p>

@@ -23,8 +23,7 @@ class CancelOrderMail extends BaseOrderMail
      */
     public function build()
     {
-        return $this->from($this->order->user)
-            ->subject('Commande annulée')
+        return $this->subject('Commande annulée')
             ->view('mails.cancel-order')
             ->text('mails.cancel-order-plain');
     }

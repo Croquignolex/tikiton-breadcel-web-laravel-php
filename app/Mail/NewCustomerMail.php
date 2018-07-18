@@ -22,8 +22,7 @@ class NewCustomerMail extends BaseUserMail
      */
     public function build()
     {
-        return $this->from($this->user)
-            ->subject('Nouveau client')
+        return $this->subject('Nouveau client')
             ->view('mails.new-customer')
             ->text('mails.new-customer-plain');
     }

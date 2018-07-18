@@ -71,7 +71,7 @@
                                     </tr>
                                 @empty
                                     <tr class="table-info">
-                                        <td colspan="5">
+                                        <td colspan="6">
                                             <div class="alert alert-info text-center">
                                                 @lang('general.empty_order')
                                             </div>

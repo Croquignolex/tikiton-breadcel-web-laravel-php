@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string('slug')->unique();
             $table->string('reference')->unique();
             $table->double('discount')->default(0);
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(1);
             $table->string('shipping_address', 255);
             $table->string('shipping_post_code', 255);
             $table->string('shipping_city', 255);

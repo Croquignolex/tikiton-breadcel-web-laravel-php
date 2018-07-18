@@ -89,3 +89,25 @@ if(!function_exists('products_pages'))
         return collect(['products.index', 'products.show']);
     }
 }
+
+if(!function_exists('admin_dashboard_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function admin_dashboard_pages()
+    {
+        return collect(['admin.dashboard']);
+    }
+}
+
+if(!function_exists('admin_orders_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function admin_orders_pages()
+    {
+        return collect(['admin.orders.index', 'admin.orders.show']);
+    }
+}

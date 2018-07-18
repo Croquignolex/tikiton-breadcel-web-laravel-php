@@ -1,8 +1,8 @@
-@extends('admin.layouts.admin')
+@extends('master')
 
-@section('home.title', 'Connexion')
+@section('title', 'Connexion')
 
-@section('home.body')
+@section('body')
     <div class="container-scroller">
         <div class="container-fluid page-body-wrapper full-page-wrapper auth-page">
             <div class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">
@@ -70,7 +70,26 @@
     <!-- container-scroller -->
 @endsection
 
-@push('admin.script.page')
+@push('style.plugin')
+    <link rel="stylesheet" href="{{ css_admin_asset('vendor.bundle.base') }}" type="text/css">
+    <link rel="stylesheet" href="{{ css_admin_asset('vendor.bundle.addons') }}" type="text/css">
+    <link rel="stylesheet" href="{{ css_admin_asset('admin') }}" type="text/css">
+    @endpush
+
+@push('style.page')
+    <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+@endpush
+
+@push('script.plugin')
+    <script src="{{ js_admin_asset('vendor.bundle.base') }}" type="text/javascript"></script>
+    <script src="{{ js_admin_asset('vendor.bundle.addons') }}" type="text/javascript"></script>
+    <script src="{{ js_admin_asset('off-canvas') }}" type="text/javascript"></script>
+    <script src="{{ js_admin_asset('misc') }}" type="text/javascript"></script>
+@endpush
+
+@push('script.page')
+    <!-- Page scripts -->
+    <script src="{{ js_admin_asset('admin') }}" type="text/javascript"></script>
     <script src="{{ js_asset('bootstrap-maxlength') }}" type="text/javascript"></script>
     <script src="{{ js_asset('form-validator') }}" type="text/javascript"></script>
 @endpush

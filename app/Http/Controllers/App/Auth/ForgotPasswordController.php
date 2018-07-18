@@ -103,7 +103,7 @@ class ForgotPasswordController extends Controller
 
             try
             {
-                Mail::to($user)->send(new UserPasswordResetMail($user));
+                Mail::to($user->email)->send(new UserPasswordResetMail($user));
                 return true;
             }
             catch (Exception $exception)

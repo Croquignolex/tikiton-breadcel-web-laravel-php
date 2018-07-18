@@ -5,7 +5,30 @@
 @endsection
 
 @section('body')
-    @yield('home.body')
+    <!-- Container-scroller Start -->
+    <div class="container-scroller">
+        <!-- Nav-bar Start -->
+        @include('admin.partials.nav-bar')
+        <!-- Nav-bar End -->
+        <!-- Page-body-wrapper Start -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- Side-bar Start -->
+            @include('admin.partials.side-bar')
+            <!-- Side-bar End -->
+            <!-- Main-panel Start -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    @yield('home.body')
+                </div>
+                <!-- Footer Start -->
+                @include('admin.partials.footer')
+                <!-- Footer End -->
+            </div>
+            <!-- Main-panel End -->
+        </div>
+        <!-- Page-body-wrapper End -->
+    </div>
+    <!-- Container-scroller End -->
 @endsection
 
 @push('style.plugin')
