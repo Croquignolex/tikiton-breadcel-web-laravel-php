@@ -43,7 +43,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">{{ $table_label }}</h4>
+                    <h4 class="card-title">{{ $table_label }} ({{ $paginationTools->itemsNumber }})</h4>
                     @component('components.pagination',
                         ['paginationTools' => $paginationTools])
                     @endcomponent
@@ -67,7 +67,7 @@
                                         <td class="text-right">{{ money_currency($orderService->getBigTotal($order)) }}</td>
                                         <td>
                                             <div class="progress">
-                                                <div class="progress-bar progress-bar-striped {{ $order->format_status->progress_bar_color  }}" role="progressbar" style="width: {{ $order->format_status->percentage }}%" aria-valuenow="{{ $order->format_status->percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar {{ $order->format_status->progress_bar_color  }}" role="progressbar" style="width: {{ $order->format_status->percentage }}%" aria-valuenow="{{ $order->format_status->percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                             <div class="order-status text-center">
                                                 <label class="badge {{ $order->format_status->badge_color }}">{{ $order->format_status->label }}</label>

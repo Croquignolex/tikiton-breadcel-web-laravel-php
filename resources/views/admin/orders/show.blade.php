@@ -69,19 +69,19 @@
                                         </th>
                                     </tr>
                                 @endforeach
-                                <tr>
+                                <tr class="table-secondary">
                                     <td colspan="2"><strong>Sous total</strong></td>
                                     <td colspan="2" class="text-right"><strong>{{ money_currency($orderService->getFrSubTotal($order)) }}</strong></td>
                                 </tr>
-                                <tr>
+                                <tr class="table-secondary">
                                     <td colspan="2"><strong>TVA ({{ $orderService->getTVAPercentage() }})</strong></td>
                                     <td colspan="2" class="text-right"><strong>{{ money_currency($orderService->getFrTVA($order)) }}</strong></td>
                                 </tr>
-                                <tr>
+                                <tr class="table-secondary">
                                     <td colspan="2"><strong>Coupon</strong></td>
                                     <td colspan="2" class="text-right"><strong>- {{ money_currency($orderService->getFrDiscount($order)) }}</strong></td>
                                 </tr>
-                                <tr class="{{ $order->format_status->label_color }}">
+                                <tr class="{{ $order->format_status->label_color }} table-secondary">
                                     <td colspan="2"><strong>Grand total</strong></td>
                                     <td colspan="2" class="text-right"><strong>{{ money_currency($orderService->getFrBigTotal($order)) }}</strong></td>
                                 </tr>

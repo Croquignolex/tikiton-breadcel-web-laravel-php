@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\App;
 
 use Exception;
-use App\Models\Email;
 use App\Models\Order;
 use App\Models\Setting;
 use Illuminate\Http\Request;

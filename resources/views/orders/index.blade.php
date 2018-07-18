@@ -40,7 +40,12 @@
                                         <td class="quantity {{ $order->format_status->label_color }}">
                                             {{ $order->format_status->label }}
                                             <div class="progress status-progress">
-                                                <div class="progress-bar progress-bar-striped active {{ $order->format_status->progress_bg_color }}" role="progressbar" style="width: {{ $order->format_status->percentage }}%;" aria-valuenow="{{ $order->format_status->percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar progress-bar-striped
+                                                    {{ $order->format_status->percentage !== 100 ? 'active' : '' }}
+                                                    {{ $order->format_status->progress_bg_color }}"
+                                                     role="progressbar" style="width: {{ $order->format_status->percentage }}%;"
+                                                     aria-valuenow="{{ $order->format_status->percentage }}" aria-valuemin="0"
+                                                     aria-valuemax="100"></div>
                                             </div>
                                         </td>
                                         <td class="quantity">

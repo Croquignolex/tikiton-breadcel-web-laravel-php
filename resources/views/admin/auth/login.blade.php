@@ -7,7 +7,7 @@
         <div class="container-fluid page-body-wrapper full-page-wrapper auth-page">
             <div class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">
                 <div class="row w-100">
-                    <div class="col-lg-4 mx-auto">
+                    <div class="col-lg-4 col-md-6 col-sm-8 mx-auto">
                         <div class="text-center">
                             <a href="{{ locale_route('home') }}">
                                 <img src="{{ img_asset('logo') }}" alt="..." />
@@ -92,4 +92,5 @@
     <script src="{{ js_admin_asset('admin') }}" type="text/javascript"></script>
     <script src="{{ js_asset('bootstrap-maxlength') }}" type="text/javascript"></script>
     <script src="{{ js_asset('form-validator') }}" type="text/javascript"></script>
+    <script src="{{ js_asset('min-max-4') }}" type="text/javascript"></script>
 @endpush

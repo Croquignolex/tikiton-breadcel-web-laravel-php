@@ -47,7 +47,7 @@ class RegisterController extends Controller
             $user->first_name = $request->input('first_name');
             $user->last_name = $request->input('last_name');
             $user->email = $request->input('email');
-            $user->password = $request->input('password');
+            $user->password = Hash::make($request->input('password'));
             $user->save();
 
             try

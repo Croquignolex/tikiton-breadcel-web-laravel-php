@@ -27,7 +27,7 @@ class UserPasswordResetMail extends BaseUserMail
      */
     public function build()
     {
-        return $this->subject(trans('auth.reset_pwd'))
+        return $this->subject(trans('auth.reset_your_pwd'))
             ->view('mails.user-password-reset')
             ->text('mails.user-password-reset-plain');
     }

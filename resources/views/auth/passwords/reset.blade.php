@@ -9,7 +9,7 @@
     <div class="login-page page fix">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-md-5 col-sm-offset-3">
+                <div class="col-sm-6 col-sm-offset-3">
                     <div class="login">
                         <h2>@lang('auth.fill_form')</h2>
                         @if(session()->has('notification.message'))
@@ -62,4 +62,5 @@
 @push('overlay.app.script.page')
     <script src="{{ js_asset('bootstrap-maxlength') }}" type="text/javascript"></script>
     <script src="{{ js_asset('form-validator') }}" type="text/javascript"></script>
+    <script src="{{ js_asset('min-max-3') }}" type="text/javascript"></script>
 @endpush

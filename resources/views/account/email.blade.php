@@ -43,4 +43,5 @@
 @push('overlay.app.script.page')
     <script src="{{ js_asset('bootstrap-maxlength') }}" type="text/javascript"></script>
     <script src="{{ js_asset('form-validator') }}" type="text/javascript"></script>
+    <script src="{{ js_asset('min-max-3') }}" type="text/javascript"></script>
 @endpush

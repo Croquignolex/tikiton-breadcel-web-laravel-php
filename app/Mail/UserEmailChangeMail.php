@@ -22,7 +22,7 @@ class UserEmailChangeMail extends BaseUserMail
      */
     public function build()
     {
-        return $this->subject(trans('auth.change_email'))
+        return $this->subject(trans('auth.change_your_email'))
             ->view('mails.user-email-change')
             ->text('mails.user-email-change-plain');
     }

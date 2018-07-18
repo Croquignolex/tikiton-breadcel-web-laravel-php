@@ -22,7 +22,7 @@ class UserOrderMail extends BaseOrderMail
      */
     public function build()
     {
-        return $this->subject(trans('general.order'))
+        return $this->subject(trans('general.your_order'))
             ->view('mails.user-order')
             ->text('mails.user-order-plain');
     }

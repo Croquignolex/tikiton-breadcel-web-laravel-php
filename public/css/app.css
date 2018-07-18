@@ -416,6 +416,10 @@ img {
 .mobile-menu > div > nav > ul > li > .active
 { background-color: #da7612; }
 
+.mobile-menu {
+  margin: 20px 0 20px 0;
+}
+
 .menu-area {
   background:#ebebeb;
 }
@@ -3348,7 +3352,7 @@ h4.heading {
   overflow: auto;
 }
 .out-of-stock{
-  opacity: .4;
+  opacity: .4 !important;;
 }
 .in_stock {
   color: #178622 !important;
