@@ -36,8 +36,8 @@ class ProductsController extends Controller
         try
         {
             $products = Product::all();
-            $categories = ProductCategory::all();
-            $tags = Tag::all();
+            $categories = ProductCategory::all()->sortByDesc('created_at');
+            $tags = Tag::all()->sortByDesc('created_at');
         }
         catch (Exception $exception)
         {
@@ -202,6 +202,6 @@ class ProductsController extends Controller
             ->where('price', '>=', $filter['min_price'])
             ->where('price', '<=', $filter['max_price']);
         //End price filter
-        return $filterProducts;
+        return $filterProducts->sortByDesc('created_at');
     }
 }

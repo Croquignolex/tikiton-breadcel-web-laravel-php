@@ -133,7 +133,12 @@ Route::prefix('admin')->group(function() {
         Route::get('/orders/show/{order}', 'OrdersController@show')->name('admin.orders.show');
         Route::post('/orders/progress/{order}', 'OrdersController@progress')->name('admin.orders.progress');
         Route::post('/orders/sold/{order}', 'OrdersController@sold')->name('admin.orders.sold');
-        //Route::get('/products', 'ProductsController')->name('admin.products');
+        Route::resource('/products', 'ProductsController', ['names' => [
+            'index' => 'admin.products.index', 'create' => 'admin.products.create',
+            'store' => 'admin.products.store', 'show' => 'admin.products.show',
+            'edit' => 'admin.products.edit', 'update' => 'admin.products.update',
+            'destroy' => 'admin.products.destroy'
+        ]]);
 
         //--Auth routes...
         Route::group(['namespace' => 'Auth'], function() {

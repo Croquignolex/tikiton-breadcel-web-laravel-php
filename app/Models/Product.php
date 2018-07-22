@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property mixed id
+ * @property mixed tags
  * @property mixed stock
  * @property mixed image
  * @property mixed price
@@ -22,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed pivot
  * @property mixed is_new
  * @property mixed discount
+ * @property mixed extension
  * @property mixed created_at
  * @property mixed is_featured
  * @property mixed format_name
@@ -34,13 +36,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed fr_featured_title
  * @property mixed en_featured_title
  * @property mixed en_featured_description
- * @property mixed fr_featured_description
+ * @property mixed fr_featured_description*
  */
 class Product extends Model
 {
     use SlugRouteTrait, LocaleNameTrait, LocaleDescriptionTrait,
         LocaleSlugSaveTrait, LocaleAmountTrait, LocaleDateTimeTrait;
 
+    const ALL = 0;
+    const IS_NEW = 1;
+    const IS_FEATURED = 2;
+    const IS_BEST_SELLER = 3;
     const IN_STOCk = 'in_stock';
     const OUT_OF_STOCK = 'out_of_stock';
     const SORT_BY_NAME_ASC = 'name_asc';
@@ -58,7 +64,7 @@ class Product extends Model
     protected $fillable = [
         'image', 'fr_name', 'en_name', 'fr_description', 'en_description',
         'price', 'discount', 'ranking', 'is_featured', 'is_new',
-        'is_most_sold', 'stock'
+        'is_most_sold', 'stock', 'extension', 'category_id'
     ];
 
     /**
@@ -159,7 +165,7 @@ class Product extends Model
      */
     public function getImagePathAttribute()
     {
-        return product_img_asset($this->image);
+        return product_img_asset($this->image, $this->extension);
     }
 
     /**

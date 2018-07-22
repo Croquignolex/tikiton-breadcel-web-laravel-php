@@ -17,16 +17,17 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('slug')->unique();
             $table->string('image', 255);
+            $table->string('extension', 50)->default('jpg');;
             $table->string('fr_name', 255);
             $table->string('en_name', 255);
             $table->text('fr_description');
             $table->text('en_description');
-            $table->double('price');
-            $table->smallInteger('discount')->default(0);
+            $table->double('price')->unsigned();
+            $table->smallInteger('discount')->unsigned()->default(0);
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_new')->default(false);
             $table->boolean('is_most_sold')->default(false);
-            $table->integer('stock');
+            $table->integer('stock')->unsigned();
             $table->integer('category_id')->unsigned();
             $table->timestamps();
 

@@ -110,6 +110,7 @@ return [
     'our_team' => 'Notre équipe',
     'database_error' => 'Erreur du serveur de base de données, réessayez plus tard s\'il vous plait',
     'mail_error' => 'Erreur du serveur de mails, réessayez plus tard s\'il vous plait',
+    'image_error' => 'Erreur du serveur de fichiers, réessayez plus tard s\'il vous plait',
     'admin_thanks' => 'Merci (Equipe :app)',
     'bad_link' => 'Le lien a expiré ou n\'est pas correct',
     'well_confirmed' => 'Votre compte est validé avec succèss. connectez-vous et commencez vos achat',
@@ -384,5 +385,20 @@ return [
 
     'about_manager_2' => '<< Je crois que dans la vie, on si on vit de sa passion,  c\'est très bien
         C\'est beau de faire ce qu\'on aime et c\'est encore mieux de vivre de ce qu\'on aime. >>
-         Célestin Wokgoue'
+         Célestin Wokgoue',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin line
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'fr_name' => 'Nom (fr)',
+    'en_name' => 'Nom (en)',
+    'fr_description' => 'Description (fr)',
+    'en_description' => 'Description (en)',
+    'discount' => 'Réduction (promo)%',
+    'stock' => 'Stock',
 ];

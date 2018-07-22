@@ -110,6 +110,7 @@ return [
     'our_team' => 'Our team',
     'database_error' => 'Database server error, try later please',
     'mail_error' => 'Mail server error, try later please',
+    'image_error' => 'File server error, try later please',
     'admin_thanks' => 'Thanks (:app team)',
     'bad_link' => 'Bad link or expired',
     'well_confirmed' => 'Your account is successfully validate. Login and start your shopping',

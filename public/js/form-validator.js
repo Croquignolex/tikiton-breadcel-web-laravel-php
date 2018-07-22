@@ -57,7 +57,7 @@ function isMinMaxValidation(element){
 }
 
 function isIntegerValidation(element){
-    return !(!element.value.match(/^[0-9]+$/));
+    return !(!element.value.match(/^[0-9.]+$/));
 }
 
 function isFormValidation(element){

@@ -1,7 +1,7 @@
 @inject('orderService', 'App\Services\OrderService')
 @extends('admin.layouts.admin')
 
-@section('home.title', 'Commandes')
+@section('home.title', page_title('Commandes'))
 
 @section('home.body')
     <div class="row">
@@ -9,7 +9,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Commandes</h4>
+                    <h4 class="card-title">COMMANDES</h4>
                     <p class="card-description">
                         Filtrer les commandes
                     </p>
@@ -25,7 +25,7 @@
                             En traitement
                         </a>
                         <a href="{{ route('admin.orders.index') . '?type=' . \App\Models\Order::SOLD }}"
-                           class="btn btn-primary">
+                           class="btn btn-info">
                             <i class="{{ font('check') }}"></i>
                             Livré
                         </a>
@@ -43,20 +43,20 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">{{ $table_label }} ({{ $paginationTools->itemsNumber }})</h4>
+                    <h4 class="card-title">{{ mb_strtoupper($table_label) }} ({{ $paginationTools->displayItems->count() }} sur {{ $paginationTools->itemsNumber }})</h4>
                     @component('components.pagination',
                         ['paginationTools' => $paginationTools])
                     @endcomponent
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
                             <thead>
-                                <tr>
-                                    <th>Reférence</th>
-                                    <th>Produits</th>
-                                    <th>Montant</th>
-                                    <th>Statut</th>
-                                    <th>Adresse</th>
-                                    <th>Actions</th>
+                                <tr class="table-secondary">
+                                    <th>REFERENCE</th>
+                                    <th>PRODUITS</th>
+                                    <th>MONTANT</th>
+                                    <th>STATUT</th>
+                                    <th>ADRESSE</th>
+                                    <th>ACTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -73,20 +73,22 @@
                                                 <label class="badge {{ $order->format_status->badge_color }}">{{ $order->format_status->label }}</label>
                                             </div>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <p>
-                                                {{ $order->shipping_address }} <br />
-                                                {{ $order->shipping_post_code }} {{ $order->shipping_city }} {{ $order->shipping_country }}
+                                                {{ text_format($order->shipping_address, 30) }} <br />
+                                                {{ text_format($order->shipping_post_code, 10) }}
+                                                {{ text_format($order->shipping_city, 15) }}
+                                                {{ text_format($order->shipping_country, 20) }}
                                             </p>
                                         </td>
-                                        <td>
+                                        <td class="text-right">
                                             @if($order->status === \App\Models\Order::ORDERED)
                                                 <button type="button" class="btn btn-success btn-icons btn-rounded" title="Valider cette commander"
                                                         data-toggle="modal" data-target="#progress-order-{{ $order->id }}">
                                                     <i class="{{ font('cogs') }}"></i>
                                                 </button>
                                             @elseif($order->status === \App\Models\Order::PROGRESS)
-                                                <button type="button" class="btn btn-primary btn-icons btn-rounded" title="Terminer cette commande"
+                                                <button type="button" class="btn btn-info btn-icons btn-rounded" title="Terminer cette commande"
                                                         data-toggle="modal" data-target="#sold-order-{{ $order->id }}">
                                                     <i class="{{ font('check') }}"></i>
                                                 </button>
@@ -126,7 +128,7 @@
         @elseif($order->status === \App\Models\Order::PROGRESS)
             @component('components.modal', [
                 'title' => 'Livrer la commande', 'method' => 'POST',
-                'id' => 'sold-order-' . $order->id, 'color' => 'primary',
+                'id' => 'sold-order-' . $order->id, 'color' => 'info',
                 'action_route' => route('admin.orders.sold', [$order])
                 ])
                 Etes-vous sûr de vouloir livrer la commande {{ $order->reference }}?

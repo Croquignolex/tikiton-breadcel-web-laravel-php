@@ -23,6 +23,14 @@ trait ErrorFlashMessagesTrait
     }
 
     /**
+     * @param Exception $exception
+     */
+    protected function imageError(Exception $exception)
+    {
+        $this->flashError('image_error', $exception);
+    }
+
+    /**
      * @param $locale_message
      * @param Exception $exception
      * @return \Illuminate\Http\RedirectResponse

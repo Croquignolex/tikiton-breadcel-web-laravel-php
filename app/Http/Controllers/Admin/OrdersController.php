@@ -40,7 +40,7 @@ class OrdersController extends Controller
         {
             if($filter === Order::ALL) $orders = Order::all()->sortByDesc('created_at');
             elseif($filter === Order::PROGRESS || $filter === Order::CANCELED ||
-                Order::ORDERED || Order::SOLD)
+                $filter === Order::ORDERED || $filter === Order::SOLD)
                 $orders = Order::where('status', $filter)->get()->sortByDesc('created_at');
         }
         catch (Exception $exception)
@@ -137,13 +137,5 @@ class OrdersController extends Controller
         }
 
         return back();
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    private function redirectTo()
-    {
-        return redirect(locale_route('admin.orders.index'));
     }
 }

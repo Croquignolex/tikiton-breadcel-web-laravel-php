@@ -19,6 +19,10 @@ new Vue({
                     setValidIndicator(element) :
                     setInvalidIndicator(element);
             }
+        },
+        setImagePath: function (event) {
+            let element = event.target;
+            element.nextElementSibling.firstChild.value = element.value;
         }
     }
 });

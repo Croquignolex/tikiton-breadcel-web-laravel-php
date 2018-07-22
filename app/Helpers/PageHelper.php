@@ -111,3 +111,15 @@ if(!function_exists('admin_orders_pages'))
         return collect(['admin.orders.index', 'admin.orders.show']);
     }
 }
+
+if(!function_exists('admin_products_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function admin_products_pages()
+    {
+        return collect(['admin.products.index', 'admin.products.show',
+            'admin.products.edit', 'admin.products.create']);
+    }
+}

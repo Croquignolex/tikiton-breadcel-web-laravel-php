@@ -23,13 +23,13 @@ class HomeController extends Controller
         {
             $new_products = Product::where('created_at', '>=', now()->addDay(-7))
                 ->orWhere('is_new', true)
-                ->get();
+                ->get()->sortByDesc('created_at');
 
             $featured_products = Product::all()->filter(function (Product $product) {
                 return ($product->ranking === 10) || $product->is_featured;
-            });
+            })->sortByDesc('created_at');
 
-            $most_sold_products = Product::where('is_most_sold', true)->get();
+            $most_sold_products = Product::where('is_most_sold', true)->get()->sortByDesc('created_at');
 
             $testimonials = Testimonial::all();
 

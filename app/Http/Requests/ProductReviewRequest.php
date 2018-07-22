@@ -21,5 +21,4 @@ class ProductReviewRequest extends FormRequest
             'ranking' => 'required'
         ];
     }
-    //|between|min:0|max:5
 }

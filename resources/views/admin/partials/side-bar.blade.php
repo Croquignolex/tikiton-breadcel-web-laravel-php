@@ -32,5 +32,11 @@
                 <span class="menu-title">Commandes</span>
             </a>
         </li>
+        <li class="nav-item {{ active_page(admin_products_pages()) }}">
+            <a class="nav-link" href="{{ route('admin.products.index') }}">
+                <i class="menu-icon {{ font('database') }}"></i>
+                <span class="menu-title">Produits</span>
+            </a>
+        </li>
     </ul>
 </nav>
