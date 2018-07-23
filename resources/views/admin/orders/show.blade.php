@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">
-                        COMMANDES {{ $order->reference }} -
+                        COMMANDE {{ $order->reference }} -
                         <strong class="{{ $order->format_status->label_color }}">
                             {{ mb_strtoupper($order->format_status->label) }}
                         </strong>
@@ -19,7 +19,7 @@
                         <a href="{{ route('admin.orders.index') }}"
                            class="btn btn-theme">
                             <i class="{{ font('arrow-left') }}"></i>
-                            Retour à la liste des commandes
+                            Lliste des commandes
                         </a>
                         @if($order->status === \App\Models\Order::ORDERED)
                             <button type="button" class="btn btn-success" title="Valider cette commander"
@@ -62,7 +62,11 @@
                             <tbody>
                                 @foreach($order->products as $product)
                                     <tr>
-                                        <td>{{ $product->fr_name }}</td>
+                                        <td>
+                                            <a title="Voir les détails" href="{{ route('admin.products.show', [$product]) }}">
+                                                {{ $product->fr_name }}
+                                            </a>
+                                        </td>
                                         <td class="text-right">
                                             @if($product->is_a_discount)
                                                 <i style="text-decoration: line-through;">{{ money_currency($product->fr_amount) }}</i>

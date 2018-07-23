@@ -15,7 +15,7 @@
                         <a href="{{ route('admin.products.index') }}"
                            class="btn btn-theme">
                             <i class="{{ font('arrow-left') }}"></i>
-                            Retour à la liste des produits
+                            Liste des produits
                         </a>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                                         @endcomponent
                                     @endcomponent
                                 </div>
-                                <div class="form-group">c
+                                <div class="form-group">
                                     @component('components.label-input', [
                                        'name' => 'tags', 'label' => 'tags'
                                        ])

@@ -8370,16 +8370,16 @@ pre code {
 .table td {
     padding: 10px 10px;
     vertical-align: top;
-    border-top: 1px solid #f2f2f2; }
+    border-top: 1px solid #c2c2c2; }
 .table th {
     padding: 15px 10px;
     vertical-align: top;
-    border-top: 1px solid #f2f2f2; }
+    border-top: 1px solid #c2c2c2; }
 .table thead th {
     vertical-align: bottom;
-    border-bottom: 2px solid #f2f2f2; }
+    border-bottom: 2px solid #c2c2c2; }
 .table tbody + tbody {
-    border-top: 2px solid #f2f2f2; }
+    border-top: 2px solid #c2c2c2; }
 .table .table {
     background-color: #fff; }
 
@@ -8388,10 +8388,10 @@ pre code {
     padding: 0.3rem; }
 
 .table-bordered {
-    border: 1px solid #f2f2f2; }
+    border: 1px solid #c2c2c2; }
 .table-bordered th,
 .table-bordered td {
-    border: 1px solid #f2f2f2; }
+    border: 1px solid #c2c2c2; }
 .table-bordered thead th,
 .table-bordered thead td {
     border-bottom-width: 2px; }
@@ -8422,7 +8422,7 @@ pre code {
 .table-secondary,
 .table-secondary > th,
 .table-secondary > td {
-    background-color: #f8f8f8; }
+    background-color: #c2c2c2; }
 
 .table-hover .table-secondary:hover {
     background-color: #ebebeb; }
@@ -10388,7 +10388,7 @@ input[type="button"].btn-block {
 
 .card-body {
     flex: 1 1 auto;
-    padding: 1.25rem; }
+    padding: 1.25rem;}
 
 .card-title {
     margin-bottom: 0.75rem; }
@@ -13485,7 +13485,7 @@ a.text-primary:hover, a.text-primary:focus {
     color: #1d74c0 !important; }
 
 .text-secondary {
-    color: #e5e5e5 !important; }
+    color: #a6a6a6 !important; }
 
 a.text-secondary:hover, a.text-secondary:focus {
     color: #cccccc !important; }
@@ -13947,7 +13947,7 @@ input:focus {
     display: flex;
     -webkit-flex-direction: column;
     flex-direction: column;
-    height: auto; }
+    height: 70px; }
 .sidebar .nav .nav-item.nav-profile .nav-link .user-wrapper {
     display: -webkit-flex;
     display: flex;
@@ -14400,7 +14400,7 @@ html {
         width: 100%; } }
 
 .content-wrapper {
-    background: #f2f8f9;
+    background: #c2c2c2;
     padding: 1.5rem 1.7rem;
     width: 100%;
     -webkit-flex-grow: 1;
@@ -15854,7 +15854,6 @@ pre {
     border-color: #f2f2f2; }
 
 .form-control {
-    border: 1px solid #f2f2f2;
     font-family: "Poppins", sans-serif;
     font-size: 0.75rem;
     padding: 0.56rem 0.75rem;
@@ -16521,4 +16520,7 @@ ul li {
 }
 .order-status {
     margin-top: 5px;
+}
+.side-bar-item {
+    border-bottom: 1px solid #c2c2c2;
 }

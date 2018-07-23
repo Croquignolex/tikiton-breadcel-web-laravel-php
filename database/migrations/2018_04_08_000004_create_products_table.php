@@ -28,10 +28,10 @@ class CreateProductsTable extends Migration
             $table->boolean('is_new')->default(false);
             $table->boolean('is_most_sold')->default(false);
             $table->integer('stock')->unsigned();
-            $table->integer('category_id')->unsigned();
+            $table->integer('product_category_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('category_id')
+            $table->foreign('product_category_id')
                 ->references('id')
                 ->on('product_categories')
                 ->onDelete('cascade');

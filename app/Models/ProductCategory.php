@@ -7,6 +7,11 @@ use App\Traits\LocaleNameTrait;
 use App\Traits\LocaleSlugSaveTrait;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed id
+ * @property mixed products
+ * @property mixed format_name
+ */
 class ProductCategory extends Model
 {
     use SlugRouteTrait, LocaleNameTrait,

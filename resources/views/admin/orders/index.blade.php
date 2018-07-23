@@ -9,7 +9,10 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">COMMANDES</h4>
+                    <h4 class="card-title text-theme">
+                        <i class="menu-icon {{ font('copy') }}"></i>
+                        COMMANDES
+                    </h4>
                     <p class="card-description">
                         Filtrer les commandes
                     </p>

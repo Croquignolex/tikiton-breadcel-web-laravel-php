@@ -18,9 +18,9 @@
                         <a href="{{ route('admin.products.index') }}"
                            class="btn btn-theme">
                             <i class="{{ font('arrow-left') }}"></i>
-                            Retour à la liste des produits
+                            Liste des produits
                         </a>
-                        <a class="btn btn-warning" title="Modifier le produit"
+                        <a class="btn btn-warning" title="Modifier ce produit"
                            href="{{ route('admin.products.edit', [$product]) }}">
                             <i class="{{ font('pencil') }}"></i>
                             Modifier
@@ -36,7 +36,7 @@
         </div>
         <!-- Filter Buttons End -->
         <!-- Content table Start -->
-        <div class="col-lg-5 grid-margin stretch-card">
+        <div class="col-lg-5 grid-margin stretch-card align-items-start">
             <div class="card">
                 <div class="card-body">
                     <img src="{{ $product->image_path }}" alt="..." class="img-fluid">
@@ -47,33 +47,33 @@
         <!-- Content table Start -->
         <div class="col-lg-7 grid-margin stretch-card">
             <div class="card">
-                <div class="card-body row">
-                    <div class="col-lg-5">NOM(fr)</div>
-                    <div class="col-lg-7 text-theme">{{ $product->fr_name }}</div>
-                    <div class="col-lg-5">NOM(en)</div>
-                    <div class="col-lg-7 text-theme">{{ $product->en_name }}</div>
-                    <div class="col-lg-5">Prix</div>
-                    <div class="col-lg-7 text-theme">{{ money_currency($product->amount) }}</div>
-                    <div class="col-lg-5">Réduction (Promo)%</div>
-                    <div class="col-lg-7 text-theme">{{ $product->discount }}</div>
-                    <div class="col-lg-5">Stock</div>
-                    <div class="col-lg-7 text-theme">{{ $product->stock }}</div>
-                    <div class="col-lg-5">Categorie</div>
-                    <div class="col-lg-7 text-theme">{{ $product->category->format_name }}</div>
-                    <div class="col-lg-5">Description(fr)</div>
-                    <div class="col-lg-7 text-theme">
+                <div class="card-body row text-secondary">
+                    <div class="col-lg-5 side-bar-item">NOM(fr)</div>
+                    <div class="col-lg-7 text-dark side-bar-item">{{ $product->fr_name }}</div>
+                    <div class="col-lg-5 side-bar-item">NOM(en)</div>
+                    <div class="col-lg-7 text-dark side-bar-item">{{ $product->en_name }}</div>
+                    <div class="col-lg-5 side-bar-item">Prix</div>
+                    <div class="col-lg-7 text-dark side-bar-item">{{ money_currency($product->amount) }}</div>
+                    <div class="col-lg-5 side-bar-item">Réduction (Promo)%</div>
+                    <div class="col-lg-7 text-dark side-bar-item">{{ $product->discount }}</div>
+                    <div class="col-lg-5 side-bar-item">Stock</div>
+                    <div class="col-lg-7 text-dark side-bar-item">{{ $product->stock }}</div>
+                    <div class="col-lg-5 side-bar-item">Categorie</div>
+                    <div class="col-lg-7 text-dark side-bar-item">{{ $product->product_category->format_name }}</div>
+                    <div class="col-lg-5 side-bar-item">Description(fr)</div>
+                    <div class="col-lg-7 text-dark side-bar-item">
                         <p class="multi-line-text">
                             {{ $product->fr_description }}
                         </p>
                     </div>
-                    <div class="col-lg-5">Description(en)</div>
-                    <div class="col-lg-7 text-theme">
+                    <div class="col-lg-5 side-bar-item">Description(en)</div>
+                    <div class="col-lg-7 text-dark side-bar-item">
                         <p class="multi-line-text">
                             {{ $product->en_description }}
                         </p>
                     </div>
-                    <div class="col-lg-5">Statut(s)</div>
-                    <div class="col-lg-7 text-theme">
+                    <div class="col-lg-5 side-bar-item">Statut(s)</div>
+                    <div class="col-lg-7 text-dark side-bar-item">
                         <p>
                             @if($product->created_at >= now()->addDay(-7) || $product->is_new)
                                 <label class="badge badge-success" title="Nouveau produit">
@@ -95,8 +95,8 @@
                             @endif
                         </p>
                     </div>
-                    <div class="col-lg-5">Etiquette(s)</div>
-                    <div class="col-lg-7 text-theme">
+                    <div class="col-lg-5 side-bar-item">Etiquette(s)</div>
+                    <div class="col-lg-7 text-dark side-bar-item">
                         <p>
                             @foreach($product->tags as $tag)
                                 <label class="badge badge-dark" title="Produit en vedette">

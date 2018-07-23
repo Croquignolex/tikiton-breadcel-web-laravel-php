@@ -8,7 +8,8 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">
+                    <h4 class="card-title text-theme">
+                        <i class="menu-icon {{ font('database') }}"></i>
                         PRODUITS
                         <a href="{{ route('admin.products.create') }}"
                            class="btn btn-secondary">
@@ -87,13 +88,13 @@
                                         <td class="text-right">{{ money_currency($product->fr_amount) }}</td>
                                         <td class="text-right">{{ $product->discount }}%</td>
                                         <td class="text-right">{{ $product->stock }}</td>
-                                        <td>{{ text_format($product->category->fr_name, 30) }}</td>
+                                        <td>{{ text_format($product->product_category->fr_name, 30) }}</td>
                                         <td class="text-right">
                                             <a class="btn btn-warning btn-icons btn-rounded" title="Modifier le produit"
                                                 href="{{ route('admin.products.edit', [$product]) }}">
                                                 <i class="{{ font('pencil') }}"></i>
                                             </a>
-                                            <a class="btn btn-primary btn-icons btn-rounded" title="Voir les détails"
+                                            <a class="btn btn-secondary btn-icons btn-rounded" title="Voir les détails"
                                                href="{{ route('admin.products.show', [$product]) }}">
                                                 <i class="{{ font('eye') }}"></i>
                                             </a>

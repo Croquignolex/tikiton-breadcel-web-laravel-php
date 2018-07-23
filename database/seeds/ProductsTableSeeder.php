@@ -24,7 +24,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => true,
             'is_most_sold' => false,
             'stock' => 10,
-            'category_id' => 1,
+            'product_category_id' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -41,7 +41,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => true,
             'is_most_sold' => false,
             'stock' => 10,
-            'category_id' => 2,
+            'product_category_id' => 2,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -58,7 +58,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => true,
             'is_most_sold' => false,
             'stock' => 0,
-            'category_id' => 1,
+            'product_category_id' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -75,7 +75,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => true,
             'is_most_sold' => false,
             'stock' => 10,
-            'category_id' => 1,
+            'product_category_id' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -92,7 +92,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => true,
             'is_most_sold' => true,
             'stock' => 10,
-            'category_id' => 2,
+            'product_category_id' => 2,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -109,7 +109,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => false,
             'is_most_sold' => true,
             'stock' => 10,
-            'category_id' => 1,
+            'product_category_id' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -126,7 +126,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => false,
             'is_most_sold' => true,
             'stock' => 10,
-            'category_id' => 2,
+            'product_category_id' => 2,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -143,7 +143,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => false,
             'is_most_sold' => true,
             'stock' => 10,
-            'category_id' => 2,
+            'product_category_id' => 2,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -160,7 +160,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => false,
             'is_most_sold' => true,
             'stock' => 10,
-            'category_id' => 1,
+            'product_category_id' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -177,7 +177,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => false,
             'is_most_sold' => true,
             'stock' => 0,
-            'category_id' => 1,
+            'product_category_id' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -194,7 +194,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => false,
             'is_most_sold' => true,
             'stock' => 10,
-            'category_id' => 2,
+            'product_category_id' => 2,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -211,7 +211,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => true,
             'is_most_sold' => false,
             'stock' => 10,
-            'category_id' => 1,
+            'product_category_id' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -228,7 +228,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => false,
             'is_most_sold' => true,
             'stock' => 10,
-            'category_id' => 1,
+            'product_category_id' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -245,7 +245,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => true,
             'is_most_sold' => true,
             'stock' => 10,
-            'category_id' => 2,
+            'product_category_id' => 2,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -262,7 +262,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => true,
             'is_most_sold' => true,
             'stock' => 10,
-            'category_id' => 1,
+            'product_category_id' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -279,7 +279,7 @@ class ProductsTableSeeder extends Seeder
             'is_new' => true,
             'is_most_sold' => true,
             'stock' => 0,
-            'category_id' => 2,
+            'product_category_id' => 2,
             'created_at' => now(),
             'updated_at' => now()
         ]);

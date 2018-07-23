@@ -194,7 +194,7 @@ class ProductsController extends Controller
         $product_category = ProductCategory::where('slug', $filter['category'])->first();
         if(!is_null($product_category))
         {
-            $filterProducts = $filterProducts->where('category_id', $product_category->id);
+            $filterProducts = $filterProducts->where('product_category_id', $product_category->id);
         }
         //End category filter
         //Start price filter

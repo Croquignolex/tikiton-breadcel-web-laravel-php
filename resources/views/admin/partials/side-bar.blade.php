@@ -20,22 +20,34 @@
                 </div>
             </div>
         </li>
-        <li class="nav-item {{ active_page(admin_dashboard_pages()) }}">
+        <li class="side-bar-item nav-item {{ active_page(admin_dashboard_pages()) }}">
             <a class="nav-link" href="{{ route('admin.dashboard') }}">
                 <i class="menu-icon {{ font('pie-chart') }}"></i>
                 <span class="menu-title">Tableau de bord</span>
             </a>
         </li>
-        <li class="nav-item {{ active_page(admin_orders_pages()) }}">
+        <li class="side-bar-item nav-item {{ active_page(admin_orders_pages()) }}">
             <a class="nav-link" href="{{ route('admin.orders.index') }}">
                 <i class="menu-icon {{ font('copy') }}"></i>
                 <span class="menu-title">Commandes</span>
             </a>
         </li>
-        <li class="nav-item {{ active_page(admin_products_pages()) }}">
+        <li class="side-bar-item nav-item {{ active_page(admin_products_pages()) }}">
             <a class="nav-link" href="{{ route('admin.products.index') }}">
                 <i class="menu-icon {{ font('database') }}"></i>
                 <span class="menu-title">Produits</span>
+            </a>
+        </li>
+        <li class="side-bar-item nav-item {{ active_page(admin_categories_pages()) }}">
+            <a class="nav-link" href="{{ route('admin.categories.index') }}">
+                <i class="menu-icon {{ font('balance-scale') }}"></i>
+                <span class="menu-title">Catégories de produits</span>
+            </a>
+        </li>
+        <li class="side-bar-item nav-item {{ active_page(admin_tags_pages()) }}">
+            <a class="nav-link" href="{{ route('admin.tags.index') }}">
+                <i class="menu-icon {{ font('tags') }}"></i>
+                <span class="menu-title">Etiquettes</span>
             </a>
         </li>
     </ul>

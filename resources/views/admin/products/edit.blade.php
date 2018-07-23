@@ -18,7 +18,7 @@
                         <a href="{{ route('admin.products.index') }}"
                            class="btn btn-theme">
                             <i class="{{ font('arrow-left') }}"></i>
-                            Retour à la liste des produits
+                            Liste des produits
                         </a>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                                            ])
                                             @component('components.select', [
                                                 'name' => 'category', 'class' => 'form-control', 'title' => 'Sélectionner les étiquettes',
-                                                 'value' => old('category') ?? $product->category->id, 'options' => \App\Models\ProductCategory::all()
+                                                 'value' => old('category') ?? $product->product_category->id, 'options' => \App\Models\ProductCategory::all()
                                                 ])
                                             @endcomponent
                                         @endcomponent

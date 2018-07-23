@@ -123,3 +123,27 @@ if(!function_exists('admin_products_pages'))
             'admin.products.edit', 'admin.products.create']);
     }
 }
+
+if(!function_exists('admin_categories_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function admin_categories_pages()
+    {
+        return collect(['admin.categories.index', 'admin.categories.show',
+            'admin.categories.edit', 'admin.categories.create']);
+    }
+}
+
+if(!function_exists('admin_tags_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function admin_tags_pages()
+    {
+        return collect(['admin.tags.index', 'admin.tags.show',
+            'admin.tags.edit', 'admin.tags.create']);
+    }
+}

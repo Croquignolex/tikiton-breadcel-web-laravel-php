@@ -139,6 +139,18 @@ Route::prefix('admin')->group(function() {
             'edit' => 'admin.products.edit', 'update' => 'admin.products.update',
             'destroy' => 'admin.products.destroy'
         ]]);
+        Route::resource('/categories', 'CategoriesController', ['names' => [
+            'index' => 'admin.categories.index', 'create' => 'admin.categories.create',
+            'store' => 'admin.categories.store', 'show' => 'admin.categories.show',
+            'edit' => 'admin.categories.edit', 'update' => 'admin.categories.update',
+            'destroy' => 'admin.categories.destroy'
+        ]]);
+        Route::resource('/tags', 'TagsController', ['names' => [
+            'index' => 'admin.tags.index', 'create' => 'admin.tags.create',
+            'store' => 'admin.tags.store', 'show' => 'admin.tags.show',
+            'edit' => 'admin.tags.edit', 'update' => 'admin.tags.update',
+            'destroy' => 'admin.tags.destroy'
+        ]]);
 
         //--Auth routes...
         Route::group(['namespace' => 'Auth'], function() {

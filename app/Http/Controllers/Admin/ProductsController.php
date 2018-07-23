@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Tag;
 use Exception;
+use App\Models\Tag;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Traits\PaginationTrait;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use App\Http\Requests\ProductRequest;
 use App\Traits\ErrorFlashMessagesTrait;
-use Illuminate\Support\Facades\File;
 use Illuminate\Validation\ValidationException;
 
 class ProductsController extends Controller
@@ -26,6 +26,10 @@ class ProductsController extends Controller
         $this->middleware('admin.auth');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(Request $request)
     {
         $products = null;
@@ -38,18 +42,18 @@ class ProductsController extends Controller
 
         try
         {
-            if($filter === Product::ALL) $products = Product::all()->sortByDesc('created_at');
+            if($filter === Product::ALL) $products = Product::all()->sortByDesc('updated_at');
             elseif($filter === Product::IS_BEST_SELLER)
-                $products = Product::where('is_most_sold', true)->get()->sortByDesc('created_at');
+                $products = Product::where('is_most_sold', true)->get()->sortByDesc('updated_at');
             elseif($filter === Product::IS_FEATURED)
             {
                 $products = Product::all()->filter(function (Product $product) {
                     return ($product->ranking === 10) || $product->is_featured;
-                })->sortByDesc('created_at');
+                })->sortByDesc('updated_at');
             }
             elseif($filter === Product::IS_NEW)
                 $products = Product::where('created_at', '>=', now()->addDay(-7))
-                    ->orWhere('is_new', true)->get()->sortByDesc('created_at');
+                    ->orWhere('is_new', true)->get()->sortByDesc('updated_at');
         }
         catch (Exception $exception)
         {
@@ -81,6 +85,7 @@ class ProductsController extends Controller
     {
         $image_name = 'default';
         $image_extension = 'jpg';
+        $productTagIds = $request->input('tags');
         if($request->hasFile('image'))
         {
             $image = $request->file('image');
@@ -125,19 +130,23 @@ class ProductsController extends Controller
                 'stock' => $request->input('stock'),
                 'image' => $image_name,
                 'extension' => $image_extension,
-                'category_id' => $request->input('category'),
+                'product_category_id' => $request->input('category'),
                 'is_featured' => is_null($request->input('featured')) ? false : true,
                 'is_most_sold' => is_null($request->input('best_sale')) ? false : true,
             ]);
 
-            foreach ($request->input('tags') as $tagId)
+
+            if(!is_null($productTagIds))
             {
-                $product->tags()->save(Tag::find(intval($tagId)));
+                foreach ($productTagIds as $tagId)
+                    $product->tags()->save(Tag::find(intval($tagId)));
             }
             flash_message(
                 trans('auth.success'), $request->input('fr_name') . ' ajouté(e) avec succèss',
                 font('check')
             );
+
+            return redirect(route('admin.products.show', [$product]));
         }
         catch (Exception $exception)
         {
@@ -182,6 +191,7 @@ class ProductsController extends Controller
     {
         $flag = false;
         $image_name = ''; $image_extension = '';
+        $productTagIds = $request->input('tags');
         $this->productExist($request->input('en_name'), $product->id);
         if($request->hasFile('image'))
         {
@@ -230,7 +240,7 @@ class ProductsController extends Controller
                     'stock' => $request->input('stock'),
                     'image' => $image_name,
                     'extension' => $image_extension,
-                    'category_id' => $request->input('category'),
+                    'product_category_id' => $request->input('category'),
                     'is_featured' => is_null($request->input('featured')) ? false : true,
                     'is_most_sold' => is_null($request->input('best_sale')) ? false : true,
                     'is_new' => is_null($request->input('new')) ? false : true
@@ -246,7 +256,7 @@ class ProductsController extends Controller
                     'price' => $request->input('price'),
                     'discount' => $request->input('discount'),
                     'stock' => $request->input('stock'),
-                    'category_id' => $request->input('category'),
+                    'product_category_id' => $request->input('category'),
                     'is_featured' => is_null($request->input('featured')) ? false : true,
                     'is_most_sold' => is_null($request->input('best_sale')) ? false : true,
                     'is_new' => is_null($request->input('new')) ? false : true
@@ -257,13 +267,18 @@ class ProductsController extends Controller
             foreach ($product->product_tags as $product_tag)
                 $product_tag->delete();
              //Add new product tags
-            foreach ($request->input('tags') as $tagId)
-                $product->tags()->save(Tag::find(intval($tagId)));
+            if(!is_null($productTagIds))
+            {
+                foreach ($productTagIds as $tagId)
+                    $product->tags()->save(Tag::find(intval($tagId)));
+            }
 
             flash_message(
                 trans('auth.success'), $product->format_name . ' à été mis(e) à jour avec succèss',
                 font('check')
             );
+
+            return redirect(route('admin.products.show', [$product]));
         }
         catch (Exception $exception)
         {

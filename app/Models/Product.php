@@ -64,13 +64,13 @@ class Product extends Model
     protected $fillable = [
         'image', 'fr_name', 'en_name', 'fr_description', 'en_description',
         'price', 'discount', 'ranking', 'is_featured', 'is_new',
-        'is_most_sold', 'stock', 'extension', 'category_id'
+        'is_most_sold', 'stock', 'extension', 'product_category_id'
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function category()
+    public function product_category()
     {
         return $this->belongsTo('App\Models\ProductCategory');
     }
