@@ -25,11 +25,13 @@
                             <i class="{{ font('pencil') }}"></i>
                             Modifier
                         </a>
-                        <button type="button" class="btn btn-danger" title="Supprimer ce produit"
-                                data-toggle="modal" data-target="#delete-product">
-                            <i class="{{ font('trash-o') }}"></i>
-                            Supprimer
-                        </button>
+                        @if($product->orders->isEmpty())
+                            <button type="button" class="btn btn-danger" title="Supprimer ce produit"
+                                    data-toggle="modal" data-target="#delete-product">
+                                <i class="{{ font('trash-o') }}"></i>
+                                Supprimer
+                            </button>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -59,7 +61,11 @@
                     <div class="col-lg-5 side-bar-item">Stock</div>
                     <div class="col-lg-7 text-dark side-bar-item">{{ $product->stock }}</div>
                     <div class="col-lg-5 side-bar-item">Categorie</div>
-                    <div class="col-lg-7 text-dark side-bar-item">{{ $product->product_category->format_name }}</div>
+                    <div class="col-lg-7 text-dark side-bar-item">
+                        <a href="{{ route('admin.categories.show', [$product->product_category]) }}">
+                            {{ $product->product_category->format_name }}
+                        </a>
+                    </div>
                     <div class="col-lg-5 side-bar-item">Description(fr)</div>
                     <div class="col-lg-7 text-dark side-bar-item">
                         <p class="multi-line-text">
@@ -95,15 +101,89 @@
                             @endif
                         </p>
                     </div>
-                    <div class="col-lg-5 side-bar-item">Etiquette(s)</div>
+                    <div class="col-lg-5 side-bar-item">Etiquettes ({{ $product->tags->count() }})</div>
                     <div class="col-lg-7 text-dark side-bar-item">
                         <p>
-                            @foreach($product->tags as $tag)
-                                <label class="badge badge-dark" title="Produit en vedette">
-                                    <i class="{{ font('tag') }}"></i>
-                                    {{ $tag->format_name }}
-                                </label>
-                            @endforeach
+                            @forelse($product->tags as $tag)
+                                <a href="{{ route('admin.tags.show', [$tag]) }}" title="Rattachée à ce produit">
+                                    <label class="badge badge-dark">
+                                        <i class="{{ font('tags') }}"></i>
+                                        {{ $tag->format_name }}
+                                    </label>
+                                </a>
+                            @empty
+                                <strong class="text-danger">
+                                    Pas d'étiquette(s) rattachée(s) à ce produit
+                                </strong>
+                            @endforelse
+                        </p>
+                    </div>
+                    <div class="col-lg-5 side-bar-item">Commandes ({{ $product->orders->count() }})</div>
+                    <div class="col-lg-7 text-dark side-bar-item">
+                        <p>
+                            @forelse($product->orders as $order)
+                                <a href="{{ route('admin.orders.show', [$order]) }}" title="Contient ce produit">
+                                    <label class="badge badge-primary">
+                                        <i class="{{ font('copy') }}"></i>
+                                        {{ $order->reference }}
+                                    </label>
+                                </a>
+                            @empty
+                                <strong class="text-danger">
+                                    Ce produit ne figure dans aucune commande
+                                </strong>
+                            @endforelse
+                        </p>
+                    </div>
+                    <div class="col-lg-5 side-bar-item">Avis ({{ $product->product_reviews->count() }})</div>
+                    <div class="col-lg-7 text-dark side-bar-item">
+                        <p>
+                            @forelse($product->reviewed_users as $user)
+                                <a href="{{ route('admin.customers.show', [$user]) }}" title="{{ $user->format_full_name }}: {{ $user->pivot->text }}">
+                                    <label class="badge badge-danger">
+                                        <i class="{{ font('star') }}"></i>
+                                        {{ $user->pivot->ranking / 2 }}/5
+                                    </label>
+                                </a>
+                            @empty
+                                <strong class="text-danger">
+                                    Ce produit n'a pas encore été commenté et noté
+                                </strong>
+                            @endforelse
+                        </p>
+                    </div>
+                    <div class="col-lg-5 side-bar-item">Favoris ({{ $product->wished_users->count() }})</div>
+                    <div class="col-lg-7 text-dark side-bar-item">
+                        <p>
+                            @forelse($product->wished_users as $user)
+                                <a href="{{ route('admin.customers.show', [$user]) }}" title="Dans sa liste de favoris">
+                                    <label class="badge badge-warning">
+                                        <i class="{{ font('heart') }}"></i>
+                                        {{ $user->format_full_name }}
+                                    </label>
+                                </a>
+                            @empty
+                                <strong class="text-danger">
+                                    Aucun client n'a mis ce produit dans sa liste de favoris
+                                </strong>
+                            @endforelse
+                        </p>
+                    </div>
+                    <div class="col-lg-5 side-bar-item">Paniers ({{ $product->carted_users->count() }})</div>
+                    <div class="col-lg-7 text-dark side-bar-item">
+                        <p>
+                            @forelse($product->carted_users as $user)
+                                <a href="{{ route('admin.customers.show', [$user]) }}" title="Dans son panier">
+                                    <label class="badge badge-theme">
+                                        <i class="{{ font('shopping-cart') }}"></i>
+                                        {{ $user->format_full_name }}
+                                    </label>
+                                </a>
+                            @empty
+                                <strong class="text-danger">
+                                    Aucun client n'a mis ce produit dans son panier
+                                </strong>
+                            @endforelse
                         </p>
                     </div>
                 </div>
@@ -112,13 +192,15 @@
         <!-- Content table End -->
     </div>
 
-    @component('components.modal', [
-        'title' => 'Supprimer le produit',
-        'id' => 'delete-product', 'color' => 'danger',
-        'action_route' => route('admin.products.destroy', [$product])
-        ])
-        Etes-vous sûr de vouloir supprimer {{ $product->format_name }}?
-    @endcomponent
+    @if($product->orders->isEmpty())
+        @component('components.modal', [
+            'title' => 'Supprimer le produit',
+            'id' => 'delete-product', 'color' => 'danger',
+            'action_route' => route('admin.products.destroy', [$product])
+            ])
+            Etes-vous sûr de vouloir supprimer {{ text_format($product->format_name, 50) }}?
+        @endcomponent
+    @endif
 @endsection
 
 @push('admin.script.page')

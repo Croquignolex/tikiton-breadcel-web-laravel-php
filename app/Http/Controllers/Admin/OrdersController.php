@@ -33,7 +33,7 @@ class OrdersController extends Controller
         elseif($filter === Order::CANCELED) $table_label = 'Commandes annulées';
         elseif($filter === Order::ORDERED) $table_label = 'Commandes passées';
         elseif($filter === Order::SOLD) $table_label = 'Commandes livrées';
-        elseif($filter === Order::ALL) $table_label = 'Toutes les commandes';
+        elseif($filter === Order::ALL) $table_label = 'Commandes (toutes)';
         else $table_label = 'Filtre inconnu';
 
         try

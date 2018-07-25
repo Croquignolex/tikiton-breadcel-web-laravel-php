@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int ranking
  * @property mixed pivot
  * @property mixed is_new
+ * @property mixed orders
  * @property mixed discount
  * @property mixed extension
  * @property mixed created_at
@@ -47,6 +48,7 @@ class Product extends Model
     const IS_NEW = 1;
     const IS_FEATURED = 2;
     const IS_BEST_SELLER = 3;
+    const IS_OUT_OF_STOCK = 4;
     const IN_STOCk = 'in_stock';
     const OUT_OF_STOCK = 'out_of_stock';
     const SORT_BY_NAME_ASC = 'name_asc';

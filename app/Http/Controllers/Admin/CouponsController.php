@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use Exception;
+use App\Models\Tag;
 use Illuminate\Http\Request;
-use App\Models\ProductCategory;
 use App\Traits\PaginationTrait;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Traits\ErrorFlashMessagesTrait;
 use Illuminate\Validation\ValidationException;
 
-class CategoriesController extends Controller
+class CouponsController extends Controller
 {
     use ErrorFlashMessagesTrait, PaginationTrait;
 
@@ -29,26 +29,26 @@ class CategoriesController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = null;
+        $tags = null;
         $filter = intval($request->query('type'));
-        if($filter === ProductCategory::HAS_PRODUCTS) $table_label = 'Catégories qui ont des produits';
-        elseif($filter === ProductCategory::HAS_NO_PRODUCTS) $table_label = 'Catégories qui n\'ont pas de produits';
-        elseif($filter === ProductCategory::ALL) $table_label = 'Catégories (toutes)';
+        if($filter === Tag::HAS_PRODUCTS) $table_label = 'Etiquettes qui sont ratachées à des produits';
+        elseif($filter === Tag::HAS_NO_PRODUCTS) $table_label = 'Etiquettes qui ne sont pas ratachées à des produits';
+        elseif($filter === Tag::ALL) $table_label = 'Etiquettes (toutes)';
         else $table_label = 'Filtre inconnu';
 
         try
         {
-            if($filter === ProductCategory::ALL) $categories = ProductCategory::all()->sortByDesc('updated_at');
-            elseif($filter === ProductCategory::HAS_PRODUCTS)
+            if($filter === Tag::ALL) $tags = Tag::all()->sortByDesc('updated_at');
+            elseif($filter === Tag::HAS_PRODUCTS)
             {
-                $categories = ProductCategory::all()->filter(function (ProductCategory $category) {
-                    return !$category->products->isEmpty();
+                $tags = Tag::all()->filter(function (Tag $tag) {
+                    return !$tag->products->isEmpty();
                 })->sortByDesc('updated_at');
             }
-            elseif($filter === ProductCategory::HAS_NO_PRODUCTS)
+            elseif($filter === Tag::HAS_NO_PRODUCTS)
             {
-                $categories = ProductCategory::all()->filter(function (ProductCategory $category) {
-                    return $category->products->isEmpty();
+                $tags = Tag::all()->filter(function (Tag $tag) {
+                    return $tag->products->isEmpty();
                 })->sortByDesc('updated_at');
             }
         }
@@ -57,10 +57,10 @@ class CategoriesController extends Controller
             $this->databaseError($exception);
         }
 
-        $this->paginate($request, $categories, 10, 3);
+        $this->paginate($request, $tags, 10, 3);
         $paginationTools = $this->paginationTools;
 
-        return view('admin.categories.index', compact(
+        return view('admin.tags.index', compact(
             'paginationTools', 'table_label'));
     }
 
@@ -71,7 +71,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        return view('admin.tags.create');
     }
 
     /**
@@ -80,16 +80,16 @@ class CategoriesController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        $this->categoryExist($request->input('en_name'));
+        $this->tagExist($request->input('en_name'));
         try
         {
-            $category = ProductCategory::create($request->all());
+            $tag = Tag::create($request->all());
             flash_message(
                 trans('auth.success'), $request->input('fr_name') . ' ajouté(e) avec succèss',
                 font('check')
             );
 
-            return redirect(route('admin.categories.show', [$category]));
+            return redirect(route('admin.tags.show', [$tag]));
         }
         catch (Exception $exception)
         {
@@ -101,41 +101,41 @@ class CategoriesController extends Controller
 
     /**
      * @param Request $request
-     * @param ProductCategory $category
+     * @param Tag $tag
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(Request $request, ProductCategory $category)
+    public function show(Request $request, Tag $tag)
     {
-        return view('admin.categories.show', compact('category'));
+        return view('admin.tags.show', compact('tag'));
     }
 
     /**
      * @param Request $request
-     * @param ProductCategory $category
+     * @param Tag $tag
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Request $request, ProductCategory $category)
+    public function edit(Request $request, Tag $tag)
     {
-        return view('admin.categories.edit', compact('category'));
+        return view('admin.tags.edit', compact('tag'));
     }
 
     /**
      * @param CategoryRequest $request
-     * @param ProductCategory $category
+     * @param Tag $tag
      * @return Router|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(CategoryRequest $request, ProductCategory $category)
+    public function update(CategoryRequest $request, Tag $tag)
     {
-        $this->categoryExist($request->input('en_name'), $category->id);
+        $this->tagExist($request->input('en_name'), $tag->id);
         try
         {
-            $category->update($request->all());
+            $tag->update($request->all());
             flash_message(
-                trans('auth.success'), $category->format_name . ' à été mis(e) à jour avec succèss',
+                trans('auth.success'), $tag->format_name . ' à été mis(e) à jour avec succèss',
                 font('check')
             );
 
-            return redirect(route('admin.categories.show', [$category]));
+            return redirect(route('admin.tags.show', [$tag]));
         }
         catch (Exception $exception)
         {
@@ -147,26 +147,26 @@ class CategoriesController extends Controller
 
     /**
      * @param Request $request
-     * @param ProductCategory $category
+     * @param Tag $tag
      * @return Router
      */
-    public function destroy(Request $request, ProductCategory $category)
+    public function destroy(Request $request, Tag $tag)
     {
         try
         {
-            if(!$category->products->isEmpty())
+            if(!$tag->products->isEmpty())
             {
                 flash_message(
-                    trans('auth.error'),
-                    'Impossible de supprimer cette catégorie car un ou plusieurs produits en dépendent',
-                    font('remove'), 'danger', 'bounceIn', 'bounceOut'
+                    trans('auth.info'),
+                    'Impossible de supprimer cette étiquette car un ou plusieurs produits en dépendent',
+                    font('info-circle'), 'info'
                 );
             }
             else
             {
-                $category->delete();
+                $tag->delete();
                 flash_message(
-                    trans('auth.info'), $category->format_name . ' supprimé(e) avec succèss', font('info-circle'),
+                    trans('auth.info'), $tag->format_name . ' supprimé(e) avec succèss', font('info-circle'),
                     'info'
                 );
             }
@@ -181,14 +181,14 @@ class CategoriesController extends Controller
 
     /**
      * @param $name
-     * @param int $category_id
+     * @param int $tag_id
      */
-    private function categoryExist($name, $category_id = 0)
+    private function tagExist($name, $tag_id = 0)
     {
-        if(ProductCategory::where('slug', str_slug($name))->where('id', '<>', $category_id)->count() > 0)
+        if(Tag::where('slug', str_slug($name))->where('id', '<>', $tag_id)->count() > 0)
         {
             throw ValidationException::withMessages([
-                'en_name' => 'Une catégorie exite deja avec ce nom. Choisissez un autre nom pour l\'anglais',
+                'en_name' => 'Une étiquette exite deja avec ce nom. Choisissez un autre nom pour l\'anglais',
             ])->status(423);
         }
     }
@@ -200,6 +200,6 @@ class CategoriesController extends Controller
      */
     private function redirectTo()
     {
-        return redirect(route('admin.categories.index'));
+        return redirect(route('admin.tags.index'));
     }
 }

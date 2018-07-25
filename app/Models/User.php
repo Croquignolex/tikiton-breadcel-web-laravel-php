@@ -10,12 +10,20 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * @property mixed id
+ * @property mixed city
+ * @property mixed phone
  * @property mixed email
  * @property mixed token
+ * @property mixed orders
+ * @property mixed country
+ * @property mixed company
+ * @property mixed address
  * @property mixed is_admin
  * @property mixed password
  * @property mixed last_name
+ * @property mixed post_code
  * @property mixed first_name
+ * @property mixed is_confirmed
  * @property mixed is_super_admin
  * @property mixed carted_products
  * @property mixed format_last_name
@@ -25,6 +33,10 @@ class User extends Authenticatable
 {
     use SlugRouteTrait,
         DescriptionTrait, LocaleDateTimeTrait;
+
+    const ALL = 0;
+    const CUSTOMER_HAS_ORDER = 1;
+    const CUSTOMER_HAS_NOT_ORDER = 2;
 
     /**
      * The attributes that are mass assignable.

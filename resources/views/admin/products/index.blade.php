@@ -36,6 +36,11 @@
                             <i class="{{ font('check') }}"></i>
                             Nouveaux
                         </a>
+                        <a href="{{ route('admin.products.index') . '?type=' . \App\Models\Product::IS_OUT_OF_STOCK }}"
+                           class="btn btn-danger">
+                            <i class="{{ font('remove') }}"></i>
+                            Rupture de stock
+                        </a>
                     </div>
                 </div>
             </div>
@@ -66,8 +71,8 @@
                             <tbody>
                                 @forelse($paginationTools->displayItems as $product)
                                     <tr class="{{ $product->availability === \App\Models\Product::OUT_OF_STOCK ? 'text-danger' : '' }}">
-                                        <td>{{ text_format($product->fr_name, 30) }}</td>
-                                        <td>{{ text_format($product->en_name, 30) }}</td>
+                                        <td>{{ text_format($product->fr_name, 15) }}</td>
+                                        <td>{{ text_format($product->en_name, 15) }}</td>
                                         <td class="text-center">
                                             @if($product->created_at >= now()->addDay(-7) || $product->is_new)
                                                 <label class="badge badge-success" title="Nouveau produit">
@@ -88,7 +93,7 @@
                                         <td class="text-right">{{ money_currency($product->fr_amount) }}</td>
                                         <td class="text-right">{{ $product->discount }}%</td>
                                         <td class="text-right">{{ $product->stock }}</td>
-                                        <td>{{ text_format($product->product_category->fr_name, 30) }}</td>
+                                        <td>{{ text_format($product->product_category->fr_name, 20) }}</td>
                                         <td class="text-right">
                                             <a class="btn btn-warning btn-icons btn-rounded" title="Modifier le produit"
                                                 href="{{ route('admin.products.edit', [$product]) }}">
@@ -98,15 +103,17 @@
                                                href="{{ route('admin.products.show', [$product]) }}">
                                                 <i class="{{ font('eye') }}"></i>
                                             </a>
-                                            <button type="button" class="btn btn-danger btn-icons btn-rounded" title="Supprimer ce produit"
-                                                data-toggle="modal" data-target="#delete-product-{{ $product->id }}">
-                                                <i class="{{ font('trash-o') }}"></i>
-                                            </button>
+                                            @if($product->orders->isEmpty())
+                                                <button type="button" class="btn btn-danger btn-icons btn-rounded" title="Supprimer ce produit"
+                                                    data-toggle="modal" data-target="#delete-product-{{ $product->id }}">
+                                                    <i class="{{ font('trash-o') }}"></i>
+                                                </button>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7">
+                                        <td colspan="8">
                                             <div class="alert alert-info text-center">
                                                 Pas de {{ mb_strtolower($table_label) }} pour le momment
                                             </div>
@@ -123,12 +130,14 @@
     </div>
 
     @foreach($paginationTools->displayItems as $product)
-        @component('components.modal', [
-            'title' => 'Supprimer le produit',
-            'id' => 'delete-product-' . $product->id, 'color' => 'danger',
-            'action_route' => route('admin.products.destroy', [$product])
-            ])
-            Etes-vous sûr de vouloir supprimer {{ $product->format_name }}?
-        @endcomponent
+        @if($product->orders->isEmpty())
+            @component('components.modal', [
+                'title' => 'Supprimer le produit',
+                'id' => 'delete-product-' . $product->id, 'color' => 'danger',
+                'action_route' => route('admin.products.destroy', [$product])
+                ])
+                Etes-vous sûr de vouloir supprimer {{ text_format($product->format_name, 50) }}?
+            @endcomponent
+        @endif
     @endforeach
 @endsection

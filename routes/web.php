@@ -130,7 +130,7 @@ Route::prefix('admin')->group(function() {
         Route::get('/', function () { return redirect(route('admin.dashboard')); });
         Route::get('/dashboard', 'DashboardController')->name('admin.dashboard');
         Route::get('/orders', 'OrdersController@index')->name('admin.orders.index');
-        Route::get('/orders/show/{order}', 'OrdersController@show')->name('admin.orders.show');
+        Route::get('/orders/{order}', 'OrdersController@show')->name('admin.orders.show');
         Route::post('/orders/progress/{order}', 'OrdersController@progress')->name('admin.orders.progress');
         Route::post('/orders/sold/{order}', 'OrdersController@sold')->name('admin.orders.sold');
         Route::resource('/products', 'ProductsController', ['names' => [
@@ -151,6 +151,18 @@ Route::prefix('admin')->group(function() {
             'edit' => 'admin.tags.edit', 'update' => 'admin.tags.update',
             'destroy' => 'admin.tags.destroy'
         ]]);
+        Route::resource('/coupons', 'CouponsController', ['names' => [
+            'index' => 'admin.coupons.index', 'create' => 'admin.coupons.create',
+            'store' => 'admin.coupons.store', 'show' => 'admin.coupons.show',
+            'edit' => 'admin.coupons.edit', 'update' => 'admin.coupons.update',
+            'destroy' => 'admin.coupons.destroy'
+        ]]);
+        Route::post('/customers/disable/{user}', 'CustomersController@disable')->name('admin.customers.disable');
+        Route::put('/customers/enable/{user}', 'CustomersController@enable')->name('admin.customers.enable');
+        Route::resource('/customers', 'CustomersController', ['names' => [
+            'index' => 'admin.customers.index', 'create' => 'admin.customers.create',
+            'store' => 'admin.customers.store', 'show' => 'admin.customers.show'
+        ]])->parameters(['customers' => 'user'])->except(['edit', 'update', 'destroy']);
 
         //--Auth routes...
         Route::group(['namespace' => 'Auth'], function() {

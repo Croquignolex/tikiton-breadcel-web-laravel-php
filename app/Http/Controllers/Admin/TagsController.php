@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Tag;
 use Exception;
+use App\Models\Tag;
 use Illuminate\Http\Request;
-use App\Models\ProductCategory;
 use App\Traits\PaginationTrait;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
@@ -31,10 +30,27 @@ class TagsController extends Controller
     public function index(Request $request)
     {
         $tags = null;
-        $table_label = 'Toutes le étiquettes';
+        $filter = intval($request->query('type'));
+        if($filter === Tag::HAS_PRODUCTS) $table_label = 'Etiquettes qui sont ratachées à des produits';
+        elseif($filter === Tag::HAS_NO_PRODUCTS) $table_label = 'Etiquettes qui ne sont pas ratachées à des produits';
+        elseif($filter === Tag::ALL) $table_label = 'Etiquettes (toutes)';
+        else $table_label = 'Filtre inconnu';
+
         try
         {
-            $tags = Tag::all()->sortByDesc('updated_at');
+            if($filter === Tag::ALL) $tags = Tag::all()->sortByDesc('updated_at');
+            elseif($filter === Tag::HAS_PRODUCTS)
+            {
+                $tags = Tag::all()->filter(function (Tag $tag) {
+                    return !$tag->products->isEmpty();
+                })->sortByDesc('updated_at');
+            }
+            elseif($filter === Tag::HAS_NO_PRODUCTS)
+            {
+                $tags = Tag::all()->filter(function (Tag $tag) {
+                    return $tag->products->isEmpty();
+                })->sortByDesc('updated_at');
+            }
         }
         catch (Exception $exception)
         {
@@ -95,7 +111,7 @@ class TagsController extends Controller
 
     /**
      * @param Request $request
-     * @param ProductCategory $category
+     * @param Tag $tag
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Request $request, Tag $tag)
@@ -105,7 +121,7 @@ class TagsController extends Controller
 
     /**
      * @param CategoryRequest $request
-     * @param ProductCategory $category
+     * @param Tag $tag
      * @return Router|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(CategoryRequest $request, Tag $tag)

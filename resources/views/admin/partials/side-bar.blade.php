@@ -50,5 +50,17 @@
                 <span class="menu-title">Etiquettes</span>
             </a>
         </li>
+        <li class="side-bar-item nav-item {{ active_page(admin_coupons_pages()) }}">
+            <a class="nav-link" href="{{ route('admin.coupons.index') }}">
+                <i class="menu-icon {{ font('barcode') }}"></i>
+                <span class="menu-title">Coupons</span>
+            </a>
+        </li>
+        <li class="side-bar-item nav-item {{ active_page(admin_customers_pages()) }}">
+            <a class="nav-link" href="{{ route('admin.customers.index') }}">
+                <i class="menu-icon {{ font('users') }}"></i>
+                <span class="menu-title">Clients</span>
+            </a>
+        </li>
     </ul>
 </nav>

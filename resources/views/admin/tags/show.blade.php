@@ -25,11 +25,13 @@
                             <i class="{{ font('pencil') }}"></i>
                             Modifier
                         </a>
-                        <button type="button" class="btn btn-danger" title="Supprimer cette étiquette"
-                                data-toggle="modal" data-target="#delete-tag">
-                            <i class="{{ font('trash-o') }}"></i>
-                            Supprimer
-                        </button>
+                        @if($tag->products->isEmpty())
+                            <button type="button" class="btn btn-danger" title="Supprimer cette étiquette"
+                                    data-toggle="modal" data-target="#delete-tag">
+                                <i class="{{ font('trash-o') }}"></i>
+                                Supprimer
+                            </button>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -55,19 +57,38 @@
                             {{ $tag->en_description }}
                         </p>
                     </div>
+                    <div class="col-lg-5 side-bar-item">Produits ({{ $tag->products->count() }})</div>
+                    <div class="col-lg-7 text-dark side-bar-item">
+                        <p>
+                            @forelse($tag->products as $product)
+                                <a href="{{ route('admin.products.show', [$product]) }}" title="Est rattaché à cette étiquette">
+                                    <label class="badge badge-theme">
+                                        <i class="{{ font('database') }}"></i>
+                                        {{ $product->format_name }}
+                                    </label>
+                                </a>
+                            @empty
+                                <strong class="text-danger">
+                                    Cette étiquette n'est ratachée à aucun produit
+                                </strong>
+                            @endforelse
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- Content table End -->
     </div>
 
-    @component('components.modal', [
-        'title' => 'Supprimer l\'étiquette',
-        'id' => 'delete-tag', 'color' => 'danger',
-        'action_route' => route('admin.tags.destroy', [$tag])
-        ])
-        Etes-vous sûr de vouloir supprimer {{ $tag->format_name }}?
-    @endcomponent
+    @if($tag->products->isEmpty())
+        @component('components.modal', [
+            'title' => 'Supprimer l\'étiquette',
+            'id' => 'delete-tag', 'color' => 'danger',
+            'action_route' => route('admin.tags.destroy', [$tag])
+            ])
+            Etes-vous sûr de vouloir supprimer {{ text_format($tag->format_name, 50) }}?
+        @endcomponent
+    @endif
 @endsection
 
 @push('admin.script.page')

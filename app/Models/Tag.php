@@ -17,6 +17,10 @@ class Tag extends Model
     use SlugRouteTrait, LocaleNameTrait,
         LocaleSlugSaveTrait;
 
+    const ALL = 0;
+    const HAS_PRODUCTS = 1;
+    const HAS_NO_PRODUCTS = 2;
+
     /**
      * The attributes that are mass assignable.
      *

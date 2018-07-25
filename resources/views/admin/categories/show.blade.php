@@ -25,11 +25,13 @@
                             <i class="{{ font('pencil') }}"></i>
                             Modifier
                         </a>
-                        <button type="button" class="btn btn-danger" title="Supprimer cette catégorie"
-                                data-toggle="modal" data-target="#delete-category">
-                            <i class="{{ font('trash-o') }}"></i>
-                            Supprimer
-                        </button>
+                        @if($category->products->isEmpty())
+                            <button type="button" class="btn btn-danger" title="Supprimer cette catégorie"
+                                    data-toggle="modal" data-target="#delete-category">
+                                <i class="{{ font('trash-o') }}"></i>
+                                Supprimer
+                            </button>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -55,19 +57,38 @@
                             {{ $category->en_description }}
                         </p>
                     </div>
+                    <div class="col-lg-5 side-bar-item">Produits ({{ $category->products->count() }})</div>
+                    <div class="col-lg-7 text-dark side-bar-item">
+                        <p>
+                            @forelse($category->products as $product)
+                                <a href="{{ route('admin.products.show', [$product]) }}" title="Appartient à cette catégorie">
+                                    <label class="badge badge-theme">
+                                        <i class="{{ font('database') }}"></i>
+                                        {{ $product->format_name }}
+                                    </label>
+                                </a>
+                            @empty
+                                <strong class="text-danger">
+                                    Cette catégories n'a aucun produit
+                                </strong>
+                            @endforelse
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- Content table End -->
     </div>
 
-    @component('components.modal', [
-        'title' => 'Supprimer la catégorie',
-        'id' => 'delete-category', 'color' => 'danger',
-        'action_route' => route('admin.categories.destroy', [$category])
-        ])
-        Etes-vous sûr de vouloir supprimer {{ $category->format_name }}?
-    @endcomponent
+    @if($category->products->isEmpty())
+        @component('components.modal', [
+            'title' => 'Supprimer la catégorie',
+            'id' => 'delete-category', 'color' => 'danger',
+            'action_route' => route('admin.categories.destroy', [$category])
+            ])
+            Etes-vous sûr de vouloir supprimer {{ text_format($category->format_name, 50) }}?
+        @endcomponent
+    @endif
 @endsection
 
 @push('admin.script.page')

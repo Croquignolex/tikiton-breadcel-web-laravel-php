@@ -147,3 +147,27 @@ if(!function_exists('admin_tags_pages'))
             'admin.tags.edit', 'admin.tags.create']);
     }
 }
+
+if(!function_exists('admin_coupons_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function admin_coupons_pages()
+    {
+        return collect(['admin.coupons.index', 'admin.coupons.show',
+            'admin.coupons.edit', 'admin.coupons.create']);
+    }
+}
+
+if(!function_exists('admin_customers_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function admin_customers_pages()
+    {
+        return collect(['admin.customers.index', 'admin.customers.show',
+            'admin.customers.edit', 'admin.customers.create']);
+    }
+}

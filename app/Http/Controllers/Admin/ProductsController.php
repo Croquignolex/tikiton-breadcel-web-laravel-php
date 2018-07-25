@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Exception;
 use App\Models\Tag;
-use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Traits\PaginationTrait;
@@ -34,10 +33,11 @@ class ProductsController extends Controller
     {
         $products = null;
         $filter = intval($request->query('type'));
-        if($filter === Product::IS_BEST_SELLER) $table_label = 'Meilleurs vente';
-        elseif($filter === Product::IS_FEATURED) $table_label = 'En vedettes';
-        elseif($filter === Product::IS_NEW) $table_label = 'Nouveaux';
-        elseif($filter === Product::ALL) $table_label = 'Tous les produits';
+        if($filter === Product::IS_BEST_SELLER) $table_label = 'Meilleurs vente de produits';
+        elseif($filter === Product::IS_FEATURED) $table_label = 'Produits En vedettes';
+        elseif($filter === Product::IS_NEW) $table_label = 'Nouveaux produits';
+        elseif($filter === Product::IS_OUT_OF_STOCK) $table_label = 'Produits en rupture de stock';
+        elseif($filter === Product::ALL) $table_label = 'Produits (tous)';
         else $table_label = 'Filtre inconnu';
 
         try
@@ -54,6 +54,8 @@ class ProductsController extends Controller
             elseif($filter === Product::IS_NEW)
                 $products = Product::where('created_at', '>=', now()->addDay(-7))
                     ->orWhere('is_new', true)->get()->sortByDesc('updated_at');
+            elseif($filter === Product::IS_OUT_OF_STOCK)
+                $products = Product::where('stock', 0)->get()->sortByDesc('updated_at');
         }
         catch (Exception $exception)
         {
@@ -295,24 +297,17 @@ class ProductsController extends Controller
      */
     public function destroy(Request $request, Product $product)
     {
-        $flag = true;
         try
         {
-            $orders = Order::all();
-            foreach ($orders as $order)
+            if(!$product->orders->isEmpty())
             {
-                if($order->products->contains($product))
-                {
-                    $flag = false;
-                    flash_message(
-                        trans('auth.info'),
-                        'Impossible de supprimer ce produit car il est present dans une ou plusieurs commandes',
-                        font('info-circle'), 'info'
-                    );
-                    break;
-                }
+                flash_message(
+                    trans('auth.info'),
+                    'Impossible de supprimer ce produit car il est present dans une ou plusieurs commandes',
+                    font('info-circle'), 'info'
+                );
             }
-            if($flag)
+            else
             {
                 $this->deleteProductImage($product);
                 $product->delete();

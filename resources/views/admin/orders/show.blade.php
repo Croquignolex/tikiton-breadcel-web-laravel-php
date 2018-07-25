@@ -1,7 +1,7 @@
 @inject('orderService', 'App\Services\OrderService')
 @extends('admin.layouts.admin')
 
-@section('home.title', 'Commande ' . $order->reference)
+@section('home.title', page_title($order->reference))
 
 @section('home.body')
     <div class="row">
@@ -44,7 +44,8 @@
             <div class="card">
                 <div class="card-body">
                     <p>
-                        <strong class="{{ $order->format_status->label_color }}">Nom & Prénom:</strong> {{ $order->user->format_full_name }}<br />
+                        <strong class="{{ $order->format_status->label_color }}">Nom & Prénom:</strong>
+                        <a href="{{ route('admin.customers.show', [ $order->user])}}">{{ $order->user->format_full_name }}</a><br />
                         <strong class="{{ $order->format_status->label_color }}">Email:</strong> {{ $order->user->email }}<br />
                         <strong class="{{ $order->format_status->label_color }}">Tel:</strong> {{ $order->user->phone }}<br />
                         <strong class="{{ $order->format_status->label_color }}">Commande N°:</strong> {{ $order->reference }}
