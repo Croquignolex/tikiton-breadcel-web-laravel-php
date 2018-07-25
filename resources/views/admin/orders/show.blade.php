@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">
-                        COMMANDE {{ $order->reference }} -
+                        DETAILS DE {{ $order->reference }} -
                         <strong class="{{ $order->format_status->label_color }}">
                             {{ mb_strtoupper($order->format_status->label) }}
                         </strong>

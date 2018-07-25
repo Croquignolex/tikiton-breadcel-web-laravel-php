@@ -70,7 +70,6 @@ class CheckoutController extends Controller
                 $this->couponSession($user);
 
                 $order = $user->orders()->create([
-                    'reference' => Order::getUniqueOrderReference(),
                     'discount' => session()->has('coupon') ? session('coupon')->discount : 0,
                     'shipping_address' => $user->shipping_address,
                     'shipping_city' => $user->shipping_city,

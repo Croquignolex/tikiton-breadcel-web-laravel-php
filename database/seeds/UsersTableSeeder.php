@@ -14,7 +14,6 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'slug' => 'customer_at_breadcel_ca',
             'first_name' => 'Mr',
             'last_name' => 'Customer',
             'email' => 'customer@breadcel.ca',
@@ -24,7 +23,6 @@ class UsersTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'slug' => 'alex_at_breadcel_ca',
             'first_name' => 'Alex',
             'last_name' => 'NGOMBOL',
             'email' => 'alex@breadcel.ca',
@@ -36,7 +34,6 @@ class UsersTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'slug' => 'celestin_at_breadcel_ca',
             'first_name' => 'Celestin',
             'last_name' => 'WOKGOUE',
             'email' => 'celestin@breadcel.ca',

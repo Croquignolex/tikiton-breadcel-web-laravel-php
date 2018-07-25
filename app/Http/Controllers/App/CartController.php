@@ -5,9 +5,9 @@ namespace App\Http\Controllers\App;
 use Exception;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Requests\PromoRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CouponRequest;
 use App\Traits\ErrorFlashMessagesTrait;
 use App\Http\Requests\CartUpdateRequest;
 use App\Traits\CartAndWishlistToggleTrait;
@@ -76,10 +76,10 @@ class CartController extends Controller
     }
 
     /**
-     * @param CouponRequest $request
+     * @param PromoRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function applyCoupon(CouponRequest $request)
+    public function applyCoupon(PromoRequest $request)
     {
         $coupon_code = $request->coupon;
         try

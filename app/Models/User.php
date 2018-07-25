@@ -2,9 +2,6 @@
 
 namespace App\Models;
 
-use App\Traits\NameTrait;
-use App\Traits\SlugRouteTrait;
-use App\Traits\DescriptionTrait;
 use App\Traits\LocaleDateTimeTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -31,8 +28,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class User extends Authenticatable
 {
-    use SlugRouteTrait,
-        DescriptionTrait, LocaleDateTimeTrait;
+    use LocaleDateTimeTrait;
 
     const ALL = 0;
     const CUSTOMER_HAS_ORDER = 1;
@@ -64,12 +60,7 @@ class User extends Authenticatable
     protected static function boot()
     {
         static::creating(function ($user) {
-            $user->slug = str_slug($user->email);
             $user->token = str_random(64);
-        });
-
-        static::updating(function ($user) {
-            $user->slug = str_slug($user->email);
         });
     }
 

@@ -37,7 +37,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed fr_featured_title
  * @property mixed en_featured_title
  * @property mixed en_featured_description
- * @property mixed fr_featured_description*
+ * @property mixed fr_featured_description
  */
 class Product extends Model
 {

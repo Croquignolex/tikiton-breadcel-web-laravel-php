@@ -14,8 +14,8 @@ class OrdersTableSeeder extends Seeder
     public function run()
     {
         DB::table('orders')->insert([
-            'slug' => 'bc2018n57893762',
-            'reference' => 'BC2018N57893762',
+            'slug' => 'bc2018o57893762',
+            'reference' => 'BC2018O57893762',
             'user_id' => 1,
             'discount' => 3,
             'shipping_address' => 'Ville Marie',
@@ -25,8 +25,8 @@ class OrdersTableSeeder extends Seeder
         ]);
 
         DB::table('orders')->insert([
-            'slug' => 'bc2018n54553762',
-            'reference' => 'BC2018N54553762',
+            'slug' => 'bc2018o54553762',
+            'reference' => 'BC2018O54553762',
             'user_id' => 1,
             'discount' => 2,
             'status' => Order::PROGRESS,
@@ -37,8 +37,8 @@ class OrdersTableSeeder extends Seeder
         ]);
 
         DB::table('orders')->insert([
-            'slug' => 'bc2018n54553736',
-            'reference' => 'BC2018N54553736',
+            'slug' => 'bc2018o54553736',
+            'reference' => 'BC2018O54553736',
             'user_id' => 1,
             'discount' => 1,
             'status' => Order::SOLD,
@@ -49,8 +49,8 @@ class OrdersTableSeeder extends Seeder
         ]);
 
         DB::table('orders')->insert([
-            'slug' => 'bc2012n54553762',
-            'reference' => 'BC2012N54553762',
+            'slug' => 'bc2012o54553762',
+            'reference' => 'BC2012O54553762',
             'user_id' => 1,
             'discount' => 2,
             'status' => Order::CANCELED,

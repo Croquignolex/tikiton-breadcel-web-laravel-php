@@ -170,7 +170,7 @@ class CustomersController extends Controller
      */
     private function customerExist($email)
     {
-        if(User::where('slug', str_slug($email))->count() > 0)
+        if(User::where('email', $email)->count() > 0)
         {
             throw ValidationException::withMessages([
                 'email' => 'Un client exite deja avec cet email. Choisissez un autre email',
@@ -207,6 +207,7 @@ class CustomersController extends Controller
             else
             {
                 $user->is_confirmed = $toggle;
+                $user->token = str_random(64);
                 $user->save();
                 flash_message(
                     trans('auth.info'),

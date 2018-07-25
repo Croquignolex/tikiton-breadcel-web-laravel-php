@@ -146,7 +146,8 @@
                     <div class="col-lg-7 text-dark side-bar-item">
                         <p>
                             @forelse($user->coupons as $coupon)
-                                <a href="{{ route('admin.coupons.show', [$coupon]) }}" title="Peut être utilisé par ce client">
+                                <a href="{{ route('admin.coupons.show', [$coupon]) }}"
+                                   title="{{ $coupon->pivot->is_activated ? 'Peut être utilisé par ce client' : 'Ne peut plus être utilisé par ce client'}}">
                                     <label class="badge badge-dark">
                                         <i class="{{ font('barcode') }}"></i>
                                         {{ $coupon->code }}

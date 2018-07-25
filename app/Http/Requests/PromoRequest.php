@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 /**
  * @property mixed coupon
  */
-class CouponRequest extends FormRequest
+class PromoRequest extends FormRequest
 {
     use RequestTrait;
 
@@ -20,8 +20,7 @@ class CouponRequest extends FormRequest
     public function rules()
     {
         return [
-            'discount' => $this->required_integer . '|min:0',
-            'description' => $this->required_text
+            'coupon' => $this->required_str . '|min:8|max:8',
         ];
     }
 }

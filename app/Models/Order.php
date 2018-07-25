@@ -42,23 +42,21 @@ class Order extends Model
     protected static function boot()
     {
         static::creating(function ($order) {
-            $order->slug = str_slug($order->reference);
-        });
-
-        static::updating(function ($order) {
-            $order->slug = str_slug($order->reference);
+            $reference = static::getUniqueReference();
+            $order->reference = $reference;
+            $order->slug = str_slug($reference);
         });
     }
 
     /**
      * @return string
      */
-    public static function getUniqueOrderReference()
+    public static function getUniqueReference()
     {
-        $reference = 'BC' . now()->year . 'N' . random_int(10000000, 99999999);
+        $reference = 'BC' . now()->year . 'O' . random_int(10000000, 99999999);
 
         if(static::where(['reference' => $reference])->first() !== null)
-            return static::getUniqueOrderReference();
+            return static::getUniqueReference();
 
         return $reference;
     }

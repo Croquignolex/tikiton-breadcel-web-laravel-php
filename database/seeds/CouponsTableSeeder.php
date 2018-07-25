@@ -13,13 +13,13 @@ class CouponsTableSeeder extends Seeder
     public function run()
     {
         DB::table('coupons')->insert([
-            'code' => 'OH69HGH9',
+            'code' => 'BC2012C54553762',
             'discount' => 5,
             'description' => 'description'
         ]);
 
         DB::table('coupons')->insert([
-            'code' => 'BREADCEL',
+            'code' => 'BC2012C54773762',
             'discount' => 10,
             'description' => 'description'
         ]);

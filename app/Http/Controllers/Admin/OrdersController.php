@@ -38,10 +38,10 @@ class OrdersController extends Controller
 
         try
         {
-            if($filter === Order::ALL) $orders = Order::all()->sortByDesc('created_at');
+            if($filter === Order::ALL) $orders = Order::all()->sortByDesc('updated_at');
             elseif($filter === Order::PROGRESS || $filter === Order::CANCELED ||
                 $filter === Order::ORDERED || $filter === Order::SOLD)
-                $orders = Order::where('status', $filter)->get()->sortByDesc('created_at');
+                $orders = Order::where('status', $filter)->get()->sortByDesc('updated_at');
         }
         catch (Exception $exception)
         {

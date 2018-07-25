@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use Exception;
-use App\Models\Tag;
+use App\Models\Coupon;
 use Illuminate\Http\Request;
 use App\Traits\PaginationTrait;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\CouponRequest;
 use App\Traits\ErrorFlashMessagesTrait;
-use Illuminate\Validation\ValidationException;
 
 class CouponsController extends Controller
 {
@@ -29,38 +28,22 @@ class CouponsController extends Controller
      */
     public function index(Request $request)
     {
-        $tags = null;
-        $filter = intval($request->query('type'));
-        if($filter === Tag::HAS_PRODUCTS) $table_label = 'Etiquettes qui sont ratachées à des produits';
-        elseif($filter === Tag::HAS_NO_PRODUCTS) $table_label = 'Etiquettes qui ne sont pas ratachées à des produits';
-        elseif($filter === Tag::ALL) $table_label = 'Etiquettes (toutes)';
-        else $table_label = 'Filtre inconnu';
+        $table_label = 'Coupons (tous)';
+        $coupons = null;
 
         try
         {
-            if($filter === Tag::ALL) $tags = Tag::all()->sortByDesc('updated_at');
-            elseif($filter === Tag::HAS_PRODUCTS)
-            {
-                $tags = Tag::all()->filter(function (Tag $tag) {
-                    return !$tag->products->isEmpty();
-                })->sortByDesc('updated_at');
-            }
-            elseif($filter === Tag::HAS_NO_PRODUCTS)
-            {
-                $tags = Tag::all()->filter(function (Tag $tag) {
-                    return $tag->products->isEmpty();
-                })->sortByDesc('updated_at');
-            }
+            $coupons = Coupon::all()->sortByDesc('updated_at');
         }
         catch (Exception $exception)
         {
             $this->databaseError($exception);
         }
 
-        $this->paginate($request, $tags, 10, 3);
+        $this->paginate($request, $coupons, 10, 3);
         $paginationTools = $this->paginationTools;
 
-        return view('admin.tags.index', compact(
+        return view('admin.coupons.index', compact(
             'paginationTools', 'table_label'));
     }
 
@@ -71,25 +54,24 @@ class CouponsController extends Controller
      */
     public function create()
     {
-        return view('admin.tags.create');
+        return view('admin.coupons.create');
     }
 
     /**
-     * @param CategoryRequest $request
+     * @param CouponRequest $request
      * @return Router|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(CategoryRequest $request)
+    public function store(CouponRequest $request)
     {
-        $this->tagExist($request->input('en_name'));
         try
         {
-            $tag = Tag::create($request->all());
+            $coupon = Coupon::create($request->all());
             flash_message(
-                trans('auth.success'), $request->input('fr_name') . ' ajouté(e) avec succèss',
+                trans('auth.success'), 'Coupon ajouté avec succèss',
                 font('check')
             );
 
-            return redirect(route('admin.tags.show', [$tag]));
+            return redirect(route('admin.coupons.show', [$coupon]));
         }
         catch (Exception $exception)
         {
@@ -101,41 +83,40 @@ class CouponsController extends Controller
 
     /**
      * @param Request $request
-     * @param Tag $tag
+     * @param Coupon $coupon
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(Request $request, Tag $tag)
+    public function show(Request $request, Coupon $coupon)
     {
-        return view('admin.tags.show', compact('tag'));
+        return view('admin.coupons.show', compact('coupon'));
     }
 
     /**
      * @param Request $request
-     * @param Tag $tag
+     * @param Coupon $coupon
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Request $request, Tag $tag)
+    public function edit(Request $request, Coupon $coupon)
     {
-        return view('admin.tags.edit', compact('tag'));
+        return view('admin.coupons.edit', compact('coupon'));
     }
 
     /**
-     * @param CategoryRequest $request
-     * @param Tag $tag
+     * @param CouponRequest $request
+     * @param Coupon $coupon
      * @return Router|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(CategoryRequest $request, Tag $tag)
+    public function update(CouponRequest $request, Coupon $coupon)
     {
-        $this->tagExist($request->input('en_name'), $tag->id);
         try
         {
-            $tag->update($request->all());
+            $coupon->update($request->all());
             flash_message(
-                trans('auth.success'), $tag->format_name . ' à été mis(e) à jour avec succèss',
+                trans('auth.success'), 'Coupon mis à jour avec succèss',
                 font('check')
             );
 
-            return redirect(route('admin.tags.show', [$tag]));
+            return redirect(route('admin.coupons.show', [$coupon]));
         }
         catch (Exception $exception)
         {
@@ -147,29 +128,18 @@ class CouponsController extends Controller
 
     /**
      * @param Request $request
-     * @param Tag $tag
+     * @param Coupon $coupon
      * @return Router
      */
-    public function destroy(Request $request, Tag $tag)
+    public function destroy(Request $request, Coupon $coupon)
     {
         try
         {
-            if(!$tag->products->isEmpty())
-            {
-                flash_message(
-                    trans('auth.info'),
-                    'Impossible de supprimer cette étiquette car un ou plusieurs produits en dépendent',
-                    font('info-circle'), 'info'
-                );
-            }
-            else
-            {
-                $tag->delete();
-                flash_message(
-                    trans('auth.info'), $tag->format_name . ' supprimé(e) avec succèss', font('info-circle'),
-                    'info'
-                );
-            }
+            $coupon->delete();
+            flash_message(
+                trans('auth.info'), 'Coupon supprimé avec succèss',
+                font('info-circle'), 'info'
+            );
         }
         catch (Exception $exception)
         {
@@ -177,20 +147,6 @@ class CouponsController extends Controller
         }
 
         return $this->redirectTo();
-    }
-
-    /**
-     * @param $name
-     * @param int $tag_id
-     */
-    private function tagExist($name, $tag_id = 0)
-    {
-        if(Tag::where('slug', str_slug($name))->where('id', '<>', $tag_id)->count() > 0)
-        {
-            throw ValidationException::withMessages([
-                'en_name' => 'Une étiquette exite deja avec ce nom. Choisissez un autre nom pour l\'anglais',
-            ])->status(423);
-        }
     }
 
     /**
@@ -200,6 +156,6 @@ class CouponsController extends Controller
      */
     private function redirectTo()
     {
-        return redirect(route('admin.tags.index'));
+        return redirect(route('admin.coupons.index'));
     }
 }
