@@ -62,5 +62,17 @@
                 <span class="menu-title">Coupons</span>
             </a>
         </li>
+        <li class="side-bar-item nav-item {{ active_page(admin_testimonials_pages()) }}">
+            <a class="nav-link" href="{{ route('admin.testimonials.index') }}">
+                <i class="menu-icon {{ font('globe') }}"></i>
+                <span class="menu-title">Témoignages</span>
+            </a>
+        </li>
+        <li class="side-bar-item nav-item {{ active_page(admin_teams_pages()) }}">
+            <a class="nav-link" href="{{ route('admin.teams.index') }}">
+                <i class="menu-icon {{ font('user-secret') }}"></i>
+                <span class="menu-title">Equipe</span>
+            </a>
+        </li>
     </ul>
 </nav>

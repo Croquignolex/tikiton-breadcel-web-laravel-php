@@ -13,7 +13,6 @@ class TeamsTableSeeder extends Seeder
     public function run()
     {
         DB::table('teams')->insert([
-            'slug' => 'celestin_wokgoue',
             'image' => 'team_1',
             'name' => 'celestin wokgoue',
             'fr_description' => 'General manager description',
@@ -23,7 +22,6 @@ class TeamsTableSeeder extends Seeder
         ]);
 
         DB::table('teams')->insert([
-            'slug' => 'alex_ngombol',
             'image' => 'team_2',
             'name' => ' Alex Ngombol',
             'fr_description' => 'Software ingenier description',
@@ -33,7 +31,6 @@ class TeamsTableSeeder extends Seeder
         ]);
 
         DB::table('teams')->insert([
-            'slug' => 'celine_wokgoue',
             'image' => 'team_3',
             'name' => 'celine wokgoue',
             'fr_description' => 'Co-manager description',
@@ -43,7 +40,6 @@ class TeamsTableSeeder extends Seeder
         ]);
 
         DB::table('teams')->insert([
-            'slug' => 'trina_wokgoue',
             'image' => 'team_4',
             'name' => 'trina wokgoue',
             'fr_description' => 'Chief Designer description',

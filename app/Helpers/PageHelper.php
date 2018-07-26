@@ -167,7 +167,30 @@ if(!function_exists('admin_customers_pages'))
      */
     function admin_customers_pages()
     {
-        return collect(['admin.customers.index', 'admin.customers.show',
-            'admin.customers.edit', 'admin.customers.create']);
+        return collect(['admin.customers.index', 'admin.customers.show']);
+    }
+}
+
+if(!function_exists('admin_teams_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function admin_teams_pages()
+    {
+        return collect(['admin.teams.index', 'admin.teams.show',
+            'admin.teams.edit', 'admin.teams.create']);
+    }
+}
+
+if(!function_exists('admin_testimonials_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function admin_testimonials_pages()
+    {
+        return collect(['admin.testimonials.index', 'admin.testimonials.show',
+            'admin.testimonials.edit', 'admin.testimonials.create']);
     }
 }

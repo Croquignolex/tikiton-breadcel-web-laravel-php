@@ -40,7 +40,7 @@
         <!-- Content table Start -->
         <div class="col-lg-5 grid-margin stretch-card align-items-start">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body text-center">
                     <img src="{{ $product->image_path }}" alt="..." class="img-fluid">
                 </div>
             </div>

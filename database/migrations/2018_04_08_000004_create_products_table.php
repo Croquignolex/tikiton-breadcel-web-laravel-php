@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('slug')->unique();
             $table->string('image', 255);
-            $table->string('extension', 50)->default('jpg');;
+            $table->string('extension', 50)->default('jpg');
             $table->string('fr_name', 255);
             $table->string('en_name', 255);
             $table->text('fr_description');

@@ -157,6 +157,18 @@ Route::prefix('admin')->group(function() {
             'edit' => 'admin.coupons.edit', 'update' => 'admin.coupons.update',
             'destroy' => 'admin.coupons.destroy'
         ]]);
+        Route::resource('/teams', 'TeamController', ['names' => [
+            'index' => 'admin.teams.index', 'create' => 'admin.teams.create',
+            'store' => 'admin.teams.store', 'show' => 'admin.teams.show',
+            'edit' => 'admin.teams.edit', 'update' => 'admin.teams.update',
+            'destroy' => 'admin.teams.destroy'
+        ]]);
+        Route::resource('/testimonials', 'TestimonialsController', ['names' => [
+            'index' => 'admin.testimonials.index', 'create' => 'admin.testimonials.create',
+            'store' => 'admin.testimonials.store', 'show' => 'admin.testimonials.show',
+            'edit' => 'admin.testimonials.edit', 'update' => 'admin.testimonials.update',
+            'destroy' => 'admin.testimonials.destroy'
+        ]]);
         Route::post('/customers/disable/{user}', 'CustomersController@disable')->name('admin.customers.disable');
         Route::put('/customers/enable/{user}', 'CustomersController@enable')->name('admin.customers.enable');
         Route::resource('/customers', 'CustomersController', ['names' => [

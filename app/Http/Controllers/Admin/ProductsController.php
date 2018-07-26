@@ -7,15 +7,15 @@ use App\Models\Tag;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Traits\PaginationTrait;
+use App\Traits\ImageManageTrait;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\File;
 use App\Http\Requests\ProductRequest;
 use App\Traits\ErrorFlashMessagesTrait;
 use Illuminate\Validation\ValidationException;
 
 class ProductsController extends Controller
 {
-    use ErrorFlashMessagesTrait, PaginationTrait;
+    use ErrorFlashMessagesTrait, PaginationTrait, ImageManageTrait;
 
     /**
      * AccountController constructor.
@@ -85,41 +85,10 @@ class ProductsController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $image_name = 'default';
-        $image_extension = 'jpg';
         $productTagIds = $request->input('tags');
-        if($request->hasFile('image'))
-        {
-            $image = $request->file('image');
-            $allowed_extensions = collect(['jpg', 'JPG', 'jpeg', 'JPEG',
-                'png', 'PNG', 'gif', 'GIF', 'svg', 'SVG']);
-            if($allowed_extensions->contains($image->getClientOriginalExtension()))
-            {
-                try
-                {
-                    $image_name = md5($image->getClientOriginalName() . time());
-                    $image_extension = $image->getClientOriginalExtension();
-                    $image->move(public_path('img/products/'), $image_name . '.' . $image_extension);
-                }
-                catch (Exception $exception)
-                {
-                    $this->imageError($exception);
-                }
-            }
-            else
-            {
-                flash_message(
-                    trans('auth.error'), 'Erreur sur l\'extension de l\'image',
-                    font('remove'), 'danger', 'bounceIn', 'bounceOut'
-                );
-
-                throw ValidationException::withMessages([
-                    'image' => 'L\'extension ne correspond pas, l\'extension doit être dans cette liste (jpg, JPG, jpeg, JPEG, png, PNG, gif, GIF, svg, SVG)',
-                ])->status(423);
-            }
-        }
-
         $this->productExist($request->input('en_name'));
+        $image = $this->storeImage($request, 'products');
+
         try
         {
             $product = Product::create([
@@ -130,8 +99,8 @@ class ProductsController extends Controller
                 'price' => $request->input('price'),
                 'discount' => $request->input('discount'),
                 'stock' => $request->input('stock'),
-                'image' => $image_name,
-                'extension' => $image_extension,
+                'image' => $image->name,
+                'extension' => $image->extension,
                 'product_category_id' => $request->input('category'),
                 'is_featured' => is_null($request->input('featured')) ? false : true,
                 'is_most_sold' => is_null($request->input('best_sale')) ? false : true,
@@ -190,79 +159,27 @@ class ProductsController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
-        $flag = false;
-        $image_name = ''; $image_extension = '';
         $productTagIds = $request->input('tags');
         $this->productExist($request->input('en_name'), $product->id);
-        if($request->hasFile('image'))
-        {
-            $image = $request->file('image');
-            $allowed_extensions = collect(['jpg', 'JPG', 'jpeg', 'JPEG',
-                'png', 'PNG', 'gif', 'GIF', 'svg', 'SVG']);
-            if($allowed_extensions->contains($image->getClientOriginalExtension()))
-            {
-                try
-                {
-                    $image_name = md5($image->getClientOriginalName() . time());
-                    $image_extension = $image->getClientOriginalExtension();
-                    $image->move(public_path('img/products/'), $image_name . '.' . $image_extension);
-                    $flag = true;
-                    $this->deleteProductImage($product);
-                }
-                catch (Exception $exception)
-                {
-                    $this->imageError($exception);
-                }
-            }
-            else
-            {
-                flash_message(
-                    trans('auth.error'), 'Erreur sur l\'extension de l\'image',
-                    font('remove'), 'danger', 'bounceIn', 'bounceOut'
-                );
-
-                throw ValidationException::withMessages([
-                    'image' => 'L\'extension ne correspond pas, l\'extension doit être dans cette liste (jpg, JPG, jpeg, JPEG, png, PNG, gif, GIF, svg, SVG)',
-                ])->status(423);
-            }
-        }
+        $image = $this->storeImage($request, 'products', $product);
 
         try
         {
-            if($flag)
-            {
-                $product->update([
-                    'fr_name' => $request->input('fr_name'),
-                    'en_name' => $request->input('en_name'),
-                    'fr_description' => $request->input('fr_description'),
-                    'en_description' => $request->input('en_description'),
-                    'price' => $request->input('price'),
-                    'discount' => $request->input('discount'),
-                    'stock' => $request->input('stock'),
-                    'image' => $image_name,
-                    'extension' => $image_extension,
-                    'product_category_id' => $request->input('category'),
-                    'is_featured' => is_null($request->input('featured')) ? false : true,
-                    'is_most_sold' => is_null($request->input('best_sale')) ? false : true,
-                    'is_new' => is_null($request->input('new')) ? false : true
-                ]);
-            }
-            else
-            {
-                $product->update([
-                    'fr_name' => $request->input('fr_name'),
-                    'en_name' => $request->input('en_name'),
-                    'fr_description' => $request->input('fr_description'),
-                    'en_description' => $request->input('en_description'),
-                    'price' => $request->input('price'),
-                    'discount' => $request->input('discount'),
-                    'stock' => $request->input('stock'),
-                    'product_category_id' => $request->input('category'),
-                    'is_featured' => is_null($request->input('featured')) ? false : true,
-                    'is_most_sold' => is_null($request->input('best_sale')) ? false : true,
-                    'is_new' => is_null($request->input('new')) ? false : true
-                ]);
-            }
+            $product->update([
+                'fr_name' => $request->input('fr_name'),
+                'en_name' => $request->input('en_name'),
+                'fr_description' => $request->input('fr_description'),
+                'en_description' => $request->input('en_description'),
+                'price' => $request->input('price'),
+                'discount' => $request->input('discount'),
+                'stock' => $request->input('stock'),
+                'image' => $image->name,
+                'extension' => $image->extension,
+                'product_category_id' => $request->input('category'),
+                'is_featured' => is_null($request->input('featured')) ? false : true,
+                'is_most_sold' => is_null($request->input('best_sale')) ? false : true,
+                'is_new' => is_null($request->input('new')) ? false : true
+            ]);
 
             //Remove all products tags first
             foreach ($product->product_tags as $product_tag)
@@ -308,7 +225,7 @@ class ProductsController extends Controller
             }
             else
             {
-                $this->deleteProductImage($product);
+                $this->deleteImage($product, 'products');
                 $product->delete();
                 flash_message(
                     trans('auth.info'), $product->format_name . ' supprimé(e) avec succèss', font('info-circle'),
@@ -346,24 +263,5 @@ class ProductsController extends Controller
     private function redirectTo()
     {
         return redirect(route('admin.products.index'));
-    }
-
-    /**
-     * @param Product $product
-     */
-    private function deleteProductImage(Product $product)
-    {
-        try
-        {
-            if($product->image !== 'default')
-            {
-                $file = public_path('img/products/') . $product->image . '.' . $product->extension;
-                if(File::exists($file)) File::delete($file);
-            }
-        }
-        catch (Exception $exception)
-        {
-            $this->imageError($exception);
-        }
     }
 }

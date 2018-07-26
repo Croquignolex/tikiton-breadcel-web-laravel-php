@@ -10,14 +10,15 @@ use App\Traits\LocaleDescriptionTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * @property mixed name
  * @property mixed image
- * @property mixed function
+ * @property mixed extension
  * @property mixed fr_function
  * @property mixed en_function
  */
 class Team extends Model
 {
-    use NameTrait, SlugRouteTrait, SlugSaveTrait, LocaleDescriptionTrait;
+    use NameTrait, LocaleDescriptionTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -25,8 +26,8 @@ class Team extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'image', 'function', 'description',
-        'facebook', 'twitter', 'linkedin', 'googleplus'
+        'name', 'image', 'fr_function', 'en_function', 'fr_description', 'extension',
+        'facebook', 'twitter', 'linkedin', 'googleplus', 'en_description'
     ];
 
     /**
@@ -34,7 +35,7 @@ class Team extends Model
      */
     public function getImagePathAttribute()
     {
-        return team_img_asset($this->image);
+        return team_img_asset($this->image, $this->extension);
     }
 
     /**
