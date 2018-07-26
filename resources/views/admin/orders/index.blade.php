@@ -17,26 +17,26 @@
                         Filtrer les commandes
                     </p>
                     <div>
-                        <a href="{{ route('admin.orders.index') . '?type=' . \App\Models\Order::ORDERED }}"
-                           class="btn btn-theme">
-                            <i class="{{ font('file') }}"></i>
-                            Commandé
-                        </a>
-                        <a href="{{ route('admin.orders.index') . '?type=' . \App\Models\Order::PROGRESS }}"
-                           class="btn btn-success">
-                            <i class="{{ font('cogs') }}"></i>
-                            En traitement
-                        </a>
-                        <a href="{{ route('admin.orders.index') . '?type=' . \App\Models\Order::SOLD }}"
-                           class="btn btn-info">
-                            <i class="{{ font('check') }}"></i>
-                            Livré
-                        </a>
-                        <a href="{{ route('admin.orders.index') . '?type=' . \App\Models\Order::CANCELED }}"
-                           class="btn btn-danger">
-                            <i class="{{ font('times') }}"></i>
-                            Annulé
-                        </a>
+                        @component('admin.components.filter-button', [
+                            'route' => route('admin.orders.index') . '?type=' . \App\Models\Order::ORDERED,
+                            'icon' => 'file', 'label' => 'Commandé'
+                            ])
+                        @endcomponent
+                        @component('admin.components.filter-button', [
+                            'route' => route('admin.orders.index') . '?type=' . \App\Models\Order::PROGRESS,
+                            'icon' => 'cogs', 'label' => 'En traitement', 'class' => 'btn btn-success'
+                            ])
+                        @endcomponent
+                        @component('admin.components.filter-button', [
+                           'route' => route('admin.orders.index') . '?type=' . \App\Models\Order::SOLD,
+                           'icon' => 'check', 'label' => 'Livré', 'class' => 'btn btn-info'
+                           ])
+                        @endcomponent
+                        @component('admin.components.filter-button', [
+                           'route' => route('admin.orders.index') . '?type=' . \App\Models\Order::CANCELED,
+                           'icon' => 'times', 'label' => 'Annulé', 'class' => 'btn btn-danger'
+                           ])
+                        @endcomponent
                     </div>
                 </div>
             </div>
@@ -44,77 +44,59 @@
         <!-- Filter Buttons End -->
         <!-- Content table Start -->
         <div class="col-lg-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">{{ mb_strtoupper($table_label) }} ({{ $paginationTools->displayItems->count() }} sur {{ $paginationTools->itemsNumber }})</h4>
-                    @component('components.pagination',
-                        ['paginationTools' => $paginationTools])
+            @component('admin.components.table-card', [
+                'table_label' => $table_label,
+                'paginationTools' => $paginationTools,
+                'headers' => ['reference', 'montant', 'statut', 'adresse', 'date']
+                ])
+                @forelse($paginationTools->displayItems as $order)
+                    <tr class="{{ $order->format_status->label_color }}">
+                        <td>{{ $order->reference }}</td>
+                        <td class="text-right">{{ money_currency($orderService->getBigTotal($order)) }}</td>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar {{ $order->format_status->progress_bar_color  }}" role="progressbar" style="width: {{ $order->format_status->percentage }}%" aria-valuenow="{{ $order->format_status->percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="order-status text-center">
+                                <label class="badge {{ $order->format_status->badge_color }}">{{ $order->format_status->label }}</label>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p>
+                                {{ text_format($order->shipping_address, 30) }} <br />
+                                {{ text_format($order->shipping_post_code, 10) }}
+                                {{ text_format($order->shipping_city, 15) }}
+                                {{ text_format($order->shipping_country, 20) }}
+                            </p>
+                        </td>
+                        <td class="text-center">{{ $order->created_date }} à {{ $order->created_time }}</td class="text-ce">
+                        <td class="text-right">
+                            @if($order->status === \App\Models\Order::ORDERED)
+                                @component('components.modal-button', [
+                                   'target' => 'progress-order-' . $order->id,
+                                   'title' => 'Valider cette commande', 'icon' => 'cogs',
+                                   'label' => '', 'class' => 'btn btn-success btn-icons btn-rounded'
+                                ])
+                                @endcomponent
+                            @elseif($order->status === \App\Models\Order::PROGRESS)
+                                @component('components.modal-button', [
+                                    'target' => 'sold-order-' . $order->id,
+                                    'title' => 'Terminer cette commande', 'icon' => 'check',
+                                    'label' => '', 'class' => 'btn btn-info btn-icons btn-rounded'
+                                ])
+                                @endcomponent
+                            @endif
+                            @component('admin.components.details-button',
+                               ['route' => route('admin.orders.show', [$order])])
+                            @endcomponent
+                        </td>
+                    </tr>
+                @empty
+                    @component('admin.components.empty_table_alert',
+                     ['size' => 6, 'table_label' => $table_label])
                     @endcomponent
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr class="table-secondary">
-                                    <th>REFERENCE</th>
-                                    <th>PRODUITS</th>
-                                    <th>MONTANT</th>
-                                    <th>STATUT</th>
-                                    <th>ADRESSE</th>
-                                    <th>ACTIONS</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($paginationTools->displayItems as $order)
-                                    <tr class="{{ $order->format_status->label_color }}">
-                                        <td>{{ $order->reference }}</td>
-                                        <td class="text-right">{{ $orderService->getProductsNumber($order) }}</td>
-                                        <td class="text-right">{{ money_currency($orderService->getBigTotal($order)) }}</td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar {{ $order->format_status->progress_bar_color  }}" role="progressbar" style="width: {{ $order->format_status->percentage }}%" aria-valuenow="{{ $order->format_status->percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            <div class="order-status text-center">
-                                                <label class="badge {{ $order->format_status->badge_color }}">{{ $order->format_status->label }}</label>
-                                            </div>
-                                        </td>
-                                        <td class="text-center">
-                                            <p>
-                                                {{ text_format($order->shipping_address, 30) }} <br />
-                                                {{ text_format($order->shipping_post_code, 10) }}
-                                                {{ text_format($order->shipping_city, 15) }}
-                                                {{ text_format($order->shipping_country, 20) }}
-                                            </p>
-                                        </td>
-                                        <td class="text-right">
-                                            @if($order->status === \App\Models\Order::ORDERED)
-                                                <button type="button" class="btn btn-success btn-icons btn-rounded" title="Valider cette commander"
-                                                        data-toggle="modal" data-target="#progress-order-{{ $order->id }}">
-                                                    <i class="{{ font('cogs') }}"></i>
-                                                </button>
-                                            @elseif($order->status === \App\Models\Order::PROGRESS)
-                                                <button type="button" class="btn btn-info btn-icons btn-rounded" title="Terminer cette commande"
-                                                        data-toggle="modal" data-target="#sold-order-{{ $order->id }}">
-                                                    <i class="{{ font('check') }}"></i>
-                                                </button>
-                                            @endif
-                                            <a href="{{ route('admin.orders.show', [$order]) }}" class="btn btn-secondary btn-icons btn-rounded" title="Voir le détails">
-                                                <i class="{{ font('eye') }}"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="6">
-                                            <div class="alert alert-info text-center">
-                                                Pas de {{ mb_strtolower($table_label) }} pour le momment
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                @endforelse
+            @endcomponent
         </div>
         <!-- Content table End -->
     </div>

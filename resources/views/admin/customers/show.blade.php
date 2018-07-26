@@ -15,23 +15,25 @@
                         </strong>
                     </h4>
                     <div>
-                        <a href="{{ route('admin.customers.index') }}"
-                           class="btn btn-theme">
-                            <i class="{{ font('arrow-left') }}"></i>
-                            Liste des clients
-                        </a>
+                        @component('admin.components.back-button', [
+                            'route' => route('admin.customers.index'),
+                            'label' => 'Liste des clients'
+                            ])
+                        @endcomponent
                         @if($user->is_confirmed)
-                            <button type="button" class="btn btn-danger" title="Désactiver ce client"
-                                    data-toggle="modal" data-target="#disable-customer-{{ $user->id }}">
-                                <i class="{{ font('thumbs-down') }}"></i>
-                                Désactiver
-                            </button>
+                            @component('components.modal-button', [
+                               'target' => 'disable-customer',
+                               'title' => 'Désactiver ce client', 'icon' => 'thumbs-down',
+                               'label' => 'Désactiver', 'class' => 'btn btn-danger'
+                               ])
+                            @endcomponent
                         @else
-                            <button type="button" class="btn btn-success" title="Activer ce client"
-                                    data-toggle="modal" data-target="#enable-customer-{{ $user->id }}">
-                                <i class="{{ font('thumbs-up') }}"></i>
-                                Activer
-                            </button>
+                            @component('components.modal-button', [
+                               'target' => 'enable-customer',
+                               'title' => 'Activer ce client', 'icon' => 'thumbs-up',
+                               'label' => 'Activer', 'class' => 'btn btn-success'
+                               ])
+                            @endcomponent
                         @endif
                     </div>
                 </div>
@@ -42,26 +44,26 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body row text-secondary">
-                    <div class="col-lg-5 side-bar-item">Email</div>
-                    <div class="col-lg-7 text-dark side-bar-item">{{ $user->email }}</div>
-                    <div class="col-lg-5 side-bar-item">NOM</div>
-                    <div class="col-lg-7 text-dark side-bar-item">{{ $user->format_first_name }}</div>
-                    <div class="col-lg-5 side-bar-item">Prénom</div>
-                    <div class="col-lg-7 text-dark side-bar-item">{{ $user->format_last_name }}</div>
-                    <div class="col-lg-5 side-bar-item">Tel</div>
-                    <div class="col-lg-7 text-dark side-bar-item">{{ $user->phone }}</div>
-                    <div class="col-lg-5 side-bar-item">Adresse</div>
-                    <div class="col-lg-7 text-dark side-bar-item">{{ $user->address }}</div>
-                    <div class="col-lg-5 side-bar-item">Code potal</div>
-                    <div class="col-lg-7 text-dark side-bar-item">{{ $user->post_code }}</div>
-                    <div class="col-lg-5 side-bar-item">Ville</div>
-                    <div class="col-lg-7 text-dark side-bar-item">{{ $user->city }}</div>
-                    <div class="col-lg-5 side-bar-item">Pays</div>
-                    <div class="col-lg-7 text-dark side-bar-item">{{ $user->country }}</div>
-                    <div class="col-lg-5 side-bar-item">Compagnie</div>
-                    <div class="col-lg-7 text-dark side-bar-item">{{ $user->company }}</div>
-                    <div class="col-lg-5 side-bar-item">Statut</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">Email</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $user->email }}</div>
+                    <div class="col-sm-5 side-bar-item">NOM</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $user->format_first_name }}</div>
+                    <div class="col-sm-5 side-bar-item">Prénom</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $user->format_last_name }}</div>
+                    <div class="col-sm-5 side-bar-item">Tel</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $user->phone }}</div>
+                    <div class="col-sm-5 side-bar-item">Adresse</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $user->address }}</div>
+                    <div class="col-sm-5 side-bar-item">Code potal</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $user->post_code }}</div>
+                    <div class="col-sm-5 side-bar-item">Ville</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $user->city }}</div>
+                    <div class="col-sm-5 side-bar-item">Pays</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $user->country }}</div>
+                    <div class="col-sm-5 side-bar-item">Compagnie</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $user->company }}</div>
+                    <div class="col-sm-5 side-bar-item">Statut</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         @if($user->is_confirmed)
                             <label class="badge badge-success">
                                 <i class="{{ font('thumbs-up') }}"></i>
@@ -74,8 +76,8 @@
                             </label>
                         @endif
                     </div>
-                    <div class="col-lg-5 side-bar-item">Commandes ({{ $user->orders->count() }})</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">Commandes ({{ $user->orders->count() }})</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <p>
                             @forelse($user->orders as $order)
                                 <a href="{{ route('admin.orders.show', [$order]) }}" title="Appartient à ce client">
@@ -91,8 +93,8 @@
                             @endforelse
                         </p>
                     </div>
-                    <div class="col-lg-5 side-bar-item">Avis ({{ $user->reviewed_products->count() }})</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">Avis ({{ $user->reviewed_products->count() }})</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <p>
                             @forelse($user->reviewed_products as $product)
                                 <a href="{{ route('admin.products.show', [$product]) }}" title="{{ $product->format_name }}: {{ $product->pivot->text }}">
@@ -108,8 +110,8 @@
                             @endforelse
                         </p>
                     </div>
-                    <div class="col-lg-5 side-bar-item">Favoris ({{ $user->wished_products->count() }})</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">Favoris ({{ $user->wished_products->count() }})</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <p>
                             @forelse($user->wished_products as $product)
                                 <a href="{{ route('admin.products.show', [$product]) }}" title="Dans sa liste de favoris">
@@ -125,8 +127,8 @@
                             @endforelse
                         </p>
                     </div>
-                    <div class="col-lg-5 side-bar-item">Paniers ({{ $user->carted_products->count() }})</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">Paniers ({{ $user->carted_products->count() }})</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <p>
                             @forelse($user->carted_products as $product)
                                 <a href="{{ route('admin.products.show', [$product]) }}" title="Dans son panier">
@@ -142,8 +144,8 @@
                             @endforelse
                         </p>
                     </div>
-                    <div class="col-lg-5 side-bar-item">Coupons ({{ $user->coupons->count() }})</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">Coupons ({{ $user->coupons->count() }})</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <p>
                             @forelse($user->coupons as $coupon)
                                 <a href="{{ route('admin.coupons.show', [$coupon]) }}"
@@ -160,6 +162,10 @@
                             @endforelse
                         </p>
                     </div>
+                    <div class="col-sm-5 side-bar-item">Création</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $user->created_date }} à {{ $user->created_time }}</div>
+                    <div class="col-sm-5 side-bar-item">Dernière modifcation</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $user->updated_date }} à {{ $user->updated_time }}</div>
                 </div>
             </div>
         </div>
@@ -169,7 +175,7 @@
     @if($user->is_confirmed)
         @component('components.modal', [
            'title' => 'Desactive le client', 'method' => 'POST',
-           'id' => 'disable-customer-' . $user->id, 'color' => 'danger',
+           'id' => 'disable-customer', 'color' => 'danger',
            'action_route' => route('admin.customers.disable', [$user])
            ])
             Etes-vous sûr de vouloir désactiver {{ text_format($user->format_full_name, 50) }}?
@@ -177,7 +183,7 @@
     @else
         @component('components.modal', [
             'title' => 'Activer le client', 'method' => 'PUT',
-            'id' => 'enable-customer-' . $user->id, 'color' => 'success',
+            'id' => 'enable-customer', 'color' => 'success',
             'action_route' => route('admin.customers.enable', [$user])
             ])
             Etes-vous sûr de vouloir activer {{ text_format($user->format_full_name, 50) }}?

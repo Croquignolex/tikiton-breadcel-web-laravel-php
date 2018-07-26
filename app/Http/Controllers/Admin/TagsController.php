@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Exception;
 use App\Models\Tag;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Traits\PaginationTrait;
 use App\Http\Controllers\Controller;
@@ -81,9 +82,17 @@ class TagsController extends Controller
     public function store(CategoryRequest $request)
     {
         $this->tagExist($request->input('en_name'));
+        $tagProductIds = $request->input('products');
         try
         {
             $tag = Tag::create($request->all());
+
+            if(!is_null($tagProductIds))
+            {
+                foreach ($tagProductIds as $productId)
+                    $tag->products()->save(Product::find(intval($productId)));
+            }
+
             flash_message(
                 trans('auth.success'), $request->input('fr_name') . ' ajouté(e) avec succèss',
                 font('check')
@@ -116,7 +125,9 @@ class TagsController extends Controller
      */
     public function edit(Request $request, Tag $tag)
     {
-        return view('admin.tags.edit', compact('tag'));
+        $tabTProductIds = [];
+        foreach ($tag->products as $product) $tabTProductIds[] = $product->id;
+        return view('admin.tags.edit', compact('tag', 'tabTProductIds'));
     }
 
     /**
@@ -127,9 +138,21 @@ class TagsController extends Controller
     public function update(CategoryRequest $request, Tag $tag)
     {
         $this->tagExist($request->input('en_name'), $tag->id);
+        $tagProductIds = $request->input('products');
         try
         {
             $tag->update($request->all());
+
+            //Remove all products tags first
+            foreach ($tag->product_tags as $product_tag)
+                $product_tag->delete();
+            //Add new product tags
+            if(!is_null($tagProductIds))
+            {
+                foreach ($tagProductIds as $productId)
+                    $tag->products()->save(Product::find(intval($productId)));
+            }
+
             flash_message(
                 trans('auth.success'), $tag->format_name . ' à été mis(e) à jour avec succèss',
                 font('check')

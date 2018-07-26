@@ -12,11 +12,11 @@
                          Nouveau client
                     </h4>
                     <div>
-                        <a href="{{ route('admin.customers.index') }}"
-                           class="btn btn-theme">
-                            <i class="{{ font('arrow-left') }}"></i>
-                            Liste des clients
-                        </a>
+                        @component('admin.components.back-button', [
+                            'route' => route('admin.customers.index'),
+                            'label' => 'Liste des clients'
+                            ])
+                        @endcomponent
                     </div>
                 </div>
             </div>
@@ -152,6 +152,17 @@
                                         @component('components.input', [
                                             'type' => 'text', 'name' => 'company', 'class' => 'form-control',
                                              'value' => old('company'), 'validate' => 'false'
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                       'name' => 'coupons', 'label' => 'coupons'
+                                       ])
+                                        @component('components.multi-select', [
+                                            'name' => 'coupons', 'class' => 'form-control', 'title' => 'Sélectionner les coupons',
+                                             'values' => old('coupons') ?? [], 'options' => \App\Models\Coupon::all()
                                             ])
                                         @endcomponent
                                     @endcomponent

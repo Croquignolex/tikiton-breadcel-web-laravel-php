@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Exception;
+use App\Models\User;
 use App\Models\Coupon;
 use Illuminate\Http\Request;
 use App\Traits\PaginationTrait;
@@ -63,9 +64,17 @@ class CouponsController extends Controller
      */
     public function store(CouponRequest $request)
     {
+        $couponCustomerIds = $request->input('customers');
         try
         {
             $coupon = Coupon::create($request->all());
+
+            if(!is_null($couponCustomerIds))
+            {
+                foreach ($couponCustomerIds as $customerId)
+                    $coupon->users()->save(User::find(intval($customerId)));
+            }
+
             flash_message(
                 trans('auth.success'), 'Coupon ajouté avec succèss',
                 font('check')
@@ -98,7 +107,9 @@ class CouponsController extends Controller
      */
     public function edit(Request $request, Coupon $coupon)
     {
-        return view('admin.coupons.edit', compact('coupon'));
+        $tabTCustomerIds = [];
+        foreach ($coupon->users as $user) $tabTCustomerIds[] = $user->id;
+        return view('admin.coupons.edit', compact('coupon', 'tabTCustomerIds'));
     }
 
     /**
@@ -108,9 +119,21 @@ class CouponsController extends Controller
      */
     public function update(CouponRequest $request, Coupon $coupon)
     {
+        $couponCustomerIds = $request->input('customers');
         try
         {
             $coupon->update($request->all());
+
+            //Remove all products tags first
+            foreach ($coupon->user_coupons as $user_coupon)
+                $user_coupon->delete();
+            //Add new product tags
+            if(!is_null($couponCustomerIds))
+            {
+                foreach ($couponCustomerIds as $customerId)
+                    $coupon->users()->save(User::find(intval($customerId)));
+            }
+
             flash_message(
                 trans('auth.success'), 'Coupon mis à jour avec succèss',
                 font('check')

@@ -3,14 +3,19 @@
 namespace App\Models;
 
 use App\Traits\LocaleAmountTrait;
+use App\Traits\LocaleDateTimeTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * @property mixed code
+ * @property mixed users
+ * @property mixed promo
  * @property mixed discount
+ * @property mixed user_coupons
  */
 class Coupon extends Model
 {
-    use LocaleAmountTrait;
+    use LocaleAmountTrait, LocaleDateTimeTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -59,11 +64,27 @@ class Coupon extends Model
      */
     public function user_coupons()
     {
-        return $this->hasMany('App\Models\UserCoupons');
+        return $this->hasMany('App\Models\UserCoupon');
     }
 
     public function getPromoAttribute()
     {
         return $this->formatAmount($this->discount);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSelectTextAttribute()
+    {
+        return $this->code;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSelectSubtextAttribute()
+    {
+        return money_currency($this->promo);
     }
 }

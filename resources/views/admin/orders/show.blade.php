@@ -16,23 +16,25 @@
                         </strong>
                     </h4>
                     <div>
-                        <a href="{{ route('admin.orders.index') }}"
-                           class="btn btn-theme">
-                            <i class="{{ font('arrow-left') }}"></i>
-                            Lliste des commandes
-                        </a>
+                        @component('admin.components.back-button', [
+                            'route' => route('admin.orders.index'),
+                            'label' => 'Liste des commandes'
+                            ])
+                        @endcomponent
                         @if($order->status === \App\Models\Order::ORDERED)
-                            <button type="button" class="btn btn-success" title="Valider cette commander"
-                                    data-toggle="modal" data-target="#progress-order">
-                                <i class="{{ font('cogs') }}"></i>
-                                Valider
-                            </button>
+                            @component('components.modal-button', [
+                               'target' => 'progress-order',
+                               'title' => 'Valider cette commande', 'icon' => 'cogs',
+                               'label' => 'Valider', 'class' => 'btn btn-success'
+                               ])
+                            @endcomponent
                         @elseif($order->status === \App\Models\Order::PROGRESS)
-                            <button type="button" class="btn btn-info" title="Terminer cette commande"
-                                    data-toggle="modal" data-target="#sold-order">
-                                <i class="{{ font('check') }}"></i>
-                                Livrer
-                            </button>
+                            @component('components.modal-button', [
+                              'target' => 'sold-order',
+                              'title' => 'Terminer cette commande', 'icon' => 'check',
+                              'label' => 'Livrer', 'class' => 'btn btn-info'
+                              ])
+                            @endcomponent
                         @endif
                     </div>
                 </div>
@@ -48,7 +50,8 @@
                         <a href="{{ route('admin.customers.show', [ $order->user])}}">{{ $order->user->format_full_name }}</a><br />
                         <strong class="{{ $order->format_status->label_color }}">Email:</strong> {{ $order->user->email }}<br />
                         <strong class="{{ $order->format_status->label_color }}">Tel:</strong> {{ $order->user->phone }}<br />
-                        <strong class="{{ $order->format_status->label_color }}">Commande N°:</strong> {{ $order->reference }}
+                        <strong class="{{ $order->format_status->label_color }}">Commande N°:</strong> {{ $order->reference }}<br />
+                        <strong class="{{ $order->format_status->label_color }}">Date:</strong> {{ $order->created_date }} à {{ $order->created_time }}
                     </p>
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">

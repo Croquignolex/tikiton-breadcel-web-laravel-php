@@ -32,16 +32,22 @@
                 <span class="menu-title">Commandes</span>
             </a>
         </li>
-        <li class="side-bar-item nav-item {{ active_page(admin_products_pages()) }}">
-            <a class="nav-link" href="{{ route('admin.products.index') }}">
-                <i class="menu-icon {{ font('database') }}"></i>
-                <span class="menu-title">Produits</span>
+        <li class="side-bar-item nav-item {{ active_page(admin_customers_pages()) }}">
+            <a class="nav-link" href="{{ route('admin.customers.index') }}">
+                <i class="menu-icon {{ font('users') }}"></i>
+                <span class="menu-title">Clients</span>
             </a>
         </li>
         <li class="side-bar-item nav-item {{ active_page(admin_categories_pages()) }}">
             <a class="nav-link" href="{{ route('admin.categories.index') }}">
                 <i class="menu-icon {{ font('balance-scale') }}"></i>
                 <span class="menu-title">Catégories de produits</span>
+            </a>
+        </li>
+        <li class="side-bar-item nav-item {{ active_page(admin_products_pages()) }}">
+            <a class="nav-link" href="{{ route('admin.products.index') }}">
+                <i class="menu-icon {{ font('database') }}"></i>
+                <span class="menu-title">Produits</span>
             </a>
         </li>
         <li class="side-bar-item nav-item {{ active_page(admin_tags_pages()) }}">
@@ -54,12 +60,6 @@
             <a class="nav-link" href="{{ route('admin.coupons.index') }}">
                 <i class="menu-icon {{ font('barcode') }}"></i>
                 <span class="menu-title">Coupons</span>
-            </a>
-        </li>
-        <li class="side-bar-item nav-item {{ active_page(admin_customers_pages()) }}">
-            <a class="nav-link" href="{{ route('admin.customers.index') }}">
-                <i class="menu-icon {{ font('users') }}"></i>
-                <span class="menu-title">Clients</span>
             </a>
         </li>
     </ul>

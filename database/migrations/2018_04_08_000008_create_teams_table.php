@@ -18,12 +18,14 @@ class CreateTeamsTable extends Migration
             $table->string('slug')->unique();
             $table->string('name', 255);
             $table->string('image', 255);
-            $table->string('function', 255);
+            $table->string('fr_function', 255);
+            $table->string('en_function', 255);
             $table->string('facebook', 255)->default('javascript: void(0);');
             $table->string('twitter', 255)->default('javascript: void(0);');
             $table->string('linkedin', 255)->default('javascript: void(0);');
             $table->string('googleplus', 255)->default('javascript: void(0);');
-            $table->text('description');
+            $table->text('fr_description');
+            $table->text('en_description');
             $table->timestamps();
         });
     }

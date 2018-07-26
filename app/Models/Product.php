@@ -23,6 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed pivot
  * @property mixed is_new
  * @property mixed orders
+ * @property mixed fr_name
+ * @property mixed en_name
  * @property mixed discount
  * @property mixed extension
  * @property mixed created_at
@@ -202,7 +204,7 @@ class Product extends Model
     public function getRankingAttribute()
     {
         if($this->product_reviews->count() === 0) return 0;
-        else return $this->product_reviews->sum('ranking') / $this->product_reviews->count();
+        else return floor($this->product_reviews->sum('ranking') / $this->product_reviews->count());
     }
 
     /**
@@ -306,5 +308,21 @@ class Product extends Model
     {
         $discount = ($this->price * $this->discount) / 100;
         return ($this->price - $discount) * $this->pivot->quantity;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSelectTextAttribute()
+    {
+        return ucfirst($this->fr_name);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSelectSubtextAttribute()
+    {
+        return ucfirst($this->en_name);
     }
 }

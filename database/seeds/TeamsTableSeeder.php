@@ -16,32 +16,40 @@ class TeamsTableSeeder extends Seeder
             'slug' => 'celestin_wokgoue',
             'image' => 'team_1',
             'name' => 'celestin wokgoue',
-            'description' => 'General manager description',
-            'function' => 'General manager'
+            'fr_description' => 'General manager description',
+            'en_description' => 'General manager description',
+            'fr_function' => 'General manager',
+            'en_function' => 'General manager'
         ]);
 
         DB::table('teams')->insert([
             'slug' => 'alex_ngombol',
             'image' => 'team_2',
             'name' => ' Alex Ngombol',
-            'description' => 'Software ingenier description',
-            'function' => 'Software ingenier'
+            'fr_description' => 'Software ingenier description',
+            'en_description' => 'Software ingenier description',
+            'fr_function' => 'Software ingenier',
+            'en_function' => 'Software ingenier'
         ]);
 
         DB::table('teams')->insert([
             'slug' => 'celine_wokgoue',
             'image' => 'team_3',
             'name' => 'celine wokgoue',
-            'description' => 'Co-manager description',
-            'function' => 'Co-manager'
+            'fr_description' => 'Co-manager description',
+            'en_description' => 'Co-manager description',
+            'fr_function' => 'Co-manager',
+            'en_function' => 'Co-manager'
         ]);
 
         DB::table('teams')->insert([
             'slug' => 'trina_wokgoue',
             'image' => 'team_4',
             'name' => 'trina wokgoue',
-            'description' => 'Chief Designer description',
-            'function' => 'Chief Designer'
+            'fr_description' => 'Chief Designer description',
+            'en_description' => 'Chief Designer description',
+            'fr_function' => 'Chief Designer',
+            'en_function' => 'Chief Designer'
         ]);
     }
 }

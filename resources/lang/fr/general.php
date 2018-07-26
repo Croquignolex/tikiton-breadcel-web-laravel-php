@@ -193,6 +193,7 @@ return [
     'coupon_applied' => 'Votre coupon :code est appliqué',
     'tva' => 'TVA',
     'coupon' => 'Coupon',
+    'coupons' => 'Coupons',
     'coupon_could_not_be_applied' => 'La reduction de votre coupon doit être inférieure au prix total de votre panier',
     'billing_information' => 'Informations de facturation',
     'shipping_information' => 'Informations de livraison',

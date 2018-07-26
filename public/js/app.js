@@ -39,7 +39,7 @@ new Vue({
         productFilterByTitle: function (queryParameter, event) {
             let element = event.target;
             if(element.className !== 'active_filter')
-                manageFilter(queryParameter, element.title)
+                manageFilter(queryParameter, element.dataset.title)
         },
         validateFormElements: function (event) {
             let element = event.target;

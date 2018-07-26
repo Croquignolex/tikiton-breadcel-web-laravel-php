@@ -11,26 +11,24 @@
                     <h4 class="card-title text-theme">
                         <i class="menu-icon {{ font('tags') }}"></i>
                         ETIQUETTES
-                        <a href="{{ route('admin.tags.create') }}"
-                           class="btn btn-secondary">
-                            <i class="{{ font('plus') }}"></i>
-                            Ajouter
-                        </a>
+                        @component('admin.components.add-button',
+                           ['route' => route('admin.tags.create')])
+                        @endcomponent
                     </h4>
                     <p class="card-description">
                         Filtrer les étiquettes
                     </p>
                     <div>
-                        <a href="{{ route('admin.tags.index') . '?type=' . \App\Models\Tag::HAS_PRODUCTS }}"
-                           class="btn btn-theme">
-                            <i class="{{ font('folder') }}"></i>
-                            Qui sont rattachées à des produits
-                        </a>
-                        <a href="{{ route('admin.tags.index') . '?type=' . \App\Models\Tag::HAS_NO_PRODUCTS }}"
-                           class="btn btn-danger">
-                            <i class="{{ font('folder-open') }}"></i>
-                            Qui ne sont pas rattachées à des produits
-                        </a>
+                        @component('admin.components.filter-button', [
+                            'route' => route('admin.tags.index') . '?type=' . \App\Models\Tag::HAS_PRODUCTS,
+                            'icon' => 'link', 'label' => 'Qui sont rattachées à des produits'
+                            ])
+                        @endcomponent
+                        @component('admin.components.filter-button', [
+                            'route' => route('admin.tags.index') . '?type=' . \App\Models\Tag::HAS_NO_PRODUCTS,
+                            'icon' => 'unlink', 'label' => 'Qui ne sont pas rattachées à des produits', 'class' => 'btn btn-danger'
+                            ])
+                        @endcomponent
                     </div>
                 </div>
             </div>
@@ -38,63 +36,44 @@
         <!-- Filter Buttons End -->
         <!-- Content table Start -->
         <div class="col-lg-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">{{ mb_strtoupper($table_label) }} ({{ $paginationTools->displayItems->count() }} sur {{ $paginationTools->itemsNumber }})</h4>
-                    @component('components.pagination',
-                        ['paginationTools' => $paginationTools])
+            @component('admin.components.table-card', [
+                'table_label' => $table_label,
+                'paginationTools' => $paginationTools,
+                'headers' => ['nom (fr)', 'nom (en)', 'description (fr)', 'description (en)', 'produits']
+                ])
+                @forelse($paginationTools->displayItems as $tag)
+                    <tr class="{{ $tag->products->isEmpty() ? 'text-danger' : '' }}">
+                        <td>{{ text_format($tag->fr_name, 15) }}</td>
+                        <td>{{ text_format($tag->en_name, 15) }}</td>
+                        <td>{{ text_format($tag->fr_description, 20) }}</td>
+                        <td>{{ text_format($tag->en_description, 20) }}</td>
+                        <td class="text-right">{{ $tag->products->count() }}</td>
+                        <td class="text-right">
+                            @component('admin.components.update-button', [
+                                'route' => route('admin.tags.edit', [$tag]),
+                                'title' => 'Modifier cette étiquette',
+                                'label' => '', 'class' => 'btn btn-warning btn-icons btn-rounded'
+                                ])
+                            @endcomponent
+                            @component('admin.components.details-button',
+                                ['route' => route('admin.tags.show', [$tag])])
+                            @endcomponent
+                            @if($tag->products->isEmpty())
+                                @component('admin.components.delete-button', [
+                                    'target' => 'delete-tag-' . $tag->id,
+                                    'title' => 'Supprimer cette étiquette',
+                                    'label' => '', 'class' => 'btn btn-danger btn-icons btn-rounded'
+                                    ])
+                                @endcomponent
+                            @endif
+                        </td>
+                    </tr>
+                @empty
+                    @component('admin.components.empty_table_alert',
+                     ['size' => 6, 'table_label' => $table_label])
                     @endcomponent
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr class="table-secondary">
-                                    <th>NOM (fr)</th>
-                                    <th>NOM (en)</th>
-                                    <th>DESCRIPTION (fr)</th>
-                                    <th>DESCRIPTION (en)</th>
-                                    <th>PRODUITS</th>
-                                    <th>ACTIONS</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($paginationTools->displayItems as $tag)
-                                    <tr class="{{ $tag->products->isEmpty() ? 'text-danger' : '' }}">
-                                        <td>{{ text_format($tag->fr_name, 15) }}</td>
-                                        <td>{{ text_format($tag->en_name, 15) }}</td>
-                                        <td>{{ text_format($tag->fr_description, 20) }}</td>
-                                        <td>{{ text_format($tag->en_description, 20) }}</td>
-                                        <td class="text-right">{{ $tag->products->count() }}</td>
-                                        <td class="text-right">
-                                            <a class="btn btn-warning btn-icons btn-rounded" title="Modifier l'étiquette"
-                                                href="{{ route('admin.tags.edit', [$tag]) }}">
-                                                <i class="{{ font('pencil') }}"></i>
-                                            </a>
-                                            <a class="btn btn-secondary btn-icons btn-rounded" title="Voir les détails"
-                                               href="{{ route('admin.tags.show', [$tag]) }}">
-                                                <i class="{{ font('eye') }}"></i>
-                                            </a>
-                                            @if($tag->products->isEmpty())
-                                                <button type="button" class="btn btn-danger btn-icons btn-rounded" title="Supprimer cette étiquette"
-                                                    data-toggle="modal" data-target="#delete-tag-{{ $tag->id }}">
-                                                    <i class="{{ font('trash-o') }}"></i>
-                                                </button>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="6">
-                                            <div class="alert alert-info text-center">
-                                                Pas de {{ mb_strtolower($table_label) }} pour le momment
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                @endforelse
+            @endcomponent
         </div>
         <!-- Content table End -->
     </div>

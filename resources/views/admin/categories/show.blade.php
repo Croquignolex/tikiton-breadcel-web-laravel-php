@@ -15,22 +15,22 @@
                         </strong>
                     </h4>
                     <div>
-                        <a href="{{ route('admin.categories.index') }}"
-                           class="btn btn-theme">
-                            <i class="{{ font('arrow-left') }}"></i>
-                            Liste des catégories
-                        </a>
-                        <a class="btn btn-warning" title="Modifier cette catégorie"
-                           href="{{ route('admin.categories.edit', [$category]) }}">
-                            <i class="{{ font('pencil') }}"></i>
-                            Modifier
-                        </a>
+                        @component('admin.components.back-button', [
+                            'route' => route('admin.categories.index'),
+                            'label' => 'Liste des catégories'
+                            ])
+                        @endcomponent
+                        @component('admin.components.update-button', [
+                            'route' => route('admin.categories.edit', [$category]),
+                            'title' => 'Modifier cette catégorie'
+                            ])
+                        @endcomponent
                         @if($category->products->isEmpty())
-                            <button type="button" class="btn btn-danger" title="Supprimer cette catégorie"
-                                    data-toggle="modal" data-target="#delete-category">
-                                <i class="{{ font('trash-o') }}"></i>
-                                Supprimer
-                            </button>
+                            @component('admin.components.delete-button', [
+                                'target' => 'delete-category',
+                                'title' => 'Supprimer cette catégorie'
+                                ])
+                            @endcomponent
                         @endif
                     </div>
                 </div>
@@ -41,24 +41,24 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body row text-secondary">
-                    <div class="col-lg-5 side-bar-item">NOM(fr)</div>
-                    <div class="col-lg-7 text-dark side-bar-item">{{ $category->fr_name }}</div>
-                    <div class="col-lg-5 side-bar-item">NOM(en)</div>
-                    <div class="col-lg-7 text-dark side-bar-item">{{ $category->en_name }}</div>
-                    <div class="col-lg-5 side-bar-item">Description(fr)</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">NOM(fr)</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $category->fr_name }}</div>
+                    <div class="col-sm-5 side-bar-item">NOM(en)</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $category->en_name }}</div>
+                    <div class="col-sm-5 side-bar-item">Description(fr)</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <p class="multi-line-text">
                             {{ $category->fr_description }}
                         </p>
                     </div>
-                    <div class="col-lg-5 side-bar-item">Description(en)</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">Description(en)</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <p class="multi-line-text">
                             {{ $category->en_description }}
                         </p>
                     </div>
-                    <div class="col-lg-5 side-bar-item">Produits ({{ $category->products->count() }})</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">Produits ({{ $category->products->count() }})</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <p>
                             @forelse($category->products as $product)
                                 <a href="{{ route('admin.products.show', [$product]) }}" title="Appartient à cette catégorie">
@@ -74,6 +74,10 @@
                             @endforelse
                         </p>
                     </div>
+                    <div class="col-sm-5 side-bar-item">Création</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $category->created_date }} à {{ $category->created_time }}</div>
+                    <div class="col-sm-5 side-bar-item">Dernière modifcation</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $category->updated_date }} à {{ $category->updated_time }}</div>
                 </div>
             </div>
         </div>

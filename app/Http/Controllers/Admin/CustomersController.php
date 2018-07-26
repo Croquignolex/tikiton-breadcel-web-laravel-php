@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\RegisterRequest;
-use App\Mail\UserRegisterMail;
-use App\Models\Tag;
-use App\Models\User;
 use Exception;
+use App\Models\User;
+use App\Models\Coupon;
 use Illuminate\Http\Request;
-use App\Models\ProductCategory;
+use App\Mail\UserRegisterMail;
 use App\Traits\PaginationTrait;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\CategoryRequest;
-use App\Traits\ErrorFlashMessagesTrait;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
+use App\Traits\ErrorFlashMessagesTrait;
 use Illuminate\Validation\ValidationException;
 
 class CustomersController extends Controller
@@ -93,6 +91,7 @@ class CustomersController extends Controller
     public function store(RegisterRequest $request)
     {
         $this->customerExist($request->input('email'));
+        $customerCouponIds = $request->input('coupons');
         try
         {
             $user = new User();
@@ -107,6 +106,12 @@ class CustomersController extends Controller
             $user->company = $request->input('company');
             $user->password = Hash::make($request->input('password'));
             $user->save();
+
+            if(!is_null($customerCouponIds))
+            {
+                foreach ($customerCouponIds as $couponId)
+                    $user->coupons()->save(Coupon::find(intval($couponId)));
+            }
 
             try
             {

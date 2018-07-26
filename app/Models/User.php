@@ -195,4 +195,20 @@ class User extends Authenticatable
 
         return 'Client';
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSelectTextAttribute()
+    {
+        return $this->format_first_name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSelectSubtextAttribute()
+    {
+        return $this->format_last_name;
+    }
 }

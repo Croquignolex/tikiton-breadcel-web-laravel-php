@@ -11,26 +11,24 @@
                     <h4 class="card-title text-theme">
                         <i class="menu-icon {{ font('users') }}"></i>
                         CLIENTS
-                        <a href="{{ route('admin.customers.create') }}"
-                           class="btn btn-secondary">
-                            <i class="{{ font('plus') }}"></i>
-                            Ajouter
-                        </a>
+                        @component('admin.components.add-button',
+                           ['route' => route('admin.customers.create')])
+                        @endcomponent
                     </h4>
                     <p class="card-description">
                         Filtrer les clients
                     </p>
                     <div>
-                        <a href="{{ route('admin.customers.index') . '?type=' . \App\Models\User::CUSTOMER_HAS_ORDER }}"
-                           class="btn btn-theme">
-                            <i class="{{ font('file-text') }}"></i>
-                            Clients qui ont déjà commandé
-                        </a>
-                        <a href="{{ route('admin.customers.index') . '?type=' . \App\Models\User::CUSTOMER_HAS_NOT_ORDER }}"
-                           class="btn btn-info">
-                            <i class="{{ font('file') }}"></i>
-                            Clients qui n'ont pas encore commandé
-                        </a>
+                        @component('admin.components.filter-button', [
+                            'route' => route('admin.customers.index') . '?type=' . \App\Models\User::CUSTOMER_HAS_ORDER,
+                            'icon' => 'file-text', 'label' => 'Clients qui ont déjà commandé'
+                            ])
+                        @endcomponent
+                        @component('admin.components.filter-button', [
+                            'route' => route('admin.customers.index') . '?type=' . \App\Models\User::CUSTOMER_HAS_NOT_ORDER,
+                            'icon' => 'file', 'label' => 'Clients qui n\'ont pas encore commandé', 'class' => 'btn btn-info'
+                            ])
+                        @endcomponent
                     </div>
                 </div>
             </div>
@@ -38,80 +36,59 @@
         <!-- Filter Buttons End -->
         <!-- Content table Start -->
         <div class="col-lg-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">{{ mb_strtoupper($table_label) }} ({{ $paginationTools->displayItems->count() }} sur {{ $paginationTools->itemsNumber }})</h4>
-                    @component('components.pagination',
-                        ['paginationTools' => $paginationTools])
+            @component('admin.components.table-card', [
+                'table_label' => $table_label,
+                'paginationTools' => $paginationTools,
+                'headers' => ['email', 'prénom', 'nom', 'téléphone', 'adresse', 'statut', 'commandes']
+                ])
+                @forelse($paginationTools->displayItems as $user)
+                    <tr class="{{ !$user->is_confirmed ? 'text-danger' : '' }}">
+                        <td>{{ text_format($user->email, 15) }}</td>
+                        <td>{{ text_format($user->format_first_name, 15) }}</td>
+                        <td>{{ text_format($user->format_last_name, 15) }}</td>
+                        <td>{{ text_format($user->phone, 15) }}</td>
+                        <td>{{ text_format($user->address, 20) }}</td>
+                        <td class="text-center">
+                            @if($user->is_confirmed)
+                                <label class="badge badge-success" title="">
+                                    <i class="{{ font('thumbs-up') }}"></i>
+                                    Confirmé
+                                </label>
+                            @else
+                                <label class="badge badge-danger">
+                                    <i class="{{ font('thumbs-down') }}"></i>
+                                    Non confirmé
+                                </label>
+                            @endif
+                        </td>
+                        <td class="text-right">{{ $user->orders->count() }}</td>
+                        <td class="text-right">
+                            @if($user->is_confirmed)
+                                @component('components.modal-button', [
+                                   'target' => 'disable-customer-' . $user->id,
+                                   'title' => 'Désactiver ce client', 'icon' => 'thumbs-down',
+                                   'label' => '', 'class' => 'btn btn-danger btn-icons btn-rounded'
+                                   ])
+                                @endcomponent
+                            @else
+                                @component('components.modal-button', [
+                                   'target' => 'enable-customer-' . $user->id,
+                                   'title' => 'Activer ce client', 'icon' => 'thumbs-up',
+                                   'label' => '', 'class' => 'btn btn-success btn-icons btn-rounded'
+                                   ])
+                                @endcomponent
+                            @endif
+                            @component('admin.components.details-button',
+                               ['route' => route('admin.customers.show', [$user])])
+                            @endcomponent
+                        </td>
+                    </tr>
+                @empty
+                    @component('admin.components.empty_table_alert',
+                     ['size' => 8, 'table_label' => $table_label])
                     @endcomponent
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr class="table-secondary">
-                                    <th>EMAIL</th>
-                                    <th>PRENOM</th>
-                                    <th>NOM</th>
-                                    <th>TELEPHONE</th>
-                                    <th>ADRESSE</th>
-                                    <th>STATUT</th>
-                                    <th>COMMANDES</th>
-                                    <th>ACTIONS</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($paginationTools->displayItems as $user)
-                                    <tr class="{{ !$user->is_confirmed ? 'text-danger' : '' }}">
-                                        <td>{{ text_format($user->email, 15) }}</td>
-                                        <td>{{ text_format($user->format_first_name, 15) }}</td>
-                                        <td>{{ text_format($user->format_last_name, 15) }}</td>
-                                        <td>{{ text_format($user->phone, 15) }}</td>
-                                        <td>{{ text_format($user->address, 20) }}</td>
-                                        <td class="text-center">
-                                            @if($user->is_confirmed)
-                                                <label class="badge badge-success" title="">
-                                                    <i class="{{ font('thumbs-up') }}"></i>
-                                                    Confirmé
-                                                </label>
-                                            @else
-                                                <label class="badge badge-danger">
-                                                    <i class="{{ font('thumbs-down') }}"></i>
-                                                    Non confirmé
-                                                </label>
-                                            @endif
-                                        </td>
-                                        <td class="text-right">{{ $user->orders->count() }}</td>
-                                        <td class="text-right">
-                                            <a class="btn btn-secondary btn-icons btn-rounded" title="Voir les détails"
-                                               href="{{ route('admin.customers.show', [$user]) }}">
-                                                <i class="{{ font('eye') }}"></i>
-                                            </a>
-                                            @if($user->is_confirmed)
-                                                <button type="button" class="btn btn-danger btn-icons btn-rounded" title="Désactiver ce client"
-                                                        data-toggle="modal" data-target="#disable-customer-{{ $user->id }}">
-                                                    <i class="{{ font('thumbs-down') }}"></i>
-                                                </button>
-                                            @else
-                                                <button type="button" class="btn btn-success btn-icons btn-rounded" title="Activer ce client"
-                                                        data-toggle="modal" data-target="#enable-customer-{{ $user->id }}">
-                                                    <i class="{{ font('thumbs-up') }}"></i>
-                                                </button>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="8">
-                                            <div class="alert alert-info text-center">
-                                                Pas de {{ mb_strtolower($table_label) }} pour le momment
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                @endforelse
+            @endcomponent
         </div>
         <!-- Content table End -->
     </div>

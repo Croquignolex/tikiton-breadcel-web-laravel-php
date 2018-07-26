@@ -15,22 +15,22 @@
                         </strong>
                     </h4>
                     <div>
-                        <a href="{{ route('admin.tags.index') }}"
-                           class="btn btn-theme">
-                            <i class="{{ font('arrow-left') }}"></i>
-                            Liste des étiquettes
-                        </a>
-                        <a class="btn btn-warning" title="Modifier cette étiquette"
-                           href="{{ route('admin.tags.edit', [$tag]) }}">
-                            <i class="{{ font('pencil') }}"></i>
-                            Modifier
-                        </a>
+                        @component('admin.components.back-button', [
+                            'route' => route('admin.tags.index'),
+                            'label' => 'Liste des étiquettes'
+                            ])
+                        @endcomponent
+                        @component('admin.components.update-button', [
+                            'route' => route('admin.tags.edit', [$tag]),
+                            'title' => 'Modifier cette étiquette'
+                            ])
+                        @endcomponent
                         @if($tag->products->isEmpty())
-                            <button type="button" class="btn btn-danger" title="Supprimer cette étiquette"
-                                    data-toggle="modal" data-target="#delete-tag">
-                                <i class="{{ font('trash-o') }}"></i>
-                                Supprimer
-                            </button>
+                            @component('admin.components.delete-button', [
+                                'target' => 'delete-tag',
+                                'title' => 'Supprimer cette étiquette'
+                                ])
+                            @endcomponent
                         @endif
                     </div>
                 </div>
@@ -41,24 +41,24 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body row text-secondary">
-                    <div class="col-lg-5 side-bar-item">NOM(fr)</div>
-                    <div class="col-lg-7 text-dark side-bar-item">{{ $tag->fr_name }}</div>
-                    <div class="col-lg-5 side-bar-item">NOM(en)</div>
-                    <div class="col-lg-7 text-dark side-bar-item">{{ $tag->en_name }}</div>
-                    <div class="col-lg-5 side-bar-item">Description(fr)</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">NOM(fr)</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $tag->fr_name }}</div>
+                    <div class="col-sm-5 side-bar-item">NOM(en)</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $tag->en_name }}</div>
+                    <div class="col-sm-5 side-bar-item">Description(fr)</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <p class="multi-line-text">
                             {{ $tag->fr_description }}
                         </p>
                     </div>
-                    <div class="col-lg-5 side-bar-item">Description(en)</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">Description(en)</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <p class="multi-line-text">
                             {{ $tag->en_description }}
                         </p>
                     </div>
-                    <div class="col-lg-5 side-bar-item">Produits ({{ $tag->products->count() }})</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">Produits ({{ $tag->products->count() }})</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <p>
                             @forelse($tag->products as $product)
                                 <a href="{{ route('admin.products.show', [$product]) }}" title="Est rattaché à cette étiquette">
@@ -74,6 +74,10 @@
                             @endforelse
                         </p>
                     </div>
+                    <div class="col-sm-5 side-bar-item">Création</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $tag->created_date }} à {{ $tag->created_time }}</div>
+                    <div class="col-sm-5 side-bar-item">Dernière modifcation</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $tag->updated_date }} à {{ $tag->updated_time }}</div>
                 </div>
             </div>
         </div>

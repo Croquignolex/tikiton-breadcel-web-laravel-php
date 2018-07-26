@@ -137,7 +137,6 @@ class ProductsController extends Controller
                 'is_most_sold' => is_null($request->input('best_sale')) ? false : true,
             ]);
 
-
             if(!is_null($productTagIds))
             {
                 foreach ($productTagIds as $tagId)

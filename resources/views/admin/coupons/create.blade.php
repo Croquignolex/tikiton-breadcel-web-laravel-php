@@ -12,11 +12,11 @@
                         Nouveau coupon
                     </h4>
                     <div>
-                        <a href="{{ route('admin.coupons.index') }}"
-                           class="btn btn-theme">
-                            <i class="{{ font('arrow-left') }}"></i>
-                            Liste des coupons
-                        </a>
+                        @component('admin.components.back-button', [
+                            'route' => route('admin.coupons.index'),
+                            'label' => 'Liste des coupons'
+                            ])
+                        @endcomponent
                     </div>
                 </div>
             </div>
@@ -38,6 +38,17 @@
                                         @component('components.input', [
                                             'type' => 'text', 'name' => 'discount', 'class' => 'form-control',
                                              'value' => old('discount'), 'minlength' => 1
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                       'name' => 'customers', 'label' => 'customers'
+                                       ])
+                                        @component('components.multi-select', [
+                                            'name' => 'customers', 'class' => 'form-control', 'title' => 'Sélectionner les clients',
+                                             'values' => old('customers') ?? [], 'options' => \App\Models\User::all()
                                             ])
                                         @endcomponent
                                     @endcomponent

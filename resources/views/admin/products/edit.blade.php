@@ -15,11 +15,11 @@
                         </strong>
                     </h4>
                     <div>
-                        <a href="{{ route('admin.products.index') }}"
-                           class="btn btn-theme">
-                            <i class="{{ font('arrow-left') }}"></i>
-                            Liste des produits
-                        </a>
+                        @component('admin.components.back-button', [
+                            'route' => route('admin.products.index'),
+                            'label' => 'Liste des produits'
+                            ])
+                        @endcomponent
                     </div>
                 </div>
             </div>

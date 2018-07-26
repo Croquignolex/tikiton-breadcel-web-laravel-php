@@ -11,36 +11,34 @@
                     <h4 class="card-title text-theme">
                         <i class="menu-icon {{ font('database') }}"></i>
                         PRODUITS
-                        <a href="{{ route('admin.products.create') }}"
-                           class="btn btn-secondary">
-                            <i class="{{ font('plus') }}"></i>
-                            Ajouter
-                        </a>
+                        @component('admin.components.add-button',
+                           ['route' => route('admin.products.create')])
+                        @endcomponent
                     </h4>
                     <p class="card-description">
                         Filtrer les produits
                     </p>
                     <div>
-                        <a href="{{ route('admin.products.index') . '?type=' . \App\Models\Product::IS_FEATURED }}"
-                           class="btn btn-theme">
-                            <i class="{{ font('star') }}"></i>
-                            En vedette
-                        </a>
-                        <a href="{{ route('admin.products.index') . '?type=' . \App\Models\Product::IS_BEST_SELLER }}"
-                           class="btn btn-info">
-                            <i class="{{ font('gift') }}"></i>
-                            Meilleurs vente
-                        </a>
-                        <a href="{{ route('admin.products.index') . '?type=' . \App\Models\Product::IS_NEW }}"
-                           class="btn btn-success">
-                            <i class="{{ font('check') }}"></i>
-                            Nouveaux
-                        </a>
-                        <a href="{{ route('admin.products.index') . '?type=' . \App\Models\Product::IS_OUT_OF_STOCK }}"
-                           class="btn btn-danger">
-                            <i class="{{ font('remove') }}"></i>
-                            Rupture de stock
-                        </a>
+                        @component('admin.components.filter-button', [
+                            'route' => route('admin.products.index') . '?type=' . \App\Models\Product::IS_FEATURED,
+                            'icon' => 'star', 'label' => 'En vedette'
+                            ])
+                        @endcomponent
+                        @component('admin.components.filter-button', [
+                            'route' => route('admin.products.index') . '?type=' . \App\Models\Product::IS_BEST_SELLER,
+                            'icon' => 'gift', 'label' => 'Meilleurs vente', 'class' => 'btn btn-info'
+                            ])
+                        @endcomponent
+                        @component('admin.components.filter-button', [
+                           'route' => route('admin.products.index') . '?type=' . \App\Models\Product::IS_NEW,
+                           'icon' => 'check', 'label' => 'Nouveaux', 'class' => 'btn btn-success'
+                           ])
+                        @endcomponent
+                            @component('admin.components.filter-button', [
+                           'route' => route('admin.products.index') . '?type=' . \App\Models\Product::IS_OUT_OF_STOCK,
+                           'icon' => 'remove', 'label' => 'Rupture de stock', 'class' => 'btn btn-danger'
+                           ])
+                        @endcomponent
                     </div>
                 </div>
             </div>
@@ -48,83 +46,62 @@
         <!-- Filter Buttons End -->
         <!-- Content table Start -->
         <div class="col-lg-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">{{ mb_strtoupper($table_label) }} ({{ $paginationTools->displayItems->count() }} sur {{ $paginationTools->itemsNumber }})</h4>
-                    @component('components.pagination',
-                        ['paginationTools' => $paginationTools])
+            @component('admin.components.table-card', [
+                'table_label' => $table_label,
+                'paginationTools' => $paginationTools,
+                'headers' => ['nom (fr)', 'nom (en)', 'statut', 'prix', 'promo', 'stock', 'catégorie']
+                ])
+                @forelse($paginationTools->displayItems as $product)
+                    <tr class="{{ $product->availability === \App\Models\Product::OUT_OF_STOCK ? 'text-danger' : '' }}">
+                        <td>{{ text_format($product->fr_name, 15) }}</td>
+                        <td>{{ text_format($product->en_name, 15) }}</td>
+                        <td class="text-center">
+                            @if($product->created_at >= now()->addDay(-7) || $product->is_new)
+                                <label class="badge badge-success" title="Nouveau produit">
+                                    <i class="{{ font('check') }}"></i>
+                                </label>
+                            @endif
+                            @if($product->ranking === 10 || $product->is_featured)
+                                <label class="badge badge-theme" title="Produit en vedette">
+                                    <i class="{{ font('star') }}"></i>
+                                </label>
+                            @endif
+                            @if($product->is_most_sold)
+                                <label class="badge badge-info" title="Produit en meilleur vente">
+                                    <i class="{{ font('gift') }}"></i>
+                                </label>
+                            @endif
+                        </td>
+                        <td class="text-right">{{ money_currency($product->fr_amount) }}</td>
+                        <td class="text-right">{{ $product->discount }}%</td>
+                        <td class="text-right">{{ $product->stock }}</td>
+                        <td>{{ text_format($product->product_category->fr_name, 20) }}</td>
+                        <td class="text-right">
+                            @component('admin.components.update-button', [
+                                'route' => route('admin.products.edit', [$product]),
+                                'title' => 'Modifier ce produit',
+                                'label' => '', 'class' => 'btn btn-warning btn-icons btn-rounded'
+                                ])
+                            @endcomponent
+                            @component('admin.components.details-button',
+                               ['route' => route('admin.products.show', [$product])])
+                            @endcomponent
+                            @if($product->orders->isEmpty())
+                                @component('admin.components.delete-button', [
+                                    'target' => 'delete-product-' . $product->id,
+                                    'title' => 'Supprimer ce produit',
+                                    'label' => '', 'class' => 'btn btn-danger btn-icons btn-rounded'
+                                    ])
+                                @endcomponent
+                            @endif
+                        </td>
+                    </tr>
+                @empty
+                    @component('admin.components.empty_table_alert',
+                     ['size' => 8, 'table_label' => $table_label])
                     @endcomponent
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr class="table-secondary">
-                                    <th>NOM (fr)</th>
-                                    <th>NOM (en)</th>
-                                    <th>STATUT</th>
-                                    <th>PRIX</th>
-                                    <th>PROMO</th>
-                                    <th>STOCK</th>
-                                    <th>CATEGORIE</th>
-                                    <th>ACTIONS</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($paginationTools->displayItems as $product)
-                                    <tr class="{{ $product->availability === \App\Models\Product::OUT_OF_STOCK ? 'text-danger' : '' }}">
-                                        <td>{{ text_format($product->fr_name, 15) }}</td>
-                                        <td>{{ text_format($product->en_name, 15) }}</td>
-                                        <td class="text-center">
-                                            @if($product->created_at >= now()->addDay(-7) || $product->is_new)
-                                                <label class="badge badge-success" title="Nouveau produit">
-                                                    <i class="{{ font('check') }}"></i>
-                                                </label>
-                                            @endif
-                                            @if($product->ranking === 10 || $product->is_featured)
-                                                <label class="badge badge-theme" title="Produit en vedette">
-                                                    <i class="{{ font('star') }}"></i>
-                                                </label>
-                                            @endif
-                                            @if($product->is_most_sold)
-                                                <label class="badge badge-info" title="Produit en meilleur vente">
-                                                    <i class="{{ font('gift') }}"></i>
-                                                </label>
-                                            @endif
-                                        </td>
-                                        <td class="text-right">{{ money_currency($product->fr_amount) }}</td>
-                                        <td class="text-right">{{ $product->discount }}%</td>
-                                        <td class="text-right">{{ $product->stock }}</td>
-                                        <td>{{ text_format($product->product_category->fr_name, 20) }}</td>
-                                        <td class="text-right">
-                                            <a class="btn btn-warning btn-icons btn-rounded" title="Modifier le produit"
-                                                href="{{ route('admin.products.edit', [$product]) }}">
-                                                <i class="{{ font('pencil') }}"></i>
-                                            </a>
-                                            <a class="btn btn-secondary btn-icons btn-rounded" title="Voir les détails"
-                                               href="{{ route('admin.products.show', [$product]) }}">
-                                                <i class="{{ font('eye') }}"></i>
-                                            </a>
-                                            @if($product->orders->isEmpty())
-                                                <button type="button" class="btn btn-danger btn-icons btn-rounded" title="Supprimer ce produit"
-                                                    data-toggle="modal" data-target="#delete-product-{{ $product->id }}">
-                                                    <i class="{{ font('trash-o') }}"></i>
-                                                </button>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="8">
-                                            <div class="alert alert-info text-center">
-                                                Pas de {{ mb_strtolower($table_label) }} pour le momment
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                @endforelse
+            @endcomponent
         </div>
         <!-- Content table End -->
     </div>

@@ -1,6 +1,6 @@
 <!-- Product Ratting -->
 <div class="{{ $class ?? 'pro-ratting' }}">
-    @if($ranking % 2 == 0)
+    @if($ranking % 2 === 0)
         @for($i = 0; $i < $ranking; $i += 2)
             <i class="on {{ font('star') }}"></i>
         @endfor

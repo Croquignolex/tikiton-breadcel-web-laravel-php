@@ -17,14 +17,14 @@
                             <ul>
                                 @foreach($categories as $category)
                                     <li>
-                                        <a href="javascript: void(0);" title="{{ $category->slug }}" @click="productFilterByTitle('category', $event)"
-                                           class="{{ $filter['category'] === $category->slug ? 'active_filter' : '' }}">
-                                            {{ $category->format_name }}
+                                        <a href="javascript: void(0);" title="{{ $category->format_name }}" @click="productFilterByTitle('category', $event)"
+                                           class="{{ $filter['category'] === $category->slug ? 'active_filter' : '' }}" data-title="{{ $category->slug }}">
+                                            {{ text_format($category->format_name, 20) }}
                                         </a>
                                     </li>
                                 @endforeach
                                 <li>
-                                    <a href="javascript: void(0);" title="no_category" @click="productFilterByTitle('category', $event)"
+                                    <a href="javascript: void(0);" @click="productFilterByTitle('category', $event)" data-title="no_category"
                                        class="{{ $filter['category'] === 'no_category' || $filter['category'] === null ? 'active_filter' : '' }}">
                                         @lang('general.all_category')
                                     </a>
@@ -50,14 +50,14 @@
                             <ul>
                                 @foreach($tags as $tag)
                                     <li>
-                                        <a href="javascript: void(0);" title="{{ $tag->slug }}" @click="productFilterByTitle('tag', $event)"
-                                           class="{{ $filter['tag'] === $tag->slug ? 'active_filter' : '' }}">
-                                            {{ $tag->format_name }}
+                                        <a href="javascript: void(0);" title="{{ $tag->format_name }}" @click="productFilterByTitle('tag', $event)"
+                                           class="{{ $filter['tag'] === $tag->slug ? 'active_filter' : '' }}" data-title="{{ $tag->slug }}">
+                                            {{ text_format($tag->format_name, 10) }}
                                         </a>
                                     </li>
                                 @endforeach
                                 <li>
-                                    <a href="javascript: void(0);" title="no_tag" @click="productFilterByTitle('tag', $event)"
+                                    <a href="javascript: void(0);" @click="productFilterByTitle('tag', $event)" data-title="no_tag"
                                         class="{{ $filter['tag'] === 'no_tag' || $filter['tag'] === null ? 'active_filter' : '' }}">
                                         @lang('general.all_tag')
                                     </a>

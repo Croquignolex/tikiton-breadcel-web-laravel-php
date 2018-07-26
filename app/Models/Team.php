@@ -5,16 +5,19 @@ namespace App\Models;
 use App\Traits\NameTrait;
 use App\Traits\SlugSaveTrait;
 use App\Traits\SlugRouteTrait;
-use App\Traits\DescriptionTrait;
+use Illuminate\Support\Facades\App;
+use App\Traits\LocaleDescriptionTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property mixed image
  * @property mixed function
+ * @property mixed fr_function
+ * @property mixed en_function
  */
 class Team extends Model
 {
-    use NameTrait, DescriptionTrait, SlugRouteTrait, SlugSaveTrait;
+    use NameTrait, SlugRouteTrait, SlugSaveTrait, LocaleDescriptionTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -39,6 +42,11 @@ class Team extends Model
      */
     public function getFormatFunctionAttribute()
     {
-        return strtoupper($this->function);
+        $name = '';
+
+        if(App::getLocale() === 'fr') $name = $this->fr_function;
+        else if (App::getLocale() === 'en') $name = $this->en_function;
+
+        return ucfirst($name);
     }
 }

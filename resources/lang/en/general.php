@@ -193,6 +193,7 @@ return [
     'coupon_applied' => 'Your coupon :code is applied',
     'tva' => 'VAT',
     'coupon' => 'Coupon',
+    'coupons' => 'Coupons',
     'coupon_could_not_be_applied' => 'Your coupon discount must be smaller thant your cart total price',
     'billing_information' => 'Billing information',
     'shipping_information' => 'Shipping information',

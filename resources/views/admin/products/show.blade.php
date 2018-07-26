@@ -15,22 +15,22 @@
                         </strong>
                     </h4>
                     <div>
-                        <a href="{{ route('admin.products.index') }}"
-                           class="btn btn-theme">
-                            <i class="{{ font('arrow-left') }}"></i>
-                            Liste des produits
-                        </a>
-                        <a class="btn btn-warning" title="Modifier ce produit"
-                           href="{{ route('admin.products.edit', [$product]) }}">
-                            <i class="{{ font('pencil') }}"></i>
-                            Modifier
-                        </a>
+                        @component('admin.components.back-button', [
+                            'route' => route('admin.products.index'),
+                            'label' => 'Liste des produits'
+                            ])
+                        @endcomponent
+                        @component('admin.components.update-button', [
+                            'route' => route('admin.products.edit', [$product]),
+                            'title' => 'Modifier ce produit'
+                            ])
+                        @endcomponent
                         @if($product->orders->isEmpty())
-                            <button type="button" class="btn btn-danger" title="Supprimer ce produit"
-                                    data-toggle="modal" data-target="#delete-product">
-                                <i class="{{ font('trash-o') }}"></i>
-                                Supprimer
-                            </button>
+                            @component('admin.components.delete-button', [
+                                'target' => 'delete-product',
+                                'title' => 'Supprimer ce produit'
+                                ])
+                            @endcomponent
                         @endif
                     </div>
                 </div>
@@ -50,36 +50,36 @@
         <div class="col-lg-7 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body row text-secondary">
-                    <div class="col-lg-5 side-bar-item">NOM(fr)</div>
-                    <div class="col-lg-7 text-dark side-bar-item">{{ $product->fr_name }}</div>
-                    <div class="col-lg-5 side-bar-item">NOM(en)</div>
-                    <div class="col-lg-7 text-dark side-bar-item">{{ $product->en_name }}</div>
-                    <div class="col-lg-5 side-bar-item">Prix</div>
-                    <div class="col-lg-7 text-dark side-bar-item">{{ money_currency($product->amount) }}</div>
-                    <div class="col-lg-5 side-bar-item">Réduction (Promo)%</div>
-                    <div class="col-lg-7 text-dark side-bar-item">{{ $product->discount }}</div>
-                    <div class="col-lg-5 side-bar-item">Stock</div>
-                    <div class="col-lg-7 text-dark side-bar-item">{{ $product->stock }}</div>
-                    <div class="col-lg-5 side-bar-item">Categorie</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">NOM(fr)</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $product->fr_name }}</div>
+                    <div class="col-sm-5 side-bar-item">NOM(en)</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $product->en_name }}</div>
+                    <div class="col-sm-5 side-bar-item">Prix</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ money_currency($product->amount) }}</div>
+                    <div class="col-sm-5 side-bar-item">Réduction (Promo)%</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $product->discount }}</div>
+                    <div class="col-sm-5 side-bar-item">Stock</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $product->stock }}</div>
+                    <div class="col-sm-5 side-bar-item">Categorie</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <a href="{{ route('admin.categories.show', [$product->product_category]) }}">
                             {{ $product->product_category->format_name }}
                         </a>
                     </div>
-                    <div class="col-lg-5 side-bar-item">Description(fr)</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">Description(fr)</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <p class="multi-line-text">
                             {{ $product->fr_description }}
                         </p>
                     </div>
-                    <div class="col-lg-5 side-bar-item">Description(en)</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">Description(en)</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <p class="multi-line-text">
                             {{ $product->en_description }}
                         </p>
                     </div>
-                    <div class="col-lg-5 side-bar-item">Statut(s)</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">Statut(s)</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <p>
                             @if($product->created_at >= now()->addDay(-7) || $product->is_new)
                                 <label class="badge badge-success" title="Nouveau produit">
@@ -101,8 +101,8 @@
                             @endif
                         </p>
                     </div>
-                    <div class="col-lg-5 side-bar-item">Etiquettes ({{ $product->tags->count() }})</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">Etiquettes ({{ $product->tags->count() }})</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <p>
                             @forelse($product->tags as $tag)
                                 <a href="{{ route('admin.tags.show', [$tag]) }}" title="Rattachée à ce produit">
@@ -118,8 +118,8 @@
                             @endforelse
                         </p>
                     </div>
-                    <div class="col-lg-5 side-bar-item">Commandes ({{ $product->orders->count() }})</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">Commandes ({{ $product->orders->count() }})</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <p>
                             @forelse($product->orders as $order)
                                 <a href="{{ route('admin.orders.show', [$order]) }}" title="Contient ce produit">
@@ -135,8 +135,8 @@
                             @endforelse
                         </p>
                     </div>
-                    <div class="col-lg-5 side-bar-item">Avis ({{ $product->product_reviews->count() }})</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">Avis ({{ $product->product_reviews->count() }})</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <p>
                             @forelse($product->reviewed_users as $user)
                                 <a href="{{ route('admin.customers.show', [$user]) }}" title="{{ $user->format_full_name }}: {{ $user->pivot->text }}">
@@ -152,8 +152,8 @@
                             @endforelse
                         </p>
                     </div>
-                    <div class="col-lg-5 side-bar-item">Favoris ({{ $product->wished_users->count() }})</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">Favoris ({{ $product->wished_users->count() }})</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <p>
                             @forelse($product->wished_users as $user)
                                 <a href="{{ route('admin.customers.show', [$user]) }}" title="Dans sa liste de favoris">
@@ -169,8 +169,8 @@
                             @endforelse
                         </p>
                     </div>
-                    <div class="col-lg-5 side-bar-item">Paniers ({{ $product->carted_users->count() }})</div>
-                    <div class="col-lg-7 text-dark side-bar-item">
+                    <div class="col-sm-5 side-bar-item">Paniers ({{ $product->carted_users->count() }})</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
                         <p>
                             @forelse($product->carted_users as $user)
                                 <a href="{{ route('admin.customers.show', [$user]) }}" title="Dans son panier">
@@ -186,6 +186,10 @@
                             @endforelse
                         </p>
                     </div>
+                    <div class="col-sm-5 side-bar-item">Création</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $product->created_date }} à {{ $product->created_time }}</div>
+                    <div class="col-sm-5 side-bar-item">Dernière modifcation</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $product->updated_date }} à {{ $product->updated_time }}</div>
                 </div>
             </div>
         </div>
