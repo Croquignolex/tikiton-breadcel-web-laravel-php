@@ -7,8 +7,8 @@ use App\Models\Tag;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Traits\PaginationTrait;
+use App\Http\Requests\TagRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CategoryRequest;
 use App\Traits\ErrorFlashMessagesTrait;
 use Illuminate\Validation\ValidationException;
 
@@ -76,10 +76,10 @@ class TagsController extends Controller
     }
 
     /**
-     * @param CategoryRequest $request
+     * @param TagRequest $request
      * @return Router|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(CategoryRequest $request)
+    public function store(TagRequest $request)
     {
         $this->tagExist($request->input('en_name'));
         $tagProductIds = $request->input('products');
@@ -131,11 +131,11 @@ class TagsController extends Controller
     }
 
     /**
-     * @param CategoryRequest $request
+     * @param TagRequest $request
      * @param Tag $tag
      * @return Router|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(CategoryRequest $request, Tag $tag)
+    public function update(TagRequest $request, Tag $tag)
     {
         $this->tagExist($request->input('en_name'), $tag->id);
         $tagProductIds = $request->input('products');

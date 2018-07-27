@@ -8,6 +8,7 @@ use App\Traits\LocaleDescriptionTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * @property mixed id
  * @property mixed image
  * @property mixed extension
  * @property mixed format_name

@@ -7,8 +7,6 @@ use App\Traits\LocaleNameTrait;
 use App\Traits\LocaleAmountTrait;
 use App\Traits\LocaleDateTimeTrait;
 use App\Traits\LocaleSlugSaveTrait;
-use App\Utils\AmountSeparator;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use App\Traits\LocaleDescriptionTrait;
 use Illuminate\Database\Eloquent\Model;

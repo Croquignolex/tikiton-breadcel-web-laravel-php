@@ -20,7 +20,7 @@
         </a>
     </li>
     <li class="text-left">
-        <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <a href="javascript: void(0);" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="{{ font('power-off') }}"></i>
             @lang('general.log_out')
         </a>

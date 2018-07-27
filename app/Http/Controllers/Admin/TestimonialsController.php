@@ -157,7 +157,7 @@ class TestimonialsController extends Controller
             $this->deleteImage($testimonial, 'testimonials');
             $testimonial->delete();
             flash_message(
-                trans('auth.info'), 'Le témoignage de ' . $testimonial->format_name . '  supprimé avec succèss',
+                trans('auth.info'), 'Le témoignage de ' . $testimonial->format_name . ' supprimé avec succèss',
                 font('info-circle'), 'info'
             );
         }

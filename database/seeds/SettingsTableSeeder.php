@@ -13,10 +13,12 @@ class SettingsTableSeeder extends Seeder
     public function run()
     {
         DB::table('settings')->insert([
+            'label' => 'Par défaut',
             'is_activated' => true
         ]);
 
         DB::table('settings')->insert([
+            'label' => 'Sans TVA',
             'tva' => 0
         ]);
     }

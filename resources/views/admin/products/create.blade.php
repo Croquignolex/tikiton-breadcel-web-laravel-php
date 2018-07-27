@@ -111,11 +111,17 @@
                                 <div class="form-group">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="featured" id="featured"
-                                                {{ old('featured') === 'on' ? 'checked' : '' }}>
-                                        <label class="badge badge-theme">En vedette</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                               title="Placer le produit en vedette" {{ old('featured') === 'on' ? 'checked' : '' }}>
+                                        <label class="badge badge-theme" title="Placer le produit en vedette">
+                                            <i class="{{ font('database') }}"></i>
+                                            <i class="{{ font('star') }}"></i>
+                                        </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <input type="checkbox" class="form-check-input" name="best_sale" id="best_sale"
-                                                {{ old('best_sale') === 'on' ? 'checked' : '' }}>
-                                        <label class="badge badge-info">Meilleur vente</label>
+                                               title="Placer le produit en meilleur vente" {{ old('best_sale') === 'on' ? 'checked' : '' }}>
+                                        <label class="badge badge-info" title="Placer le produit en meilleur vente">
+                                            <i class="{{ font('database') }}"></i>
+                                            <i class="{{ font('gift') }}"></i>
+                                        </label>
                                     </div>
                                 </div>
                             </div>

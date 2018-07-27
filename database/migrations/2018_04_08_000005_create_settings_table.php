@@ -15,6 +15,7 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('label', 255)->unique();
             $table->boolean('receive_email_from_contact')->default(true);
             $table->boolean('receive_email_from_new_order')->default(true);
             $table->boolean('receive_email_from_canceled_order')->default(true);

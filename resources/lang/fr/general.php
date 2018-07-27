@@ -404,6 +404,7 @@ return [
     'en_description' => 'Description (en)',
     'discount' => 'Réduction (promo)%',
     'stock' => 'Stock',
+    'label' => 'Libellé',
     'facebook' => 'Facebookl',
     'twitter' => 'Twitter',
     'linkedin' => 'Linked in',

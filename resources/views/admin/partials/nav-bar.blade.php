@@ -132,14 +132,18 @@
                         <i class="{{ font('users') }}"></i>
                         Gérer les utilisateurs
                     </a>
-                    <a class="dropdown-item" href="javascript: void(0);">
+                    <a class="dropdown-item" href="{{ route('admin.settings.index') }}">
                         <i class="{{ font('cogs') }}"></i>
                         Parametres
                     </a>
-                    <a class="dropdown-item" href="javascript: void(0);">
+                    <a class="dropdown-item" href="javascript: void(0);"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="{{ font('power-off') }}"></i>
                         Deconnexion
                     </a>
+                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
                 </div>
             </li>
         </ul>

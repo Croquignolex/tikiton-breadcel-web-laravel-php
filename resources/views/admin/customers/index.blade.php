@@ -50,7 +50,7 @@
                         <td>{{ text_format($user->address, 20) }}</td>
                         <td class="text-center">
                             @if($user->is_confirmed)
-                                <label class="badge badge-success" title="">
+                                <label class="badge badge-success">
                                     <i class="{{ font('thumbs-up') }}"></i>
                                     Confirmé
                                 </label>

@@ -131,6 +131,13 @@ Route::prefix('admin')->group(function() {
         Route::get('/dashboard', 'DashboardController')->name('admin.dashboard');
         Route::post('/orders/progress/{order}', 'OrdersController@progress')->name('admin.orders.progress');
         Route::post('/orders/sold/{order}', 'OrdersController@sold')->name('admin.orders.sold');
+        Route::post('/settings/apply/{setting}', 'SettingsController@apply')->name('admin.settings.apply');
+        Route::resource('/settings', 'SettingsController', ['names' => [
+            'index' => 'admin.settings.index', 'create' => 'admin.settings.create',
+            'store' => 'admin.settings.store', 'show' => 'admin.settings.show',
+            'edit' => 'admin.settings.edit', 'update' => 'admin.settings.update',
+            'destroy' => 'admin.settings.destroy'
+        ]]);
         Route::resource('/orders', 'OrdersController', ['names' => [
             'index' => 'admin.orders.index',
             'show' => 'admin.orders.show'
