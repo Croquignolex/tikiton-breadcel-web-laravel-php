@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin')
 
-@section('home.title', page_title($testimonial->format_name))
+@section('home.title', page_title($team->format_name))
 
 @section('home.body')
     <div class="row">
@@ -11,13 +11,13 @@
                     <h4 class="card-title">
                         METTRE A JOUR
                         <strong class="text-theme">
-                            {{ mb_strtoupper($testimonial->format_name) }}
+                            {{ mb_strtoupper($team->format_name) }}
                         </strong>
                     </h4>
                     <div>
                         @component('admin.components.back-button', [
-                            'route' => route('admin.testimonials.index'),
-                            'label' => 'Liste des témoignages'
+                            'route' => route('admin.teams.index'),
+                            'label' => 'Liste des membres'
                             ])
                         @endcomponent
                     </div>
@@ -29,7 +29,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <form class="forms-sample" method="POST" action="{{ route('admin.testimonials.update', [$testimonial]) }}"
+                    <form class="forms-sample" method="POST" action="{{ route('admin.teams.update', [$team]) }}"
                           @submit="validateFormElements" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
@@ -37,22 +37,77 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     @component('components.label-input', [
-                                       'name' => 'fr_description', 'label' => 'fr_description'
+                                       'name' => 'name', 'label' => 'name'
                                        ])
-                                        @component('components.textarea', [
-                                            'name' => 'fr_description', 'class' => 'form-control',
-                                            'value' => old('fr_description') ?? $testimonial->fr_description,
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'name', 'class' => 'form-control',
+                                             'value' => old('name') ?? $team->format_name, 'auto_focus' => 'autofocus'
                                             ])
                                         @endcomponent
                                     @endcomponent
                                 </div>
                                 <div class="form-group">
                                     @component('components.label-input', [
-                                       'name' => 'en_description', 'label' => 'en_description'
+                                       'name' => 'fr_function', 'label' => 'fr_function'
                                        ])
-                                        @component('components.textarea', [
-                                            'name' => 'en_description', 'class' => 'form-control',
-                                            'value' => old('en_description') ?? $testimonial->en_description,
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'fr_function', 'class' => 'form-control',
+                                             'value' => old('fr_function') ?? $team->fr_function
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                       'name' => 'en_function', 'label' => 'en_function'
+                                       ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'en_function', 'class' => 'form-control',
+                                             'value' => old('en_function') ?? $team->en_function
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                       'name' => 'facebook', 'label' => 'facebook'
+                                       ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'facebook', 'class' => 'form-control',
+                                             'value' => old('facebook') ?? $team->facebook, 'minlength' => 1
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                       'name' => 'twitter', 'label' => 'twitter'
+                                       ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'twitter', 'class' => 'form-control',
+                                             'value' => old('twitter') ?? $team->twitter, 'minlength' => 1
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                       'name' => 'linkedin', 'label' => 'linkedin'
+                                       ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'linkedin', 'class' => 'form-control',
+                                             'value' => old('linkedin') ?? $team->linkedin, 'minlength' => 1
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                       'name' => 'googleplus', 'label' => 'googleplus'
+                                       ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'googleplus', 'class' => 'form-control',
+                                             'value' => old('googleplus') ?? $team->googleplus, 'minlength' => 1
                                             ])
                                         @endcomponent
                                     @endcomponent
@@ -61,25 +116,36 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     @component('components.label-input', [
-                                       'name' => 'name', 'label' => 'name'
-                                       ])
-                                        @component('components.input', [
-                                            'type' => 'text', 'name' => 'name', 'class' => 'form-control',
-                                             'value' => old('name') ?? $testimonial->format_name, 'auto_focus' => 'autofocus'
+                                        'name' => 'fr_description', 'label' => 'fr_description'
+                                        ])
+                                        @component('components.textarea', [
+                                            'name' => 'fr_description', 'class' => 'form-control',
+                                            'value' => old('fr_description') ?? $team->fr_description
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                        'name' => 'en_description', 'label' => 'en_description'
+                                        ])
+                                        @component('components.textarea', [
+                                            'name' => 'en_description', 'class' => 'form-control',
+                                            'value' => old('en_description') ?? $team->en_description
                                             ])
                                         @endcomponent
                                     @endcomponent
                                 </div>
                                 <div class="form-group">
                                     @component('admin.components.image-upload', [
-                                       'width' => 165, 'height' => 160
+                                       'width' => 250, 'height' => 270
                                        ])
                                     @endcomponent
                                 </div>
                                 <div class="form-group">
                                     @component('components.submit', [
                                        'class' => 'btn btn-secondary', 'value' => 'Modifier',
-                                       'title' => 'Mettre à jour ce témoignage'
+                                       'title' => 'Mettre à jour ce membre'
                                        ])
                                     @endcomponent
                                 </div>

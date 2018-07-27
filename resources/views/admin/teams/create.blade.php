@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin')
 
-@section('home.title', page_title('Nouveau témoignage'))
+@section('home.title', page_title('Nouveau membre'))
 
 @section('home.body')
     <div class="row">
@@ -9,12 +9,12 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">
-                        Nouveau témoignage
+                        Nouveau membre
                     </h4>
                     <div>
                         @component('admin.components.back-button', [
-                            'route' => route('admin.testimonials.index'),
-                            'label' => 'Liste des témoignages'
+                            'route' => route('admin.teams.index'),
+                            'label' => 'Liste des membres'
                             ])
                         @endcomponent
                     </div>
@@ -26,10 +26,89 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <form class="forms-sample" method="POST" action="{{ route('admin.testimonials.store') }}"
+                    <form class="forms-sample" method="POST" action="{{ route('admin.teams.store') }}"
                           @submit="validateFormElements" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                       'name' => 'name', 'label' => 'name'
+                                       ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'name', 'class' => 'form-control',
+                                             'value' => old('name'), 'auto_focus' => 'autofocus'
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                       'name' => 'fr_function', 'label' => 'fr_function'
+                                       ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'fr_function', 'class' => 'form-control',
+                                             'value' => old('fr_function')
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                       'name' => 'en_function', 'label' => 'en_function'
+                                       ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'en_function', 'class' => 'form-control',
+                                             'value' => old('en_function')
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                       'name' => 'facebook', 'label' => 'facebook'
+                                       ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'facebook', 'class' => 'form-control',
+                                             'value' => old('facebook'), 'minlength' => 1
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                       'name' => 'twitter', 'label' => 'twitter'
+                                       ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'twitter', 'class' => 'form-control',
+                                             'value' => old('twitter'), 'minlength' => 1
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                       'name' => 'linkedin', 'label' => 'linkedin'
+                                       ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'linkedin', 'class' => 'form-control',
+                                             'value' => old('linkedin'), 'minlength' => 1
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                       'name' => 'googleplus', 'label' => 'googleplus'
+                                       ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'googleplus', 'class' => 'form-control',
+                                             'value' => old('googleplus'), 'minlength' => 1
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                            </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     @component('components.label-input', [
@@ -53,29 +132,16 @@
                                         @endcomponent
                                     @endcomponent
                                 </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    @component('components.label-input', [
-                                       'name' => 'name', 'label' => 'name'
-                                       ])
-                                        @component('components.input', [
-                                            'type' => 'text', 'name' => 'name', 'class' => 'form-control',
-                                             'value' => old('name'), 'auto_focus' => 'autofocus'
-                                            ])
-                                        @endcomponent
-                                    @endcomponent
-                                </div>
                                 <div class="form-group">
                                     @component('admin.components.image-upload', [
-                                       'width' => 165, 'height' => 160
+                                       'width' => 250, 'height' => 270
                                        ])
                                     @endcomponent
                                 </div>
                                 <div class="form-group">
                                     @component('components.submit', [
                                        'class' => 'btn btn-secondary', 'value' => 'Ajouter',
-                                       'title' => 'Créer ce témoignage'
+                                       'title' => 'Créer ce membre'
                                        ])
                                     @endcomponent
                                 </div>

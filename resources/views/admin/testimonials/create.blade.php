@@ -37,7 +37,7 @@
                                         ])
                                         @component('components.textarea', [
                                             'name' => 'fr_description', 'value' => old('fr_description'),
-                                            'class' => 'form-control'
+                                            'class' => 'form-control', 'auto_focus' => 'autofocus'
                                             ])
                                         @endcomponent
                                     @endcomponent
@@ -60,8 +60,8 @@
                                        'name' => 'name', 'label' => 'name'
                                        ])
                                         @component('components.input', [
-                                            'type' => 'text', 'name' => 'name', 'class' => 'form-control',
-                                             'value' => old('name'), 'auto_focus' => 'autofocus'
+                                            'type' => 'text', 'name' => 'name',
+                                             'value' => old('name'), 'class' => 'form-control'
                                             ])
                                         @endcomponent
                                     @endcomponent

@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use App\Traits\NameTrait;
-use App\Traits\SlugSaveTrait;
-use App\Traits\SlugRouteTrait;
 use Illuminate\Support\Facades\App;
+use App\Traits\LocaleDateTimeTrait;
 use App\Traits\LocaleDescriptionTrait;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Team extends Model
 {
-    use NameTrait, LocaleDescriptionTrait;
+    use NameTrait, LocaleDescriptionTrait, LocaleDateTimeTrait;
 
     /**
      * The attributes that are mass assignable.

@@ -28,7 +28,7 @@
                 ])
                 @forelse($paginationTools->displayItems as $testimonial)
                     <tr>
-                        <td>{{ $testimonial->format_name }}</td>
+                        <td>{{ text_format($testimonial->format_name, 50) }}</td>
                         <td>{{ text_format($testimonial->fr_description, 30) }}</td>
                         <td>{{ text_format($testimonial->en_description, 30) }}</td>
                         <td class="text-right">
@@ -65,7 +65,7 @@
             'id' => 'delete-testimonial-' . $testimonial->id, 'color' => 'danger',
             'action_route' => route('admin.testimonials.destroy', [$testimonial])
             ])
-            Etes-vous sûr de vouloir supprimer le témoignage de {{ $testimonial->format_name }}?
+            Etes-vous sûr de vouloir supprimer le témoignage de {{ text_format($testimonial->format_name, 50) }}?
         @endcomponent
     @endforeach
 @endsection

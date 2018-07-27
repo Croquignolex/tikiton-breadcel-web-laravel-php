@@ -34,7 +34,7 @@ class TeamController extends Controller
 
         try
         {
-            $team = Team::all()->sortByDesc('updated_at');
+            $teams = Team::all()->sortByDesc('updated_at');
         }
         catch (Exception $exception)
         {
@@ -44,7 +44,7 @@ class TeamController extends Controller
         $this->paginate($request, $teams, 10, 3);
         $paginationTools = $this->paginationTools;
 
-        return view('admin.testimonials.index', compact(
+        return view('admin.teams.index', compact(
             'paginationTools', 'table_label'));
     }
 

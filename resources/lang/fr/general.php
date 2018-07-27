@@ -398,8 +398,14 @@ return [
 
     'fr_name' => 'Nom (fr)',
     'en_name' => 'Nom (en)',
+    'fr_function' => 'Fonction (fr)',
+    'en_function' => 'Fonction (en)',
     'fr_description' => 'Description (fr)',
     'en_description' => 'Description (en)',
     'discount' => 'Réduction (promo)%',
     'stock' => 'Stock',
+    'facebook' => 'Facebookl',
+    'twitter' => 'Twitter',
+    'linkedin' => 'Linked in',
+    'googleplus' => 'Google plus',
 ];

@@ -22,10 +22,10 @@ class TeamRequest extends FormRequest
             'en_function' => $this->required_string,
             'fr_description' => $this->required_text,
             'en_description' => $this->required_text,
-            'facebook' => $this->required_string,
-            'twitter' => $this->required_string,
-            'linkedin' => $this->required_string,
-            'googleplus' => $this->required_string,
+            'facebook' => $this->required_str . '|min:1|max:255',
+            'twitter' => $this->required_str . '|min:1|max:255',
+            'linkedin' => $this->required_str . '|min:1|max:255',
+            'googleplus' => $this->required_str . '|min:1|max:255',
             'image' => 'dimensions:width=250,height=270|max:2048'
         ];
     }
