@@ -129,10 +129,12 @@ Route::prefix('admin')->group(function() {
         //--Admin routes...
         Route::get('/', function () { return redirect(route('admin.dashboard')); });
         Route::get('/dashboard', 'DashboardController')->name('admin.dashboard');
-        Route::get('/orders', 'OrdersController@index')->name('admin.orders.index');
-        Route::get('/orders/{order}', 'OrdersController@show')->name('admin.orders.show');
         Route::post('/orders/progress/{order}', 'OrdersController@progress')->name('admin.orders.progress');
         Route::post('/orders/sold/{order}', 'OrdersController@sold')->name('admin.orders.sold');
+        Route::resource('/orders', 'OrdersController', ['names' => [
+            'index' => 'admin.orders.index',
+            'show' => 'admin.orders.show'
+        ]])->only(['index', 'show']);
         Route::resource('/products', 'ProductsController', ['names' => [
             'index' => 'admin.products.index', 'create' => 'admin.products.create',
             'store' => 'admin.products.store', 'show' => 'admin.products.show',
@@ -175,6 +177,10 @@ Route::prefix('admin')->group(function() {
             'index' => 'admin.customers.index', 'create' => 'admin.customers.create',
             'store' => 'admin.customers.store', 'show' => 'admin.customers.show'
         ]])->parameters(['customers' => 'user'])->except(['edit', 'update', 'destroy']);
+        Route::resource('/contacts', 'ContactsController', ['names' => [
+            'index' => 'admin.contacts.index', 'show' => 'admin.contacts.show',
+            'destroy' => 'admin.contacts.destroy'
+        ]])->only(['index', 'show', 'destroy']);
 
         //--Auth routes...
         Route::group(['namespace' => 'Auth'], function() {

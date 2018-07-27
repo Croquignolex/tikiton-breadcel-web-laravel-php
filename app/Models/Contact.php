@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property mixed email
+ * @property mixed is_read
  * @property mixed subject
+ * @property mixed format_name
  */
 class Contact extends Model
 {

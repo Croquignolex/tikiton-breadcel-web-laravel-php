@@ -194,3 +194,13 @@ if(!function_exists('admin_testimonials_pages'))
             'admin.testimonials.edit', 'admin.testimonials.create']);
     }
 }
+if(!function_exists('admin_contacts_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function admin_contacts_pages()
+    {
+        return collect(['admin.contacts.index', 'admin.contacts.show']);
+    }
+}

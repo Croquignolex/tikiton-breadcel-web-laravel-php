@@ -55,6 +55,11 @@ class OrdersController extends Controller
             'paginationTools', 'table_label'));
     }
 
+    /**
+     * @param Request $request
+     * @param Order $order
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show(Request $request, Order $order)
     {
         return view('admin.orders.show', compact('order'));

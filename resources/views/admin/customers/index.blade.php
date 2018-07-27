@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title text-theme">
-                        <i class="menu-icon {{ font('users') }}"></i>
+                        <i class="menu-icon {{ font('cubes') }}"></i>
                         CLIENTS
                         @component('admin.components.add-button',
                            ['route' => route('admin.customers.create')])

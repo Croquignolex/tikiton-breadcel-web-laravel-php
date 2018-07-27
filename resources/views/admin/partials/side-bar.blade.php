@@ -34,7 +34,7 @@
         </li>
         <li class="side-bar-item nav-item {{ active_page(admin_customers_pages()) }}">
             <a class="nav-link" href="{{ route('admin.customers.index') }}">
-                <i class="menu-icon {{ font('users') }}"></i>
+                <i class="menu-icon {{ font('cubes') }}"></i>
                 <span class="menu-title">Clients</span>
             </a>
         </li>
@@ -72,6 +72,12 @@
             <a class="nav-link" href="{{ route('admin.teams.index') }}">
                 <i class="menu-icon {{ font('user-secret') }}"></i>
                 <span class="menu-title">Equipe</span>
+            </a>
+        </li>
+        <li class="side-bar-item nav-item {{ active_page(admin_contacts_pages()) }}">
+            <a class="nav-link" href="{{ route('admin.contacts.index') }}">
+                <i class="menu-icon {{ font('envelope') }}"></i>
+                <span class="menu-title">Messages</span>
             </a>
         </li>
     </ul>

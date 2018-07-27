@@ -9,11 +9,11 @@ use App\Traits\LocaleDescriptionTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property mixed name
  * @property mixed image
  * @property mixed extension
  * @property mixed fr_function
  * @property mixed en_function
+ * @property mixed format_name
  */
 class Team extends Model
 {

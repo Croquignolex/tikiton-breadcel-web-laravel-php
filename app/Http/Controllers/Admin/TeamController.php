@@ -29,7 +29,7 @@ class TeamController extends Controller
      */
     public function index(Request $request)
     {
-        $table_label = 'Equipe (tous)';
+        $table_label = 'Equipe';
         $teams = null;
 
         try
@@ -169,7 +169,7 @@ class TeamController extends Controller
             $this->deleteImage($team, 'teams');
             $team->delete();
             flash_message(
-                trans('auth.info'), 'Le membre ' . $team->name . '  supprimé avec succèss',
+                trans('auth.info'), 'Le membre ' . $team->format_name . '  supprimé avec succèss',
                 font('info-circle'), 'info'
             );
         }

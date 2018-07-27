@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use App\Traits\LocaleDateTimeTrait;
 use App\Traits\NameTrait;
+use App\Traits\LocaleDateTimeTrait;
 use App\Traits\LocaleDescriptionTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property mixed name
  * @property mixed image
  * @property mixed extension
+ * @property mixed format_name
  */
 class Testimonial extends Model
 {
