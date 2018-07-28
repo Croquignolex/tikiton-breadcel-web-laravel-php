@@ -24,8 +24,8 @@
                                     </li>
                                 @endforeach
                                 <li>
-                                    <a href="javascript: void(0);" @click="productFilterByTitle('category', $event)" data-title="no_category"
-                                       class="{{ $filter['category'] === 'no_category' || $filter['category'] === null ? 'active_filter' : '' }}">
+                                    <a href="javascript: void(0);" @click="productFilterByTitle('category', $event)" data-title="no-category"
+                                       class="{{ $filter['category'] === 'no-category' || $filter['category'] === null ? 'active_filter' : '' }}">
                                         @lang('general.all_category')
                                     </a>
                                 </li>
@@ -57,8 +57,8 @@
                                     </li>
                                 @endforeach
                                 <li>
-                                    <a href="javascript: void(0);" @click="productFilterByTitle('tag', $event)" data-title="no_tag"
-                                        class="{{ $filter['tag'] === 'no_tag' || $filter['tag'] === null ? 'active_filter' : '' }}">
+                                    <a href="javascript: void(0);" @click="productFilterByTitle('tag', $event)" data-title="no-tag"
+                                        class="{{ $filter['tag'] === 'no-tag' || $filter['tag'] === null ? 'active_filter' : '' }}">
                                         @lang('general.all_tag')
                                     </a>
                                 </li>
@@ -72,7 +72,7 @@
                         <div class="shop-tool-bar col-sm-12 fix">
                             <div class="sort-by">
                                 <span>@lang('general.sort_by')</span>
-                                <select name="sort-by" @change="productFilterByValue('sort_by', $event)">
+                                <select name="sort-by" @change="productFilterByValue('sort-by', $event)">
                                     <optgroup label="{{ mb_strtoupper(trans('general.price')) }}">
                                         <option {{ $filter['sort_by'] === \App\Models\Product::SORT_BY_PRICE_ASC ? 'selected' : '' }}
                                                 value="{{ \App\Models\Product::SORT_BY_PRICE_ASC }}">
@@ -107,7 +107,7 @@
                             </div>
                             <div class="show-product">
                                 <span>@lang('general.display')</span>
-                                <select name="sort-by" @change="productFilterByValue('products_per_page', $event)">
+                                <select name="sort-by" @change="productFilterByValue('products-per-page', $event)">
                                     <option value="3" {{ $filter['products_per_page'] === '3' ? 'selected' : '' }}>3</option>
                                     <option value="9" {{ $filter['products_per_page'] === '9' ? 'selected' : '' }}>9</option>
                                     <option value="15" {{ $filter['products_per_page'] === '15' ? 'selected' : '' }}>15</option>

@@ -34,13 +34,31 @@ class UsersTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'first_name' => 'Celestin',
+            'first_name' => 'Célestin',
             'last_name' => 'WOKGOUE',
             'email' => 'celestin@breadcel.ca',
             'password' => Hash::make('breadcel'),
             'token' => str_random(64),
             'is_admin' => true,
             'is_confirmed' => true
+        ]);
+
+        DB::table('users')->insert([
+            'first_name' => 'Céline',
+            'last_name' => 'WOKGOUE',
+            'email' => 'celine@breadcel.ca',
+            'password' => Hash::make('breadcel'),
+            'token' => str_random(64),
+            'is_admin' => true
+        ]);
+
+        DB::table('users')->insert([
+            'first_name' => 'Trina',
+            'last_name' => 'WOKGOUE',
+            'email' => 'trina@breadcel.ca',
+            'password' => Hash::make('breadcel'),
+            'token' => str_random(64),
+            'is_admin' => true
         ]);
     }
 }

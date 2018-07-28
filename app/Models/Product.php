@@ -51,12 +51,12 @@ class Product extends Model
     const IS_OUT_OF_STOCK = 4;
     const IN_STOCk = 'in_stock';
     const OUT_OF_STOCK = 'out_of_stock';
-    const SORT_BY_NAME_ASC = 'name_asc';
-    const SORT_BY_NAME_DESC = 'name_desc';
-    const SORT_BY_PRICE_ASC = 'price_asc';
-    const SORT_BY_PRICE_DESC = 'price_desc';
-    const SORT_BY_RANKING_ASC = 'ranking_asc';
-    const SORT_BY_RANKING_DESC = 'ranking_desc';
+    const SORT_BY_NAME_ASC = 'name-asc';
+    const SORT_BY_NAME_DESC = 'name-desc';
+    const SORT_BY_PRICE_ASC = 'price-asc';
+    const SORT_BY_PRICE_DESC = 'price-desc';
+    const SORT_BY_RANKING_ASC = 'ranking-asc';
+    const SORT_BY_RANKING_DESC = 'ranking-desc';
 
     /**
      * The attributes that are mass assignable.

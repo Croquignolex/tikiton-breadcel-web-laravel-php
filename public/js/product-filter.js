@@ -88,7 +88,7 @@ function routeQueryParameterExist(parameter) {
                let maxTabWithoutCurrency = minMaxTabWithCurrency[1].split('C$');
                let min = minTabWithoutCurrency[1];
                let max = maxTabWithoutCurrency[1];
-               manageFilter('min_max_price', min + '-' + max);
+               manageFilter('min-max-price', min + '-' + max);
            }
         });
     });

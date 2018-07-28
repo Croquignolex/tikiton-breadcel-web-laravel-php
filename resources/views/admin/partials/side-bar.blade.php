@@ -26,6 +26,46 @@
                 <span class="menu-title">Tableau de bord</span>
             </a>
         </li>
+        <li class="side-bar-item nav-item {{ active_page(admin_options_pages()) }}">
+            <a class="nav-link" data-toggle="collapse" href="#options" aria-controls="options"
+               aria-expanded="{{ active_page(admin_options_pages(), 'expend') === 'show' ? 'true' : 'false' }}">
+                <i class="menu-icon {{ font('toggle-on') }}"></i>
+                <span class="menu-title">Options</span>
+                <i class="menu-arrow {{ font('angle-down') }}"></i>
+            </a>
+            <div class="collapse {{ active_page(admin_options_pages(), 'expend') }}" id="options">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ active_page(admin_profile_pages()) }}"
+                           href="{{ route('admin.profile.index') }}">
+                            <i class="menu-icon {{ font('user') }}"></i>
+                            Gérer mon profil
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ active_page(admin_users_pages()) }}"
+                           href="{{ route('admin.users.index') }}">
+                            <i class="menu-icon {{ font('users') }}"></i>
+                            Gérer les utilisateurs
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ active_page(admin_settings_pages()) }}"
+                           href="{{ route('admin.settings.index') }}">
+                            <i class="menu-icon {{ font('cogs') }}"></i>
+                            Parametres
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript: void(0);"
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="menu-icon {{ font('power-off') }}"></i>
+                            Deconnexion
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
         <li class="side-bar-item nav-item {{ active_page(admin_orders_pages()) }}">
             <a class="nav-link" href="{{ route('admin.orders.index') }}">
                 <i class="menu-icon {{ font('copy') }}"></i>

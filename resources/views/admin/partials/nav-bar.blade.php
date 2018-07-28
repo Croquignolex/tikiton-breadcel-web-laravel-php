@@ -119,20 +119,27 @@
                     </a>
                 </div>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="UserDropdown" href="javascript: void(0);" data-toggle="dropdown" aria-expanded="false">
-                    <i class="{{ font('user') }}"></i>
+            <li class="nav-item dropdown d-none d-sm-inline-block">
+                <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                    <span class="profile-text">
+                        {{ \Illuminate\Support\Facades\Auth::user()->format_full_name }}
+                    </span>
+                    <img class="img-xs rounded-circle" src="{{ img_asset('admin-face', 'png') }}" alt="...">
+                    <i class="{{ font('angle-down') }}"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-                    <a class="dropdown-item mt-2" href="javascript: void(0);">
+                    <a class="dropdown-item mt-2 {{ active_page(admin_profile_pages()) }}"
+                       href="{{ route('admin.profile.index') }}">
                         <i class="{{ font('user') }}"></i>
                         Gérer mon profil
                     </a>
-                    <a class="dropdown-item" href="javascript: void(0);">
+                    <a class="dropdown-item {{ active_page(admin_users_pages()) }}"
+                       href="{{ route('admin.users.index') }}">
                         <i class="{{ font('users') }}"></i>
                         Gérer les utilisateurs
                     </a>
-                    <a class="dropdown-item" href="{{ route('admin.settings.index') }}">
+                    <a class="dropdown-item {{ active_page(admin_settings_pages()) }}"
+                       href="{{ route('admin.settings.index') }}">
                         <i class="{{ font('cogs') }}"></i>
                         Parametres
                     </a>

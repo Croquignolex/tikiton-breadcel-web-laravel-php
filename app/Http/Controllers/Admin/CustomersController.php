@@ -205,7 +205,7 @@ class CustomersController extends Controller
             if($user->is_confirmed === $toggle || $user->is_admin === true || $user->is_super_admin === true)
             {
                 flash_message(
-                    trans('auth.error'), 'Ce client est déjà activé ou ne peut être activé',
+                    trans('auth.error'), 'Ce client est déjà '. $action .' ou ne peut être ' . $action,
                     font('remove'), 'danger', 'bounceIn', 'bounceOut'
                 );
             }

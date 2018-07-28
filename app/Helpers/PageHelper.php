@@ -194,6 +194,7 @@ if(!function_exists('admin_testimonials_pages'))
             'admin.testimonials.edit', 'admin.testimonials.create']);
     }
 }
+
 if(!function_exists('admin_contacts_pages'))
 {
     /**
@@ -202,5 +203,53 @@ if(!function_exists('admin_contacts_pages'))
     function admin_contacts_pages()
     {
         return collect(['admin.contacts.index', 'admin.contacts.show']);
+    }
+}
+
+if(!function_exists('admin_options_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function admin_options_pages()
+    {
+        return collect(['admin.settings.index', 'admin.settings.show',
+            'admin.settings.edit', 'admin.settings.create', 'admin.users.index',
+            'admin.users.show', 'admin.users.create']);
+    }
+}
+
+if(!function_exists('admin_settings_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function admin_settings_pages()
+    {
+        return collect(['admin.settings.index', 'admin.settings.show',
+            'admin.settings.edit', 'admin.settings.create']);
+    }
+}
+
+if(!function_exists('admin_users_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function admin_users_pages()
+    {
+        return collect(['admin.users.index', 'admin.users.show',
+            'admin.users.create']);
+    }
+}
+
+if(!function_exists('admin_profile_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function admin_profile_pages()
+    {
+        return collect(['admin.profile.index', 'admin.profile.edit']);
     }
 }

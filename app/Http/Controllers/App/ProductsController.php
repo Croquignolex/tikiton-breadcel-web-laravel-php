@@ -47,10 +47,10 @@ class ProductsController extends Controller
         $filter = [
             'tag' => $request->query('tag'),
             'category' => $request->query('category'),
-            'sort_by' => $this->filter_sort_by($request->query('sort_by')),
-            'min_price' => $this->filter_min_max_price($request->query('min_max_price')),
-            'max_price' => $this->filter_min_max_price($request->query('min_max_price'), 'max'),
-            'products_per_page' => $this->filter_item_per_page($request->query('products_per_page'))
+            'sort_by' => $this->filter_sort_by($request->query('sort-by')),
+            'min_price' => $this->filter_min_max_price($request->query('min-max-price')),
+            'max_price' => $this->filter_min_max_price($request->query('min-max-price'), 'max'),
+            'products_per_page' => $this->filter_item_per_page($request->query('products-per-page'))
         ];
 
         if($filter['min_price'] > $filter['max_price']) $filter['max_price'] = 500;

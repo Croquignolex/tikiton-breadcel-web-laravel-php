@@ -181,6 +181,11 @@ class SettingsController extends Controller
         return $this->redirectTo();
     }
 
+    /**
+     * @param Request $request
+     * @param Setting $setting
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function apply(Request $request, Setting $setting)
     {
         try

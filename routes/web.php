@@ -129,6 +129,9 @@ Route::prefix('admin')->group(function() {
         //--Admin routes...
         Route::get('/', function () { return redirect(route('admin.dashboard')); });
         Route::get('/dashboard', 'DashboardController')->name('admin.dashboard');
+        Route::get('/profile', 'ProfileController@index')->name('admin.profile.index');
+        Route::get('/profile/edit', 'ProfileController@edit')->name('admin.profile.edit');
+        Route::post('/profile/update', 'ProfileController@update')->name('admin.profile.update');
         Route::post('/orders/progress/{order}', 'OrdersController@progress')->name('admin.orders.progress');
         Route::post('/orders/sold/{order}', 'OrdersController@sold')->name('admin.orders.sold');
         Route::post('/settings/apply/{setting}', 'SettingsController@apply')->name('admin.settings.apply');
@@ -138,6 +141,15 @@ Route::prefix('admin')->group(function() {
             'edit' => 'admin.settings.edit', 'update' => 'admin.settings.update',
             'destroy' => 'admin.settings.destroy'
         ]]);
+        Route::post('/users/disable/{user}', 'UsersController@disable')->name('admin.users.disable');
+        Route::put('/users/enable/{user}', 'UsersController@enable')->name('admin.users.enable');
+        Route::post('/users/down/{user}', 'UsersController@down')->name('admin.users.down');
+        Route::put('/users/up/{user}', 'UsersController@up')->name('admin.users.up');
+        Route::resource('/users', 'UsersController', ['names' => [
+            'index' => 'admin.users.index', 'create' => 'admin.users.create',
+            'store' => 'admin.users.store', 'show' => 'admin.users.show',
+            'destroy' => 'admin.users.destroy'
+        ]])->except(['update', 'edit']);
         Route::resource('/orders', 'OrdersController', ['names' => [
             'index' => 'admin.orders.index',
             'show' => 'admin.orders.show'
