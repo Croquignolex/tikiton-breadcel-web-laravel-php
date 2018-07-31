@@ -55,9 +55,6 @@
                                        ])
                                     @endcomponent
                                 </div>
-                                <div class="text-block text-center my-3">
-                                    <a href="{{ route('admin.password.request') }}" class="text-black text-small">Mot de passe oublié ?</a>
-                                </div>
                             </form>
                         </div>
                     </div>

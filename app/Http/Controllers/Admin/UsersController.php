@@ -194,6 +194,31 @@ class UsersController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function resetPassword(Request $request, User $user)
+    {
+        try
+        {
+            $user->password = Hash::make('Bre@dcel2018');
+            $user->save();
+            flash_message(
+                trans('auth.info'),
+                'Le mot de passe de ' . $user->format_first_name . ' à été réinitialisé à "Bre@dcel2018".',
+                font('info-circle'), 'info'
+            );
+        }
+        catch (Exception $exception)
+        {
+            $this->databaseError($exception);
+        }
+
+        return back();
+    }
+
+    /**
      * @param $email
      */
     private function userExist($email)

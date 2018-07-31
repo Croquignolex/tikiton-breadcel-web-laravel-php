@@ -119,6 +119,7 @@ Route::prefix('admin')->group(function() {
             'edit' => 'admin.settings.edit', 'update' => 'admin.settings.update',
             'destroy' => 'admin.settings.destroy'
         ]]);
+        Route::post('/users/reset/password/{user}', 'UsersController@resetPassword')->name('admin.users.reset.password');
         Route::post('/users/disable/{user}', 'UsersController@disable')->name('admin.users.disable');
         Route::put('/users/enable/{user}', 'UsersController@enable')->name('admin.users.enable');
         Route::post('/users/down/{user}', 'UsersController@down')->name('admin.users.down');

@@ -20,6 +20,12 @@
                             'label' => 'Liste des utilisateurs'
                             ])
                         @endcomponent
+                        @component('components.modal-button', [
+                           'target' => 'reset-password',
+                           'title' => 'Réinitialiser le mot de passe de cet utilisateur', 'icon' => 'repeat',
+                           'label' => 'Réinitialiser le mot de passe', 'class' => 'btn btn-warning'
+                           ])
+                        @endcomponent
                         @if(!$user->is_super_admin || ($user->is_super_admin && \Illuminate\Support\Facades\Auth::user()->is_super_admin))
                             @if($user->is_confirmed)
                                 @component('components.modal-button', [
@@ -128,6 +134,13 @@
     </div>
 
     @if(\Illuminate\Support\Facades\Auth::user()->is_super_admin)
+        @component('components.modal', [
+           'title' => 'Réinitialiser le mot de passe de l\'utilisateur', 'method' => 'POST',
+           'id' => 'reset-password', 'color' => 'warning',
+           'action_route' => route('admin.users.reset.password', [$user])
+           ])
+            Etes-vous sûr de vouloir réinitialiser le mot de passe de {{ text_format($user->format_full_name, 50) }}?
+        @endcomponent
         @if($user->is_super_admin)
             @component('components.modal', [
                 'title' => 'Rétrograder l\'utilisateur', 'method' => 'POST',

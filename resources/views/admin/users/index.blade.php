@@ -28,7 +28,7 @@
                 ])
                 @forelse($paginationTools->displayItems as $user)
                     <tr class="{{ !$user->is_confirmed ? 'text-danger' : '' }}">
-                        <td>{{ text_format($user->email, 15) }}</td>
+                        <td>{{ text_format($user->email, 10) }}</td>
                         <td>{{ text_format($user->format_first_name, 10) }}</td>
                         <td>{{ text_format($user->format_last_name, 10) }}</td>
                         <td>{{ text_format($user->phone, 10) }}</td>
@@ -60,6 +60,12 @@
                             @endif
                         </td>
                         <td class="text-right">
+                            @component('components.modal-button', [
+                               'target' => 'reset-password-' . $user->id,
+                               'title' => 'Réinitialiser le mot de passe de cet utilisateur', 'icon' => 'repeat',
+                               'label' => '', 'class' => 'btn btn-warning btn-icons btn-rounded'
+                               ])
+                            @endcomponent
                             @if(\Illuminate\Support\Facades\Auth::user()->is_super_admin)
                                 @if($user->is_super_admin)
                                     @component('components.modal-button', [
@@ -118,6 +124,13 @@
     </div>
 
     @foreach($paginationTools->displayItems as $user)
+        @component('components.modal', [
+           'title' => 'Réinitialiser le mot de passe de l\'utilisateur', 'method' => 'POST',
+           'id' => 'reset-password-' . $user->id, 'color' => 'warning',
+           'action_route' => route('admin.users.reset.password', [$user])
+           ])
+            Etes-vous sûr de vouloir réinitialiser le mot de passe de {{ text_format($user->format_full_name, 50) }}?
+        @endcomponent
         @if(\Illuminate\Support\Facades\Auth::user()->is_super_admin)
             @if($user->is_super_admin)
                 @component('components.modal', [
