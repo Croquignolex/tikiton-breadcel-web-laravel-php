@@ -9565,9 +9565,11 @@ input[type="button"].btn-block {
 .dropdown-item.active, .dropdown-item:active,
 .dropdown-item.active i, .dropdown-item:active i{
     color: #da7612;
-    text-decoration: none; }
+    text-decoration: none;
+    background-color: #ffffff;}
 .dropdown-item:hover, .dropdown-item:hover i {
-    color: #ffffff; }
+    color: #ffffff;
+    background-color: #da7612;}
 .dropdown-item.disabled, .dropdown-item:disabled {
     color: #6c757d;
     background-color: transparent; }
@@ -15843,8 +15845,6 @@ pre {
 /* Dropdowns */
 .dropdown-menu {
     font-size: 13px; }
-.dropdown-menu .dropdown-item:active {
-    background: initial; }
 
 /* Forms */
 .input-group-append,

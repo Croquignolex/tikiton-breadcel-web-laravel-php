@@ -32,8 +32,6 @@
 @endsection
 
 @push('style.plugin')
-    <link rel="stylesheet" href="{{ css_admin_asset('vendor.bundle.base') }}" type="text/css">
-    <link rel="stylesheet" href="{{ css_admin_asset('vendor.bundle.addons') }}" type="text/css">
     <link rel="stylesheet" href="{{ css_admin_asset('admin') }}" type="text/css">
     <link rel="stylesheet" href="{{ css_asset('bootstrap-select.min') }}" type="text/css">
 @endpush
@@ -45,8 +43,6 @@
 @push('script.plugin')
     <script src="{{ js_admin_asset('vendor.bundle.base') }}" type="text/javascript"></script>
     <script src="{{ js_admin_asset('vendor.bundle.addons') }}" type="text/javascript"></script>
-    <script src="{{ js_admin_asset('off-canvas') }}" type="text/javascript"></script>
-    <script src="{{ js_admin_asset('misc') }}" type="text/javascript"></script>
     <script src="{{ js_asset('bootstrap-select.min') }}" type="text/javascript"></script>
 @endpush
 

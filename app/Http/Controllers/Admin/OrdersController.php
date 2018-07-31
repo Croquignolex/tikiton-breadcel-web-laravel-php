@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Order;
-use App\Traits\PaginationTrait;
 use Exception;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Traits\PaginationTrait;
 use App\Http\Controllers\Controller;
 use App\Traits\ErrorFlashMessagesTrait;
 

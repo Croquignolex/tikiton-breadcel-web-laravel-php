@@ -2,24 +2,20 @@
 
 namespace App\Http\Controllers\App\Auth;
 
-use App\Http\Requests\EmailRequest;
-use App\Http\Requests\PasswordRequest;
-use App\Http\Requests\UserInfoUpdateRequest;
-use App\Mail\UserEmailChangeMail;
-use App\Mail\UserPasswordResetMail;
-use App\Mail\UserRegisterMail;
-use App\Models\PasswordReset;
 use Exception;
 use App\Models\User;
-use App\Models\Email;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Mail\NewCustomerMail;
+use App\Mail\UserEmailChangeMail;
+use App\Http\Requests\EmailRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PasswordRequest;
 use App\Traits\ErrorFlashMessagesTrait;
+use App\Http\Requests\UserInfoUpdateRequest;
 
 class AccountController extends Controller
 {

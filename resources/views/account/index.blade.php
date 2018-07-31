@@ -98,8 +98,8 @@
                                     @endcomponent
                                 @endcomponent
                                 @component('components.label-input', [
-                                'name' => 'post_code', 'label' => 'post_code'
-                                ])
+                                    'name' => 'post_code', 'label' => 'post_code'
+                                    ])
                                     @component('components.input', [
                                         'type' => 'text','name' => 'post_code',
                                         'value' => old('post_code') ?? $user->post_code

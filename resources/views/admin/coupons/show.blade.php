@@ -85,10 +85,3 @@
         Etes-vous sûr de vouloir supprimer {{ $coupon->code }}?
     @endcomponent
 @endsection
-
-@push('admin.script.page')
-    <!-- Page scripts -->
-    <script src="{{ js_asset('bootstrap-maxlength') }}" type="text/javascript"></script>
-    <script src="{{ js_asset('form-validator') }}" type="text/javascript"></script>
-    <script src="{{ js_asset('min-max-4') }}" type="text/javascript"></script>
-@endpush

@@ -405,7 +405,7 @@ return [
     'discount' => 'Réduction (promo)%',
     'stock' => 'Stock',
     'label' => 'Libellé',
-    'facebook' => 'Facebookl',
+    'facebook' => 'Facebook',
     'twitter' => 'Twitter',
     'linkedin' => 'Linked in',
     'googleplus' => 'Google plus',

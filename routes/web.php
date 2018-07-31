@@ -11,26 +11,7 @@
 |
 */
 
-Route::get('/coming', function () {
-    return view('coming');
-});
-Route::post('/coming', function (\Illuminate\Http\Request $request) {
-    if(config('app.coming') === $request->input('code'))
-    {
-        session(['coming.soon' => 'ok']);
-        return redirect('/');
-    }
-    else
-    {
-        flash_message(
-            'Erreur', 'Le code est incorrect, vous ne pouvez pas avoir un avant goût, veillez nous contacter au ' . config('company.phone_1') . ' pour plus d\'infos.',
-            font('remove'), 'danger', 'bounceIn', 'bounceOut'
-        );
-    }
-    return redirect('/coming');
-});
-
-Route::group(['namespace' => 'App', 'middleware' => 'coming.soon'], function() {
+Route::group(['namespace' => 'App'], function() {
     //--Client routes...
     Route::get('/terms', function () { return redirect(locale_route('terms')); });
     Route::get('/policy', function () { return redirect(locale_route('policy')); });
@@ -125,13 +106,10 @@ Route::group(['namespace' => 'App', 'middleware' => 'coming.soon'], function() {
 
 
 Route::prefix('admin')->group(function() {
-    Route::group(['namespace' => 'Admin', 'middleware' => 'coming.soon'], function() {
+    Route::group(['namespace' => 'Admin'], function() {
         //--Admin routes...
         Route::get('/', function () { return redirect(route('admin.dashboard')); });
         Route::get('/dashboard', 'DashboardController')->name('admin.dashboard');
-        Route::get('/profile', 'ProfileController@index')->name('admin.profile.index');
-        Route::get('/profile/edit', 'ProfileController@edit')->name('admin.profile.edit');
-        Route::post('/profile/update', 'ProfileController@update')->name('admin.profile.update');
         Route::post('/orders/progress/{order}', 'OrdersController@progress')->name('admin.orders.progress');
         Route::post('/orders/sold/{order}', 'OrdersController@sold')->name('admin.orders.sold');
         Route::post('/settings/apply/{setting}', 'SettingsController@apply')->name('admin.settings.apply');
@@ -211,6 +189,15 @@ Route::prefix('admin')->group(function() {
             //--Admin password reset routes...
             Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
             Route::post('/password/reset', 'ForgotPasswordController@sendResetLinkEmail');
+
+            //--Profile routes...
+            Route::get('/profile', 'ProfileController@index')->name('admin.profile.index');
+            Route::get('/profile/edit', 'ProfileController@edit')->name('admin.profile.edit');
+            Route::get('/profile/password', 'ProfileController@password')->name('admin.profile.password');
+            Route::get('/profile/email', 'ProfileController@email')->name('admin.profile.email');
+            Route::put('/profile/update', 'ProfileController@update')->name('admin.profile.update');
+            Route::put('/profile/password', 'ProfileController@updatePassword');
+            Route::put('/profile/email', 'ProfileController@updateEmail');
         });
     });
 });
