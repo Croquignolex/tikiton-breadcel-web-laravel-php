@@ -261,7 +261,7 @@ function removeAllProductsFromCart(event) {
 	})
 	.fail(function() {
 		notification(elementDataSet.errortitle, elementDataSet.errormessage, 'danger', 'fa fa-remove',
-			'bounceIn', 'bounceOut', 5000); ;
+			'bounceIn', 'bounceOut', 5000);
 	});
 }
 

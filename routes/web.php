@@ -109,7 +109,8 @@ Route::prefix('admin')->group(function() {
     Route::group(['namespace' => 'Admin'], function() {
         //--Admin routes...
         Route::get('/', function () { return redirect(route('admin.dashboard')); });
-        Route::get('/dashboard', 'DashboardController')->name('admin.dashboard');
+        Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard');
+        Route::get('/dashboard/fill', 'DashboardController@fill');
         Route::post('/orders/progress/{order}', 'OrdersController@progress')->name('admin.orders.progress');
         Route::post('/orders/sold/{order}', 'OrdersController@sold')->name('admin.orders.sold');
         Route::post('/settings/apply/{setting}', 'SettingsController@apply')->name('admin.settings.apply');
