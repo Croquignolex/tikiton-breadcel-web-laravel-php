@@ -8,6 +8,7 @@ class OrderStatus
     public $percentage;
     public $label_color;
     public $badge_color;
+    public $hexadecimal_color;
     public $progress_bg_color;
     public $progress_bar_color;
 
@@ -19,9 +20,10 @@ class OrderStatus
      * @param $progress_bg_color
      * @param $progress_bar_color
      * @param $badge_color
+     * @param $hexadecimal_color
      */
     public function __construct($label, $percentage, $label_color, $progress_bg_color,
-                                $progress_bar_color, $badge_color)
+                                $progress_bar_color, $badge_color, $hexadecimal_color)
     {
         $this->percentage = $percentage;
         $this->label_color = $label_color;
@@ -29,5 +31,6 @@ class OrderStatus
         $this->label = trans('general.' . $label);
         $this->progress_bg_color = $progress_bg_color;
         $this->progress_bar_color = $progress_bar_color;
+        $this->hexadecimal_color = $hexadecimal_color;
     }
 }

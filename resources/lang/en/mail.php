@@ -31,6 +31,14 @@ return [
     'body_new_order_msg' => 'On :date, you have purchased an order, If you 
         did not make this action, simply ignore this email. If you did make this action, please 
         check your order progress by clicking on the button bellow',
+    'top_progress_order_msg' => 'Hi :name, your order has been confirmed',
+    'body_progress_order_msg' => 'On :date, your order has been confirmed, If you 
+        did not receive confirmation call, simply ignore this email. If you did receive the call, please 
+        check your order progress by clicking on the button bellow',
+    'top_sold_order_msg' => 'Hi :name, your order has been shipped',
+    'body_sold_order_msg' => 'On :date, your order has been shipped, If you 
+        did receive your command, simply ignore this email. If you did receive your command, 
+        receive Bread\'Cel team thanks for your trust, you can check your order status by clicking on the button bellow',
     'check_order_progress' => 'Check order progress',
     'body_change_email_msg' => 'On :date, you have requested for a new email address and the system wish to
         validate your new email address. If you did not make this action, simply ignore this

@@ -49,49 +49,49 @@ class OrdersController extends Controller
      */
     public function cancel(Request $request, $language, Order $order)
     {
-        if($this->authorization($order, Order::CANCELED))
+        try
         {
-            $setting = Setting::where('is_activated', true)->first();
-            if ($setting !== null)
+            if(Auth::user()->orders->contains($order))
             {
-                if ($setting->receive_email_from_canceled_order)
+                if($order->status === Order::ORDERED)
                 {
-                    try
+                    $order->status = Order::CANCELED;
+                    $order->save();
+
+                    $setting = Setting::where('is_activated', true)->first();
+                    if ($setting !== null)
                     {
-                        Mail::to(config('company.email_1'))->send(new CancelOrderMail($order));
+                        if ($setting->receive_email_from_canceled_order)
+                        {
+                            try
+                            {
+                                Mail::to(config('company.email_1'))->send(new CancelOrderMail($order));
+                            }
+                            catch (Exception $exception)
+                            {
+                                $this->mailError($exception);
+                            }
+                        }
                     }
-                    catch (Exception $exception)
-                    {
-                        $this->mailError($exception);
-                    }
+                }
+                else
+                {
+                    flash_message(
+                        trans('auth.info'),
+                        trans('general.order_canceled', ['order' => $order->reference]),
+                        font('info-circle'), 'info'
+                    );
                 }
             }
 
-            flash_message(
-                trans('auth.info'),
-                trans('general.order_canceled', ['order' => $order->reference]),
-                font('info-circle'), 'info'
-            );
+            flash_message(trans('auth.error'), trans('auth.not_auth'),
+                font('remove'), 'danger', 'bounceIn', 'bounceOut');
         }
-        return $this->redirectTo();
-    }
-
-    /**
-     * @param Request $request
-     * @param $language
-     * @param Order $order
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function order(Request $request, $language, Order $order)
-    {
-        if($this->authorization($order, Order::ORDERED))
+        catch (Exception $exception)
         {
-            flash_message(
-                trans('auth.info'),
-                trans('general.order_ordered', ['order' => $order->reference]),
-                font('info-circle'), 'info'
-            );
+            $this->databaseError($exception);
         }
+
         return $this->redirectTo();
     }
 
@@ -117,35 +117,6 @@ class OrdersController extends Controller
         }
 
         return $this->redirectTo();
-    }
-
-    /**
-     * @param Order $order
-     * @param $action
-     * @return bool
-     */
-    private function authorization(Order $order, $action)
-    {
-        try
-        {
-            if(Auth::user()->orders->contains($order))
-            {
-                if($order->status !== Order::PROGRESS && $order->status !== Order::SOLD)
-                {
-                    $order->status = $action;
-                    $order->save();
-                    return true;
-                }
-            }
-
-            flash_message(trans('auth.error'), trans('auth.not_auth'),
-                font('remove'), 'danger', 'bounceIn', 'bounceOut');
-        }
-        catch (Exception $exception)
-        {
-            $this->databaseError($exception);
-        }
-        return false;
     }
 
     /**

@@ -16,13 +16,13 @@
             </strong>
             <br />
             <strong>
-                @lang('mail.top_new_order_msg', ['name' => $order->user->format_first_name]).
+                @lang('mail.top_progress_order_msg', ['name' => $order->user->format_first_name]).
             </strong>
         </p>
         <p style="text-align: justify;">
-            @lang('mail.body_new_order_msg' , ['date' => $order->user->created_date .
+            @lang('mail.body_progress_order_msg' , ['date' => $order->user->updated_date .
                 ' ' . trans('general.at') .
-                ' ' . $order->user->created_time
+                ' ' . $order->user->upadated_time
             ]).
         </p>
     @endcomponent

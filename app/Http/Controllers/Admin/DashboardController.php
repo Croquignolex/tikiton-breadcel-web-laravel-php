@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Order;
-use App\Models\Product;
-use App\Models\User;
 use Exception;
+use App\Models\User;
+use App\Models\Order;
 use App\Models\Contact;
+use App\Models\Product;
 use App\Http\Controllers\Controller;
 use App\Traits\ErrorFlashMessagesTrait;
 

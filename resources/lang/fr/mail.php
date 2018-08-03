@@ -31,6 +31,14 @@ return [
     'body_new_order_msg' => 'Le :date, vous avez soumis une commande.
         Si vous n\'avez pas éffectués cette action, ignorez simplement cet email. Si vous avez éffectués 
         cette action, s\'il vous plais vérifiez la progression de votre commande en cliquant sur le bouton ci-dessous',
+    'top_progress_order_msg' => 'Salut :name, votre commande à été confirmée',
+    'body_progress_order_msg' => 'Le :date, votre commande à été confirmé.
+        Si vous n\'avez pas réçu confirmation à votre commande par téléphone, ignorez simplement cet email. Si vous avez été 
+        appelés, s\'il vous plais vérifiez la progression de votre commande en cliquant sur le bouton ci-dessous',
+    'top_sold_order_msg' => 'Salut :name, votre commande à été livrée',
+    'body_sold_order_msg' => 'Le :date, votre commande à été livrée.
+        Si vous n\'avez pas réçu votre commande, ignorez simplement cet email. Si vous avez réçu 
+        votre commande, toute l\'équipe Bread\'Cel vous remercie pour votre confiance, vous pouvez avoir le statut de votre commande en cliquant sur le bouton ci-dessous',
     'check_order_progress' => 'Progression de la commande',
     'body_change_email_msg' => 'Le :date, vous avez démandé à avoir une nouvelle addresse email et le système voudrais valider votre
         nouvelle addresse email. Si vous n\'avez pas éffectués cette action, ignorez simplement cet email. Si

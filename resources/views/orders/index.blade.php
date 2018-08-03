@@ -61,12 +61,6 @@
                                                     <i class="{{ font('remove') }}"></i>
                                                     @lang('general.cancel')
                                                 </button>
-                                            @elseif($order->status === \App\Models\Order::CANCELED)
-                                                <button type="button" class="btn btn-theme" title="@lang('general.order_back')"
-                                                    data-toggle="modal" data-target="#order-{{ $order->id }}">
-                                                    <i class="{{ font('check') }}"></i>
-                                                    @lang('general.order')
-                                                </button>
                                             @endif
                                             <a href="{{ locale_route('orders.show', [$order]) }}" class="btn btn-default" title="@lang('general.view_order_details')">
                                                 <i class="{{ font('eye') }}"></i>
@@ -100,15 +94,6 @@
                 'action_route' => locale_route('order.cancel', [$order])
                 ])
                 @lang('general.cancel_your_order', ['order' => $order->reference]) ?
-            @endcomponent
-        @elseif($order->status === \App\Models\Order::CANCELED)
-            @component('components.modal', [
-                'method' => 'PUT',
-                'title' => trans('general.order_back'),
-                'id' => 'order-' . $order->id, 'color' => 'theme',
-                'action_route' => locale_route('order.order', [$order])
-                ])
-                @lang('general.order_your_back', ['order' => $order->reference]) ?
             @endcomponent
         @endif
     @endforeach

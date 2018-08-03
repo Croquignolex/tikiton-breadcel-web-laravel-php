@@ -56,7 +56,6 @@ Route::group(['namespace' => 'App'], function() {
 
     Route::put('/{language}/wishlist/product/add/{product}', 'WishListController@addProduct')->name('wishlist.add.product');
     Route::put('/{language}/cart/product/add/{product}', 'CartController@addProduct')->name('cart.add.product');
-    Route::put('/{language}/order/order/{order}', 'OrdersController@order')->name('order.order');
 
     Route::delete('/{language}/wishlist/product/remove/{product}', 'WishListController@removeProduct')->name('wishlist.remove.product');
     Route::delete('/{language}/cart/product/remove/{product}', 'CartController@removeProduct')->name('cart.remove.product');

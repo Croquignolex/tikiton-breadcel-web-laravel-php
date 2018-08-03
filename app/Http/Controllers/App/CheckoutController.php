@@ -4,7 +4,6 @@ namespace App\Http\Controllers\App;
 
 use Exception;
 use App\Models\User;
-use App\Models\Order;
 use App\Models\Coupon;
 use App\Models\Setting;
 use App\Mail\NewOrderMail;

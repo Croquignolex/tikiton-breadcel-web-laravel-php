@@ -93,18 +93,23 @@ class Order extends Model
     {
         if($this->status === static::ORDERED)
             return new OrderStatus('ordered', 30, 'text-theme',
-                'bg-theme', 'bg-theme', 'badge-theme');
+                'bg-theme', 'bg-theme', 'badge-theme',
+                '#da7612');
         else if($this->status === static::PROGRESS)
             return new OrderStatus('in_progress', 60, 'text-success',
-                'progress-bar-success', 'bg-success', 'badge-success');
+                'progress-bar-success', 'bg-success',
+                'badge-success', '#3c763d');
         else if($this->status === static::CANCELED)
             return new OrderStatus('canceled', 100, 'text-danger',
-                'progress-bar-danger', 'bg-danger', 'badge-danger');
+                'progress-bar-danger', 'bg-danger',
+                'badge-danger', '#a94442');
         else if($this->status === static::SOLD)
         return new OrderStatus('sold', 100, 'text-info',
-            'progress-bar-info', 'bg-info', 'badge-info');
+            'progress-bar-info', 'bg-info', 'badge-info',
+            '#31708f');
 
         return new OrderStatus('ordered', 30, 'text-theme',
-            'bg-theme', 'bg-theme', 'badge-theme');
+            'bg-theme', 'bg-theme', 'badge-theme',
+            '#da7612');
     }
 }

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Mail\UserProgressOrderMail;
+use App\Mail\UserSoldOrderMail;
 use Exception;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Traits\PaginationTrait;
 use App\Http\Controllers\Controller;
 use App\Traits\ErrorFlashMessagesTrait;
+use Illuminate\Support\Facades\Mail;
 
 class OrdersController extends Controller
 {
@@ -79,6 +82,15 @@ class OrdersController extends Controller
                 $order->status = Order::PROGRESS;
                 $order->save();
 
+                try
+                {
+                    Mail::to($order->user->email)->send(new UserProgressOrderMail($order));
+                }
+                catch (Exception $exception)
+                {
+                    $this->mailError($exception);
+                }
+
                 flash_message(
                     trans('auth.info'),
                     'La commande ' . $order->reference . ' à été validée',
@@ -127,6 +139,15 @@ class OrdersController extends Controller
 
                     $order->status = Order::SOLD;
                     $order->save();
+
+                    try
+                    {
+                        Mail::to($order->user->email)->send(new UserSoldOrderMail($order));
+                    }
+                    catch (Exception $exception)
+                    {
+                        $this->mailError($exception);
+                    }
 
                     flash_message(
                         trans('auth.info'),
