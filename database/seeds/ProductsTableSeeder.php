@@ -234,23 +234,6 @@ class ProductsTableSeeder extends Seeder
         ]);
 
         DB::table('products')->insert([
-            'slug' => 'sweet_donut',
-            'image' => 'product_14',
-            'fr_name' => 'Beignet sucré',
-            'en_name' => 'Sweet donut',
-            'fr_description' => 'Beignet avec le sucre',
-            'en_description' => 'Donut with sugar',
-            'price' => 3,
-            'discount' => 0,
-            'is_new' => true,
-            'is_most_sold' => true,
-            'stock' => 10,
-            'product_category_id' => 2,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('products')->insert([
             'slug' => 'sweet_chocolate_donut',
             'image' => 'product_15',
             'fr_name' => 'Beignet sucré au chocolat',

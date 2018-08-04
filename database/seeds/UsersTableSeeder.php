@@ -14,19 +14,10 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'first_name' => 'Mr',
-            'last_name' => 'Customer',
-            'email' => 'customer@breadcel.ca',
-            'password' => Hash::make('breadcel'),
-            'token' => str_random(64),
-            'is_confirmed' => true
-        ]);
-
-        DB::table('users')->insert([
             'first_name' => 'Alex',
             'last_name' => 'NGOMBOL',
-            'email' => 'alex@breadcel.ca',
-            'password' => Hash::make('breadcel'),
+            'email' => 'alex.ngombol@breadcel.ca',
+            'password' => Hash::make('k@lonayA10'),
             'token' => str_random(64),
             'is_super_admin' => true,
             'is_confirmed' => true,
@@ -36,8 +27,8 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'first_name' => 'Célestin',
             'last_name' => 'WOKGOUE',
-            'email' => 'celestin@breadcel.ca',
-            'password' => Hash::make('breadcel'),
+            'email' => 'celestin.wokgoue@breadcel.ca',
+            'password' => Hash::make('Bre@dcel2018'),
             'token' => str_random(64),
             'is_admin' => true,
             'is_confirmed' => true
@@ -46,8 +37,8 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'first_name' => 'Céline',
             'last_name' => 'WOKGOUE',
-            'email' => 'celine@breadcel.ca',
-            'password' => Hash::make('breadcel'),
+            'email' => 'celine.wokgoue@breadcel.ca',
+            'password' => Hash::make('Bre@dcel2018'),
             'token' => str_random(64),
             'is_admin' => true
         ]);
@@ -55,8 +46,8 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'first_name' => 'Trina',
             'last_name' => 'WOKGOUE',
-            'email' => 'trina@breadcel.ca',
-            'password' => Hash::make('breadcel'),
+            'email' => 'trina.wokgoue@breadcel.ca',
+            'password' => Hash::make('Bre@dcel2018'),
             'token' => str_random(64),
             'is_admin' => true
         ]);
