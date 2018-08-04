@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Mail\UserCouponMail;
 use Exception;
 use App\Models\User;
 use App\Models\Coupon;
@@ -10,6 +11,7 @@ use App\Traits\PaginationTrait;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CouponRequest;
 use App\Traits\ErrorFlashMessagesTrait;
+use Illuminate\Support\Facades\Mail;
 
 class CouponsController extends Controller
 {
@@ -55,7 +57,11 @@ class CouponsController extends Controller
      */
     public function create()
     {
-        return view('admin.coupons.create');
+        $customers = User::where('is_admin', false)
+            ->where('is_super_admin', false)
+            ->where('is_confirmed', true)
+            ->get();
+        return view('admin.coupons.create', compact('customers'));
     }
 
     /**
@@ -72,7 +78,22 @@ class CouponsController extends Controller
             if(!is_null($couponCustomerIds))
             {
                 foreach ($couponCustomerIds as $customerId)
-                    $coupon->users()->save(User::find(intval($customerId)));
+                {
+                    $user = User::find(intval($customerId));
+                    $coupon->users()->save($user);
+
+                    if($user->is_confirmed && !$user->is_admin && !$user->is_super_admin)
+                    {
+                        try
+                        {
+                            Mail::to($user->email)->send(new UserCouponMail($user, $coupon));
+                        }
+                        catch (Exception $exception)
+                        {
+                            $this->mailError($exception);
+                        }
+                    }
+                }
             }
 
             flash_message(
@@ -107,9 +128,13 @@ class CouponsController extends Controller
      */
     public function edit(Request $request, Coupon $coupon)
     {
+        $customers = User::where('is_admin', false)
+            ->where('is_super_admin', false)
+            ->where('is_confirmed', true)
+            ->get();
         $tabTCustomerIds = [];
         foreach ($coupon->users as $user) $tabTCustomerIds[] = $user->id;
-        return view('admin.coupons.edit', compact('coupon', 'tabTCustomerIds'));
+        return view('admin.coupons.edit', compact('coupon', 'tabTCustomerIds', 'customers'));
     }
 
     /**
@@ -131,7 +156,22 @@ class CouponsController extends Controller
             if(!is_null($couponCustomerIds))
             {
                 foreach ($couponCustomerIds as $customerId)
-                    $coupon->users()->save(User::find(intval($customerId)));
+                {
+                    $user = User::find(intval($customerId));
+                    $coupon->users()->save($user);
+
+                    if($user->is_confirmed && !$user->is_admin && !$user->is_super_admin)
+                    {
+                        try
+                        {
+                            Mail::to($user->email)->send(new UserCouponMail($user, $coupon));
+                        }
+                        catch (Exception $exception)
+                        {
+                            $this->mailError($exception);
+                        }
+                    }
+                }
             }
 
             flash_message(

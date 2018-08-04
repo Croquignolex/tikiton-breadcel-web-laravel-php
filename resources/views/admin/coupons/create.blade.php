@@ -48,7 +48,7 @@
                                        ])
                                         @component('components.multi-select', [
                                             'name' => 'customers', 'class' => 'form-control', 'title' => 'Sélectionner les clients',
-                                             'values' => old('customers') ?? [], 'options' => \App\Models\User::all()
+                                             'values' => old('customers') ?? [], 'options' => $customers
                                             ])
                                         @endcomponent
                                     @endcomponent

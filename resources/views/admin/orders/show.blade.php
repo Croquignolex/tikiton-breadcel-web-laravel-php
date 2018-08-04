@@ -51,8 +51,14 @@
                         <strong class="{{ $order->format_status->label_color }}">Email:</strong> {{ $order->user->email }}<br />
                         <strong class="{{ $order->format_status->label_color }}">Tel:</strong> {{ $order->user->phone }}<br />
                         <strong class="{{ $order->format_status->label_color }}">Commande N°:</strong> {{ $order->reference }}<br />
-                        <strong class="{{ $order->format_status->label_color }}">Date:</strong> {{ $order->created_date }} à {{ $order->created_time }}
-                    </p>
+                        <strong class="{{ $order->format_status->label_color }}">Date de commande:</strong> {{ $order->created_date }} à {{ $order->created_time }}
+                        @if($order->status === \App\Models\Order::PROGRESS)
+                            <br /><strong class="{{ $order->format_status->label_color }}">Date de confirmation:</strong> {{ $order->updated_date }} à {{ $order->updated_time }}
+                        @elseif($order->status === \App\Models\Order::SOLD)
+                            <br /><strong class="{{ $order->format_status->label_color }}">Date de livraison:</strong> {{ $order->updated_date }} à {{ $order->updated_time }}
+                        @elseif($order->status === \App\Models\Order::CANCELED)
+                            <br /><strong class="{{ $order->format_status->label_color }}">Date d'annulation:</strong> {{ $order->updated_date }} à {{ $order->updated_time }}
+                        @endif                    </p>
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
                             <thead>

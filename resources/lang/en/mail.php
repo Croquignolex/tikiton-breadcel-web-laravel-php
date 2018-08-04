@@ -39,6 +39,10 @@ return [
     'body_sold_order_msg' => 'On :date, your order has been shipped, If you 
         did receive your command, simply ignore this email. If you did receive your command, 
         receive Bread\'Cel team thanks for your trust, you can check your order status by clicking on the button bellow',
+    'top_coupon_msg' => 'Hi :name, this is your discount coupon code',
+    'body_coupon_msg' => 'To thank you for your loyalty, Bread\'Cel offers you a discount on your 
+    next purchases in the amount of :discount, enjoy by clicking on the button bellow',
+    'shop_now' => 'Shop now',
     'check_order_progress' => 'Check order progress',
     'body_change_email_msg' => 'On :date, you have requested for a new email address and the system wish to
         validate your new email address. If you did not make this action, simply ignore this

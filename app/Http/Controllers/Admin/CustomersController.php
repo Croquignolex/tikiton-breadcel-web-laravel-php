@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Mail\UserCouponMail;
 use Exception;
 use App\Models\User;
 use App\Models\Coupon;
@@ -110,7 +111,22 @@ class CustomersController extends Controller
             if(!is_null($customerCouponIds))
             {
                 foreach ($customerCouponIds as $couponId)
-                    $user->coupons()->save(Coupon::find(intval($couponId)));
+                {
+                    $coupon = Coupon::find(intval($couponId));
+                    $user->coupons()->save($coupon);
+
+                    if(!$user->is_admin && !$user->is_super_admin)
+                    {
+                        try
+                        {
+                            Mail::to($user->email)->send(new UserCouponMail($user, $coupon));
+                        }
+                        catch (Exception $exception)
+                        {
+                            $this->mailError($exception);
+                        }
+                    }
+                }
             }
 
             try

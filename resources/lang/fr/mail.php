@@ -39,7 +39,11 @@ return [
     'body_sold_order_msg' => 'Le :date, votre commande à été livrée.
         Si vous n\'avez pas réçu votre commande, ignorez simplement cet email. Si vous avez réçu 
         votre commande, toute l\'équipe Bread\'Cel vous remercie pour votre confiance, vous pouvez avoir le statut de votre commande en cliquant sur le bouton ci-dessous',
+    'top_coupon_msg' => 'Salut :name, ceci est votre code coupon',
+    'body_coupon_msg' => 'Afin de vous remercier votre fidèlité, Bread\'Cel vous offre une réduction sur 
+    vos prochain achats du montant de :discount, Profitez-en en cliquant sur le bouton ci-dessous',
     'check_order_progress' => 'Progression de la commande',
+    'shop_now' => 'Effectuez des achats',
     'body_change_email_msg' => 'Le :date, vous avez démandé à avoir une nouvelle addresse email et le système voudrais valider votre
         nouvelle addresse email. Si vous n\'avez pas éffectués cette action, ignorez simplement cet email. Si
         vous avez éffectués cette action, s\'il vous plais validez votre nouvelle adresse email en cliquant sur le 

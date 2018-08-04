@@ -183,6 +183,7 @@ return [
     'continue_shopping' => 'Continue shopping',
     'coupon_code' => 'Discount coupon code',
     'apply_your_coupon' => 'Apply your coupon code',
+    'your_coupon' => 'Your discount coupon',
     'apply' => 'Apply',
     'checkout' => 'Checkout',
     'proceed_checkout' => 'proceed to checkout',

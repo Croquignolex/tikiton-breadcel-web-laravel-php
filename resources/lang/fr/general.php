@@ -183,6 +183,7 @@ return [
     'continue_shopping' => 'Continuer vos achats',
     'coupon_code' => 'Code coupon de réduction',
     'apply_your_coupon' => 'Appliquer le code coupon',
+    'your_coupon' => 'Votre coupon de réduction',
     'apply' => 'Appliquer',
     'checkout' => 'Commande',
     'proceed_checkout' => 'Proceder à la commande',
