@@ -90,11 +90,7 @@ class UsersController extends Controller
             $user->password = Hash::make($request->input('password'));
             $user->save();
 
-            flash_message(
-                trans('auth.success'), $request->input('first_name') . ' ajouté(e) avec succèss',
-                font('check')
-            );
-
+            success_flash_message(trans('auth.success'), $request->input('first_name') . ' ajouté(e) avec succèss');
             return redirect(route('admin.users.show', [$user]));
         }
         catch (Exception $exception)
@@ -125,20 +121,11 @@ class UsersController extends Controller
         try
         {
             if($user->is_super_admin && !Auth::user()->is_super_admin)
-            {
-                flash_message(
-                    trans('auth.info'),
-                    'Impossible de supprimer cet utilisateur car il est a un rôle plus élévé que le votre',
-                    font('info-circle'), 'info'
-                );
-            }
+                info_flash_message(trans('auth.info'), 'Impossible de supprimer cet utilisateur car il est a un rôle plus élévé que le votre');
             else
             {
                 $user->delete();
-                flash_message(
-                    trans('auth.info'), 'Utilisateur ' . $user->format_full_name . ' supprimé avec succèss', font('info-circle'),
-                    'info'
-                );
+                info_flash_message(trans('auth.info'),'Utilisateur ' . $user->format_full_name . ' supprimé avec succèss');
             }
         }
         catch (Exception $exception)
@@ -204,11 +191,7 @@ class UsersController extends Controller
         {
             $user->password = Hash::make('Bre@dcel2018');
             $user->save();
-            flash_message(
-                trans('auth.info'),
-                'Le mot de passe de ' . $user->format_first_name . ' à été réinitialisé à "Bre@dcel2018".',
-                font('info-circle'), 'info'
-            );
+            info_flash_message(trans('auth.info'), 'Le mot de passe de ' . $user->format_first_name . ' à été réinitialisé à "Bre@dcel2018".');
         }
         catch (Exception $exception)
         {
@@ -251,22 +234,13 @@ class UsersController extends Controller
         try
         {
             if($user->is_confirmed === $toggle || ($user->is_super_admin && !Auth::user()->is_super_admin))
-            {
-                flash_message(
-                    trans('auth.error'), 'Cet utilisateur est déjà ' . $action . ' ou ne peut être ' . $action,
-                    font('remove'), 'danger', 'bounceIn', 'bounceOut'
-                );
-            }
+                danger_flash_message( trans('auth.error'), 'Cet utilisateur est déjà ' . $action . ' ou ne peut être ' . $action);
             else
             {
                 $user->is_confirmed = $toggle;
                 $user->token = str_random(64);
                 $user->save();
-                flash_message(
-                    trans('auth.info'),
-                    $user->format_first_name . ' est maintenant ' . $action,
-                    font('info-circle'), 'info'
-                );
+                info_flash_message(trans('auth.info'), $user->format_first_name . ' est maintenant ' . $action);
             }
         }
         catch (Exception $exception)
@@ -288,22 +262,13 @@ class UsersController extends Controller
         try
         {
             if(!Auth::user()->is_super_admin || $toggle)
-            {
-                flash_message(
-                    trans('auth.error'), 'Cet utilisateur est déjà ' . $action . ' ou ne peut être un ' . $action,
-                    font('remove'), 'danger', 'bounceIn', 'bounceOut'
-                );
-            }
+                danger_flash_message(trans('auth.error'), 'Cet utilisateur est déjà ' . $action . ' ou ne peut être un ' . $action);
             else
             {
                 if($action === static::USER_SUPER_ADMIN) $toggle = !$toggle;
                 $user->is_super_admin = $toggle;
                 $user->save();
-                flash_message(
-                    trans('auth.info'),
-                    $user->format_first_name . ' est maintenant ' . $action,
-                    font('info-circle'), 'info'
-                );
+                info_flash_message(trans('auth.info'), $user->format_first_name . ' est maintenant ' . $action);
             }
         }
         catch (Exception $exception)

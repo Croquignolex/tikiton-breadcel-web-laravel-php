@@ -78,10 +78,7 @@ class ContactsController extends Controller
         try
         {
             $contact->delete();
-            flash_message(
-                trans('auth.info'), 'Le message de ' . $contact->format_name . '  supprimé avec succèss',
-                font('info-circle'), 'info'
-            );
+            info_flash_message(trans('auth.info'), 'Le message de ' . $contact->format_name . '  supprimé avec succèss');
         }
         catch (Exception $exception)
         {

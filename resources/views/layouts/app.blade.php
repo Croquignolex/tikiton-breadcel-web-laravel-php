@@ -14,6 +14,35 @@
 @endsection
 
 @push('style.plugin')
+    <!-- Site info -->
+    <meta name="description" content="Bread'Cel est votre boulangerie artisanale préférée. Avec Bread'Cel vous avez un rapport qualité prix exceptionnel. Laissez-vous porter par les saveurs divines de Bread'Cel." />
+    <meta name="keywords" content="pâtisserie,pastry,cake,gâteau,pain,miel,sucre,vanille,chocolat,honey,chocolate,sugar,bread,breadcel,flour,farine,blé,gingembre,ginger,margarine,lait,sel,milk,sault,sésame,pavot,lin,sesame,poppy,oeuf,egg,beurre,butter,oil,huile,bretzel,brioche,baguette,mayonaise,boulangerie,artisanale,bakery,craft,ville-marie,quebec,canda" />
+    <meta name="dcterms.publisher" content="Bread'Cel" />
+    <meta name="dcterms.modified" title="W3CDTF" content="{{ now() }}">
+    <meta name="dcterms.title" content="@yield('home.title')" />
+    <meta name="dcterms.subject" title="scheme" content="pâtisserie,pastry,cake,gâteau,pain,miel,sucre,vanille,chocolat,honey,chocolate,sugar,bread,breadcel,flour,farine,blé,gingembre,ginger,margarine,lait,sel,milk,sault,sésame,pavot,lin,sesame,poppy,oeuf,egg,beurre,butter,oil,huile,bretzel,brioche,baguette,mayonaise,boulangerie,artisanale,bakery,craft,ville-marie,quebec,canda" />
+    <meta name="dcterms.language" title="ISO639-2" content="{{ App::getLocale() }}" />
+    <meta property="og:locale" content="{{ App::getLocale() }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="@yield('home.title')" />
+    <meta property="og:updated_time" content="{{ now() }}" />
+    <meta property="og:description" content="Bread'Cel est votre boulangerie artisanale préférée. Avec Bread'Cel vous avez un rapport qualité prix exceptionnel. Laissez-vous porter par les saveurs divines de Bread'Cel." />
+    <meta property="og:site_name" content="Bread'Cel" />
+    <meta property="og:image" content="{{ favicon_img_asset('favicon-32x32') }}" />
+    <meta property="og:url" content="http://breadcel.ca/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:description" content="Bread'Cel est votre boulangerie artisanale préférée. Avec Bread'Cel vous avez un rapport qualité prix exceptionnel. Laissez-vous porter par les saveurs divines de Bread'Cel." />
+    <meta name="twitter:title" content="@yield('home.title')" />
+    <meta name="twitter:image" content="{{ img_asset('logo') }}" />
+    <meta name="twitter:site" content="@breadcel">
+    <link rel="shortcut icon" href="{{ favicon_img_asset('favicon-32x32') }}" />
+    <link rel="apple-touch-icon" href="{{ img_asset('logo') }}" />  
+    <meta name="google-site-verification" content="google5a1972c41b2ad0da" />
+    <meta name="google" content="noimageindex">
+    <meta name="google" content="notranslate" />
+    <meta name="robots" content="noarchive">
+    <meta name="robots" content="noodp">
+    <meta name="robots" content="noydir">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{{ css_asset('bootstrap.min') }}" type="text/css">
     <link rel="stylesheet" href="{{ css_asset('owl.carousel.min') }}" type="text/css">

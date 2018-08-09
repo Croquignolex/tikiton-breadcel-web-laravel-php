@@ -20,10 +20,7 @@ class OutOfStockMiddleware
         $carted_products = Auth::user()->carted_products;
         if($carted_products->isEmpty())
         {
-            flash_message(
-                trans('auth.error'), trans('general.empty_cart'),
-                font('remove'), 'danger', 'bounceIn', 'bounceOut');
-
+            danger_flash_message(trans('auth.error'), trans('general.empty_cart'));
             return redirect(locale_route('cart.index'));
         }
 
@@ -36,10 +33,7 @@ class OutOfStockMiddleware
 
         if(!$out_of_stock_products->isEmpty())
         {
-            flash_message(
-                trans('auth.error'), trans('general.out_of_stock_products'),
-                font('remove'), 'danger', 'bounceIn', 'bounceOut');
-
+            danger_flash_message(trans('auth.error'), trans('general.out_of_stock_products'));
             return redirect(locale_route('cart.index'));
         }
 

@@ -138,7 +138,7 @@ class ResetPasswordController extends Controller
      */
     protected function sendResetResponse($response)
     {
-        flash_message(trans('auth.success'), trans($response), font('check'));
+        success_flash_message(trans('auth.success'), trans($response));
         return redirect(locale_route('login'))->with('status', trans($response));
     }
 
@@ -151,10 +151,7 @@ class ResetPasswordController extends Controller
      */
     protected function sendResetFailedResponse(Request $request, $response)
     {
-        flash_message(
-            trans('auth.error'), trans($response), font('exclamation-triangle'),
-            'danger', 'bounceIn', 'bounceOut'
-        );
+        danger_flash_message(trans('auth.error'), trans($response));
 
         return redirect()->back()
             ->withInput($request->only('email'))

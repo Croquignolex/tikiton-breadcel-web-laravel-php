@@ -95,12 +95,7 @@ class CouponsController extends Controller
                     }
                 }
             }
-
-            flash_message(
-                trans('auth.success'), 'Coupon ajouté avec succèss',
-                font('check')
-            );
-
+            success_flash_message(trans('auth.success'), 'Coupon ajouté avec succèss');
             return redirect(route('admin.coupons.show', [$coupon]));
         }
         catch (Exception $exception)
@@ -173,12 +168,7 @@ class CouponsController extends Controller
                     }
                 }
             }
-
-            flash_message(
-                trans('auth.success'), 'Coupon mis à jour avec succèss',
-                font('check')
-            );
-
+            success_flash_message(trans('auth.success'), 'Coupon mis à jour avec succèss');
             return redirect(route('admin.coupons.show', [$coupon]));
         }
         catch (Exception $exception)
@@ -199,10 +189,7 @@ class CouponsController extends Controller
         try
         {
             $coupon->delete();
-            flash_message(
-                trans('auth.info'), 'Coupon supprimé avec succèss',
-                font('info-circle'), 'info'
-            );
+            info_flash_message(trans('auth.info'), 'Coupon supprimé avec succèss');
         }
         catch (Exception $exception)
         {

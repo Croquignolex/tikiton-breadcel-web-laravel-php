@@ -188,7 +188,7 @@ trait CartAndWishlistToggleTrait
     private function flashSessionResponse(array $response)
     {
         flash_message($response['title'], $response['body'], $response['icon'],
-            $response['type'], $response['enter'], $response['exit']);
+            $response['type'], $response['enter'], $response['exit'], 5000);
 
         return back();
     }

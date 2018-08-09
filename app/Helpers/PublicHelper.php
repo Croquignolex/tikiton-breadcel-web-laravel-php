@@ -8,7 +8,7 @@ if(!function_exists('css_asset'))
      */
     function css_asset($css_file)
     {
-        return asset('css/' . $css_file . '.css');
+        return '/assets/css/' . $css_file . '.css';
     }
 }
 
@@ -20,7 +20,7 @@ if(!function_exists('css_admin_asset'))
      */
     function css_admin_asset($css_file)
     {
-        return asset('css/admin/' . $css_file . '.css');
+        return '/assets/css/admin/' . $css_file . '.css';
     }
 }
 
@@ -32,7 +32,7 @@ if(!function_exists('js_asset'))
      */
     function js_asset($js_file)
     {
-        return asset('js/' . $js_file . '.js');
+        return  '/assets/js/' . $js_file . '.js';
     }
 }
 
@@ -44,7 +44,7 @@ if(!function_exists('js_admin_asset'))
      */
     function js_admin_asset($js_file)
     {
-        return asset('js/admin/' . $js_file . '.js');
+        return '/assets/js/admin/' . $js_file . '.js';
     }
 }
 
@@ -57,7 +57,7 @@ if(!function_exists('img_asset'))
      */
     function img_asset($img_file, $extension = 'png')
     {
-        return asset('img/' . $img_file . '.' . $extension);
+        return '/assets/img/' . $img_file . '.' . $extension;
     }
 }
 
@@ -70,7 +70,7 @@ if(!function_exists('banner_img_asset'))
      */
     function banner_img_asset($banner, $extension = 'jpg')
     {
-        return asset('img/banners/' . $banner . '.' . $extension);
+        return '/assets/img/banners/' . $banner . '.' . $extension;
     }
 }
 
@@ -83,7 +83,7 @@ if(!function_exists('product_img_asset'))
      */
     function product_img_asset($product, $extension = 'jpg')
     {
-        return asset('img/products/' . $product . '.' . $extension);
+        return '/assets/img/products/' . $product . '.' . $extension;
     }
 }
 
@@ -96,7 +96,7 @@ if(!function_exists('testimonial_img_asset'))
      */
     function testimonial_img_asset($testimonial, $extension = 'jpg')
     {
-        return asset('img/testimonials/' . $testimonial . '.' . $extension);
+        return '/assets/img/testimonials/' . $testimonial . '.' . $extension;
     }
 }
 
@@ -109,7 +109,7 @@ if(!function_exists('team_img_asset'))
      */
     function team_img_asset($team, $extension = 'jpg')
     {
-        return asset('img/teams/' . $team . '.' . $extension);
+        return '/assets/img/teams/' . $team . '.' . $extension;
     }
 }
 
@@ -122,7 +122,7 @@ if(!function_exists('favicon_img_asset'))
      */
     function favicon_img_asset($favicon)
     {
-        return asset('img/favicon/' . $favicon . '.png');
+        return '/assets/img/favicon/' . $favicon . '.png';
     }
 }
 
@@ -134,6 +134,6 @@ if(!function_exists('flag_img_asset'))
      */
     function flag_img_asset($flag)
     {
-        return asset('img/flags/' . $flag . '.png');
+        return '/assets/img/flags/' . $flag . '.png';
     }
 }

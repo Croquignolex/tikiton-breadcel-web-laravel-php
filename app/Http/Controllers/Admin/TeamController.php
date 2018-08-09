@@ -82,11 +82,7 @@ class TeamController extends Controller
                 'extension' => $image->extension
             ]);
 
-            flash_message(
-                trans('auth.success'), 'Membre ' . $request->input('name') . ' ajouté avec succèss',
-                font('check')
-            );
-
+            success_flash_message(trans('auth.success'), 'Membre ' . $request->input('name') . ' ajouté avec succèss');
             return redirect(route('admin.teams.show', [$team]));
         }
         catch (Exception $exception)
@@ -142,11 +138,7 @@ class TeamController extends Controller
                 'extension' => $image->extension
             ]);
 
-            flash_message(
-                trans('auth.success'), 'Le membre ' . $request->input('name') . ' à été mis(e) à jour avec succèss',
-                font('check')
-            );
-
+            success_flash_message(trans('auth.success'), 'Le membre ' . $request->input('name') . ' à été mis(e) à jour avec succèss');
             return redirect(route('admin.teams.show', [$team]));
         }
         catch (Exception $exception)
@@ -168,10 +160,7 @@ class TeamController extends Controller
         {
             $this->deleteImage($team, 'teams');
             $team->delete();
-            flash_message(
-                trans('auth.info'), 'Le membre ' . $team->format_name . '  supprimé avec succèss',
-                font('info-circle'), 'info'
-            );
+            info_flash_message(trans('auth.info'), 'Le membre ' . $team->format_name . '  supprimé avec succèss');
         }
         catch (Exception $exception)
         {

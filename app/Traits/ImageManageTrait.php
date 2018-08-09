@@ -11,6 +11,8 @@ use Illuminate\Validation\ValidationException;
 
 trait ImageManageTrait
 {
+    private $img_path = 'assets/img/';
+
     /**
      * @param Request $request
      * @param $storage_path
@@ -32,7 +34,7 @@ trait ImageManageTrait
                 {
                     $returnedImage->name = md5($image->getClientOriginalName() . time());
                     $returnedImage->extension = $image->getClientOriginalExtension();
-                    $image->move(public_path('img/' . $storage_path . '/'), $returnedImage->name . '.' . $returnedImage->extension);
+                    $image->move(public_path($this->img_path . $storage_path . '/'), $returnedImage->name . '.' . $returnedImage->extension);
                     if(!is_null($model)) $this->deleteImage($model, $storage_path);
                 }
                 catch (Exception $exception)
@@ -42,10 +44,7 @@ trait ImageManageTrait
             }
             else
             {
-                flash_message(
-                    trans('auth.error'), 'Erreur sur l\'extension de l\'image',
-                    font('remove'), 'danger', 'bounceIn', 'bounceOut'
-                );
+                danger_flash_message(trans('auth.error'), 'Erreur sur l\'extension de l\'image');
 
                 throw ValidationException::withMessages([
                     'image' => 'L\'extension ne correspond pas, l\'extension doit être dans cette liste (jpg, JPG, jpeg, JPEG, png, PNG, gif, GIF, svg, SVG)',
@@ -65,7 +64,7 @@ trait ImageManageTrait
         {
             if($model->image !== 'default')
             {
-                $file = public_path('img/' . $storage_path . '/') . $model->image . '.' . $model->extension;
+                $file = public_path($this->img_path . $storage_path . '/') . $model->image . '.' . $model->extension;
                 if(File::exists($file)) File::delete($file);
             }
         }

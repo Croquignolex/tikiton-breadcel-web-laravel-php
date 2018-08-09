@@ -57,10 +57,7 @@ class AccountController extends Controller
         {
             $user = Auth::user();
             $user->update($request->all());
-            flash_message(
-                trans('auth.success'),
-                trans('general.info_updated')
-            );
+            success_flash_message(trans('auth.success'),  trans('general.info_updated'));
         }
         catch (Exception $exception)
         {
@@ -91,16 +88,11 @@ class AccountController extends Controller
             {
                 $user->password = Hash::make($request->input('password'));
                 $user->save();
-                flash_message(
-                    trans('auth.success'), trans('passwords.changed')
-                );
+                success_flash_message(trans('auth.success'), trans('passwords.changed'));
             }
             else
             {
-                flash_message(
-                    trans('auth.error'), trans('passwords.password_not_match'),
-                    font('remove'), 'danger', 'bounceIn', 'bounceOut');
-
+                danger_flash_message(trans('auth.error'), trans('passwords.password_not_match'));
                 return redirect(locale_route('account.password'));
             }
         }
@@ -136,11 +128,7 @@ class AccountController extends Controller
             try
             {
                 Mail::to($user->email)->send(new UserEmailChangeMail($user));
-
-                flash_message(
-                    trans('auth.info'), trans('auth.email_sent'), font('info-circle'),
-                    'info', 'flipInY', 'flipOutX'
-                );
+                info_flash_message(trans('auth.info'), trans('auth.email_sent'));
             }
             catch (Exception $exception)
             {
@@ -172,12 +160,7 @@ class AccountController extends Controller
             ])->first();
 
             if($user === null)
-            {
-                flash_message(
-                    trans('auth.error'), trans('general.bad_link'),
-                    font('remove'), 'danger', 'bounceIn', 'bounceOut'
-                );
-            }
+                danger_flash_message(trans('auth.error'), trans('general.bad_link'));
             else
             {
                 $user->is_confirmed = true;
@@ -199,10 +182,7 @@ class AccountController extends Controller
                         }
                     }
                 }
-                flash_message(
-                    trans('auth.success'),
-                    trans('general.well_confirmed', ['name' => $user->name])
-                );
+                success_flash_message(trans('auth.success'),  trans('general.well_confirmed', ['name' => $user->name]));
             }
         }
         catch (Exception $exception)

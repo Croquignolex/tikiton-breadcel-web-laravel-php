@@ -132,11 +132,7 @@ class CustomersController extends Controller
             try
             {
                 Mail::to($user->email)->send(new UserRegisterMail($user));
-
-                flash_message(
-                    trans('auth.success'), $request->input('first_name') . ' ajouté(e) avec succèss',
-                    font('check')
-                );
+                success_flash_message(trans('auth.success'), $request->input('first_name') . ' ajouté(e) avec succèss');
             }
             catch (Exception $exception)
             {
@@ -219,22 +215,13 @@ class CustomersController extends Controller
         try
         {
             if($user->is_confirmed === $toggle || $user->is_admin === true || $user->is_super_admin === true)
-            {
-                flash_message(
-                    trans('auth.error'), 'Ce client est déjà '. $action .' ou ne peut être ' . $action,
-                    font('remove'), 'danger', 'bounceIn', 'bounceOut'
-                );
-            }
+                danger_flash_message(trans('auth.error'), 'Ce client est déjà '. $action .' ou ne peut être ' . $action);
             else
             {
                 $user->is_confirmed = $toggle;
                 $user->token = str_random(64);
                 $user->save();
-                flash_message(
-                    trans('auth.info'),
-                    $user->format_first_name . ' est maintenant ' . $action,
-                    font('info-circle'), 'info'
-                );
+                info_flash_message(trans('auth.info'), $user->format_first_name . ' est maintenant ' . $action);
             }
         }
         catch (Exception $exception)

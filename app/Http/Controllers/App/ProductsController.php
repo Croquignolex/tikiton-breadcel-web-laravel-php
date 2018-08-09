@@ -89,10 +89,7 @@ class ProductsController extends Controller
                 'text' => $request->input('review'),
                 'ranking' =>  $request->input('ranking') * 2]);
 
-            flash_message(
-                trans('auth.success'), trans('general.review_send'),
-                font('check')
-            );
+            success_flash_message(trans('auth.success'), trans('general.review_send'));
         }
         catch (Exception $exception)
         {

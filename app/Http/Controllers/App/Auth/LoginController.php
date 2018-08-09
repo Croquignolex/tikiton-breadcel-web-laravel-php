@@ -78,10 +78,7 @@ class LoginController extends Controller
      */
     protected function sendFailedLoginResponse()
     {
-        flash_message(
-            trans('auth.error'), trans('auth.login_message'),
-        font('remove'), 'danger', 'bounceIn', 'bounceOut');
-
+        danger_flash_message(trans('auth.error'), trans('auth.login_message'));
         throw ValidationException::withMessages([
             $this->username() => [trans('auth.failed')],
         ]);
@@ -93,10 +90,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        flash_message(
-            trans('auth.info'), trans('auth.welcome', ['name' => $user->name]),
-            font('info-circle'), 'info'
-        );
+        info_flash_message(trans('auth.info'), trans('auth.welcome', ['name' => $user->name]));
     }
 
     /**
@@ -111,10 +105,7 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
 
-        flash_message(
-            trans('auth.info'), trans('auth.logout_message'),
-            font('info-circle'), 'info'
-        );
+        info_flash_message(trans('auth.info'), trans('auth.logout_message'));
 
         return redirect($this->redirectTo());
     }

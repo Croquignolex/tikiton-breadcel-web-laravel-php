@@ -93,11 +93,7 @@ class TagsController extends Controller
                     $tag->products()->save(Product::find(intval($productId)));
             }
 
-            flash_message(
-                trans('auth.success'), $request->input('fr_name') . ' ajouté(e) avec succèss',
-                font('check')
-            );
-
+            success_flash_message(trans('auth.success'), $request->input('fr_name') . ' ajouté(e) avec succèss');
             return redirect(route('admin.tags.show', [$tag]));
         }
         catch (Exception $exception)
@@ -153,11 +149,7 @@ class TagsController extends Controller
                     $tag->products()->save(Product::find(intval($productId)));
             }
 
-            flash_message(
-                trans('auth.success'), $tag->format_name . ' à été mis(e) à jour avec succèss',
-                font('check')
-            );
-
+            success_flash_message(trans('auth.success'), $tag->format_name . ' à été mis(e) à jour avec succèss');
             return redirect(route('admin.tags.show', [$tag]));
         }
         catch (Exception $exception)
@@ -178,20 +170,11 @@ class TagsController extends Controller
         try
         {
             if(!$tag->products->isEmpty())
-            {
-                flash_message(
-                    trans('auth.info'),
-                    'Impossible de supprimer cette étiquette car un ou plusieurs produits en dépendent',
-                    font('info-circle'), 'info'
-                );
-            }
+                info_flash_message(trans('auth.info'), 'Impossible de supprimer cette étiquette car un ou plusieurs produits en dépendent');
             else
             {
                 $tag->delete();
-                flash_message(
-                    trans('auth.info'), $tag->format_name . ' supprimé(e) avec succèss', font('info-circle'),
-                    'info'
-                );
+                info_flash_message(trans('auth.info'), $tag->format_name . ' supprimé(e) avec succèss', font('info-circle'));
             }
         }
         catch (Exception $exception)

@@ -7386,8 +7386,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     display: block; }
 
 body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    margin: 0; 
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
@@ -11177,7 +11176,6 @@ button.close {
     z-index: 1070;
     display: block;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-style: normal;
     font-weight: 400;
     line-height: 1.5;
@@ -11262,7 +11260,6 @@ button.close {
     z-index: 1060;
     display: block;
     max-width: 276px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-style: normal;
     font-weight: 400;
     line-height: 1.5;
@@ -13403,10 +13400,7 @@ button.bg-dark:focus {
         margin-bottom: auto !important; }
     .ml-xl-auto,
     .mx-xl-auto {
-        margin-left: auto !important; } }
-
-.text-monospace {
-    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+        margin-left: auto !important; } } 
 
 .text-justify {
     text-align: justify !important; }
@@ -13869,8 +13863,7 @@ input:focus {
 /* Sidebar */
 .sidebar {
     min-height: calc(100vh - 63px);
-    background: #ffffff;
-    font-family: "Poppins", sans-serif;
+    background: #ffffff; 
     padding: 0;
     width: 255px;
     z-index: 11;
@@ -14059,8 +14052,7 @@ input:focus {
         right: 0; } }
 
 /* Navbar */
-.navbar.default-layout {
-    font-family: "Poppins", sans-serif;
+.navbar.default-layout { 
     background: #da7612;
     transition: background 0.25s ease;
     -webkit-transition: background 0.25s ease;
@@ -14195,8 +14187,7 @@ input:focus {
 /* Typography */
 :root,
 body {
-    font-size: 1rem;
-    font-family: "Poppins", sans-serif; }
+    font-size: 1rem; }
 
 .h1,
 .h2,
@@ -14210,7 +14201,6 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Poppins", sans-serif;
     font-weight: 500; }
 
 p {
@@ -14324,8 +14314,7 @@ address p {
     color: #000;
     margin: 0.38rem 0 0.75rem; }
 
-.card-title {
-    font-family: "Poppins", sans-serif;
+.card-title { 
     font-weight: 500;
     color: #404852;
     margin-bottom: 22px;
@@ -14334,14 +14323,12 @@ address p {
 .rtl .card-title {
     text-align: right; }
 
-.card-subtitle {
-    font-family: "Poppins", sans-serif;
+.card-subtitle { 
     margin-top: 0.625rem;
     margin-bottom: 0.625rem; }
 
 .card-description {
-    margin-bottom: 0.9375rem;
-    font-family: "Poppins", sans-serif; }
+    margin-bottom: 0.9375rem; }
 .rtl .card-description {
     text-align: right; }
 
@@ -14441,8 +14428,7 @@ pre {
     -webkit-transition: all 0.25s ease;
     -ms-transition: all 0.25s ease;
     border-top: 1px solid #f2f2f2;
-    font-size: calc(13px - 0.05rem);
-    font-family: "Poppins", sans-serif; }
+    font-size: calc(13px - 0.05rem); }
 .footer a {
     color: #00ce68;
     font-size: inherit; }
@@ -14735,8 +14721,7 @@ pre {
     margin-left: auto;
     width: 40%; }
 .card-revenue-table .revenue-item .revenue-amount p {
-    font-size: 1.25rem;
-    font-family: "Poppins", sans-serif;
+    font-size: 1.25rem; 
     font-weight: 600;
     text-align: right; }
 .rtl .card-revenue-table .revenue-item .revenue-amount p {
@@ -14747,8 +14732,7 @@ pre {
     background-size: cover;
     color: #ffffff; }
 .card-revenue .highlight-text {
-    font-size: 1.875rem;
-    font-family: "Poppins", sans-serif;
+    font-size: 1.875rem; 
     font-weight: 500; }
 .card-revenue .badge {
     background-color: rgba(255, 255, 255, 0.2);
@@ -14823,8 +14807,7 @@ pre {
     font-size: 0.65rem;
     font-weight: initial;
     line-height: 1;
-    padding: 0.2rem 0.3rem;
-    font-family: "Poppins", sans-serif;
+    padding: 0.2rem 0.3rem; 
     font-weight: 600; }
 .badge:empty {
     display: inline-block;
@@ -14960,8 +14943,7 @@ pre {
 /* Buttons */
 .btn {
     font-size: 0.875rem;
-    line-height: 1;
-    font-family: "Poppins", sans-serif; }
+    line-height: 1; }
 .btn i {
     margin-right: 0.3125rem; }
 .btn .btn-label:before {
@@ -15687,8 +15669,7 @@ pre {
     transition: all;
     transition-duration: 0s;
     -webkit-transition-duration: 250ms;
-    transition-duration: 250ms;
-    font-family: Material Design Icons;
+    transition-duration: 250ms; 
     opacity: 0;
     filter: alpha(opacity=0);
     -webkit-transform: scale(0);
@@ -15858,8 +15839,7 @@ pre {
     background: transparent;
     border-color: #f2f2f2; }
 
-.form-control {
-    font-family: "Poppins", sans-serif;
+.form-control { 
     font-size: 0.75rem;
     padding: 0.56rem 0.75rem;
     line-height: 14px;
@@ -15907,8 +15887,7 @@ select.form-control {
     display: flex;
     -webkit-align-items: center;
     align-items: center;
-    padding: 15px;
-    font-family: "Poppins", sans-serif;
+    padding: 15px; 
     font-size: 13px; }
 .icons-list > div i {
     display: inline-block;
@@ -16213,8 +16192,7 @@ ul li {
     padding-right: 0; }
 .preview-list .preview-item .preview-item-content p {
     margin-bottom: 10px; }
-.preview-list .preview-item .preview-item-content p .content-category {
-    font-family: "Poppins", sans-serif;
+.preview-list .preview-item .preview-item-content p .content-category { 
     padding-right: 15px;
     border-right: 1px solid #f2f2f2; }
 .preview-list .preview-item .preview-actions {
@@ -16250,8 +16228,7 @@ ul li {
     margin-bottom: 0; }
 .table thead th {
     border-top: 0;
-    border-bottom-width: 1px;
-    font-family: "Poppins", sans-serif;
+    border-bottom-width: 1px; 
     font-weight: 500; }
 .table thead th i {
     margin-left: 0.325rem; }
@@ -16288,13 +16265,9 @@ ul li {
 
 /*-------------------------------------------------------------------*/
 /* === Landing screens === */
-/* Auth */
-.auth.auth-bg-1 {
-    background: url("../images/auth/login_1.jpg");
-    background-size: cover; }
-
+/* Auth */ 
 .auth.register-bg-1 {
-    background: url("../images/auth/register.jpg") center center no-repeat;
+    background: url("../../img/admin-register-page-bg.jpg") center center no-repeat;
     background-size: cover; }
 
 .auth.theme-one .auto-form-wrapper {
@@ -16318,8 +16291,7 @@ ul li {
     border-left: none;
     border-color: #e5e5e5;
     color: #b6b6b6; }
-.auth.theme-one .auto-form-wrapper .form-group .submit-btn {
-    font-family: "Poppins", sans-serif;
+.auth.theme-one .auto-form-wrapper .form-group .submit-btn { 
     font-size: 13px;
     padding: 12px 8px;
     font-weight: 600; }
@@ -16427,8 +16399,7 @@ ul li {
     border-color: #e5e5e5;
     border-right: none;
     color: #dfdfdf; }
-.auth.theme-two .auto-form-wrapper form .form-group .submit-btn {
-    font-family: "Poppins", sans-serif;
+.auth.theme-two .auto-form-wrapper form .form-group .submit-btn { 
     font-size: 13px;
     padding: 11px 33px;
     font-weight: 600;
@@ -16462,13 +16433,7 @@ ul li {
 .auth.theme-two .banner-section {
     padding-right: 0; }
 .auth.theme-two .banner-section .slide-content {
-    width: 100%; }
-.auth.theme-two .banner-section .slide-content.bg-1 {
-    background: url("../images/auth/login_2.jpg") no-repeat center center;
-    background-size: cover; }
-.auth.theme-two .banner-section .slide-content.bg-2 {
-    background: url("../images/auth/register_2.jpg") no-repeat center center;
-    background-size: cover; }
+    width: 100%; } 
 
 /* Error */
 .error-page h1 {

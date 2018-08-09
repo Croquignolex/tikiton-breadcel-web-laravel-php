@@ -126,11 +126,7 @@ class ForgotPasswordController extends Controller
      */
     protected function sendResetLinkResponse($response)
     {
-        flash_message(
-            trans('auth.info'), trans($response), font('info-circle'),
-            'info', 'flipInY', 'flipOutX'
-        );
-
+        info_flash_message(trans('auth.info'), trans($response));
         return back()->with('status', trans($response));
     }
 
@@ -142,13 +138,7 @@ class ForgotPasswordController extends Controller
     protected function sendResetLinkFailedResponse(Request $request, $response)
     {
         if($response !== ForgotPasswordController::RESET_LINK_NOT_SENT)
-        {
-            flash_message(
-                trans('auth.error'), trans($response),
-                font('exclamation-triangle'), 'danger',
-                'bounceIn', 'bounceOut'
-            );
-        }
+            danger_flash_message(trans('auth.error'), trans($response));
 
         return back()
             ->withInput($request->only('email'))

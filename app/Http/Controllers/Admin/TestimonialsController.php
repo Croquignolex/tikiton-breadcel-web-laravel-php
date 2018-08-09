@@ -76,11 +76,7 @@ class TestimonialsController extends Controller
                 'extension' => $image->extension
             ]);
 
-            flash_message(
-                trans('auth.success'), 'Témoignage de ' . $request->input('name') . ' ajouté avec succèss',
-                font('check')
-            );
-
+            success_flash_message(trans('auth.success'), 'Témoignage de ' . $request->input('name') . ' ajouté avec succèss');
             return redirect(route('admin.testimonials.show', [$testimonial]));
         }
         catch (Exception $exception)
@@ -130,11 +126,7 @@ class TestimonialsController extends Controller
                 'extension' => $image->extension
             ]);
 
-            flash_message(
-                trans('auth.success'), 'Le témoignage de ' . $request->input('name') . ' à été mis(e) à jour avec succèss',
-                font('check')
-            );
-
+            success_flash_message(trans('auth.success'), 'Le témoignage de ' . $request->input('name') . ' à été mis(e) à jour avec succèss');
             return redirect(route('admin.testimonials.show', [$testimonial]));
         }
         catch (Exception $exception)
@@ -156,10 +148,7 @@ class TestimonialsController extends Controller
         {
             $this->deleteImage($testimonial, 'testimonials');
             $testimonial->delete();
-            flash_message(
-                trans('auth.info'), 'Le témoignage de ' . $testimonial->format_name . ' supprimé avec succèss',
-                font('info-circle'), 'info'
-            );
+            info_flash_message(trans('auth.info'), 'Le témoignage de ' . $testimonial->format_name . ' supprimé avec succèss');
         }
         catch (Exception $exception)
         {

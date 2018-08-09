@@ -56,11 +56,7 @@ class CartController extends Controller
                 ->carted_products()
                 ->updateExistingPivot($product->id, ['quantity' => $product->stock]);
 
-            flash_message(
-                trans('auth.info'),
-                trans('general.max_to_order', ['max' => $product->stock, 'product' => $product->format_name]),
-                font('info-circle'), 'info'
-            );
+            info_flash_message(trans('auth.info'), trans('general.max_to_order', ['max' => $product->stock, 'product' => $product->format_name]));
         }
 
         return $this->redirectTo();
@@ -93,29 +89,19 @@ class CartController extends Controller
                     if($user->getTotalInCart() > $coupon->discount)
                     {
                         session(['coupon' => $coupon]);
-                        flash_message(
-                            trans('auth.info'), trans('general.coupon_applied', ['code' => $coupon_code]),
-                            font('info-circle'), 'info'
-                        );
+                        info_flash_message(trans('auth.info'), trans('general.coupon_applied', ['code' => $coupon_code]));
                     }
                     else
                     {
                         session()->forget(['coupon.discount', 'coupon.code']);
-                        flash_message(
-                            trans('auth.info'), trans('general.coupon_could_not_be_applied'),
-                            font('info-circle'), 'info'
-                        );
+                        info_flash_message(trans('auth.info'), trans('general.coupon_could_not_be_applied'));
                     }
                 }
-                else flash_message(
-                    trans('auth.error'), trans('general.coupon_already_used', ['coupon' => $coupon_code]),
-                    font('remove'), 'danger', 'bounceIn', 'bounceOut'
-                );
+                else
+                    danger_flash_message(trans('auth.error'), trans('general.coupon_already_used', ['coupon' => $coupon_code]));
             }
-            else flash_message(
-                trans('auth.error'), trans('general.incorrect_coupon'),
-                font('remove'), 'danger', 'bounceIn', 'bounceOut'
-            );
+            else
+                danger_flash_message(trans('auth.error'), trans('general.incorrect_coupon'));
         }
         catch (Exception $exception)
         {

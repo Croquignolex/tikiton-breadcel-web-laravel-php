@@ -46,9 +46,7 @@ class CheckoutController extends Controller
         try
         {
             Auth::User()->update($request->all());
-            flash_message(
-                trans('auth.success'), trans('general.info_updated')
-            );
+            success_flash_message(trans('auth.success'), trans('general.info_updated'));
         }
         catch (Exception $exception)
         {
@@ -111,20 +109,12 @@ class CheckoutController extends Controller
 
                 $this->disableCoupon($user);
 
-                flash_message(
-                    trans('auth.success'), trans('general.success_order')
-                );
+                success_flash_message(trans('auth.success'), trans('general.success_order'));
 
                 return redirect(locale_route('orders.index'));
             }
             else
-            {
-                flash_message(
-                    trans('auth.error'), trans('general.fill_information'), font('remove'),
-                    'danger', 'bounceIn', 'bounceOut'
-                );
-            }
-
+                danger_flash_message(trans('auth.error'), trans('general.fill_information'));
         }
         catch (Exception $exception)
         {

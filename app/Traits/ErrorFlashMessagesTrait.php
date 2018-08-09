@@ -44,11 +44,7 @@ trait ErrorFlashMessagesTrait
         }
         else $message = trans('general.' . $locale_message);
 
-        flash_message(
-            trans('auth.error'), $message, font('remove'),
-            'danger', 'bounceIn', 'bounceOut'
-        );
-
+        danger_flash_message(trans('auth.error'), $message, font('remove'));
         return back();
     }
 }

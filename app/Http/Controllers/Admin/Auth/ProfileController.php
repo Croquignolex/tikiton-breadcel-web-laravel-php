@@ -69,10 +69,7 @@ class ProfileController extends Controller
         {
             $user = Auth::user();
             $user->update($request->all());
-            flash_message(
-                trans('auth.success'),
-                trans('general.info_updated')
-            );
+            success_flash_message(trans('auth.success'), trans('general.info_updated'));
         }
         catch (Exception $exception)
         {
@@ -91,16 +88,11 @@ class ProfileController extends Controller
             {
                 $user->password = Hash::make($request->input('password'));
                 $user->save();
-                flash_message(
-                    trans('auth.success'), trans('passwords.changed')
-                );
+                success_flash_message(trans('auth.success'), trans('passwords.changed'));
             }
             else
             {
-                flash_message(
-                    trans('auth.error'), trans('passwords.password_not_match'),
-                    font('remove'), 'danger', 'bounceIn', 'bounceOut');
-
+                danger_flash_message(trans('auth.error'), trans('passwords.password_not_match'));
                 return redirect(route('admin.profile.password'));
             }
         }
@@ -123,12 +115,7 @@ class ProfileController extends Controller
             $user = Auth::user();
             $user->email = $request->email;
             $user->save();
-
-            flash_message(
-                trans('auth.info'),
-                'Votre email à été mis à jour avec success', font('info-circle'),
-                'info', 'flipInY', 'flipOutX'
-            );
+            info_flash_message(trans('auth.info'), 'Votre email à été mis à jour avec success');
         }
         catch (Exception $exception)
         {

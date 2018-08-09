@@ -75,17 +75,10 @@ class OrdersController extends Controller
                     }
                 }
                 else
-                {
-                    flash_message(
-                        trans('auth.info'),
-                        trans('general.order_canceled', ['order' => $order->reference]),
-                        font('info-circle'), 'info'
-                    );
-                }
+                    info_flash_message(trans('auth.info'), trans('general.order_canceled', ['order' => $order->reference]));
             }
 
-            flash_message(trans('auth.error'), trans('auth.not_auth'),
-                font('remove'), 'danger', 'bounceIn', 'bounceOut');
+            danger_flash_message(trans('auth.error'), trans('auth.not_auth'));
         }
         catch (Exception $exception)
         {
@@ -108,8 +101,7 @@ class OrdersController extends Controller
             if(Auth::user()->orders->contains($order))
                 return view('orders.show', compact('order'));
 
-            flash_message(trans('auth.error'), trans('auth.not_auth'),
-                font('remove'), 'danger', 'bounceIn', 'bounceOut');
+            danger_flash_message(trans('auth.error'), trans('auth.not_auth'));
         }
         catch (Exception $exception)
         {

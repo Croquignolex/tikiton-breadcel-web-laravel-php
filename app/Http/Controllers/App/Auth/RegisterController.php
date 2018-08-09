@@ -53,11 +53,7 @@ class RegisterController extends Controller
             try
             {
                 Mail::to($user->email)->send(new UserRegisterMail($user));
-
-                flash_message(
-                    trans('auth.success'), trans('auth.registration_message'),
-                    font('check')
-                );
+                success_flash_message(trans('auth.success'), trans('auth.registration_message'));
             }
             catch (Exception $exception)
             {

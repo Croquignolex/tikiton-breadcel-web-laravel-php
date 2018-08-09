@@ -90,6 +90,64 @@ if(!function_exists('money_currency'))
     }
 }
 
+if(!function_exists('info_flash_message'))
+{
+    /**
+     * @param $title
+     * @param $message
+     * @param string $icon
+     * @param string $enter
+     * @param string $exit
+     * @param int $delay
+     */
+    function info_flash_message($title, $message, $icon = 'fa fa-info-circle',
+                                $delay = 8000, $enter = 'flipInY',
+                                $exit = 'flipOutX')
+    {
+        flash_message($title, $message, $icon,
+            'info', $enter, $exit, $delay);
+    }
+}
+
+if(!function_exists('success_flash_message'))
+{
+    /**
+     * @param $title
+     * @param $message
+     * @param string $icon
+     * @param string $enter
+     * @param string $exit
+     * @param int $delay
+     */
+    function success_flash_message($title, $message, $icon = 'fa fa-check',
+                                   $delay = 5000, $enter = 'lightSpeedIn',
+                                   $exit = 'lightSpeedOut')
+    {
+        flash_message($title, $message, $icon,
+            'success', $enter, $exit, $delay);
+    }
+}
+
+if(!function_exists('danger_flash_message'))
+{
+    /**
+     * @param $title
+     * @param $message
+     * @param string $icon
+     * @param string $enter
+     * @param string $exit
+     * @param int $delay
+     */
+    function danger_flash_message($title, $message,
+                                  $icon = 'fa fa-times',
+                                  $delay = 10000, $enter = 'bounceIn',
+                                  $exit = 'bounceOut')
+    {
+        flash_message($title, $message, $icon,
+            'danger', $enter, $exit, $delay);
+    }
+}
+
 if(!function_exists('flash_message'))
 {
     /**
@@ -101,7 +159,8 @@ if(!function_exists('flash_message'))
      * @param string $exit
      * @param int $delay
      */
-    function flash_message($title, $message, $icon = 'fa fa-check', $type = 'success', $enter = 'lightSpeedIn', $exit = 'lightSpeedOut', $delay = 5000)
+    function flash_message($title, $message, $icon, $type,
+                           $enter, $exit, $delay)
     {
         session()->flash('notification.icon', $icon);
         session()->flash('notification.type', $type);

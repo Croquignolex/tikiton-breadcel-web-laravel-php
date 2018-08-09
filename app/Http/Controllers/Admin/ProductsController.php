@@ -111,11 +111,7 @@ class ProductsController extends Controller
                 foreach ($productTagIds as $tagId)
                     $product->tags()->save(Tag::find(intval($tagId)));
             }
-            flash_message(
-                trans('auth.success'), $request->input('fr_name') . ' ajouté(e) avec succèss',
-                font('check')
-            );
-
+            success_flash_message(trans('auth.success'), $request->input('fr_name') . ' ajouté(e) avec succèss');
             return redirect(route('admin.products.show', [$product]));
         }
         catch (Exception $exception)
@@ -191,11 +187,7 @@ class ProductsController extends Controller
                     $product->tags()->save(Tag::find(intval($tagId)));
             }
 
-            flash_message(
-                trans('auth.success'), $product->format_name . ' à été mis(e) à jour avec succèss',
-                font('check')
-            );
-
+            success_flash_message(trans('auth.success'), $product->format_name . ' à été mis(e) à jour avec succèss');
             return redirect(route('admin.products.show', [$product]));
         }
         catch (Exception $exception)
@@ -216,21 +208,12 @@ class ProductsController extends Controller
         try
         {
             if(!$product->orders->isEmpty())
-            {
-                flash_message(
-                    trans('auth.info'),
-                    'Impossible de supprimer ce produit car il est present dans une ou plusieurs commandes',
-                    font('info-circle'), 'info'
-                );
-            }
+                info_flash_message(trans('auth.info'), 'Impossible de supprimer ce produit car il est present dans une ou plusieurs commandes');
             else
             {
                 $this->deleteImage($product, 'products');
                 $product->delete();
-                flash_message(
-                    trans('auth.info'), $product->format_name . ' supprimé(e) avec succèss', font('info-circle'),
-                    'info'
-                );
+                info_flash_message(trans('auth.info'), $product->format_name . ' supprimé(e) avec succèss', font('info-circle'));
             }
         }
         catch (Exception $exception)

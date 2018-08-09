@@ -90,12 +90,7 @@ class OrdersController extends Controller
                 {
                     $this->mailError($exception);
                 }
-
-                flash_message(
-                    trans('auth.info'),
-                    'La commande ' . $order->reference . ' à été validée',
-                    font('info-circle'), 'info'
-                );
+                info_flash_message(trans('auth.info'), 'La commande ' . $order->reference . ' à été validée');
             }
         }
         catch (Exception $exception)
@@ -121,10 +116,7 @@ class OrdersController extends Controller
                 foreach ($order->products as $product) {
                     if($product->stock < $product->pivot->quantity)
                     {
-                        flash_message(
-                            trans('auth.error'), 'Impossible de livrer cette commande car la quantité requis du produit ' . $product->format_name . ' dépasse la quantité présente en stock',
-                            font('remove'), 'danger', 'bounceIn', 'bounceOut'
-                        );
+                        danger_flash_message(trans('auth.error'), 'Impossible de livrer cette commande car la quantité requis du produit ' . $product->format_name . ' dépasse la quantité présente en stock');
                         $canSold = false;
                         break;
                     }
@@ -148,12 +140,7 @@ class OrdersController extends Controller
                     {
                         $this->mailError($exception);
                     }
-
-                    flash_message(
-                        trans('auth.info'),
-                        'La commande ' . $order->reference . ' à été livrée',
-                        font('info-circle'), 'info'
-                    );
+                    info_flash_message(trans('auth.info'), 'La commande ' . $order->reference . ' à été livrée');
                 }
             }
         }

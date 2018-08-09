@@ -77,11 +77,7 @@ class SettingsController extends Controller
                 'receive_email_from_canceled_order' => is_null($request->input('email_order_cancel')) ? false : true
             ]);
 
-            flash_message(
-                trans('auth.success'), 'Paramètre ' . $request->input('label') . ' ajouté avec succèss',
-                font('check')
-            );
-
+            success_flash_message(trans('auth.success'), 'Paramètre ' . $request->input('label') . ' ajouté avec succèss');
             return redirect(route('admin.settings.show', [$setting]));
         }
         catch (Exception $exception)
@@ -132,11 +128,7 @@ class SettingsController extends Controller
                 'receive_email_from_canceled_order' => is_null($request->input('email_order_cancel')) ? false : true
             ]);
 
-            flash_message(
-                trans('auth.success'), 'Le paramètre ' . $request->input('label') . ' à été mis(e) à jour avec succèss',
-                font('check')
-            );
-
+            success_flash_message(trans('auth.success'), 'Le paramètre ' . $request->input('label') . ' à été mis(e) à jour avec succèss');
             return redirect(route('admin.settings.show', [$setting]));
         }
         catch (Exception $exception)
@@ -157,20 +149,11 @@ class SettingsController extends Controller
         try
         {
             if($setting->is_activated)
-            {
-                flash_message(
-                    trans('auth.info'),
-                    'Impossible de supprimer ce paramètre car il est actif, désactivez le d\'abord',
-                    font('info-circle'), 'info'
-                );
-            }
+                info_flash_message( trans('auth.info'), 'Impossible de supprimer ce paramètre car il est actif, désactivez le d\'abord');
             else
             {
                 $setting->delete();
-                flash_message(
-                    trans('auth.info'), 'Paramètre ' . $setting->label . ' supprimé avec succèss', font('info-circle'),
-                    'info'
-                );
+                info_flash_message(trans('auth.info'), 'Paramètre ' . $setting->label . ' supprimé avec succèss', font('info-circle'));
             }
         }
         catch (Exception $exception)
@@ -201,10 +184,7 @@ class SettingsController extends Controller
                 $setting->is_activated = true;
                 $setting->save();
             }
-            flash_message(
-                trans('auth.info'), 'Le paramètre ' . $setting->label. ' est maintant actif',
-                font('info-circle'), 'info'
-            );
+            info_flash_message(trans('auth.info'), 'Le paramètre ' . $setting->label. ' est maintant actif');
         }
         catch (Exception $exception)
         {

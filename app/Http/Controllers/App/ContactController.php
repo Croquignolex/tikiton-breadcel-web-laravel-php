@@ -34,10 +34,7 @@ class ContactController extends Controller
         {
             $contact = Contact::create($request->all());
 
-            flash_message(
-                trans('auth.success'), trans('general.contact_send'),
-                font('envelope')
-            );
+            success_flash_message(trans('auth.success'), trans('general.contact_send'));
 
             $setting = Setting::where('is_activated', true)->first();
             if($setting !== null)
