@@ -74,10 +74,10 @@ class TeamController extends Controller
                 'en_function' => $request->input('en_description'),
                 'fr_description' => $request->input('fr_description'),
                 'en_description' => $request->input('en_description'),
-                'facebook' => $request->input('fr_description'),
-                'twitter' => $request->input('en_description'),
-                'linkedin' => $request->input('fr_description'),
-                'googleplus' => $request->input('en_description'),
+                'facebook' => $request->input('facebook'),
+                'twitter' => $request->input('twitter'),
+                'linkedin' => $request->input('linkedin'),
+                'googleplus' => $request->input('googleplus'),
                 'image' => $image->name,
                 'extension' => $image->extension
             ]);
@@ -130,10 +130,10 @@ class TeamController extends Controller
                 'en_function' => $request->input('en_description'),
                 'fr_description' => $request->input('fr_description'),
                 'en_description' => $request->input('en_description'),
-                'facebook' => $request->input('fr_description'),
-                'twitter' => $request->input('en_description'),
-                'linkedin' => $request->input('fr_description'),
-                'googleplus' => $request->input('en_description'),
+                'facebook' => $request->input('facebook'),
+                'twitter' => $request->input('twitter'),
+                'linkedin' => $request->input('linkedin'),
+                'googleplus' => $request->input('googleplus'),
                 'image' => $image->name,
                 'extension' => $image->extension
             ]);

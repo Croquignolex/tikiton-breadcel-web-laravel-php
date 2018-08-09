@@ -20,10 +20,10 @@ class CreateTeamsTable extends Migration
             $table->string('extension', 50)->default('jpg');
             $table->string('fr_function', 255);
             $table->string('en_function', 255);
-            $table->string('facebook', 255)->default('javascript: void(0);');
-            $table->string('twitter', 255)->default('javascript: void(0);');
-            $table->string('linkedin', 255)->default('javascript: void(0);');
-            $table->string('googleplus', 255)->default('javascript: void(0);');
+            $table->string('facebook', 255)->nullable();
+            $table->string('twitter', 255)->nullable();
+            $table->string('linkedin', 255)->nullable();
+            $table->string('googleplus', 255)->nullable();
             $table->text('fr_description');
             $table->text('en_description');
             $table->timestamps();

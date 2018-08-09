@@ -18,7 +18,9 @@ class TeamsTableSeeder extends Seeder
             'fr_description' => 'General manager description',
             'en_description' => 'General manager description',
             'fr_function' => 'General manager',
-            'en_function' => 'General manager'
+            'en_function' => 'General manager',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('teams')->insert([
@@ -27,7 +29,9 @@ class TeamsTableSeeder extends Seeder
             'fr_description' => 'Software ingenier description',
             'en_description' => 'Software ingenier description',
             'fr_function' => 'Software ingenier',
-            'en_function' => 'Software ingenier'
+            'en_function' => 'Software ingenier',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('teams')->insert([
@@ -36,7 +40,9 @@ class TeamsTableSeeder extends Seeder
             'fr_description' => 'Co-manager description',
             'en_description' => 'Co-manager description',
             'fr_function' => 'Co-manager',
-            'en_function' => 'Co-manager'
+            'en_function' => 'Co-manager',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('teams')->insert([
@@ -45,7 +51,9 @@ class TeamsTableSeeder extends Seeder
             'fr_description' => 'Chief Designer description',
             'en_description' => 'Chief Designer description',
             'fr_function' => 'Chief Designer',
-            'en_function' => 'Chief Designer'
+            'en_function' => 'Chief Designer',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
     }
 }

@@ -17,7 +17,9 @@ class TagsTableSeeder extends Seeder
             'fr_name' => 'Etiquette 1',
             'en_name' => 'Tag 1',
             'fr_description' => 'Description de l\'étiquette 1',
-            'en_description' => 'Tag\'s 1 description'
+            'en_description' => 'Tag\'s 1 description',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('tags')->insert([
@@ -25,7 +27,9 @@ class TagsTableSeeder extends Seeder
             'fr_name' => 'Etiquette 2',
             'en_name' => 'Tag 2',
             'fr_description' => 'Description de l\'étiquette 2',
-            'en_description' => 'Tag\'s 2 description'
+            'en_description' => 'Tag\'s 2 description',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('tags')->insert([
@@ -33,7 +37,9 @@ class TagsTableSeeder extends Seeder
             'fr_name' => 'Etiquette 3',
             'en_name' => 'Tag 3',
             'fr_description' => 'Description de l\'étiquette 3',
-            'en_description' => 'Tag\'s 3 description'
+            'en_description' => 'Tag\'s 3 description',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('tags')->insert([
@@ -41,7 +47,9 @@ class TagsTableSeeder extends Seeder
             'fr_name' => 'Etiquette 4',
             'en_name' => 'Tag 4',
             'fr_description' => 'Description de l\'étiquette 4',
-            'en_description' => 'Tag\'s 4 description'
+            'en_description' => 'Tag\'s 4 description',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('tags')->insert([
@@ -49,7 +57,9 @@ class TagsTableSeeder extends Seeder
             'fr_name' => 'Etiquette 5',
             'en_name' => 'Tag 5',
             'fr_description' => 'Description de l\'étiquette 5',
-            'en_description' => 'Tag\'s 5 description'
+            'en_description' => 'Tag\'s 5 description',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
     }
 }

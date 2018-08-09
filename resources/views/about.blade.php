@@ -12,7 +12,7 @@
                     @lang('general.welcome_on')
                     <span>{{ config('app.name') }}</span>
                 </h2>
-                <h3>{{ config('company.slogan') }}</h3>
+                <h3>{{ \App\Models\Setting::where('is_activated', true)->first()->slogan }}</h3>
             </div>
             <div class="about-text">
                 <p>@lang('about.section_top')</p>

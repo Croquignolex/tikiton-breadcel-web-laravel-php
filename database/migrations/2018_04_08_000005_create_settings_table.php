@@ -16,6 +16,16 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('label', 255)->unique();
+            $table->string('slogan', 255)->nullable();
+            $table->string('address_1', 255)->nullable();
+            $table->string('address_2', 255)->nullable();
+            $table->string('phone_1', 255)->nullable();
+            $table->string('phone_2', 255)->nullable();
+            $table->string('facebook', 255)->nullable();
+            $table->string('twitter', 255)->nullable();
+            $table->string('linkedin', 255)->nullable();
+            $table->string('googleplus', 255)->nullable();
+            $table->string('youtube', 255)->nullable();
             $table->boolean('receive_email_from_contact')->default(true);
             $table->boolean('receive_email_from_new_order')->default(true);
             $table->boolean('receive_email_from_canceled_order')->default(true);

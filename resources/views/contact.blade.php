@@ -79,14 +79,14 @@
                     <div class="row">
                         @component('components.contact-info', [
                             'font' => 'map-marker',
-                            'info_1' => config('company.address_1'),
-                            'info_2' => config('company.address_2')
+                            'info_1' => \App\Models\Setting::where('is_activated', true)->first()->address_1,
+                            'info_2' => \App\Models\Setting::where('is_activated', true)->first()->address_2
                             ])
                         @endcomponent
                         @component('components.contact-info', [
                             'font' => 'phone',
-                            'info_1' => config('company.phone_1'),
-                            'info_2' => config('company.phone_2')
+                            'info_1' => \App\Models\Setting::where('is_activated', true)->first()->phone_1,
+                            'info_2' => \App\Models\Setting::where('is_activated', true)->first()->phone_2
                             ])
                         @endcomponent
                         @component('components.contact-info', [

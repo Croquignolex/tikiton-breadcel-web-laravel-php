@@ -22,6 +22,8 @@ class UsersTableSeeder extends Seeder
             'is_super_admin' => true,
             'is_confirmed' => true,
             'is_admin' => true,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('users')->insert([
@@ -31,7 +33,9 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('Bre@dcel2018'),
             'token' => str_random(64),
             'is_admin' => true,
-            'is_confirmed' => true
+            'is_confirmed' => true,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('users')->insert([
@@ -40,7 +44,9 @@ class UsersTableSeeder extends Seeder
             'email' => 'celine.wokgoue@breadcel.ca',
             'password' => Hash::make('Bre@dcel2018'),
             'token' => str_random(64),
-            'is_admin' => true
+            'is_admin' => true,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('users')->insert([
@@ -49,7 +55,9 @@ class UsersTableSeeder extends Seeder
             'email' => 'trina.wokgoue@breadcel.ca',
             'password' => Hash::make('Bre@dcel2018'),
             'token' => str_random(64),
-            'is_admin' => true
+            'is_admin' => true,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
     }
 }

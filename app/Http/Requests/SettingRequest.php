@@ -18,7 +18,10 @@ class SettingRequest extends FormRequest
     {
         return [
             'label' => $this->required_string,
-            'tva' => $this->required_integer . '|min:0'
+            'tva' => $this->required_integer . '|min:0',
+            'slogan' => $this->required_string,
+            'address_1' => $this->required_string,
+            'phone_1' => $this->required_string
         ];
     }
 }

@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="form-group">
                                     @component('components.label-input', [
-                                       'name' => 'phone', 'label' => 'phone'
+                                       'name' => 'phone', 'label' => 'phone', 'no_star' => ''
                                        ])
                                         @component('components.input', [
                                             'type' => 'text', 'name' => 'phone', 'class' => 'form-control',
@@ -103,7 +103,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     @component('components.label-input', [
-                                       'name' => 'address', 'label' => 'address'
+                                       'name' => 'address', 'label' => 'address', 'no_star' => ''
                                        ])
                                         @component('components.input', [
                                             'type' => 'text', 'name' => 'address', 'class' => 'form-control',
@@ -114,7 +114,7 @@
                                 </div>
                                 <div class="form-group">
                                     @component('components.label-input', [
-                                       'name' => 'post_code', 'label' => 'post_code'
+                                       'name' => 'post_code', 'label' => 'post_code', 'no_star' => ''
                                        ])
                                         @component('components.input', [
                                             'type' => 'text', 'name' => 'post_code', 'class' => 'form-control',
@@ -125,7 +125,7 @@
                                 </div>
                                 <div class="form-group">
                                     @component('components.label-input', [
-                                       'name' => 'city', 'label' => 'city'
+                                       'name' => 'city', 'label' => 'city', 'no_star' => ''
                                        ])
                                         @component('components.input', [
                                             'type' => 'text', 'name' => 'city', 'class' => 'form-control',
@@ -136,7 +136,7 @@
                                 </div>
                                 <div class="form-group">
                                     @component('components.label-input', [
-                                       'name' => 'country', 'label' => 'country'
+                                       'name' => 'country', 'label' => 'country', 'no_star' => ''
                                        ])
                                         @component('components.input', [
                                             'type' => 'text', 'name' => 'country', 'class' => 'form-control',
@@ -147,7 +147,7 @@
                                 </div>
                                 <div class="form-group">
                                     @component('components.label-input', [
-                                       'name' => 'company', 'label' => 'company'
+                                       'name' => 'company', 'label' => 'company', 'no_star' => ''
                                        ])
                                         @component('components.input', [
                                             'type' => 'text', 'name' => 'company', 'class' => 'form-control',
@@ -158,7 +158,7 @@
                                 </div>
                                 <div class="form-group">
                                     @component('components.label-input', [
-                                       'name' => 'coupons', 'label' => 'coupons'
+                                       'name' => 'coupons', 'label' => 'coupons', 'no_star' => ''
                                        ])
                                         @component('components.multi-select', [
                                             'name' => 'coupons', 'class' => 'form-control', 'title' => 'Sélectionner les coupons',

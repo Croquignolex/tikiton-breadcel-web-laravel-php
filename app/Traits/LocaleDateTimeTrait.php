@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\App;
 
 trait LocaleDateTimeTrait
 {
+    //private $time_zone = 'America/Toronto';
+
     /**
      * @return string
      */
@@ -22,7 +24,7 @@ trait LocaleDateTimeTrait
     public function getCreatedTimeAttribute()
     {
         $date = new Carbon($this->created_at);
-        return $date->format($this->timeFormat(App::getLocale()));
+        return $date->format($this->timeFormat(App::getLocale())) . ' GMT';
     }
 
     /**
@@ -42,7 +44,7 @@ trait LocaleDateTimeTrait
     public function getFrCreatedTimeAttribute()
     {
         $date = new Carbon($this->created_at);
-        return $date->format($this->timeFormat('fr'));
+        return $date->format($this->timeFormat('fr')) . ' GMT';
     }
 
     /**
@@ -60,7 +62,7 @@ trait LocaleDateTimeTrait
     public function getUpdatedTimeAttribute()
     {
         $date = new Carbon($this->updated_at);
-        return $date->format($this->timeFormat(App::getLocale()));
+        return $date->format($this->timeFormat(App::getLocale())) . ' GMT';
     }
 
     /**
@@ -78,7 +80,7 @@ trait LocaleDateTimeTrait
     public function getFrUpdatedTimeAttribute()
     {
         $date = new Carbon($this->updated_at);
-        return $date->format($this->timeFormat('fr'));
+        return $date->format($this->timeFormat('fr')) . ' GMT';
     }
 
     /**

@@ -15,13 +15,17 @@ class CouponsTableSeeder extends Seeder
         DB::table('coupons')->insert([
             'code' => 'BC2012C54553762',
             'discount' => 5,
-            'description' => 'description'
+            'description' => 'description',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('coupons')->insert([
             'code' => 'BC2012C54773762',
             'discount' => 10,
-            'description' => 'description'
+            'description' => 'description',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
     }
 }

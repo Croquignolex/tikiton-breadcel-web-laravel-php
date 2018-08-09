@@ -44,6 +44,17 @@
                                 </div>
                                 <div class="form-group">
                                     @component('components.label-input', [
+                                        'name' => 'slogan', 'label' => 'slogan'
+                                        ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'slogan', 'class' => 'form-control',
+                                             'value' => old('slogan')
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
                                         'name' => 'tva', 'label' => 'tva'
                                         ])
                                         @component('components.input', [
@@ -53,8 +64,107 @@
                                         @endcomponent
                                     @endcomponent
                                 </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                        'name' => 'address_1', 'label' => 'address_1'
+                                        ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'address_1', 'class' => 'form-control',
+                                             'value' => old('address_1')
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                        'name' => 'address_2', 'label' => 'address_2', 'no_star' => ''
+                                        ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'address_2', 'class' => 'form-control',
+                                             'value' => old('address_2'), 'validate' => 'false'
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                        'name' => 'phone_1', 'label' => 'phone_1'
+                                        ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'phone_1', 'class' => 'form-control',
+                                             'value' => old('phone_1')
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                        'name' => 'phone_2', 'label' => 'phone_2', 'no_star' => ''
+                                        ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'phone_2', 'class' => 'form-control',
+                                             'value' => old('phone_2'), 'validate' => 'false'
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
                             </div>
                             <div class="col-sm-6">
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                       'name' => 'facebook', 'label' => 'facebook', 'no_star' => ''
+                                       ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'facebook', 'class' => 'form-control',
+                                             'value' => old('facebook'), 'validate' => 'false'
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                       'name' => 'twitter', 'label' => 'twitter', 'no_star' => ''
+                                       ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'twitter', 'class' => 'form-control',
+                                             'value' => old('twitter'), 'validate' => 'false'
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                       'name' => 'linkedin', 'label' => 'linkedin', 'no_star' => ''
+                                       ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'linkedin', 'class' => 'form-control',
+                                             'value' => old('linkedin'), 'validate' => 'false'
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                       'name' => 'googleplus', 'label' => 'googleplus', 'no_star' => ''
+                                       ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'googleplus', 'class' => 'form-control',
+                                             'value' => old('googleplus'), 'validate' => 'false'
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
+                                <div class="form-group">
+                                    @component('components.label-input', [
+                                       'name' => 'youtube', 'label' => 'youtube', 'no_star' => ''
+                                       ])
+                                        @component('components.input', [
+                                            'type' => 'text', 'name' => 'youtube', 'class' => 'form-control',
+                                             'value' => old('youtube'), 'validate' => 'false'
+                                            ])
+                                        @endcomponent
+                                    @endcomponent
+                                </div>
                                 <div class="form-group">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="email_new_message" id="email_new_message"

@@ -6,7 +6,7 @@
                 <div class="info">
                     @component('components.top-header-info', [
                         'class' => 'phn-num', 'icon' => 'phone',
-                        'label' => config('company.phone_1')
+                        'label' => \App\Models\Setting::where('is_activated', true)->first()->phone_1
                         ])
                     @endcomponent
                     @component('components.top-header-info', [
@@ -19,27 +19,27 @@
             <div class="col-sm-12 col-md-4">
                 <div class="socials text-center">
                     @component('components.icon-link', [
-                        'icon' => 'facebook', 'link' => config('company.facebook'),
+                        'icon' => 'facebook', 'link' => \App\Models\Setting::where('is_activated', true)->first()->facebook,
                         'title' => trans('general.goto_facebook')
                         ])
                     @endcomponent
                     @component('components.icon-link', [
-                        'icon' => 'twitter', 'link' => config('company.twitter'),
+                        'icon' => 'twitter', 'link' => \App\Models\Setting::where('is_activated', true)->first()->twitter,
                         'title' => trans('general.goto_twitter')
                         ])
                     @endcomponent
                     @component('components.icon-link', [
-                        'icon' => 'linkedin', 'link' => config('company.linked_in'),
+                        'icon' => 'linkedin', 'link' => \App\Models\Setting::where('is_activated', true)->first()->linkedin,
                         'title' => trans('general.goto_linked_in')
                          ])
                     @endcomponent
                     @component('components.icon-link', [
-                        'icon' => 'google-plus', 'link' => config('company.google_plus'),
+                        'icon' => 'google-plus', 'link' => \App\Models\Setting::where('is_activated', true)->first()->googleplus,
                         'title' =>  trans('general.goto_google_plus')
                         ])
                     @endcomponent
                     @component('components.icon-link', [
-                        'icon' => 'youtube-play', 'link' => config('company.youtube'),
+                        'icon' => 'youtube-play', 'link' => \App\Models\Setting::where('is_activated', true)->first()->youtube,
                         'title' => trans('general.goto_youtube')
                         ])
                     @endcomponent

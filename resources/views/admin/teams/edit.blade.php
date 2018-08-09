@@ -70,44 +70,44 @@
                                 </div>
                                 <div class="form-group">
                                     @component('components.label-input', [
-                                       'name' => 'facebook', 'label' => 'facebook'
+                                       'name' => 'facebook', 'label' => 'facebook', 'no_star' => ''
                                        ])
                                         @component('components.input', [
                                             'type' => 'text', 'name' => 'facebook', 'class' => 'form-control',
-                                             'value' => old('facebook') ?? $team->facebook, 'minlength' => 1
+                                             'value' => old('facebook') ?? $team->facebook, 'validate' => 'false'
                                             ])
                                         @endcomponent
                                     @endcomponent
                                 </div>
                                 <div class="form-group">
                                     @component('components.label-input', [
-                                       'name' => 'twitter', 'label' => 'twitter'
+                                       'name' => 'twitter', 'label' => 'twitter', 'no_star' => ''
                                        ])
                                         @component('components.input', [
                                             'type' => 'text', 'name' => 'twitter', 'class' => 'form-control',
-                                             'value' => old('twitter') ?? $team->twitter, 'minlength' => 1
+                                             'value' => old('twitter') ?? $team->twitter, 'validate' => 'false'
                                             ])
                                         @endcomponent
                                     @endcomponent
                                 </div>
                                 <div class="form-group">
                                     @component('components.label-input', [
-                                       'name' => 'linkedin', 'label' => 'linkedin'
+                                       'name' => 'linkedin', 'label' => 'linkedin', 'no_star' => ''
                                        ])
                                         @component('components.input', [
                                             'type' => 'text', 'name' => 'linkedin', 'class' => 'form-control',
-                                             'value' => old('linkedin') ?? $team->linkedin, 'minlength' => 1
+                                             'value' => old('linkedin') ?? $team->linkedin, 'validate' => 'false'
                                             ])
                                         @endcomponent
                                     @endcomponent
                                 </div>
                                 <div class="form-group">
                                     @component('components.label-input', [
-                                       'name' => 'googleplus', 'label' => 'googleplus'
+                                       'name' => 'googleplus', 'label' => 'googleplus', 'no_star' => ''
                                        ])
                                         @component('components.input', [
                                             'type' => 'text', 'name' => 'googleplus', 'class' => 'form-control',
-                                             'value' => old('googleplus') ?? $team->googleplus, 'minlength' => 1
+                                             'value' => old('googleplus') ?? $team->googleplus, 'validate' => 'false'
                                             ])
                                         @endcomponent
                                     @endcomponent

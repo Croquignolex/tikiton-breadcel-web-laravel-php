@@ -70,11 +70,21 @@ class SettingsController extends Controller
         {
             $setting = Setting::create([
                 'label' => $request->input('label'),
+                'slogan' => $request->input('slogan'),
+                'address_1' => $request->input('address_1'),
+                'address_2' => $request->input('address_2'),
+                'phone_1' => $request->input('phone_1'),
+                'phone_2' => $request->input('phone_2'),
                 'tva' => $request->input('tva'),
                 'receive_email_from_contact' => is_null($request->input('email_new_message')) ? false : true,
                 'receive_email_from_register' => is_null($request->input('email_new_customer')) ? false : true,
                 'receive_email_from_new_order' => is_null($request->input('email_new_order')) ? false : true,
-                'receive_email_from_canceled_order' => is_null($request->input('email_order_cancel')) ? false : true
+                'receive_email_from_canceled_order' => is_null($request->input('email_order_cancel')) ? false : true,
+                'facebook' => $request->input('facebook'),
+                'twitter' => $request->input('twitter'),
+                'linkedin' => $request->input('linkedin'),
+                'googleplus' => $request->input('googleplus'),
+                'youtube' => $request->input('youtube')
             ]);
 
             success_flash_message(trans('auth.success'), 'Paramètre ' . $request->input('label') . ' ajouté avec succèss');
@@ -121,11 +131,21 @@ class SettingsController extends Controller
         {
             $setting->update([
                 'label' => $request->input('label'),
+                'slogan' => $request->input('slogan'),
+                'address_1' => $request->input('address_1'),
+                'address_2' => $request->input('address_2'),
+                'phone_1' => $request->input('phone_1'),
+                'phone_2' => $request->input('phone_2'),
                 'tva' => $request->input('tva'),
                 'receive_email_from_contact' => is_null($request->input('email_new_message')) ? false : true,
                 'receive_email_from_register' => is_null($request->input('email_new_customer')) ? false : true,
                 'receive_email_from_new_order' => is_null($request->input('email_new_order')) ? false : true,
-                'receive_email_from_canceled_order' => is_null($request->input('email_order_cancel')) ? false : true
+                'receive_email_from_canceled_order' => is_null($request->input('email_order_cancel')) ? false : true,
+                'facebook' => $request->input('facebook'),
+                'twitter' => $request->input('twitter'),
+                'linkedin' => $request->input('linkedin'),
+                'googleplus' => $request->input('googleplus'),
+                'youtube' => $request->input('youtube')
             ]);
 
             success_flash_message(trans('auth.success'), 'Le paramètre ' . $request->input('label') . ' à été mis(e) à jour avec succèss');

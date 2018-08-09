@@ -49,7 +49,7 @@
                                     @endcomponent
                                 @endcomponent
                                 @component('components.label-input', [
-                                    'name' => 'phone', 'label' => 'phone'
+                                    'name' => 'phone', 'label' => 'phone',
                                     ])
                                     @component('components.input', [
                                         'type' => 'text','name' => 'phone',

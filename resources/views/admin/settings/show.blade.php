@@ -53,6 +53,36 @@
                     <div class="col-sm-7 text-dark side-bar-item">{{ $setting->label }}</div>
                     <div class="col-sm-5 side-bar-item">TVA</div>
                     <div class="col-sm-7 text-dark side-bar-item">{{ money_currency($setting->format_tva) }}</div>
+                    <div class="col-sm-5 side-bar-item">SLOGAN</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $setting->slogan }}</div>
+                    <div class="col-sm-5 side-bar-item">TELEPHONE 1</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $setting->phone_1 }}</div>
+                    <div class="col-sm-5 side-bar-item">TELEPHONE 2</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $setting->phone_2 }}</div>
+                    <div class="col-sm-5 side-bar-item">ADRESSE 1</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $setting->address_1 }}</div>
+                    <div class="col-sm-5 side-bar-item">ADRESSE 2</div>
+                    <div class="col-sm-7 text-dark side-bar-item">{{ $setting->address_2 }}</div>
+                    <div class="col-sm-5 side-bar-item">FACEBOOK</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
+                        <a href="{{ $setting->facebook }}" target="_blank">{{ $setting->facebook }}</a>
+                    </div>
+                    <div class="col-sm-5 side-bar-item">TWITTER</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
+                        <a href="{{ $setting->twitter }}" target="_blank">{{ $setting->twitter }}</a>
+                    </div>
+                    <div class="col-sm-5 side-bar-item">LINKED IN</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
+                        <a href="{{ $setting->linkedin }}" target="_blank">{{ $setting->linkedin }}</a>
+                     </div>
+                    <div class="col-sm-5 side-bar-item">GOOGLE PLUS</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
+                        <a href="{{ $setting->googleplus }}" target="_blank">{{ $setting->googleplus }}</a>
+                    </div>
+                    <div class="col-sm-5 side-bar-item">YOUTUBE</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
+                        <a href="{{ $setting->youtube }}" target="_blank">{{ $setting->youtube }}</a>
+                    </div>
                     <div class="col-sm-5 side-bar-item">STATUT</div>
                     <div class="col-sm-7 text-dark side-bar-item">
                         @if($setting->is_activated)

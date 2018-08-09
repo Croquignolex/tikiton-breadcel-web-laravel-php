@@ -24,11 +24,12 @@
             @component('admin.components.table-card', [
                 'table_label' => $table_label,
                 'paginationTools' => $paginationTools,
-                'headers' => ['libellé', 'tva', 'statut', 'options']
+                'headers' => ['libellé', 'slogan', 'tva', 'statut', 'options']
                 ])
                 @forelse($paginationTools->displayItems as $setting)
                     <tr class="{{ $setting->is_activated ? 'text-success' : '' }}">
-                        <td>{{ text_format($setting->label, 15) }}</td>
+                        <td>{{ text_format($setting->label, 20) }}</td>
+                        <td>{{ text_format($setting->slogan, 20) }}</td>
                         <td class="text-right">{{ money_currency($setting->format_tva) }}</td>
                         <td class="text-center">
                             @if($setting->is_activated)
@@ -103,7 +104,7 @@
                     </tr>
                 @empty
                     @component('admin.components.empty_table_alert',
-                     ['size' => 4, 'table_label' => $table_label])
+                     ['size' => 5, 'table_label' => $table_label])
                     @endcomponent
                 @endforelse
             @endcomponent

@@ -17,7 +17,9 @@ class ProductCategoriesTableSeeder extends Seeder
             'fr_name' => 'Catégorie 1',
             'en_name' => 'Category 1',
             'fr_description' => 'Description de la catégorie 1',
-            'en_description' => 'Category\'s 1 description'
+            'en_description' => 'Category\'s 1 description',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('product_categories')->insert([
@@ -25,7 +27,9 @@ class ProductCategoriesTableSeeder extends Seeder
             'fr_name' => 'Catégorie 2',
             'en_name' => 'Category 2',
             'fr_description' => 'Description de la catégorie 2',
-            'en_description' => 'Category\'s 2 description'
+            'en_description' => 'Category\'s 2 description',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
     }
 }
