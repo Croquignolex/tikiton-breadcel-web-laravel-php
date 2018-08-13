@@ -17,12 +17,10 @@
         </div>
         <!-- Filter Buttons End -->
         <!-- Content table Start -->
-        <div class="col-lg-12 grid-margin stretch-card">
+        <div class="col-lg-6 grid-margin stretch-card align-items-start">
             <div class="card">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="card">
+                    <div class="card">
                                 <div class="card-header bg-primary text-white">
                                    Bienvenue sur Bread'Cel
                                 </div>
@@ -103,9 +101,15 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="card">
+                </div>
+            </div>
+        </div>
+        <!-- Content table End -->
+        <!-- Content table Start -->
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card">
                                 <div class="card-header bg-info text-white">
                                     Pourquoi nous choisir
                                 </div>
@@ -189,7 +193,7 @@
                                     <div class="text-center text-info">
                                         ILLUSTRATION
                                     </div>
-                                    <div class="about-image">
+                                    <div class="about-image text-center">
                                         <img src="{{ $about->image_path }}" alt="..." class="img-fluid">
                                     </div>
                                     <form action="{{ route('admin.about.why.image') }}" method="POST"
@@ -211,8 +215,6 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

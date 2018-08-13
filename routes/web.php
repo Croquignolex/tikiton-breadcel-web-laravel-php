@@ -180,18 +180,20 @@ Route::prefix('admin')->group(function() {
             'destroy' => 'admin.contacts.destroy'
         ]])->only(['index', 'show', 'destroy']);
         Route::get('/home', 'HomeController@index')->name('admin.home.index');
-        Route::get('/home/edit/banners', 'HomeController@banners')->name('admin.home.banners');
-        Route::get('/home/edit/offers', 'HomeController@offers')->name('admin.home.offers');
-        Route::get('/home/edit/magic', 'HomeController@magic')->name('admin.home.magic');
-        Route::post('/home/edit/banners', 'HomeController@updateBanners');
-        Route::post('/home/edit/offers', 'HomeController@updateOffers');
-        Route::post('/home/edit/magic', 'HomeController@updateMagic');
         Route::get('/about', 'AboutController@index')->name('admin.about.index');
-        Route::post('/about/edit/welcome/section', 'AboutController@welcomeSection')->name('admin.about.welcome.section');
-        Route::post('/about/edit/welcome/comment', 'AboutController@welcomeComment')->name('admin.about.welcome.comment');
-        Route::post('/about/edit/why/section', 'AboutController@whySection')->name('admin.about.why.section');
-        Route::post('/about/edit/why/comment', 'AboutController@whyComment')->name('admin.about.why.comment');
-        Route::post('/about/edit/why/image', 'AboutController@whyImage')->name('admin.about.why.image');
+        Route::post('/home/update/banner/1', 'HomeController@banner1')->name('admin.home.banner.1');
+        Route::post('/home/update/banner/2', 'HomeController@banner2')->name('admin.home.banner.2');
+        Route::post('/home/update/banner/3', 'HomeController@banner3')->name('admin.home.banner.3');
+        Route::post('/home/update/offer/1', 'HomeController@offer1')->name('admin.home.offer.1');
+        Route::post('/home/update/offer/2', 'HomeController@offer2')->name('admin.home.offer.2');
+        Route::post('/home/update/offer/3', 'HomeController@offer3')->name('admin.home.offer.3');
+        Route::post('/home/update/offer/4', 'HomeController@offer4')->name('admin.home.offer.4');
+        Route::post('/home/update/magic', 'HomeController@magic')->name('admin.home.magic');
+        Route::post('/about/update/welcome/section', 'AboutController@welcomeSection')->name('admin.about.welcome.section');
+        Route::post('/about/update/welcome/comment', 'AboutController@welcomeComment')->name('admin.about.welcome.comment');
+        Route::post('/about/update/why/section', 'AboutController@whySection')->name('admin.about.why.section');
+        Route::post('/about/update/why/comment', 'AboutController@whyComment')->name('admin.about.why.comment');
+        Route::post('/about/update/why/image', 'AboutController@whyImage')->name('admin.about.why.image');
 
         //--Auth routes...
         Route::group(['namespace' => 'Auth'], function() {

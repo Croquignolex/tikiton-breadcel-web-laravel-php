@@ -1,16 +1,16 @@
 <label for="image">Image</label>
-@if ($errors->has('image'))
+@if ($errors->has($name ?? 'image'))
     <small class="text-danger">
-        {{ $errors->first('image') }}
+        {{ $errors->first($name ?? 'image') }}
     </small>
 @endif
-<input type="file" name="image" id="image" class="file-upload-default"
+<input type="file" name="{{ $name ?? 'image' }}" id="{{ $name ?? 'image' }}" class="file-upload-default"
        @input="setImagePath" data-validate="false">
 <div class="input-group col-xs-12">
     <input type="text" class="form-control file-upload-info" disabled placeholder="Importer image">
     <span class="input-group-append">
         <button class="file-upload-browse btn btn-info" type="button"
-                onclick="document.getElementById('image').click();">
+                onclick="document.getElementById('{{ $name ?? 'image' }}').click();">
             Upload
         </button>
     </span>
