@@ -172,7 +172,7 @@
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" name="email_new_message" id="email_new_message"
                                            title="Recevoir un email lorsqu'un client envoie un méssage depuis le formulaire de contact"
-                                            {{ $setting->receive_email_from_contact ? 'checked' : '' }}>
+                                            {{ $setting->receive_email_from_contact || old('email_new_message') === 'on' ? 'checked' : '' }}>
                                     <label class="badge badge-theme"
                                            title="Recevoir un email lorsqu'un client envoie un méssage depuis le formulaire de contact">
                                         <i class="{{ font('envelope') }}"></i>
@@ -180,7 +180,7 @@
                                     </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <input type="checkbox" class="form-check-input" name="email_new_customer" id="email_new_customer"
                                            title="Recevoir un email lorsqu'un nouveau client confirme son compte"
-                                            {{ $setting->receive_email_from_register ? 'checked' : '' }}>
+                                            {{ $setting->receive_email_from_register || old('email_new_customer') === 'on' ? 'checked' : '' }}>
                                     <label class="badge badge-info"
                                            title="Recevoir un email lorsqu'un nouveau client confirme son compte">
                                         <i class="{{ font('user') }}"></i>
@@ -188,7 +188,7 @@
                                     </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <input type="checkbox" class="form-check-input" name="email_new_order" id="email_new_order"
                                            title="Recevoir un email lorsqu'un client emet une nouvelle commande"
-                                            {{ $setting->receive_email_from_new_order ? 'checked' : '' }}>
+                                            {{ $setting->receive_email_from_new_order || old('email_new_order') === 'on' ? 'checked' : '' }}>
                                     <label class="badge badge-success"
                                            title="Recevoir un email lorsqu'un client emet une nouvelle commande">
                                         <i class="{{ font('copy') }}"></i>
@@ -196,11 +196,18 @@
                                     </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <input type="checkbox" class="form-check-input" name="email_order_cancel" id="email_order_cancel"
                                            title="Recevoir un email lorsqu'un client annule une commande"
-                                            {{ $setting->receive_email_from_canceled_order ? 'checked' : '' }}>
+                                            {{ $setting->receive_email_from_canceled_order || old('email_order_cancel') === 'on' ? 'checked' : '' }}>
                                     <label class="badge badge-danger"
                                            title="Recevoir un email lorsqu'un client annule une commande">
                                         <i class="{{ font('copy') }}"></i>
                                         <i class="{{ font('times') }}"></i>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="order_activated" id="order_activated"
+                                            {{ $setting->order_activated || old('order_activated') === 'on' ? 'checked' : '' }}>
+                                    <label class="badge badge-dark">
+                                        Commandes
                                     </label>
                                 </div>
                                 <div class="form-group">

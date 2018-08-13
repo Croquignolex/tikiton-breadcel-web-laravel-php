@@ -25,7 +25,8 @@ class Setting extends Model
         'receive_email_from_contact', 'receive_email_from_new_order', 'tva',
         'receive_email_from_canceled_order', 'receive_email_from_register',
         'label', 'slogan', 'address_1', 'address_2', 'phone_1', 'phone_2',
-        'facebook', 'twitter', 'linkedin', 'googleplus', 'youtube'
+        'facebook', 'twitter', 'linkedin', 'googleplus', 'youtube',
+        'order_activated'
     ];
 
     /**

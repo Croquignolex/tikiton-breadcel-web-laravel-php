@@ -24,7 +24,7 @@ class CheckoutController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('out.of.stock');
+        $this->middleware('checkout');
     }
 
     /**

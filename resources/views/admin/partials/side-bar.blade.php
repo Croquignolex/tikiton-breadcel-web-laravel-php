@@ -26,6 +26,32 @@
                 <span class="menu-title">Tableau de bord</span>
             </a>
         </li>
+        <li class="side-bar-item nav-item {{ active_page(admin_personalisation_pages()) }}">
+            <a class="nav-link" data-toggle="collapse" href="#personalisation" aria-controls="personalisation"
+               aria-expanded="{{ active_page(admin_personalisation_pages(), 'expend') === 'show' ? 'true' : 'false' }}">
+                <i class="menu-icon {{ font('edit') }}"></i>
+                <span class="menu-title">Personalisations</span>
+                <i class="menu-arrow {{ font('angle-down') }}"></i>
+            </a>
+            <div class="collapse {{ active_page(admin_personalisation_pages(), 'expend') }}" id="personalisation">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ active_page(admin_home_pages()) }}"
+                           href="{{ route('admin.home.index') }}">
+                            <i class="menu-icon {{ font('home') }}"></i>
+                            Page d'accueil
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ active_page(admin_users_pages()) }}"
+                           href="{{ route('admin.about.index') }}">
+                            <i class="menu-icon {{ font('info-circle') }}"></i>
+                            Page à propos de nous
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
         <li class="side-bar-item nav-item {{ active_page(admin_options_pages()) }}">
             <a class="nav-link" data-toggle="collapse" href="#options" aria-controls="options"
                aria-expanded="{{ active_page(admin_options_pages(), 'expend') === 'show' ? 'true' : 'false' }}">

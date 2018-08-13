@@ -113,6 +113,19 @@ if(!function_exists('team_img_asset'))
     }
 }
 
+if(!function_exists('banners_img_asset'))
+{
+    /**
+     * @param $banner
+     * @param string $extension
+     * @return string
+     */
+    function banners_img_asset($banner, $extension = 'jpg')
+    {
+        return '/assets/img/banners/' . $banner . '.' . $extension;
+    }
+}
+
 
 if(!function_exists('favicon_img_asset'))
 {

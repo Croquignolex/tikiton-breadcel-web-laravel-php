@@ -30,6 +30,7 @@ class CreateSettingsTable extends Migration
             $table->boolean('receive_email_from_new_order')->default(true);
             $table->boolean('receive_email_from_canceled_order')->default(true);
             $table->boolean('receive_email_from_register')->default(true);
+            $table->boolean('order_activated')->default(false);
             $table->boolean('is_activated')->default(false);
             $table->double('tva')->default(19.25);
             $table->timestamps();

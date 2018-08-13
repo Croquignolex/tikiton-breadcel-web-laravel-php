@@ -24,13 +24,13 @@
             @component('admin.components.table-card', [
                 'table_label' => $table_label,
                 'paginationTools' => $paginationTools,
-                'headers' => ['libellé', 'slogan', 'tva', 'statut', 'options']
+                'headers' => ['libellé', 'slogan', 'tva', 'statut', 'options', 'commandes']
                 ])
                 @forelse($paginationTools->displayItems as $setting)
                     <tr class="{{ $setting->is_activated ? 'text-success' : '' }}">
-                        <td>{{ text_format($setting->label, 20) }}</td>
-                        <td>{{ text_format($setting->slogan, 20) }}</td>
-                        <td class="text-right">{{ money_currency($setting->format_tva) }}</td>
+                        <td>{{ text_format($setting->label, 15) }}</td>
+                        <td>{{ text_format($setting->slogan, 15) }}</td>
+                        <td class="text-right">{{ text_format(money_currency($setting->format_tva), 10) }}</td>
                         <td class="text-center">
                             @if($setting->is_activated)
                                 <label class="badge badge-success">
@@ -71,6 +71,19 @@
                                        title="Recevoir un email lorsqu'un client annule une commande">
                                     <i class="{{ font('copy') }}"></i>
                                     <i class="{{ font('times') }}"></i>
+                                </label>
+                            @endif
+                        </td>
+                        <td class="text-center">
+                            @if($setting->order_activated)
+                                <label class="badge badge-success">
+                                    <i class="{{ font('thumbs-up') }}"></i>
+                                    Activées
+                                </label>
+                            @else
+                                <label class="badge badge-danger">
+                                    <i class="{{ font('thumbs-down') }}"></i>
+                                    Désactivées
                                 </label>
                             @endif
                         </td>

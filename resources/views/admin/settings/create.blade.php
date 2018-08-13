@@ -200,6 +200,13 @@
                                             <i class="{{ font('times') }}"></i>
                                         </label>
                                     </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="order_activated" id="order_activated"
+                                                {{ old('order_activated') === 'on' ? 'checked' : '' }}>
+                                        <label class="badge badge-dark">
+                                            Commandes
+                                        </label>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     @component('components.submit', [

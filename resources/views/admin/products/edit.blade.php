@@ -118,19 +118,19 @@
                                 <div class="form-group">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="featured" id="featured"
-                                               title="Placer le produit en vedette" {{ $product->is_featured ? 'checked' : '' }}>
+                                               title="Placer le produit en vedette" {{ $product->is_featured || old('featured') === 'on' ? 'checked' : '' }}>
                                         <label class="badge badge-theme" title="Placer le produit en vedette">
                                             <i class="{{ font('database') }}"></i>
                                             <i class="{{ font('star') }}"></i>
                                         </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <input type="checkbox" class="form-check-input" name="best_sale" id="best_sale"
-                                               title="Placer le produit en meilleur vente" {{ $product->is_most_sold ? 'checked' : '' }}>
+                                               title="Placer le produit en meilleur vente" {{ $product->is_most_sold || old('best_sale') ? 'checked' : '' }}>
                                         <label class="badge badge-info" title="Placer le produit en meilleur vente">
                                             <i class="{{ font('database') }}"></i>
                                             <i class="{{ font('gift') }}"></i>
                                         </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <input type="checkbox" class="form-check-input" name="new" id="new"
-                                               title="Désigner ce produit comme un nouveau produit" {{ $product->is_new ? 'checked' : '' }}>
+                                               title="Désigner ce produit comme un nouveau produit" {{ $product->is_new || old('new') ? 'checked' : '' }}>
                                         <label class="badge badge-success" title="Désigner ce produit comme un nouveau produit">
                                             <i class="{{ font('database') }}"></i>
                                             <i class="{{ font('check') }}"></i>

@@ -243,6 +243,7 @@ return [
     'update' => 'Modifer',
     'new_email' => 'Nouvel email',
     'connect_to_see_cart' => 'Connectez-vous afin de voir les produits dans votre panier',
+    'no_order' => 'Impossible de passer les commandes pour le momment, contactez-nous au :phone pour plus de détails',
 
     /*
     |--------------------------------------------------------------------------

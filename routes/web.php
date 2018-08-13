@@ -179,6 +179,21 @@ Route::prefix('admin')->group(function() {
             'index' => 'admin.contacts.index', 'show' => 'admin.contacts.show',
             'destroy' => 'admin.contacts.destroy'
         ]])->only(['index', 'show', 'destroy']);
+        Route::get('/home', 'HomeController@index')->name('admin.home.index');
+        Route::get('/home/edit/banners', 'HomeController@banners')->name('admin.home.banners');
+        Route::get('/home/edit/offers', 'HomeController@offers')->name('admin.home.offers');
+        Route::get('/home/edit/magic', 'HomeController@magic')->name('admin.home.magic');
+        Route::post('/home/edit/banners', 'HomeController@updateBanners');
+        Route::post('/home/edit/offers', 'HomeController@updateOffers');
+        Route::post('/home/edit/magic', 'HomeController@updateMagic');
+        Route::get('/about', 'AboutController@index')->name('admin.home.index');
+        Route::get('/about/edit', 'AboutController@edit')->name('admin.home.edit');
+        Route::post('/home/edit', 'AboutController@update');
+
+        Route::resource('/about', 'AboutController', ['names' => [
+            'index' => 'admin.about.index', 'edit' => 'admin.about.edit',
+            'update' => 'admin.about.update'
+        ]])->only(['index', 'edit', 'update']);
 
         //--Auth routes...
         Route::group(['namespace' => 'Auth'], function() {

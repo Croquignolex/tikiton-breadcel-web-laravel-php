@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckoutMiddleware;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustProxies;
 use App\Http\Middleware\EncryptCookies;
@@ -75,6 +76,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'ajax' => AjaxMiddleware::class,
-        'out.of.stock' => OutOfStockMiddleware::class,
+        'checkout' => CheckoutMiddleware::class,
     ];
 }

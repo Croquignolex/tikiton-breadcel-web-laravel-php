@@ -97,6 +97,20 @@
                             </label>
                         @endif
                     </div>
+                    <div class="col-sm-5 side-bar-item">COMMANDES</div>
+                    <div class="col-sm-7 text-dark side-bar-item">
+                        @if($setting->order_activated)
+                            <label class="badge badge-success">
+                                <i class="{{ font('thumbs-up') }}"></i>
+                                Activées
+                            </label>
+                        @else
+                            <label class="badge badge-danger">
+                                <i class="{{ font('thumbs-down') }}"></i>
+                                Désactivées
+                            </label>
+                        @endif
+                    </div>
                     <div class="col-sm-5 side-bar-item">OPTIONS</div>
                     <div class="col-sm-7 text-dark side-bar-item">
                         @if($setting->receive_email_from_contact)

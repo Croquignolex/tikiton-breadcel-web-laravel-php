@@ -253,3 +253,38 @@ if(!function_exists('admin_profile_pages'))
         return collect(['admin.profile.index', 'admin.profile.edit']);
     }
 }
+
+if(!function_exists('admin_personalisation_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function admin_personalisation_pages()
+    {
+        return collect(['admin.home.index', 'admin.home.edit', 'admin.home.magic',
+            'admin.home.offers', 'admin.about.edit', 'admin.about.index']);
+    }
+}
+
+if(!function_exists('admin_home_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function admin_home_pages()
+    {
+        return collect(['admin.home.index', 'admin.home.banners',
+            'admin.home.offers', 'admin.home.magic']);
+    }
+}
+
+if(!function_exists('admin_about_pages'))
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    function admin_about_pages()
+    {
+        return collect(['admin.about.index', 'admin.about.edit']);
+    }
+}

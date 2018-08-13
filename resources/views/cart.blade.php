@@ -204,12 +204,10 @@
                             </div>
                         </div>
                     </div>
-                    @if(!$carted_products->isEmpty())
-                        <a id="procedto" href="{{ locale_route('checkout.index') }}">
-                            <i class="{{ font('file-text') }}"></i>
-                            @lang('general.proceed_checkout')
-                        </a>
-                    @endif
+                    <a id="procedto" href="{{ locale_route('checkout.index') }}">
+                        <i class="{{ font('file-text') }}"></i>
+                        @lang('general.proceed_checkout')
+                    </a>
                 </div>
             </div>
         </div>

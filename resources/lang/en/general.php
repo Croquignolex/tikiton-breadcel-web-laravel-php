@@ -243,6 +243,7 @@ return [
     'update' => 'Update',
     'new_email' => 'New email',
     'connect_to_see_cart' => 'Connect to see products in your cart',
+    'no_order' => 'You could not purchase an order, contact us at :phone for more information',
 
     /*
     |--------------------------------------------------------------------------
