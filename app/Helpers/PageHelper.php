@@ -261,8 +261,7 @@ if(!function_exists('admin_personalisation_pages'))
      */
     function admin_personalisation_pages()
     {
-        return collect(['admin.home.index', 'admin.home.edit', 'admin.home.magic',
-            'admin.home.offers', 'admin.about.edit', 'admin.about.index']);
+        return collect(['admin.home.index', 'admin.about.index']);
     }
 }
 
@@ -273,8 +272,7 @@ if(!function_exists('admin_home_pages'))
      */
     function admin_home_pages()
     {
-        return collect(['admin.home.index', 'admin.home.banners',
-            'admin.home.offers', 'admin.home.magic']);
+        return collect(['admin.home.index']);
     }
 }
 
@@ -285,6 +283,6 @@ if(!function_exists('admin_about_pages'))
      */
     function admin_about_pages()
     {
-        return collect(['admin.about.index', 'admin.about.edit']);
+        return collect(['admin.about.index']);
     }
 }

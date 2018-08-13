@@ -15,10 +15,12 @@
                 <h3>{{ \App\Models\Setting::where('is_activated', true)->first()->slogan }}</h3>
             </div>
             <div class="about-text">
-                <p>@lang('about.section_top')</p>
-                @component('components.about-row-body',
-                    ['body' => 'about_manager_1'])
-                @endcomponent
+                <p>{{ $about->about_section_1_normal_zone }}</p>
+                <blockquote>
+                    <p class="text-justify">
+                        {{ $about->fr_about_section_1_important_zone }}
+                    </p>
+                </blockquote>
             </div>
         </div>
         <div class="col-sm-6">
@@ -27,15 +29,17 @@
                     @lang('general.why')
                     <span>@lang('general.choose_us')</span>
                 </h2>
-                <p class="about-margin">@lang('about.section_bottom')</p>
-                @component('components.about-row-body',
-                    ['body' => 'about_manager_2'])
-                @endcomponent
+                <p class="about-margin">{{ $about->about_section_2_normal_zone }}</p>
+                <blockquote>
+                    <p class="text-justify">
+                        {{ $about->fr_about_section_2_important_zone }}
+                    </p>
+                </blockquote>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="about-img">
-                <img src="{{ banner_img_asset('about_bg') }}" alt="" />
+                <img src="{{ $about->image_path }}" alt="" />
             </div>
         </div>
     @endcomponent

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\App;
 
 use Exception;
+use App\Models\Home;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
@@ -21,6 +22,8 @@ class HomeController extends Controller
     {
         try
         {
+            $home = Home::all()->first();
+
             $new_products = Product::where('created_at', '>=', now()->addDay(-7))
                 ->orWhere('is_new', true)
                 ->get()->sortByDesc('created_at');
@@ -47,7 +50,7 @@ class HomeController extends Controller
         return view('home', compact(
                 'featured_products', 'customers_nbr',
                 'new_products', 'most_sold_products', 'products_nbr',
-                'orders_nbr', 'sales_nbr', 'testimonials'
+                'orders_nbr', 'sales_nbr', 'testimonials', 'home'
             )
         );
     }

@@ -47,21 +47,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Banner Language Lines
-    |--------------------------------------------------------------------------
-    |
-    |
-    */
-
-    'banner_msg_1_top' => 'Expressif',
-    'banner_msg_2_top' => 'Délicieux',
-    'banner_msg_3_top' => 'Extra',
-    'banner_msg_1_bottom' => 'Exprimez vous',
-    'banner_msg_2_bottom' => 'Faites vous plaisir',
-    'banner_msg_3_bottom' => 'Totalement bon',
-
-    /*
-    |--------------------------------------------------------------------------
     | Common Language Lines
     |--------------------------------------------------------------------------
     |
@@ -376,22 +361,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | About Language Lines
-    |--------------------------------------------------------------------------
-    |
-    |
-    */
-
-    'about_manager_1' => '<< De voir que, naturellement, les gens démarrent des choses
-        et des nouveaux projets, c\'est encourageant. Ca permet de voir que le territoire
-        se développe et qu\'on peut être un peu plus attractif. >> Catherine Drolet',
-
-    'about_manager_2' => '<< Je crois que dans la vie, on si on vit de sa passion,  c\'est très bien
-        C\'est beau de faire ce qu\'on aime et c\'est encore mieux de vivre de ce qu\'on aime. >>
-         Célestin Wokgoue',
-
-    /*
-    |--------------------------------------------------------------------------
     | Admin line
     |--------------------------------------------------------------------------
     |
@@ -417,4 +386,6 @@ return [
     'linkedin' => 'Linked In',
     'googleplus' => 'Google Plus',
     'youtube' => 'Youtube',
+    'FR' => 'FR',
+    'EN' => 'EN',
 ];

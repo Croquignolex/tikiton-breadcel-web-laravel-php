@@ -186,14 +186,12 @@ Route::prefix('admin')->group(function() {
         Route::post('/home/edit/banners', 'HomeController@updateBanners');
         Route::post('/home/edit/offers', 'HomeController@updateOffers');
         Route::post('/home/edit/magic', 'HomeController@updateMagic');
-        Route::get('/about', 'AboutController@index')->name('admin.home.index');
-        Route::get('/about/edit', 'AboutController@edit')->name('admin.home.edit');
-        Route::post('/home/edit', 'AboutController@update');
-
-        Route::resource('/about', 'AboutController', ['names' => [
-            'index' => 'admin.about.index', 'edit' => 'admin.about.edit',
-            'update' => 'admin.about.update'
-        ]])->only(['index', 'edit', 'update']);
+        Route::get('/about', 'AboutController@index')->name('admin.about.index');
+        Route::post('/about/edit/welcome/section', 'AboutController@welcomeSection')->name('admin.about.welcome.section');
+        Route::post('/about/edit/welcome/comment', 'AboutController@welcomeComment')->name('admin.about.welcome.comment');
+        Route::post('/about/edit/why/section', 'AboutController@whySection')->name('admin.about.why.section');
+        Route::post('/about/edit/why/comment', 'AboutController@whyComment')->name('admin.about.why.comment');
+        Route::post('/about/edit/why/image', 'AboutController@whyImage')->name('admin.about.why.image');
 
         //--Auth routes...
         Route::group(['namespace' => 'Auth'], function() {

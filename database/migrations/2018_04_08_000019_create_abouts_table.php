@@ -17,10 +17,14 @@ class CreateAboutsTable extends Migration
             $table->increments('id');
             $table->string('image', 255);
             $table->string('extension', 50)->default('jpg');
-            $table->string('about_section_1_normal_zone', 255);
-            $table->string('about_section_1_important_zone', 255);
-            $table->string('about_section_2_normal_zone', 255);
-            $table->string('about_section_2_important_zone', 255);
+            $table->string('fr_about_section_1_normal_zone', 255);
+            $table->string('fr_about_section_1_important_zone', 255);
+            $table->string('fr_about_section_2_normal_zone', 255);
+            $table->string('fr_about_section_2_important_zone', 255);
+            $table->string('en_about_section_1_normal_zone', 255);
+            $table->string('en_about_section_1_important_zone', 255);
+            $table->string('en_about_section_2_normal_zone', 255);
+            $table->string('en_about_section_2_important_zone', 255);
             $table->timestamps();
         });
     }

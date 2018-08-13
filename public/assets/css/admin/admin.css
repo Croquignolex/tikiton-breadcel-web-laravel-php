@@ -16494,3 +16494,7 @@ ul li {
 .side-bar-item {
     border-bottom: 1px solid #c2c2c2;
 }
+.about-image {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

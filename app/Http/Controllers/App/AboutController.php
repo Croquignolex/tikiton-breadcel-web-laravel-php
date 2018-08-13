@@ -4,6 +4,7 @@ namespace App\Http\Controllers\App;
 
 use Exception;
 use App\Models\Team;
+use App\Models\About;
 use App\Http\Controllers\Controller;
 use App\Traits\ErrorFlashMessagesTrait;
 
@@ -18,6 +19,7 @@ class AboutController extends Controller
     {
         try
         {
+            $about = About::all()->first();
             $teams = Team::all();
         }
         catch (Exception $exception)
@@ -25,6 +27,6 @@ class AboutController extends Controller
             $this->databaseError($exception);
         }
 
-        return view('about', compact('teams'));
+        return view('about', compact('teams', 'about'));
     }
 }

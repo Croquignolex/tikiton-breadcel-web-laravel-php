@@ -6,28 +6,58 @@
     <!--Start home slider-->
     <div class="slider-wrap home-1-slider">
         <div id="mainSlider" class="nivoSlider slider-image">
-            @for($i = 1; $i <= 3; $i++)
-                <img src="{{ banner_img_asset('banner' . $i) }}" alt="main slider" title="#slide{{ $i }}"/>
-            @endfor
+            <img src="{{ $home->banner1_image_path }}" alt="..." title="#slide1"/>
+            <img src="{{ $home->banner2_image_path }}" alt="..." title="#slide2"/>
+            <img src="{{ $home->banner3_image_path }}" alt="..." title="#slide3"/>
         </div>
-        @for($i = 1; $i <= 3; $i++)
-            <div id="slide{{ $i }}" class="nivo-html-caption slider-caption-{{ $i }}">
-                <div class="slider-progress"></div>
-                <div class="slide{{ $i }}-text slide-text">
-                    <div class="middle-text">
-                        <div class="cap-title wow {{ banner_animation($i - 1, 0) }}" data-wow-duration=".9s" data-wow-delay="0s">
-                            <h1>{{ banner_message($i - 1, 0) }}</h1>
-                        </div>
-                        <div class="cap-dec wow {{ banner_animation($i - 1, 1) }}" data-wow-duration="1.3s" data-wow-delay="1s">
-                            <h2>{{ banner_message($i - 1, 1) }}</h2>
-                        </div>
-                        <div class="cap-readmore wow {{ banner_animation($i - 1, 2) }}" data-wow-duration="1.5s" data-wow-delay="0s">
-                            <a href="{{ locale_route('products.index') }}">@lang('general.order')</a>
-                        </div>
+        <div id="slide1" class="nivo-html-caption slider-caption-1">
+            <div class="slider-progress"></div>
+            <div class="slide1-text slide-text">
+                <div class="middle-text">
+                    <div class="cap-title wow bounceInDown" data-wow-duration=".9s" data-wow-delay="0s">
+                        <h1>{{ $home->banner_1_text_1 }}</h1>
+                    </div>
+                    <div class="cap-dec wow flipInY" data-wow-duration="1.3s" data-wow-delay="1s">
+                        <h2>{{ $home->banner_1_text_2 }}</h2>
+                    </div>
+                    <div class="cap-readmore wow bounceInUp" data-wow-duration="1.5s" data-wow-delay="0s">
+                        <a href="{{ locale_route('products.index') }}">@lang('general.order')</a>
                     </div>
                 </div>
             </div>
-        @endfor
+        </div>
+        <div id="slide2" class="nivo-html-caption slider-caption-2">
+            <div class="slider-progress"></div>
+            <div class="slide2-text slide-text">
+                <div class="middle-text">
+                    <div class="cap-title wow bounceInUp" data-wow-duration=".9s" data-wow-delay="0s">
+                        <h1>{{ $home->banner_2_text_1 }}</h1>
+                    </div>
+                    <div class="cap-dec wow lightSpeedIn" data-wow-duration="1.3s" data-wow-delay="1s">
+                        <h2>{{ $home->banner_2_text_2 }}</h2>
+                    </div>
+                    <div class="cap-readmore wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0s">
+                        <a href="{{ locale_route('products.index') }}">@lang('general.order')</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="slide3" class="nivo-html-caption slider-caption-3">
+            <div class="slider-progress"></div>
+            <div class="slide3-text slide-text">
+                <div class="middle-text">
+                    <div class="cap-title wow rollIn" data-wow-duration=".9s" data-wow-delay="0s">
+                        <h1>{{ $home->banner_3_text_1 }}</h1>
+                    </div>
+                    <div class="cap-dec wow bounceIn" data-wow-duration="1.3s" data-wow-delay="1s">
+                        <h2>{{ $home->banner_3_text_2 }}</h2>
+                    </div>
+                    <div class="cap-readmore wow bounceIn" data-wow-duration="1.5s" data-wow-delay="0s">
+                        <a href="{{ locale_route('products.index') }}">@lang('general.order')</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!--End home slider-->
     <!--Start Featured Product Area-->
@@ -58,19 +88,19 @@
     <div class="banner-area fix">
         <div class="col-sm-6 sin-banner">
             <a href="{{ locale_route('products.index') }}">
-                <img src="{{ banner_img_asset('offer_top1') }}" alt="..." />
+                <img src="{{ $home->offer1_image_path }}" alt="..." />
                 <div class="wrap">
-                    <h2>@lang('home.offer_top1_title')</h2>
-                    <p>@lang('home.offer_top1_description')</p>
+                    <h2>{{ $home->offer_1_text_1 }}</h2>
+                    <p>{{ $home->offer_1_text_2 }}</p>
                 </div>
             </a>
         </div>
         <div class="col-sm-4 sin-banner">
             <a href="{{ locale_route('products.index') }}">
-                <img src="{{ banner_img_asset('offer_top2') }}" alt="..." />
+                <img src="{{ $home->offer2_image_path }}" alt="..." />
                 <div class="wrap">
-                    <h2>@lang('home.offer_top2_title')</h2>
-                    <p>@lang('home.offer_top2_description')</p>
+                    <h2>{{ $home->offer_2_text_1 }}</h2>
+                    <p>{{ $home->offer_2_text_2 }}</p>
                 </div>
             </a>
         </div>
@@ -88,19 +118,19 @@
         </div>
         <div class="col-sm-6 sin-banner">
             <a href="{{ locale_route('products.index') }}">
-                <img src="{{ banner_img_asset('offer_bottom1') }}" alt="..." />
+                <img src="{{ $home->offer3_image_path }}" alt="..." />
                 <div class="wrap">
-                    <h2>@lang('home.offer_bottom1_title')</h2>
-                    <p>@lang('home.offer_bottom1_description')</p>
+                    <h2>{{ $home->offer_3_text_1 }}</h2>
+                    <p>{{ $home->offer_3_text_2 }}</p>
                 </div>
             </a>
         </div>
         <div class="col-sm-4 sin-banner">
             <a href="{{ locale_route('products.index') }}">
-                <img src="{{ banner_img_asset('offer_bottom2') }}" alt="..." />
+                <img src="{{ $home->offer4_image_path }}" alt="..." />
                 <div class="wrap">
-                    <h2>@lang('home.offer_bottom2_title')</h2>
-                    <p>@lang('home.offer_bottom2_description')</p>
+                    <h2>{{ $home->offer_4_text_1 }}</h2>
+                    <p>{{ $home->offer_4_text_2 }}</p>
                 </div>
             </a>
         </div>
@@ -165,12 +195,14 @@
     <!--Start Magic Area-->
     <div class="magic-area fix">
         <div class="col-sm-12 col-md-6 image">
-            <a href="{{ locale_route('products.index') }}"><img src="{{ banner_img_asset('magic') }}" alt="..." class="img-responsive"/></a>
+            <a href="{{ locale_route('products.index') }}">
+                <img src="{{ $home->magic_image_path }}" alt="..." class="img-responsive"/>
+            </a>
         </div>
         <div class="col-sm-12 col-md-6 content">
-            <h2>@lang('home.magic_top_title')</h2>
-            <h3>@lang('home.magic_title')</h3>
-            <p>@lang('home.magic_description').</p>
+            <h2>{{ $home->magic_header }}</h2>
+            <h3>{{ $home->magic_title }}</h3>
+            <p>{{ $home->magic_description }}.</p>
             <a href="{{ locale_route('products.index') }}">@lang('general.order')</a>
         </div>
     </div>
